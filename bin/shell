@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ "$#" -gt 0 ]
+then
+    docker exec -it achim-kraemer $@
+else
+    docker exec -it achim-kraemer bash
+fi

@@ -1,0 +1,7 @@
+<a href="{{ path('app_home') }}" class="double-hover-effect"><h1>{{ 'app.header.name'|trans }}</h1></a>
+<nav>
+    <a href="{% if links is defined and links == 'direct' %}#services{% else %}{{ path('app_home') }}#service{% endif %}" class="double-hover-effect">{{ 'app.navigation.services'|trans }}</a>
+    <a href="{% if links is defined and links == 'direct' %}#about{% else %}{{ path('app_home') }}#about{% endif %}" class="double-hover-effect">{{ 'app.navigation.about'|trans }}</a>
+    <a href="{% if links is defined and links == 'direct' %}#portfolio{% else %}{{ path('app_home') }}#portfolio{% endif %}" class="double-hover-effect">{{ 'app.navigation.portfolio'|trans }}</a>
+    <a href="{% if links is defined and links == 'direct' %}#contact{% else %}{{ path('app_home') }}#contact{% endif %}" class="double-hover-effect">{{ 'app.navigation.contact'|trans }}</a>
+</nav>
