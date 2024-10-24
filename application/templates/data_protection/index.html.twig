@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'app.data_protection.title'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('impress') }}
+{% endblock %}
+
+{% block body %}
+<header>
+    <div>
+        {% include '_scroll_navigation.html.twig' with {'links':''} %}
+    </div>
+    <div class="impress-container">
+        <h2>{{ 'app.data_protection.title'|trans }}</h2>
+        <div class="impressum-section">
+            <h2>Verantwortlicher für die Datenverarbeitung</h2>
+            <p>
+                <strong>Name:</strong> Achim Krämer<br>
+                <strong>Anschrift:</strong> Böckemeyerskamp 20, 49479 Ibbenbüren, Deutschland<br>
+                <strong>Telefon:</strong> +49 1522 2618330<br>
+                <strong>E-Mail:</strong> kontakt@achim-kraemer.com<br>
+            </p>
+        </div>
+
+        <div class="impressum-section">
+            <h2>Erhebung und Speicherung personenbezogener Daten</h2>
+            <p>
+                Beim Besuch dieser Website werden automatisch technische Daten (z.B. IP-Adresse, Browsertyp, Betriebssystem, Uhrzeit der Anfrage) erfasst. Diese Daten werden ausschließlich zur Sicherstellung des Betriebs und der Sicherheit der Website genutzt. Es erfolgt keine Identifizierung Ihrer Person.
+            </p>
+        </div>
+
+        <div class="impressum-section">
+            <h2>Zweck der Datenverarbeitung</h2>
+            <p>
+                Die Daten werden verarbeitet, um die Website korrekt darzustellen und um Anfragen zu beantworten.
+            </p>
+        </div>
+
+        <div class="impressum-section">
+            <h2>Weitergabe von Daten</h2>
+            <p>
+                Ihre personenbezogenen Daten werden nicht an Dritte weitergegeben, es sei denn, es besteht eine gesetzliche Verpflichtung.
+            </p>
+        </div>
+
+        <div class="impressum-section">
+            <h2>Speicherdauer</h2>
+            <p>
+                Die automatisch erhobenen Daten werden nach 30 Tagen gelöscht, sofern keine gesetzlichen Aufbewahrungsfristen bestehen.
+            </p>
+        </div>
+
+        <div class="impressum-section">
+            <h2>Rechte des Nutzers</h2>
+            <p>
+                Sie haben das Recht, Auskunft über die von Ihnen gespeicherten Daten zu verlangen. Sie können die Berichtigung, Löschung oder Einschränkung der Verarbeitung verlangen. Außerdem haben Sie das Recht, eine Beschwerde bei der zuständigen Datenschutzbehörde einzureichen.
+            </p>
+        </div>
+
+        <div class="impressum-section">
+            <h2>Cookies</h2>
+            <p>
+                Diese Website verwendet keine Cookies oder Tracking-Tools.
+            </p>
+        </div>
+
+        <div class="impressum-section">
+            <h2>Datensicherheit</h2>
+            <p>
+                Diese Website verwendet eine SSL-Verschlüsselung, um die Sicherheit der Daten während der Übertragung zu gewährleisten.
+            </p>
+        </div>
+
+        <div class="impressum-section">
+            <h2>Änderungen der Datenschutzerklärung</h2>
+            <p>
+                Wir behalten uns das Recht vor, diese Datenschutzerklärung bei Bedarf zu aktualisieren.
+            </p>
+        </div>
+    </div>
+</header>
+{% endblock %}

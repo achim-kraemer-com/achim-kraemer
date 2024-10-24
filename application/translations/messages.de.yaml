@@ -1,0 +1,13 @@
+app.header.name: Achim Krämer
+app.header.slogan: "Softwareentwickler <br> aus Leidenschaft"
+app.navigation.about: Über mich
+app.navigation.services: Dienstleistungen
+app.navigation.portfolio: Portfolio
+app.navigation.contact: Kontakt
+app.services.text: 'Ich bin ein erfahrener Webentwickler mit über 15 Jahren Expertise in PHP und Symfony. Mein Fokus liegt auf der Entwicklung robuster und skalierbarer Webanwendungen, die sich nahtlos in bestehende Systeme integrieren lassen und den höchsten Anforderungen an Performance und Sicherheit gerecht werden.<br><br>Während meiner Karriere habe ich an einer Vielzahl von Projekten gearbeitet, von kleinen Start-ups bis hin zu großen Unternehmenslösungen. Dabei konnte ich tiefe Einblicke in unterschiedliche Branchen gewinnen und individuelle, auf den Kunden zugeschnittene Lösungen entwickeln. Meine Dienstleistungen umfassen:<br><br>Back-End-Entwicklung: Planung und Implementierung komplexer Backend-Systeme, Schnittstellenentwicklung (APIs) und Datenbankdesign.Symfony-Expertise: Erstellung von maßgeschneiderten Anwendungen auf Basis von Symfony, inklusive Erweiterungen und Optimierung bestehender Anwendungen.Performance-Optimierung: Identifikation und Behebung von Flaschenhälsen in bestehenden Systemen zur Verbesserung der Ladezeiten und Ressourcennutzung.Sicherheit: Implementierung von Best Practices in der Web-Sicherheit, um Ihre Anwendungen vor potenziellen Bedrohungen zu schützen.Wartung und Support: Langfristige Betreuung von Projekten, inklusive kontinuierlicher Updates und Erweiterungen.Meine Arbeit zeichnet sich durch eine enge Zusammenarbeit mit meinen Kunden aus. Gemeinsam entwickeln wir Lösungen, die genau auf Ihre Bedürfnisse abgestimmt sind und die Flexibilität bieten, auf zukünftige Anforderungen zu reagieren. Egal, ob Sie eine bestehende Anwendung optimieren oder ein neues Projekt starten möchten, ich stehe Ihnen als kompetenter Partner zur Seite.'
+app.portfolio.text: Über mich
+app.impress.title: Impressum
+app.impress.text: Impressum
+app.data_protection.title: Datenschutz
+app.data_protection.text: Datenschutz
+app.about.text: 'Willkommen! Als erfahrener PHP- und Symfony-Entwickler mit über 15 Jahren Expertise unterstütze ich Ihr Projekt von der Idee bis zur erfolgreichen Umsetzung. Sie profitieren von maßgeschneiderten, skalierbaren Lösungen, schnellen Entwicklungszyklen und einem Fokus auf Performance und Sicherheit. Ob Neuentwicklung, Optimierung bestehender Anwendungen oder langfristige Betreuung – ich stehe Ihnen als zuverlässiger Partner zur Seite, um Ihre Ziele effizient und erfolgreich zu erreichen.'
