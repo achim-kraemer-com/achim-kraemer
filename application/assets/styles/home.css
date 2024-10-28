@@ -78,7 +78,20 @@ html {
 }
 
 h2, #services-text, #about-text, #contact-text {
-    padding: 80px;
+    padding: 80px 20px 80px 20px;
+}
+
+.project {
+    padding: 80px 20px 20px 20px;
+    min-width: 25%;
+}
+
+#portfolio-end-text {
+    font-size: ;
+}
+
+h2 {
+    min-width: 15%;
 }
 
 #contact-text {

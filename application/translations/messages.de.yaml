@@ -11,3 +11,16 @@ app.impress.text: Impressum
 app.data_protection.title: Datenschutz
 app.data_protection.text: Datenschutz
 app.about.text: 'Willkommen! Als erfahrener PHP- und Symfony-Entwickler mit über 15 Jahren Expertise unterstütze ich Ihr Projekt von der Idee bis zur erfolgreichen Umsetzung. Sie profitieren von maßgeschneiderten, skalierbaren Lösungen, schnellen Entwicklungszyklen und einem Fokus auf Performance und Sicherheit. Ob Neuentwicklung, Optimierung bestehender Anwendungen oder langfristige Betreuung – ich stehe Ihnen als zuverlässiger Partner zur Seite, um Ihre Ziele effizient und erfolgreich zu erreichen.'
+app.portfolio.title1: 'Symfony-Expertise:'
+app.portfolio.text1: 'Effizienter Einsatz aller Symfony-Komponenten und Best Practices für saubere, wartbare Anwendungen.'
+app.portfolio.title2: 'Architektur und Design Patterns:'
+app.portfolio.text2: 'Erfahren in MVC, DDD und hexagonaler Architektur, ideal für komplexe, langlebige Lösungen.'
+app.portfolio.title3: 'API- und Performance-Optimierung:'
+app.portfolio.text3: 'Maßgeschneiderte Caching-Strategien und optimierte Datenbankabfragen für leistungsstarke Anwendungen.'
+app.portfolio.title4: 'Testing und CI/CD:'
+app.portfolio.text4: 'Qualitätssicherung durch Tests, automatisierte Deployments und Containerisierung (Docker).'
+app.portfolio.title5: 'Kommunikation und Teamarbeit:'
+app.portfolio.text5: 'Klare Projektkommunikation und enge Zusammenarbeit mit Stakeholdern.'
+app.portfolio.title6: 'Technologien und Tools:'
+app.portfolio.text6: 'Programmiersprachen: PHP8, JavaScript, HTML5, CSS3<br>Frameworks: Symfony 2 - 7, jQuery<br>Datenbanken: MySQL, PostgreSQL, MongoDB, Firestore, BigQuery<br>APIs: REST, GraphQL, SOAP<br>DevOps: Docker, Jenkins<br>Versionierung: Git, GitHub, GitLab'
+app.portfolio.end_text: 'Ich freue mich darauf, gemeinsam mit Ihnen Ihr Projekt voranzutreiben!'
