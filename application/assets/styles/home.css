@@ -87,7 +87,7 @@ h2, #services-text, #about-text, #contact-text {
 }
 
 #portfolio-end-text {
-    font-size: ;
+
 }
 
 h2 {
@@ -131,9 +131,14 @@ h2 {
     padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
-.slide-in-text {
+.slide-in-text1 {
     white-space: nowrap;
     animation: slide-in 1s ease-out forwards;
+}
+
+.slide-in-text2 {
+    white-space: nowrap;
+    animation: slide-in 2s ease-out forwards;
 }
 
 @keyframes slide-in {

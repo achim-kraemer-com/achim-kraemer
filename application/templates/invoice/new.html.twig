@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'app.invoice.new_invoice'|trans }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-1/2">
+            <h1>{{ 'app.invoice.new_invoice'|trans }}</h1>
+            {{ form_start(form) }}
+            {{ form_row(form.invoice_date) }}
+
+            <h3>Select Time Entries</h3>
+            {{ form_row(form.time_entries) }}
+
+            <button class="btn btn-primary">Create Invoice</button>
+            {{ form_end(form) }}
+
+            <a class="button" href="{{ path('admin_invoice_index') }}">{{ 'app.default.back_to_list'|trans }}</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

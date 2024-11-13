@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'app.time_entry.edit_time_entry'|trans }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-1/2">
+            <h1>{{ 'app.time_entry.edit_time_entry'|trans }}</h1>
+
+            {{ include('time_entry/_form.html.twig', {'button_label': 'Update'}) }}
+
+            <a class="button" href="{{ path('admin_time_entry_index') }}">{{ 'app.default.back_to_list'|trans }}</a>
+
+            {{ include('time_entry/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+{% endblock %}

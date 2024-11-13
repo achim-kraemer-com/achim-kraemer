@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'app.project.title'|trans }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="table-container bg-gray-800 p-8 overflow-x-auto">
+        <h1>{{ 'app.project.title'|trans }}</h1>
+
+        <table class="table min-w-full bg-white border border-gray-200">
+            <thead>
+                <tr>
+                    <th>{{ 'app.project.project_title'|trans }}</th>
+                    <th>{{ 'app.project.description'|trans }}</th>
+                    <th>{{ 'app.project.start_date'|trans }}</th>
+                    <th>{{ 'app.project.end_date'|trans }}</th>
+                    <th>{{ 'app.project.customer'|trans }}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for project in projects %}
+                <tr>
+                    <td><a href="{{ path('admin_project_edit', {'id': project.id}) }}">{{ project.title }}</a></td>
+                    <td>{{ project.description }}</td>
+                    <td>{{ project.startDate ? project.startDate|date('Y-m-d') : '' }}</td>
+                    <td>{{ project.endDate ? project.endDate|date('Y-m-d') : '' }}</td>
+                    <td>{{ project.customer }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="button mt-4" href="{{ path('admin_project_new') }}">{{ 'app.project.new_project'|trans }}</a>
+        <a class="button mt-4" href="{{ path('admin_index') }}">{{ 'app.default.back_to_list'|trans }}</a>
+    </div>
+</div>
+{% endblock %}

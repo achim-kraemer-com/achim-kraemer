@@ -1,0 +1,4 @@
+echo
+echo "PHP CS Fixer"
+echo
+./vendor/bin/php-cs-fixer fix --allow-risky=yes --config=.php-cs-fixer.php
