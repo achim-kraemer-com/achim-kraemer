@@ -1,5 +1,12 @@
+app.default.back_to_list: Zurück zur Liste
+app.default.yes: Ja
+app.default.no: Nein
+app.default.save: Speichern
+app.default.update: Aktualisieren
+app.default.delete: Löschen
 app.header.name: Achim Krämer
-app.header.slogan: "Softwareentwickler <br> aus Leidenschaft"
+app.header.slogan1: für Ihre individuelle
+app.header.slogan2: Weblösung
 app.navigation.about: Über mich
 app.navigation.services: Dienstleistungen
 app.navigation.portfolio: Portfolio
@@ -24,3 +31,36 @@ app.portfolio.text5: 'Klare Projektkommunikation und enge Zusammenarbeit mit Sta
 app.portfolio.title6: 'Technologien und Tools:'
 app.portfolio.text6: 'Programmiersprachen: PHP8, JavaScript, HTML5, CSS3<br>Frameworks: Symfony 2 - 7, jQuery<br>Datenbanken: MySQL, PostgreSQL, MongoDB, Firestore, BigQuery<br>APIs: REST, GraphQL, SOAP<br>DevOps: Docker, Jenkins<br>Versionierung: Git, GitHub, GitLab'
 app.portfolio.end_text: 'Ich freue mich darauf, gemeinsam mit Ihnen Ihr Projekt voranzutreiben!'
+app.customer.title: Kunden
+app.customer.new_customer: Neuen Kunden anlegen
+app.customer.edit_customer: Kunden bearbeiten
+app.customer.firstname: Vorname
+app.customer.lastname: Nachname
+app.customer.company_name: Firmenname
+app.customer.street: Straße
+app.customer.housenumber: Hausnummer
+app.customer.plz: PLZ
+app.customer.city: Ort
+app.customer.active: Aktiv
+app.invoice.title: Rechnugen
+app.invoice.new_invoice: Neue Rechnug erstellen
+app.invoice.edit_invoice: Rechnugen bearbeiten
+app.invoice.invoice_date: Rechnugsdatum
+app.invoice.invoice_amount: Rechnugsbetrag
+app.invoice.status: Status
+app.project.title: Projekte
+app.project.new_project: Neues Projekt anlegen
+app.project.edit_project: Projekte bearbeiten
+app.project.project_title: Projektetitle
+app.project.description: Projektebeschreibung
+app.project.start_date: Projektestart
+app.project.end_date: Projekteende
+app.project.customer: Kunde
+app.time_entry.title: Zeiterfassung
+app.time_entry.new_time_entry: Neue Zeiterfassung anlegen
+app.time_entry.edit_time_entry: Zeiterfassung bearbeiten
+app.time_entry.date: Datum
+app.time_entry.project: Projekt
+app.time_entry.hours: Stunden
+app.time_entry.description: Beschreibung
+app.time_entry.invoiced: Bezahlt

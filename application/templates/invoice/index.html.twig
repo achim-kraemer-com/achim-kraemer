@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'app.invoice.title'|trans }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="table-container bg-gray-800 p-8 overflow-x-auto">
+        <h1>{{ 'app.invoice.title'|trans }}</h1>
+
+        <table class="table min-w-full bg-white border border-gray-200">
+            <thead>
+                <tr>
+                    <th>{{ 'app.invoice.invoice_date'|trans }}</th>
+                    <th>{{ 'app.invoice.invoice_amount'|trans }}</th>
+                    <th>{{ 'app.invoice.status'|trans }}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for invoice in invoices %}
+                <tr>
+                    <td>{{ invoice.id }}</td>
+                    <td><a href="{{ path('admin_invoice_edit', {'id': invoice.id}) }}">{{ invoice.invoiceDate ? invoice.invoiceDate|date('Y-m-d') : '' }}</a></td>
+                    <td>{{ invoice.totalAmount }}</td>
+                    <td>{{ invoice.status }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="button mt-4" href="{{ path('admin_index') }}">{{ 'app.default.back_to_list'|trans }}</a>
+    </div>
+</div>
+{% endblock %}

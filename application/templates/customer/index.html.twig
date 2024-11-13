@@ -1,49 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Customer index{% endblock %}
+{% block title %}{{ 'app.customer.title'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Customer index</h1>
+<div class="container">
+    <div class="table-container bg-gray-800 p-8 overflow-x-auto">
+        <h1>{{ 'app.customer.title'|trans }}</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>CompanyName</th>
-                <th>Street</th>
-                <th>Housenumber</th>
-                <th>Plz</th>
-                <th>City</th>
-                <th>IsActive</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for customer in customers %}
-            <tr>
-                <td>{{ customer.id }}</td>
-                <td>{{ customer.firstname }}</td>
-                <td>{{ customer.lastname }}</td>
-                <td>{{ customer.companyName }}</td>
-                <td>{{ customer.street }}</td>
-                <td>{{ customer.housenumber }}</td>
-                <td>{{ customer.plz }}</td>
-                <td>{{ customer.city }}</td>
-                <td>{{ customer.isActive ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('admin_customer_show', {'id': customer.id}) }}">show</a>
-                    <a href="{{ path('admin_customer_edit', {'id': customer.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="table min-w-full bg-white border border-gray-200">
+            <thead>
+                <tr>
+                    <th>{{ 'app.customer.firstname'|trans }}</th>
+                    <th>{{ 'app.customer.lastname'|trans }}</th>
+                    <th>{{ 'app.customer.company_name'|trans }}</th>
+                    <th>{{ 'app.customer.street'|trans }}</th>
+                    <th>{{ 'app.customer.housenumber'|trans }}</th>
+                    <th>{{ 'app.customer.plz'|trans }}</th>
+                    <th>{{ 'app.customer.city'|trans }}</th>
+                    <th>{{ 'app.customer.active'|trans }}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for customer in customers %}
+                <tr>
+                    <td><a href="{{ path('admin_customer_edit', {'id': customer.id}) }}">{{ customer.firstname }}</a></td>
+                    <td>{{ customer.lastname }}</td>
+                    <td>{{ customer.companyName }}</td>
+                    <td>{{ customer.street }}</td>
+                    <td>{{ customer.housenumber }}</td>
+                    <td>{{ customer.plz }}</td>
+                    <td>{{ customer.city }}</td>
+                    <td>{{ customer.isActive? 'Ja' : 'Nein' }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="10">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('admin_customer_new') }}">Create new</a>
+        <a class="button mt-4" href="{{ path('admin_customer_new') }}">{{ 'app.customer.new_customer'|trans }}</a>
+        <a class="button mt-4" href="{{ path('admin_index') }}">{{ 'app.default.back_to_list'|trans }}</a>
+    </div>
+</div>
 {% endblock %}

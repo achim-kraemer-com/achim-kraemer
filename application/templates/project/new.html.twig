@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'app.project.new_project'|trans }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-1/2">
+            <h1>{{ 'app.project.new_project'|trans }}</h1>
+
+            {{ include('project/_form.html.twig') }}
+
+            <a class="button" href="{{ path('admin_project_index') }}">{{ 'app.default.back_to_list'|trans }}</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

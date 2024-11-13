@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TimeEntry{% endblock %}
+
+{% block body %}
+    <h1>TimeEntry</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ time_entry.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ time_entry.date ? time_entry.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Hours</th>
+                <td>{{ time_entry.hours }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ time_entry.description }}</td>
+            </tr>
+            <tr>
+                <th>Invoiced</th>
+                <td>{{ time_entry.invoiced ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_time_entry_index') }}">back to list</a>
+
+    <a href="{{ path('admin_time_entry_edit', {'id': time_entry.id}) }}">edit</a>
+
+    {{ include('time_entry/_delete_form.html.twig') }}
+{% endblock %}

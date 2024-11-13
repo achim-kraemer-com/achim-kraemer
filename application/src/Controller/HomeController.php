@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Form\ContactType;
@@ -20,7 +22,7 @@ class HomeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Verarbeitung des Formulars, z.B. Senden einer E-Mail
-            $data = $form->getData();
+            $data  = $form->getData();
             $email = (new Email())
                 ->from($data['email'])
                 ->to('kontakt@achim-kraemer.com')
@@ -30,6 +32,7 @@ class HomeController extends AbstractController
             $mailer->send($email);
 
             $this->addFlash('success', 'Your message has been sent!');
+
             return $this->redirectToRoute('app_home');
         }
 

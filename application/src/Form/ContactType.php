@@ -16,14 +16,14 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ContactType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class, [
                 'label' => false,
-                'attr' => [
+                'attr'  => [
                     'placeholder' => 'Name',
-                    'class' => 'contact-input-field',
+                    'class'       => 'contact-input-field',
                 ],
                 'row_attr' => [
                     'class' => 'contact-input',
@@ -36,9 +36,9 @@ class ContactType extends AbstractType
             ])
             ->add('phone', TextType::class, [
                 'label' => false,
-                'attr' => [
+                'attr'  => [
                     'placeholder' => 'Telefonnummer',
-                    'class' => 'contact-input-field',
+                    'class'       => 'contact-input-field',
                 ],
                 'row_attr' => [
                     'class' => 'contact-input',
@@ -51,9 +51,9 @@ class ContactType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'label' => false,
-                'attr' => [
+                'attr'  => [
                     'placeholder' => 'Email',
-                    'class' => 'contact-input-field',
+                    'class'       => 'contact-input-field',
                 ],
                 'row_attr' => [
                     'class' => 'contact-input',
@@ -66,9 +66,9 @@ class ContactType extends AbstractType
             ])
             ->add('message', TextareaType::class, [
                 'label' => false,
-                'attr' => [
+                'attr'  => [
                     'placeholder' => 'Nachricht',
-                    'class' => 'contact-input-field',
+                    'class'       => 'contact-input-field',
                 ],
                 'row_attr' => [
                     'class' => 'contact-input',
@@ -82,11 +82,11 @@ class ContactType extends AbstractType
             ->add('captcha', Recaptcha3Type::class, [
                 'constraints' => new Recaptcha3(),
                 'action_name' => 'contact',
-                'locale' => 'de',
+                'locale'      => 'de',
             ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([]);
     }

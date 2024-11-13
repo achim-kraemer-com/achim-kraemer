@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'app.time_entry.title'|trans }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="table-container bg-gray-800 p-8 overflow-x-auto">
+        <h1>{{ 'app.time_entry.title'|trans }}</h1>
+
+        <table class="table min-w-full bg-white border border-gray-200">
+            <thead>
+                <tr>
+                    <th>{{ 'app.time_entry.date'|trans }}</th>
+                    <th>{{ 'app.time_entry.project'|trans }}</th>
+                    <th>{{ 'app.time_entry.hours'|trans }}</th>
+                    <th>{{ 'app.time_entry.description'|trans }}</th>
+                    <th>{{ 'app.time_entry.invoiced'|trans }}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for time_entry in time_entries %}
+                <tr>
+                    <td><a href="{{ path('admin_time_entry_edit', {'id': time_entry.id}) }}">{{ time_entry.date ? time_entry.date|date('d.m.Y') : '' }}</a></td>
+                    <td>{{ time_entry.project }}</td>
+                    <td>{{ time_entry.hours }}</td>
+                    <td>{{ time_entry.description }}</td>
+                    <td>{{ time_entry.invoiced ? 'app.default.yes'|trans : 'app.default.no'|trans }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="button mt-4" href="{{ path('admin_time_entry_new') }}">{{ 'app.time_entry.new_time_entry'|trans }}</a>
+        <a class="button mt-4" href="{{ path('admin_index') }}">{{ 'app.default.back_to_list'|trans }}</a>
+    </div>
+</div>
+{% endblock %}

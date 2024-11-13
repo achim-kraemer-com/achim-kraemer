@@ -1,0 +1,126 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Controller;
+
+use App\Entity\Invoice;
+use App\Form\InvoiceType;
+use App\Repository\InvoiceRepository;
+use App\Repository\TimeEntryRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
+
+#[Route('/admin/invoice', name: 'admin_invoice_')]
+final class InvoiceController extends AbstractController
+{
+    #[Route(name: 'index', methods: ['GET'])]
+    public function index(InvoiceRepository $invoiceRepository): Response
+    {
+        return $this->render('invoice/index.html.twig', [
+            'invoices' => $invoiceRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/new/{projectId}', name: 'invoice_new', methods: ['GET', 'POST'])]
+    public function new(
+        int $projectId,
+        Request $request,
+        TimeEntryRepository $timeEntryRepository,
+        EntityManagerInterface $em,
+    ): Response {
+        // Finde alle offenen Arbeitsstunden für das angegebene Projekt
+        $openTimeEntries = $timeEntryRepository->findBy([
+            'project'  => $projectId,
+            'invoiced' => false,
+        ]);
+
+        $invoice = new Invoice();
+        $form    = $this->createForm(InvoiceType::class, $invoice, [
+            'time_entries' => $openTimeEntries, // übergebe die offenen Stunden an das Formular
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Verknüpfe die ausgewählten Arbeitsstunden mit der Rechnung
+            $selectedTimeEntries = $form->get('time_entries')->getData();
+
+            foreach ($selectedTimeEntries as $timeEntry) {
+                $timeEntry->setInvoiced(true); // Markiere als verrechnet
+                $invoice->addTimeEntry($timeEntry); // Verknüpfe mit der Rechnung
+            }
+
+            // Speichere Rechnung und aktualisiere Stunden in der Datenbank
+            $em->persist($invoice);
+            $em->flush();
+
+            return $this->redirectToRoute('admin_invoice_index');
+        }
+
+        return $this->render('invoice/new.html.twig', [
+            'form'            => $form->createView(),
+            'openTimeEntries' => $openTimeEntries,
+        ]);
+    }
+
+    //    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
+    //    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    //    {
+    //        $invoice = new Invoice();
+    //        $form    = $this->createForm(InvoiceType::class, $invoice);
+    //        $form->handleRequest($request);
+    //
+    //        if ($form->isSubmitted() && $form->isValid()) {
+    //            $entityManager->persist($invoice);
+    //            $entityManager->flush();
+    //
+    //            return $this->redirectToRoute('admin_invoice_index', [], Response::HTTP_SEE_OTHER);
+    //        }
+    //
+    //        return $this->render('invoice/new.html.twig', [
+    //            'invoice' => $invoice,
+    //            'form'    => $form,
+    //        ]);
+    //    }
+
+    #[Route('/{id}', name: 'show', methods: ['GET'])]
+    public function show(Invoice $invoice): Response
+    {
+        return $this->render('invoice/show.html.twig', [
+            'invoice' => $invoice,
+        ]);
+    }
+
+    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Invoice $invoice, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(InvoiceType::class, $invoice);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_invoice_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('invoice/edit.html.twig', [
+            'invoice' => $invoice,
+            'form'    => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'delete', methods: ['POST'])]
+    public function delete(Request $request, Invoice $invoice, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$invoice->getId(), $request->getPayload()->getString('_token'))) {
+            $entityManager->remove($invoice);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_invoice_index', [], Response::HTTP_SEE_OTHER);
+    }
+}

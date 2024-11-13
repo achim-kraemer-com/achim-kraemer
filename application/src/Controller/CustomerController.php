@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Entity\Customer;
@@ -26,7 +28,7 @@ final class CustomerController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $customer = new Customer();
-        $form = $this->createForm(CustomerType::class, $customer);
+        $form     = $this->createForm(CustomerType::class, $customer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -38,7 +40,7 @@ final class CustomerController extends AbstractController
 
         return $this->render('customer/new.html.twig', [
             'customer' => $customer,
-            'form' => $form,
+            'form'     => $form,
         ]);
     }
 
@@ -64,7 +66,7 @@ final class CustomerController extends AbstractController
 
         return $this->render('customer/edit.html.twig', [
             'customer' => $customer,
-            'form' => $form,
+            'form'     => $form,
         ]);
     }
 
