@@ -20,7 +20,7 @@ final class CustomerController extends AbstractController
     public function index(CustomerRepository $customerRepository): Response
     {
         return $this->render('customer/index.html.twig', [
-            'customers' => $customerRepository->findAll(),
+            'customers' => $customerRepository->findBy([], ['companyName' => 'ASC']),
         ]);
     }
 
@@ -47,8 +47,11 @@ final class CustomerController extends AbstractController
     #[Route('/{id}', name: 'show', methods: ['GET'])]
     public function show(Customer $customer): Response
     {
+        $projects = $customer->getProjects();
+
         return $this->render('customer/show.html.twig', [
             'customer' => $customer,
+            'projects' => $projects,
         ]);
     }
 

@@ -1,38 +1,68 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Project{% endblock %}
+{% block title %}{{ 'app.project.title'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Project</h1>
+<div class="container">
+    <div class="table-container bg-gray-800 p-8 overflow-x-auto">
+        <h1>{{ 'app.project.title'|trans }}</h1>
+        <form name="create-invoice" method="post" action="{{ path('admin_project_create_invoice', {'id': project.id}) }}">
 
-    <table class="table">
-        <tbody>
+        <table class="table min-w-full bg-white border border-gray-200">
+            <thead>
             <tr>
-                <th>Id</th>
-                <td>{{ project.id }}</td>
+                <th>{{ 'app.project.project_title'|trans }}</th>
+                <th>{{ 'app.project.description'|trans }}</th>
+                <th>{{ 'app.project.start_date'|trans }}</th>
+                <th>{{ 'app.project.end_date'|trans }}</th>
+                <th>{{ 'app.project.customer'|trans }}</th>
             </tr>
+            </thead>
+            <tbody>
             <tr>
-                <th>Title</th>
-                <td>{{ project.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
+                <td><a href="{{ path('admin_project_edit', {'id': project.id}) }}">{{ project.title }}</a></td>
                 <td>{{ project.description }}</td>
-            </tr>
-            <tr>
-                <th>StartDate</th>
                 <td>{{ project.startDate ? project.startDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>EndDate</th>
                 <td>{{ project.endDate ? project.endDate|date('Y-m-d') : '' }}</td>
+                <td>{{ project.customer }}</td>
             </tr>
-        </tbody>
-    </table>
+            <table class="table min-w-full bg-white border border-gray-200">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>{{ 'app.time_entry.date'|trans }}</th>
+                    <th>{{ 'app.time_entry.project'|trans }}</th>
+                    <th>{{ 'app.time_entry.hours'|trans }}</th>
+                    <th>{{ 'app.time_entry.description'|trans }}</th>
+                    <th>{{ 'app.time_entry.status'|trans }}</th>
+                    <th>{{ 'app.time_entry.invoiced'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+            {% for time_entry in project.timeEntries %}
+                <tr>
+                    {% if time_entry.status == constant('App\\Entity\\TimeEntry::STATUS_OPEN') %}
+                            <td><input type="checkbox" name="options[]" id="{{ time_entry.id }}" value="{{ time_entry.id }}"> </td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                    <td><a href="{{ path('admin_time_entry_edit', {'id': time_entry.id}) }}">{{ time_entry.date ? time_entry.date|date('d.m.Y') : '' }}</a></td>
+                    <td>{{ time_entry.project }}</td>
+                    <td>{{ time_entry.hours }}</td>
+                    <td>{{ time_entry.description }}</td>
+                    <td>{{ time_entry.status }}</td>
+                    <td>{{ time_entry.invoiced ? 'app.default.yes'|trans : 'app.default.no'|trans }}</td>
+                </tr>
+            {% endfor %}
+                </tbody>
+            </table>
+            </tbody>
+        </table>
 
-    <a href="{{ path('admin_project_index') }}">back to list</a>
+        <button type="submit" class="button mt-4">{{ 'app.project.create_invoice'|trans }}</button>
+        <a class="button mt-4" href="{{ path('admin_index') }}">{{ 'app.default.back_to_list'|trans }}</a>
+        </form>
 
-    <a href="{{ path('admin_project_edit', {'id': project.id}) }}">edit</a>
-
-    {{ include('project/_delete_form.html.twig') }}
+    </div>
+</div>
 {% endblock %}

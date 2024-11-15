@@ -13,11 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: TimeEntryRepository::class)]
 class TimeEntry
 {
-    final public const INVOICED_PAYED     = true;
-    final public const INVOICED_NOT_PAYED = false;
-    final public const INVOICED_TYPES     = [
-        'Noch nicht bezahlt' => self::INVOICED_NOT_PAYED,
-        'Bezahlt'            => self::INVOICED_PAYED,
+    final public const STATUS_OPEN    = 'offen';
+    final public const STATUS_IN_WORK = 'in Bearbeitung';
+    final public const STATUS_PAYED   = 'bezahlt';
+    final public const STATUS_TYPES   = [
+        'Offen'          => self::STATUS_OPEN,
+        'in bearbeitung' => self::STATUS_IN_WORK,
+        'Bezahlt'        => self::STATUS_PAYED,
     ];
 
     #[ORM\Id]
@@ -39,13 +41,16 @@ class TimeEntry
     private ?string $description = null;
 
     #[ORM\Column]
-    private ?bool $invoiced = null;
+    private ?bool $invoiced = false;
 
     /**
      * @var Collection<int, Invoice>
      */
     #[ORM\ManyToMany(targetEntity: Invoice::class, mappedBy: 'timeEntry')]
     private Collection $invoices;
+
+    #[ORM\Column(length: 20)]
+    private ?string $status = self::STATUS_OPEN;
 
     public function __construct()
     {
@@ -140,6 +145,18 @@ class TimeEntry
         if ($this->invoices->removeElement($invoice)) {
             $invoice->removeTimeEntry($this);
         }
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }

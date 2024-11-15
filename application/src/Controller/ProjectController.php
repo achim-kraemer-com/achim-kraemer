@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\Invoice;
 use App\Entity\Project;
+use App\Entity\TimeEntry;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
+use App\Repository\TimeEntryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -79,5 +82,34 @@ final class ProjectController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_project_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/create-invoice/{id}', name: 'create_invoice', methods: ['POST'])]
+    public function createInvoice(
+        Request $request,
+        Project $project,
+        TimeEntryRepository $timeEntryRepository,
+        EntityManagerInterface $entityManager,
+    ): Response {
+        $selectedTimeEntries = $request->get('options', []);
+
+        if (!empty($selectedTimeEntries)) {
+            $invoice = new Invoice();
+            $invoice->setInvoiceDate(new \DateTime());
+            $invoice->setCustomer($project->getCustomer());
+            $invoice->setStatus(Invoice::STATUS_OPEN);
+            $timeEntries = $timeEntryRepository->getInvoices($selectedTimeEntries);
+            $totalAmount = 0;
+            foreach ($timeEntries as $timeEntry) {
+                $totalAmount += $timeEntry->getHours() * Invoice::HOURLY_RATE;
+                $timeEntry->setStatus(TimeEntry::STATUS_IN_WORK);
+                $entityManager->persist($timeEntry);
+            }
+            $invoice->setTotalAmount((string) $totalAmount);
+            $entityManager->persist($invoice);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_project_show', ['id' => $project->getId()]);
     }
 }
