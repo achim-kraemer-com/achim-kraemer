@@ -27,4 +27,14 @@ class TimeEntryRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getInvoices(array $invoiceIds)
+    {
+        return $this->createQueryBuilder('i')
+            ->where('i.id IN (:invoiceIds)')
+            ->setParameter('invoiceIds', $invoiceIds)
+            ->orderBy('i.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

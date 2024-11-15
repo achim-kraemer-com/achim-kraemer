@@ -20,7 +20,7 @@
             <tbody>
             {% for project in projects %}
                 <tr>
-                    <td><a href="{{ path('admin_project_edit', {'id': project.id}) }}">{{ project.title }}</a></td>
+                    <td><a href="{{ path('admin_project_show', {'id': project.id}) }}">{{ project.title }}</a></td>
                     <td>{{ project.description }}</td>
                     <td>{{ project.startDate ? project.startDate|date('Y-m-d') : '' }}</td>
                     <td>{{ project.endDate ? project.endDate|date('Y-m-d') : '' }}</td>

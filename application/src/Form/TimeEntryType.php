@@ -45,9 +45,9 @@ class TimeEntryType extends AbstractType
                     'class' => 'form-text',
                 ],
             ])
-            ->add('invoiced', ChoiceType::class, [
+            ->add('status', ChoiceType::class, [
                 'label'      => 'invoiced',
-                'choices'    => TimeEntry::INVOICED_TYPES,
+                'choices'    => TimeEntry::STATUS_TYPES,
                 'label_attr' => [
                     'class' => 'custom-label',
                 ],

@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: InvoiceRepository::class)]
 class Invoice
 {
+    final public const HOURLY_RATE = 60;
+
+    final public const STATUS_OPEN  = 'offen';
+    final public const STATUS_PAYED = 'bezahlt';
+    final public const STATUS_TYPES = [
+        'Offen'     => self::STATUS_OPEN,
+        'Bezahlt'   => self::STATUS_PAYED,
+    ];
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -29,7 +38,7 @@ class Invoice
     private ?string $totalAmount = null;
 
     #[ORM\Column(length: 20)]
-    private ?string $status = null;
+    private ?string $status = self::STATUS_OPEN;
 
     /**
      * @var Collection<int, TimeEntry>

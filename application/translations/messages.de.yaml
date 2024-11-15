@@ -56,6 +56,7 @@ app.project.description: Projektebeschreibung
 app.project.start_date: Projektestart
 app.project.end_date: Projekteende
 app.project.customer: Kunde
+app.project.create_invoice: Rechnung erstellen
 app.time_entry.title: Zeiterfassung
 app.time_entry.new_time_entry: Neue Zeiterfassung anlegen
 app.time_entry.edit_time_entry: Zeiterfassung bearbeiten
@@ -63,4 +64,5 @@ app.time_entry.date: Datum
 app.time_entry.project: Projekt
 app.time_entry.hours: Stunden
 app.time_entry.description: Beschreibung
+app.time_entry.status: Status
 app.time_entry.invoiced: Bezahlt
