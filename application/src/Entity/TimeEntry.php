@@ -34,7 +34,7 @@ class TimeEntry
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2, nullable: true)]
     private ?string $hours = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -51,6 +51,9 @@ class TimeEntry
 
     #[ORM\Column(length: 20)]
     private ?string $status = self::STATUS_OPEN;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2, nullable: true)]
+    private ?string $price = null;
 
     public function __construct()
     {
@@ -91,7 +94,7 @@ class TimeEntry
         return $this->hours;
     }
 
-    public function setHours(string $hours): static
+    public function setHours(?string $hours): static
     {
         $this->hours = $hours;
 
@@ -157,6 +160,18 @@ class TimeEntry
     public function setStatus(string $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getPrice(): ?string
+    {
+        return $this->price;
+    }
+
+    public function setPrice(?string $price): static
+    {
+        $this->price = $price;
 
         return $this;
     }

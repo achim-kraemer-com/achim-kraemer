@@ -1,34 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Invoice{% endblock %}
+{% block title %}{{ 'app.invoice.title'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Invoice</h1>
-
-    <table class="table">
+<div class="container">
+    <div class="table-container bg-gray-800 p-8 overflow-x-auto">
+    <h1>{{ 'app.invoice.title'|trans }}</h1>
+    <table class="table min-w-full bg-white border border-gray-200">
+        <thead>
+        <tr>
+            <th>{{ 'app.invoice.invoice_date'|trans }}</th>
+            <th>{{ 'app.invoice.invoice_number'|trans }}</th>
+            <th>{{ 'app.invoice.invoice_amount'|trans }}</th>
+            <th>{{ 'app.invoice.status'|trans }}</th>
+        </tr>
+        </thead>
         <tbody>
+        <tr>
+            <td><a href="{{ path('admin_invoice_edit', {'id': invoice.id}) }}">{{ invoice.invoiceDate ? invoice.invoiceDate|date('Y-m-d') : '' }}</a></td>
+            <td>{{ invoice.invoiceDate ? invoice.invoiceDate|date('Y') : '' }}-100{{ invoice.id }}</td>
+            <td>{{ invoice.totalAmount }}</td>
+            <td>{{ invoice.status }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <table class="table mt-5 min-w-full bg-white border border-gray-200">
+        <thead>
+        <tr>
+            <th>{{ 'app.time_entry.date'|trans }}</th>
+            <th>{{ 'app.time_entry.project'|trans }}</th>
+            <th>{{ 'app.time_entry.hours'|trans }}</th>
+            <th>{{ 'app.time_entry.description'|trans }}</th>
+            <th>{{ 'app.time_entry.invoiced'|trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for time_entry in invoice.timeEntry %}
             <tr>
-                <th>Id</th>
-                <td>{{ invoice.id }}</td>
+                <td><a href="{{ path('admin_time_entry_edit', {'id': time_entry.id}) }}">{{ time_entry.date ? time_entry.date|date('d.m.Y') : '' }}</a></td>
+                <td>{{ time_entry.project }}</td>
+                <td>{{ time_entry.hours }}</td>
+                <td>{{ time_entry.description }}</td>
+                <td>{{ time_entry.invoiced ? 'app.default.yes'|trans : 'app.default.no'|trans }}</td>
             </tr>
-            <tr>
-                <th>InvoiceDate</th>
-                <td>{{ invoice.invoiceDate ? invoice.invoiceDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>TotalAmount</th>
-                <td>{{ invoice.totalAmount }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ invoice.status }}</td>
-            </tr>
+        {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_invoice_index') }}">back to list</a>
-
-    <a href="{{ path('app_invoice_edit', {'id': invoice.id}) }}">edit</a>
+    <a class="button mt-5" href="{{ path('admin_invoice_index') }}">{{ 'app.default.back_to_list'|trans }}</a>
+    {% if invoice.status != constant('App\\Entity\\Invoice::STATUS_PAYED') %}
+        <a class="button mt-5" href="{{ path('admin_invoice_payed', {'id': invoice.id}) }}">{{ 'app.invoice.invoice_payed'|trans }}</a>
+    {% endif %}
 
     {{ include('invoice/_delete_form.html.twig') }}
+    </div>
+</div>
 {% endblock %}

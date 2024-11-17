@@ -4,15 +4,19 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use setasign\Fpdi\Fpdi;
+use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 
 class PdfService
 {
-    public function modifyPdf(string $inputPath, string $outputPath, array $textOverlay): void
+    public function __construct(readonly private ContainerBagInterface $param)
     {
-        $pdf = new Fpdi();
+    }
 
-        $pageCount = $pdf->setSourceFile($inputPath);
+    public function modifyPdf(array $textOverlay, string $outputFilename): void
+    {
+        $pdf = new \setasign\Fpdi\Tcpdf\Fpdi();
+
+        $pageCount = $pdf->setSourceFile($this->param->get('pdf_storage_path').'Musterrechnung2.pdf');
 
         for ($pageNo = 1; $pageNo <= $pageCount; ++$pageNo) {
             // Hole die Seitenvorlage
@@ -25,16 +29,25 @@ class PdfService
 
             // Hinzufügen des Textes
             if (isset($textOverlay[$pageNo])) {
-                $pdf->SetFont('Arial', '', 12);
+                $pdf->SetFont('Helvetica', '', 11);
                 $pdf->SetTextColor(0, 0, 0);
                 foreach ($textOverlay[$pageNo] as $textItem) {
+                    $fontStyle = '';
+                    if (\array_key_exists('B', $textItem)) {
+                        $fontStyle = 'B';
+                    }
+                    $pdf->SetFont('Helvetica', $fontStyle, 11);
                     $pdf->SetXY($textItem['x'], $textItem['y']);
-                    $pdf->Write(0, $textItem['text']);
+                    $textAlign = 'L';
+                    //                    if (\array_key_exists('R', $textItem)) {
+                    //                        $textAlign = 'R';
+                    //                    }
+                    $pdf->Write(0, $textItem['text'], '', false, $textAlign);
                 }
             }
         }
 
         // Speichere das neue PDF
-        $pdf->Output('F', $outputPath);
+        $pdf->Output($this->param->get('invoices_path').'Rechnung-'.$outputFilename.'.pdf', 'F');
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\Invoice;
 use App\Entity\TimeEntry;
 use App\Form\TimeEntryType;
 use App\Repository\TimeEntryRepository;
@@ -32,6 +33,9 @@ final class TimeEntryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($timeEntry->getPrice() === null && $timeEntry->getHours() !== null) {
+                $timeEntry->setPrice((string) ($timeEntry->getHours() * Invoice::HOURLY_RATE));
+            }
             $entityManager->persist($timeEntry);
             $entityManager->flush();
 
@@ -59,6 +63,10 @@ final class TimeEntryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($timeEntry->getPrice() === null && $timeEntry->getHours() !== null) {
+                $timeEntry->setPrice((string) ($timeEntry->getHours() * Invoice::HOURLY_RATE));
+                $entityManager->persist($timeEntry);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_time_entry_index', [], Response::HTTP_SEE_OTHER);
