@@ -13,6 +13,7 @@
                     <th>{{ 'app.time_entry.date'|trans }}</th>
                     <th>{{ 'app.time_entry.project'|trans }}</th>
                     <th>{{ 'app.time_entry.hours'|trans }}</th>
+                    <th>{{ 'app.time_entry.price'|trans }}</th>
                     <th>{{ 'app.time_entry.description'|trans }}</th>
                     <th>{{ 'app.time_entry.invoiced'|trans }}</th>
                 </tr>
@@ -22,7 +23,8 @@
                 <tr>
                     <td><a href="{{ path('admin_time_entry_edit', {'id': time_entry.id}) }}">{{ time_entry.date ? time_entry.date|date('d.m.Y') : '' }}</a></td>
                     <td>{{ time_entry.project }}</td>
-                    <td>{{ time_entry.hours }}</td>
+                    <td>{% if time_entry.hours != null %}{{ time_entry.hours|decimal_to_time }} Std.{% endif %}</td>
+                    <td>{{ time_entry.price|replace({'.': ','}) }} {% if time_entry.price != null %}€{% endif %}</td>
                     <td>{{ time_entry.description }}</td>
                     <td>{{ time_entry.invoiced ? 'app.default.yes'|trans : 'app.default.no'|trans }}</td>
                 </tr>

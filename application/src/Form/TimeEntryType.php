@@ -20,6 +20,7 @@ class TimeEntryType extends AbstractType
     {
         $builder
             ->add('date', null, [
+                'label'      => 'app.time_entry.date',
                 'widget'     => 'single_text',
                 'label_attr' => [
                     'class' => 'custom-label',
@@ -29,6 +30,18 @@ class TimeEntryType extends AbstractType
                 ],
             ])
             ->add('hours', NumberType::class, [
+                'required'   => false,
+                'label'      => 'app.time_entry.hours',
+                'label_attr' => [
+                    'class' => 'custom-label',
+                ],
+                'attr' => [
+                    'class' => 'form-text',
+                ],
+            ])
+            ->add('price', NumberType::class, [
+                'required'   => false,
+                'label'      => 'app.time_entry.price',
                 'label_attr' => [
                     'class' => 'custom-label',
                 ],
@@ -37,7 +50,7 @@ class TimeEntryType extends AbstractType
                 ],
             ])
             ->add('description', TextareaType::class, [
-                'label'      => 'description',
+                'label'      => 'app.time_entry.description',
                 'label_attr' => [
                     'class' => 'custom-label',
                 ],
@@ -46,7 +59,7 @@ class TimeEntryType extends AbstractType
                 ],
             ])
             ->add('status', ChoiceType::class, [
-                'label'      => 'invoiced',
+                'label'      => 'app.time_entry.invoiced',
                 'choices'    => TimeEntry::STATUS_TYPES,
                 'label_attr' => [
                     'class' => 'custom-label',
@@ -56,6 +69,7 @@ class TimeEntryType extends AbstractType
                 ],
             ])
             ->add('project', EntityType::class, [
+                'label'        => 'app.time_entry.project',
                 'class'        => Project::class,
                 'label_attr'   => [
                     'class' => 'custom-label',

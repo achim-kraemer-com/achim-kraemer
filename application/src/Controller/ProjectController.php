@@ -10,6 +10,7 @@ use App\Entity\TimeEntry;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
 use App\Repository\TimeEntryRepository;
+use App\Service\PdfService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -90,6 +91,7 @@ final class ProjectController extends AbstractController
         Project $project,
         TimeEntryRepository $timeEntryRepository,
         EntityManagerInterface $entityManager,
+        PdfService $pdfService,
     ): Response {
         $selectedTimeEntries = $request->get('options', []);
 
@@ -99,13 +101,52 @@ final class ProjectController extends AbstractController
             $invoice->setCustomer($project->getCustomer());
             $invoice->setStatus(Invoice::STATUS_OPEN);
             $timeEntries = $timeEntryRepository->getInvoices($selectedTimeEntries);
-            $totalAmount = 0;
+            $customer    = $project->getCustomer();
+            $textOverlay = [
+                1 => [
+                    ['x' => 25, 'y' => 45, 'text' => $customer->getCompanyName()],
+                    ['x' => 25, 'y' => 50, 'text' => $customer->getFirstname().' '.$customer->getLastname()],
+                    ['x' => 25, 'y' => 55, 'text' => $customer->getStreet().' '.$customer->getHousenumber()],
+                    ['x' => 25, 'y' => 60, 'text' => $customer->getPlz().' '.$customer->getCity()],
+                    ['x' => 52, 'y' => 103, 'text' => \date('Y').'-1001'],
+                    ['x' => 170, 'y' => 75, 'text' => \date('d.m.Y'), 'B' => 'B'],
+                ],
+            ];
+            $totalAmount          = 0;
+            $overlayTimeEntriesNr = 123;
+            $position             = 1;
             foreach ($timeEntries as $timeEntry) {
-                $totalAmount += $timeEntry->getHours() * Invoice::HOURLY_RATE;
+                if ($timeEntry->getHours() !== null && $timeEntry->getPrice() === null) {
+                    $totalAmount += $timeEntry->getHours() * Invoice::HOURLY_RATE;
+                } elseif ($timeEntry->getPrice() !== null) {
+                    $totalAmount += $timeEntry->getPrice();
+                }
+                $textOverlay[1][] = ['x' => 27, 'y' => $overlayTimeEntriesNr, 'text' => $position];
+                if ($timeEntry->getHours() !== null) {
+                    $textOverlay[1][] = ['x' => 124, 'y' => $overlayTimeEntriesNr, 'text' => \str_replace('.', ',', $timeEntry->getHours()).' Std.'];
+                }
+                if ($timeEntry->getHours() !== null) {
+                    $textOverlay[1][] = ['x' => 149, 'y' => $overlayTimeEntriesNr, 'text' => Invoice::HOURLY_RATE.' €'];
+                }
+                if ($timeEntry->getPrice() !== null) {
+                    $textOverlay[1][] = ['x' => 173, 'y' => $overlayTimeEntriesNr, 'text' => \number_format((float) $timeEntry->getPrice(), 2, '.', '').' €', 'R' => 'R'];
+                }
+                $lines = \explode("\n", $timeEntry->getDescription());
+                foreach ($lines as $line) {
+                    $textOverlay[1][] = ['x' => 42, 'y' => $overlayTimeEntriesNr, 'text' => $line];
+                    $overlayTimeEntriesNr += 5;
+                }
+                ++$position;
+                $overlayTimeEntriesNr += 5;
                 $timeEntry->setStatus(TimeEntry::STATUS_IN_WORK);
                 $entityManager->persist($timeEntry);
+                $timeEntry->addInvoice($invoice);
             }
+            $textOverlay[1][] = ['x' => 173, 'y' => 194, 'text' => \number_format((float) $totalAmount, 2, '.', '').' €', 'B' => 'B', 'R' => 'R'];
             $invoice->setTotalAmount((string) $totalAmount);
+
+            $pdfService->modifyPdf($textOverlay, \date('Y').'-1001');
+
             $entityManager->persist($invoice);
             $entityManager->flush();
         }

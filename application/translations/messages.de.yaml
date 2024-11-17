@@ -42,11 +42,13 @@ app.customer.housenumber: Hausnummer
 app.customer.plz: PLZ
 app.customer.city: Ort
 app.customer.active: Aktiv
-app.invoice.title: Rechnugen
-app.invoice.new_invoice: Neue Rechnug erstellen
-app.invoice.edit_invoice: Rechnugen bearbeiten
-app.invoice.invoice_date: Rechnugsdatum
-app.invoice.invoice_amount: Rechnugsbetrag
+app.invoice.title: Rechnungen
+app.invoice.new_invoice: Neue Rechnung erstellen
+app.invoice.edit_invoice: Rechnungen bearbeiten
+app.invoice.invoice_date: Rechnungsdatum
+app.invoice.invoice_number: Rechnungsnummer
+app.invoice.invoice_amount: Rechnungsbetrag
+app.invoice.invoice_payed: Rechnung bezahlt
 app.invoice.status: Status
 app.project.title: Projekte
 app.project.new_project: Neues Projekt anlegen
@@ -61,6 +63,7 @@ app.time_entry.title: Zeiterfassung
 app.time_entry.new_time_entry: Neue Zeiterfassung anlegen
 app.time_entry.edit_time_entry: Zeiterfassung bearbeiten
 app.time_entry.date: Datum
+app.time_entry.price: Preis
 app.time_entry.project: Projekt
 app.time_entry.hours: Stunden
 app.time_entry.description: Beschreibung

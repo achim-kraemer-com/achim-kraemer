@@ -11,6 +11,7 @@
             <thead>
                 <tr>
                     <th>{{ 'app.invoice.invoice_date'|trans }}</th>
+                    <th>{{ 'app.invoice.invoice_number'|trans }}</th>
                     <th>{{ 'app.invoice.invoice_amount'|trans }}</th>
                     <th>{{ 'app.invoice.status'|trans }}</th>
                 </tr>
@@ -18,8 +19,8 @@
             <tbody>
             {% for invoice in invoices %}
                 <tr>
-                    <td>{{ invoice.id }}</td>
-                    <td><a href="{{ path('admin_invoice_edit', {'id': invoice.id}) }}">{{ invoice.invoiceDate ? invoice.invoiceDate|date('Y-m-d') : '' }}</a></td>
+                    <td><a href="{{ path('admin_invoice_show', {'id': invoice.id}) }}">{{ invoice.invoiceDate ? invoice.invoiceDate|date('Y-m-d') : '' }}</a></td>
+                    <td>{{ invoice.invoiceDate ? invoice.invoiceDate|date('Y') : '' }}-100{{ invoice.id }}</td>
                     <td>{{ invoice.totalAmount }}</td>
                     <td>{{ invoice.status }}</td>
                 </tr>

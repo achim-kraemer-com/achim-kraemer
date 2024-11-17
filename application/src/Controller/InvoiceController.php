@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Invoice;
+use App\Entity\TimeEntry;
 use App\Form\InvoiceType;
 use App\Repository\InvoiceRepository;
 use App\Repository\TimeEntryRepository;
@@ -95,6 +96,22 @@ final class InvoiceController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/payed', name: 'payed', methods: ['GET', 'POST'])]
+    public function payed(Invoice $invoice, EntityManagerInterface $entityManager): Response
+    {
+        $invoice->setStatus(Invoice::STATUS_PAYED);
+        $timeEntries = $invoice->getTimeEntry();
+        foreach ($timeEntries as $timeEntry) {
+            $timeEntry->setStatus(TimeEntry::STATUS_PAYED);
+            $timeEntry->setInvoiced(true);
+            $entityManager->persist($timeEntry);
+        }
+        $entityManager->persist($invoice);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin_invoice_show', ['id' => $invoice->getId()]);
+    }
+
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Invoice $invoice, EntityManagerInterface $entityManager): Response
     {
@@ -117,6 +134,12 @@ final class InvoiceController extends AbstractController
     public function delete(Request $request, Invoice $invoice, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$invoice->getId(), $request->getPayload()->getString('_token'))) {
+            $timeEntries = $invoice->getTimeEntry();
+            foreach ($timeEntries as $timeEntry) {
+                $timeEntry->setStatus(TimeEntry::STATUS_OPEN);
+                $timeEntry->setInvoiced(false);
+                $entityManager->persist($timeEntry);
+            }
             $entityManager->remove($invoice);
             $entityManager->flush();
         }
