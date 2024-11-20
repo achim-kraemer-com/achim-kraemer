@@ -20,7 +20,7 @@
             {% for invoice in invoices %}
                 <tr>
                     <td><a href="{{ path('admin_invoice_show', {'id': invoice.id}) }}">{{ invoice.invoiceDate ? invoice.invoiceDate|date('Y-m-d') : '' }}</a></td>
-                    <td>{{ invoice.invoiceDate ? invoice.invoiceDate|date('Y') : '' }}-100{{ invoice.id }}</td>
+                    <td>{{ invoice.name }}</td>
                     <td>{{ invoice.totalAmount }}</td>
                     <td>{{ invoice.status }}</td>
                 </tr>

@@ -46,6 +46,9 @@ class Invoice
     #[ORM\ManyToMany(targetEntity: TimeEntry::class, inversedBy: 'invoices')]
     private Collection $timeEntry;
 
+    #[ORM\Column(length: 50)]
+    private ?string $name = null;
+
     public function __construct()
     {
         $this->timeEntry = new ArrayCollection();
@@ -124,6 +127,18 @@ class Invoice
     public function removeTimeEntry(TimeEntry $timeEntry): static
     {
         $this->timeEntry->removeElement($timeEntry);
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
 
         return $this;
     }
