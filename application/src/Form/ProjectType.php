@@ -19,7 +19,7 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label'      => 'title',
+                'label'      => 'app.project.project_title',
                 'label_attr' => [
                     'class' => 'custom-label',
                 ],
@@ -28,7 +28,7 @@ class ProjectType extends AbstractType
                 ],
             ])
             ->add('description', TextareaType::class, [
-                'label'      => 'description',
+                'label'      => 'app.project.description',
                 'label_attr' => [
                     'class' => 'custom-label',
                 ],
@@ -37,6 +37,7 @@ class ProjectType extends AbstractType
                 ],
             ])
             ->add('startDate', null, [
+                'label'      => 'app.project.start_date',
                 'widget'     => 'single_text',
                 'label_attr' => [
                     'class' => 'custom-label',
@@ -46,6 +47,7 @@ class ProjectType extends AbstractType
                 ],
             ])
             ->add('endDate', null, [
+                'label'      => 'app.project.end_date',
                 'widget'     => 'single_text',
                 'label_attr' => [
                     'class' => 'custom-label',
@@ -55,6 +57,7 @@ class ProjectType extends AbstractType
                 ],
             ])
             ->add('customer', EntityType::class, [
+                'label'        => 'app.project.customer',
                 'class'        => Customer::class,
                 'label_attr'   => [
                     'class' => 'custom-label',

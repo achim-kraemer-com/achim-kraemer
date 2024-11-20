@@ -50,6 +50,7 @@ app.invoice.invoice_number: Rechnungsnummer
 app.invoice.invoice_amount: Rechnungsbetrag
 app.invoice.invoice_payed: Rechnung bezahlt
 app.invoice.status: Status
+app.invoice.download: Download
 app.project.title: Projekte
 app.project.new_project: Neues Projekt anlegen
 app.project.edit_project: Projekte bearbeiten

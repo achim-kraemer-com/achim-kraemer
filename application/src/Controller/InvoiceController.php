@@ -6,13 +6,18 @@ namespace App\Controller;
 
 use App\Entity\Invoice;
 use App\Entity\TimeEntry;
+use App\Entity\User;
 use App\Form\InvoiceType;
 use App\Repository\InvoiceRepository;
 use App\Repository\TimeEntryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\Mime\FileinfoMimeTypeGuesser;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/admin/invoice', name: 'admin_invoice_')]
@@ -145,5 +150,40 @@ final class InvoiceController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_invoice_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route(path: '/{invoice}/download', name: 'download')]
+    public function download(
+        Invoice $invoice,
+        ContainerBagInterface $params,
+    ): Response {
+        $user = $this->getUser();
+
+        if (!$user instanceof User) {
+            throw new \LogicException();
+        }
+
+        $downloadPath = $params->get('invoices_path');
+
+        $filename = 'Rechnung-'.$invoice->getName().'.pdf';
+
+        $filePath = $downloadPath.$filename;
+
+        $response = new BinaryFileResponse($filePath);
+
+        $mimeTypeGuesser = new FileinfoMimeTypeGuesser();
+
+        if ($mimeTypeGuesser->isGuesserSupported()) {
+            $response->headers->set('Content-Type', $mimeTypeGuesser->guessMimeType($filePath));
+        } else {
+            $response->headers->set('Content-Type', 'application/pdf');
+        }
+
+        $response->setContentDisposition(
+            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+            $filename
+        );
+
+        return $response;
     }
 }
