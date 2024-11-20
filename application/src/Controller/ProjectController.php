@@ -98,9 +98,11 @@ final class ProjectController extends AbstractController
         if (!empty($selectedTimeEntries)) {
             $projectTimeEntries   = $project->getTimeEntries();
             $projectInvoicesArray = [];
+            $invoiceDate          = \date('M./Y');
             foreach ($projectTimeEntries as $projectTimeEntry) {
                 foreach ($projectTimeEntry->getInvoices() as $projectInvoice) {
                     $projectInvoicesArray[$projectInvoice->getId()] = $projectInvoice->getId();
+                    $invoiceDate                                    = $projectTimeEntry->getDate()->format('M./Y');
                 }
             }
             $invoiceName = \date('y').'-'.($project->getId() + 1000).'-'.\count($projectInvoicesArray) + 1;
@@ -118,6 +120,7 @@ final class ProjectController extends AbstractController
                     ['x' => 25, 'y' => 55, 'text' => $customer->getStreet().' '.$customer->getHousenumber()],
                     ['x' => 25, 'y' => 60, 'text' => $customer->getPlz().' '.$customer->getCity()],
                     ['x' => 52, 'y' => 102.5, 'text' => $invoiceName],
+                    ['x' => 172, 'y' => 66, 'text' => $invoiceDate],
                     ['x' => 170, 'y' => 75, 'text' => \date('d.m.Y'), 'B' => 'B'],
                 ],
             ];
@@ -158,6 +161,8 @@ final class ProjectController extends AbstractController
 
             $entityManager->persist($invoice);
             $entityManager->flush();
+
+            return $this->redirectToRoute('admin_invoice_show', ['id' => $invoice->getId()]);
         }
 
         return $this->redirectToRoute('admin_project_show', ['id' => $project->getId()]);
