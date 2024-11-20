@@ -96,15 +96,15 @@ final class ProjectController extends AbstractController
         $selectedTimeEntries = $request->get('options', []);
 
         if (!empty($selectedTimeEntries)) {
-            $projectTimeEntries = $project->getTimeEntries();
+            $projectTimeEntries   = $project->getTimeEntries();
             $projectInvoicesArray = [];
             foreach ($projectTimeEntries as $projectTimeEntry) {
                 foreach ($projectTimeEntry->getInvoices() as $projectInvoice) {
                     $projectInvoicesArray[$projectInvoice->getId()] = $projectInvoice->getId();
                 }
             }
-            $invoiceName = \date('y').'-'.($project->getId() + 1000).'-'.count($projectInvoicesArray) + 1;
-            $invoice = new Invoice();
+            $invoiceName = \date('y').'-'.($project->getId() + 1000).'-'.\count($projectInvoicesArray) + 1;
+            $invoice     = new Invoice();
             $invoice->setInvoiceDate(new \DateTime());
             $invoice->setCustomer($project->getCustomer());
             $invoice->setStatus(Invoice::STATUS_OPEN);
@@ -117,7 +117,7 @@ final class ProjectController extends AbstractController
                     ['x' => 25, 'y' => 50, 'text' => $customer->getFirstname().' '.$customer->getLastname()],
                     ['x' => 25, 'y' => 55, 'text' => $customer->getStreet().' '.$customer->getHousenumber()],
                     ['x' => 25, 'y' => 60, 'text' => $customer->getPlz().' '.$customer->getCity()],
-                    ['x' => 52, 'y' => 103, 'text' => \date('Y').'-1001'],
+                    ['x' => 52, 'y' => 102.5, 'text' => $invoiceName],
                     ['x' => 170, 'y' => 75, 'text' => \date('d.m.Y'), 'B' => 'B'],
                 ],
             ];
