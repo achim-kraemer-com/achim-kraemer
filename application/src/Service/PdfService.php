@@ -16,7 +16,7 @@ class PdfService
     {
         $pdf = new \setasign\Fpdi\Tcpdf\Fpdi();
 
-        $pageCount = $pdf->setSourceFile($this->param->get('pdf_storage_path').'Musterrechnung2.pdf');
+        $pageCount = $pdf->setSourceFile($this->param->get('pdf_storage_path').'Musterrechnung.pdf');
 
         for ($pageNo = 1; $pageNo <= $pageCount; ++$pageNo) {
             // Hole die Seitenvorlage
