@@ -96,10 +96,19 @@ final class ProjectController extends AbstractController
         $selectedTimeEntries = $request->get('options', []);
 
         if (!empty($selectedTimeEntries)) {
+            $projectTimeEntries = $project->getTimeEntries();
+            $projectInvoicesArray = [];
+            foreach ($projectTimeEntries as $projectTimeEntry) {
+                foreach ($projectTimeEntry->getInvoices() as $projectInvoice) {
+                    $projectInvoicesArray[$projectInvoice->getId()] = $projectInvoice->getId();
+                }
+            }
+            $invoiceName = \date('y').'-'.($project->getId() + 1000).'-'.count($projectInvoicesArray) + 1;
             $invoice = new Invoice();
             $invoice->setInvoiceDate(new \DateTime());
             $invoice->setCustomer($project->getCustomer());
             $invoice->setStatus(Invoice::STATUS_OPEN);
+            $invoice->setName($invoiceName);
             $timeEntries = $timeEntryRepository->getInvoices($selectedTimeEntries);
             $customer    = $project->getCustomer();
             $textOverlay = [
@@ -145,7 +154,7 @@ final class ProjectController extends AbstractController
             $textOverlay[1][] = ['x' => 173, 'y' => 194, 'text' => \number_format((float) $totalAmount, 2, '.', '').' €', 'B' => 'B', 'R' => 'R'];
             $invoice->setTotalAmount((string) $totalAmount);
 
-            $pdfService->modifyPdf($textOverlay, \date('Y').'-1001');
+            $pdfService->modifyPdf($textOverlay, $invoiceName);
 
             $entityManager->persist($invoice);
             $entityManager->flush();

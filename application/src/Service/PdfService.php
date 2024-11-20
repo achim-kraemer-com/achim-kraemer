@@ -39,9 +39,6 @@ class PdfService
                     $pdf->SetFont('Helvetica', $fontStyle, 11);
                     $pdf->SetXY($textItem['x'], $textItem['y']);
                     $textAlign = 'L';
-                    //                    if (\array_key_exists('R', $textItem)) {
-                    //                        $textAlign = 'R';
-                    //                    }
                     $pdf->Write(0, $textItem['text'], '', false, $textAlign);
                 }
             }
