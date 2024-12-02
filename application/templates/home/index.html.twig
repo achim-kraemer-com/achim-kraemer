@@ -18,9 +18,11 @@
         </div>
     </div>
     </header>
-    <div id="services">
-        <div class="services-container">
-            <h2>{{ 'app.navigation.services'|trans }}</h2>
+    <div class="services">
+        <div class="services-container grid grid-cols-2">
+            <div>
+                <h2>{{ 'app.navigation.services'|trans }}</h2>
+            </div>
             <div id="services-text">
                 {{ 'app.services.text'|trans|raw|nl2br }}
             </div>
@@ -28,9 +30,11 @@
     </div>
     <div class="background-container2"></div>
     <div id="about">
-        <div class="about-container">
-            <h2>{{ 'app.navigation.about'|trans }}</h2>
-            <div id="about-text">
+        <div class="grid grid-cols-4 gap-2">
+            <div>
+                <h2>{{ 'app.navigation.about'|trans }}</h2>
+            </div>
+            <div id="services-text">
                 {{ 'app.about.text'|trans|raw|nl2br }}
             </div>
         </div>
@@ -38,7 +42,9 @@
     <div class="background-container2"></div>
     <div id="portfolio">
         <div class="portfolio-container">
-            <h2>{{ 'app.navigation.portfolio'|trans }}</h2>
+            <div>
+                <h2>{{ 'app.navigation.portfolio'|trans }}</h2>
+            </div>
             <div class="project">
                 <h3>{{ 'app.portfolio.title1'|trans }}</h3>
                 <p>{{ 'app.portfolio.text1'|trans|raw|nl2br }}</p>

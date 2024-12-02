@@ -223,7 +223,7 @@ footer a {
     border-bottom: 1px solid #E5E7EB;
 }
 
-.table tbody td, a {
+.table tbody td {
     padding: 12px 16px;
     font-size: 0.875rem;
     color: #374151; /* entspricht Tailwinds text-gray-900 */
@@ -243,6 +243,10 @@ footer a {
 
 .table tbody td.actions a.delete:hover {
     color: #B91C1C; /* entspricht Tailwinds hover:text-red-900 */
+}
+
+td a {
+    color: #374151; /* entspricht Tailwinds text-gray-900 */
 }
 
 .custom-label {
