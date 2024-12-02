@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'app.email_signature.edit'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('emailSignature') }}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="table-container bg-gray-800 p-8 overflow-x-auto">
+        <h3>{{ 'app.email_signature.edit'|trans }}</h3>
+
+        {{ include('emails/signature/_form.html.twig', {'button_label': 'Update'}) }}
+
+        <a class="button" href="{{ path('admin_email_signature_index') }}">{{ 'app.default.back_to_list'|trans }}</a>
+
+        {{ include('emails/signature/_delete_form.html.twig') }}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('emailSignature') }}
+{% endblock %}

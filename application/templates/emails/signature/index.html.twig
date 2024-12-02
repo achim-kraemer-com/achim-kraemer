@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'app.email_signature.title'|trans }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="table-container bg-gray-800 p-8 overflow-x-auto">
+        <h3>{{ 'app.email_signature.title'|trans }}</h3>
+        <table class="table min-w-full bg-white border border-gray-200">
+            <thead>
+                <tr>
+                    <th>{{ 'app.email_signature.title_text'|trans }}</th>
+                    <th>{{ 'app.email_signature.image'|trans }}</th>
+                    <th>{{ 'app.email_signature.link'|trans }}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for email_signature in email_signatures %}
+                <tr>
+                    <td><a href="{{ path('admin_email_signature_edit', {'id': email_signature.id}) }}">{{ email_signature.title }}</a></td>
+                    <td>{{ email_signature.image }}</td>
+                    <td>{{ email_signature.link|length > 40 ? email_signature.link|slice(0, 40) ~ ' ... ' : email_signature.link }}</td>
+                    <td><a class="btn btn-primary" href="{{ path('admin_email_signature_show', {'id': email_signature.id}) }}">{{ 'app.email_signature.show'|trans }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">{{ 'app.email_signature.empty'|trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="button mt-4" href="{{ path('admin_email_signature_new') }}">{{ 'app.email_signature.new'|trans }}</a>
+    </div>
+</div>
+{% endblock %}

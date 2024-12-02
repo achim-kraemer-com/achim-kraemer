@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'app.email_signature.new'|trans }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="table-container bg-gray-800 p-8 overflow-x-auto">
+        <h3>{{ 'app.email_signature.new'|trans }}</h3>
+
+        {{ include('emails/signature/_form.html.twig') }}
+
+        <a class="button mt-4" href="{{ path('admin_email_signature_index') }}">{{ 'app.default.back_to_list'|trans }}</a>
+    </div>
+</div>
+{% endblock %}

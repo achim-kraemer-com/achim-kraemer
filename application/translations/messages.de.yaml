@@ -70,3 +70,14 @@ app.time_entry.hours: Stunden
 app.time_entry.description: Beschreibung
 app.time_entry.status: Status
 app.time_entry.invoiced: Bezahlt
+app.email_signature.title: E-Mail Signatur
+app.email_signature.show: anzeigen
+app.email_signature.edit: E-Mail Signatur bearbeiten
+app.email_signature.new: Neue E-Mail Signatur erstellen
+app.email_signature.empty: Keine E-Mail Signatur vorhanden
+app.email_signature.title_text: Titel
+app.email_signature.image: Bild
+app.email_signature.link: Link
+app.email_signature.please_upload_image_file: Bitte eine Bilddatei hochladen!
+app.email_signature.error_upload_image_file: Fehler beim Hochladen der Bilddatei!
+app.email_signature.error_upload_path: Fehler beim Erstellen des Ordners!

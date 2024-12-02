@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    {% if email_signature.image is not null %}
+        <div class="mb-4 email-signal-img">
+            <img src="{{ url('app_landing_page') }}/upload/images/email_signature/{{ email_signature.image }}">
+        </div>
+    {% endif %}
+    <button class="button mt-4">{{ button_label|default( 'app.default.save'|trans ) }}</button>
+{{ form_end(form) }}
