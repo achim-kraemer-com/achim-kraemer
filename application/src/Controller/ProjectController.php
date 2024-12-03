@@ -115,10 +115,10 @@ final class ProjectController extends AbstractController
             $customer    = $project->getCustomer();
             $textOverlay = [
                 1 => [
-                    ['x' => 25, 'y' => 45, 'text' => $customer->getCompanyName()],
-                    ['x' => 25, 'y' => 50, 'text' => $customer->getFirstname().' '.$customer->getLastname()],
-                    ['x' => 25, 'y' => 55, 'text' => $customer->getStreet().' '.$customer->getHousenumber()],
-                    ['x' => 25, 'y' => 60, 'text' => $customer->getPlz().' '.$customer->getCity()],
+                    ['x' => 25, 'y' => 45, 'text' => \mb_convert_encoding($customer->getCompanyName(), 'ISO-8859-1', 'UTF-8')],
+                    ['x' => 25, 'y' => 50, 'text' => \mb_convert_encoding($customer->getFirstname(), 'ISO-8859-1', 'UTF-8').' '.\mb_convert_encoding($customer->getLastname(), 'ISO-8859-1', 'UTF-8')],
+                    ['x' => 25, 'y' => 55, 'text' => \mb_convert_encoding($customer->getStreet(), 'ISO-8859-1', 'UTF-8').' '.$customer->getHousenumber()],
+                    ['x' => 25, 'y' => 60, 'text' => $customer->getPlz().' '.\mb_convert_encoding($customer->getCity(), 'ISO-8859-1', 'UTF-8')],
                     ['x' => 52, 'y' => 102.5, 'text' => $invoiceName],
                     ['x' => 172, 'y' => 66, 'text' => $invoiceDate],
                     ['x' => 170, 'y' => 75, 'text' => \date('d.m.Y'), 'B' => 'B'],
@@ -143,7 +143,7 @@ final class ProjectController extends AbstractController
                 if ($timeEntry->getPrice() !== null) {
                     $textOverlay[1][] = ['x' => 173, 'y' => $overlayTimeEntriesNr, 'text' => \number_format((float) $timeEntry->getPrice(), 2, '.', '').' €', 'R' => 'R'];
                 }
-                $lines = \explode("\n", $timeEntry->getDescription());
+                $lines = \explode("\n", \mb_convert_encoding($timeEntry->getDescription(), 'ISO-8859-1', 'UTF-8'));
                 foreach ($lines as $line) {
                     $textOverlay[1][] = ['x' => 42, 'y' => $overlayTimeEntriesNr, 'text' => $line];
                     $overlayTimeEntriesNr += 5;
