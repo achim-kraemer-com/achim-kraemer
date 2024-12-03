@@ -115,10 +115,10 @@ final class ProjectController extends AbstractController
             $customer    = $project->getCustomer();
             $textOverlay = [
                 1 => [
-                    ['x' => 25, 'y' => 45, 'text' => \mb_convert_encoding($customer->getCompanyName(), 'ISO-8859-1', 'UTF-8')],
-                    ['x' => 25, 'y' => 50, 'text' => \mb_convert_encoding($customer->getFirstname(), 'ISO-8859-1', 'UTF-8').' '.\mb_convert_encoding($customer->getLastname(), 'ISO-8859-1', 'UTF-8')],
-                    ['x' => 25, 'y' => 55, 'text' => \mb_convert_encoding($customer->getStreet(), 'ISO-8859-1', 'UTF-8').' '.$customer->getHousenumber()],
-                    ['x' => 25, 'y' => 60, 'text' => $customer->getPlz().' '.\mb_convert_encoding($customer->getCity(), 'ISO-8859-1', 'UTF-8')],
+                    ['x' => 25, 'y' => 45, 'text' => $customer->getCompanyName()],
+                    ['x' => 25, 'y' => 50, 'text' => $customer->getFirstname().' '.$customer->getLastname()],
+                    ['x' => 25, 'y' => 55, 'text' => $customer->getStreet().' '.$customer->getHousenumber()],
+                    ['x' => 25, 'y' => 60, 'text' => $customer->getPlz().' '.$customer->getCity()],
                     ['x' => 52, 'y' => 102.5, 'text' => $invoiceName],
                     ['x' => 172, 'y' => 66, 'text' => $invoiceDate],
                     ['x' => 170, 'y' => 75, 'text' => \date('d.m.Y'), 'B' => 'B'],
@@ -143,9 +143,9 @@ final class ProjectController extends AbstractController
                 if ($timeEntry->getPrice() !== null) {
                     $textOverlay[1][] = ['x' => 173, 'y' => $overlayTimeEntriesNr, 'text' => \number_format((float) $timeEntry->getPrice(), 2, '.', '').' €', 'R' => 'R'];
                 }
-                $lines = \explode("\n", \mb_convert_encoding($timeEntry->getDescription(), 'ISO-8859-1', 'UTF-8'));
+                $lines = \explode("\n", $timeEntry->getDescription());
                 foreach ($lines as $line) {
-                    $textOverlay[1][] = ['x' => 42, 'y' => $overlayTimeEntriesNr, 'text' => $line];
+                    $textOverlay[1][] = ['x' => 42, 'y' => $overlayTimeEntriesNr, 'text' => $this->replaceCharacter($line)];
                     $overlayTimeEntriesNr += 5;
                 }
                 ++$position;
@@ -156,7 +156,9 @@ final class ProjectController extends AbstractController
             }
             $textOverlay[1][] = ['x' => 173, 'y' => 194, 'text' => \number_format((float) $totalAmount, 2, '.', '').' €', 'B' => 'B', 'R' => 'R'];
             $invoice->setTotalAmount((string) $totalAmount);
+
             $pdfService->modifyPdf($textOverlay, $invoiceName);
+
             $entityManager->persist($invoice);
             $entityManager->flush();
 
@@ -164,5 +166,13 @@ final class ProjectController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_project_show', ['id' => $project->getId()]);
+    }
+
+    private function replaceCharacter(string $line): string
+    {
+        $search  = ['a?', 'o?', 'u?'];
+        $replace = ['ä', 'ö', 'ü'];
+
+        return \str_replace($search, $replace, $line);
     }
 }
