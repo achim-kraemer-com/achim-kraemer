@@ -156,9 +156,7 @@ final class ProjectController extends AbstractController
             }
             $textOverlay[1][] = ['x' => 173, 'y' => 194, 'text' => \number_format((float) $totalAmount, 2, '.', '').' €', 'B' => 'B', 'R' => 'R'];
             $invoice->setTotalAmount((string) $totalAmount);
-
             $pdfService->modifyPdf($textOverlay, $invoiceName);
-
             $entityManager->persist($invoice);
             $entityManager->flush();
 
