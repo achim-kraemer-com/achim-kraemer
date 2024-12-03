@@ -24,7 +24,7 @@ class EmailSignatureType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'app.email_signature.title_text',
+                'label'      => 'app.email_signature.title_text',
                 'label_attr' => [
                     'class' => 'custom-label',
                 ],
