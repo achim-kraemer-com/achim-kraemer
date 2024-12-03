@@ -120,7 +120,7 @@ final class ProjectController extends AbstractController
                     ['x' => 25, 'y' => 55, 'text' => $customer->getStreet().' '.$customer->getHousenumber()],
                     ['x' => 25, 'y' => 60, 'text' => $customer->getPlz().' '.$customer->getCity()],
                     ['x' => 52, 'y' => 102.5, 'text' => $invoiceName],
-                    ['x' => 172, 'y' => 66, 'text' => $invoiceDate],
+                    ['x' => 172, 'y' => 66, 'text' => $this->germMonth($invoiceDate)],
                     ['x' => 170, 'y' => 75, 'text' => \date('d.m.Y'), 'B' => 'B'],
                 ],
             ];
@@ -145,7 +145,7 @@ final class ProjectController extends AbstractController
                 }
                 $lines = \explode("\n", $timeEntry->getDescription());
                 foreach ($lines as $line) {
-                    $textOverlay[1][] = ['x' => 42, 'y' => $overlayTimeEntriesNr, 'text' => $this->replaceCharacter($line)];
+                    $textOverlay[1][] = ['x' => 42, 'y' => $overlayTimeEntriesNr, 'text' => $line];
                     $overlayTimeEntriesNr += 5;
                 }
                 ++$position;
@@ -168,11 +168,23 @@ final class ProjectController extends AbstractController
         return $this->redirectToRoute('admin_project_show', ['id' => $project->getId()]);
     }
 
-    private function replaceCharacter(string $line): string
+    private function germMonth(string $monthDate): string
     {
-        $search  = ['a?', 'o?', 'u?'];
-        $replace = ['ä', 'ö', 'ü'];
+        $months = [
+            'Jan' => 'Jan.',
+            'Feb' => 'Feb.',
+            'Mar' => 'Mär.',
+            'Apr' => 'Apr.',
+            'May' => 'Mai',
+            'Jun' => 'Jun.',
+            'Jul' => 'Jul.',
+            'Aug' => 'Aug.',
+            'Sep' => 'Sep.',
+            'Oct' => 'Okt.',
+            'Nov' => 'Nov.',
+            'Dec' => 'Dez.',
+        ];
 
-        return \str_replace($search, $replace, $line);
+        return \strtr($monthDate, $months);
     }
 }
