@@ -8,6 +8,7 @@ use App\Entity\Invoice;
 use App\Entity\Project;
 use App\Entity\TimeEntry;
 use App\Form\ProjectType;
+use App\Repository\InvoiceRepository;
 use App\Repository\ProjectRepository;
 use App\Repository\TimeEntryRepository;
 use App\Service\PdfService;
@@ -90,22 +91,16 @@ final class ProjectController extends AbstractController
         Request $request,
         Project $project,
         TimeEntryRepository $timeEntryRepository,
+        InvoiceRepository $invoiceRepository,
         EntityManagerInterface $entityManager,
         PdfService $pdfService,
     ): Response {
         $selectedTimeEntries = $request->get('options', []);
 
         if (!empty($selectedTimeEntries)) {
-            $projectTimeEntries   = $project->getTimeEntries();
-            $projectInvoicesArray = [];
-            $invoiceDate          = \date('M./Y');
-            foreach ($projectTimeEntries as $projectTimeEntry) {
-                foreach ($projectTimeEntry->getInvoices() as $projectInvoice) {
-                    $projectInvoicesArray[$projectInvoice->getId()] = $projectInvoice->getId();
-                    $invoiceDate                                    = $projectTimeEntry->getDate()->format('M./Y');
-                }
-            }
-            $invoiceName = \date('y').'-'.($project->getId() + 1000).'-'.\count($projectInvoicesArray) + 1;
+            $invoiceDate = new \DateTime();
+            $sumInvoices = $invoiceRepository->getInvoices($project->getId());
+            $invoiceName = \date('y').'-'.($project->getId() + 1000).'-'.\count($sumInvoices) + 1;
             $invoice     = new Invoice();
             $invoice->setInvoiceDate(new \DateTime());
             $invoice->setCustomer($project->getCustomer());
@@ -120,7 +115,6 @@ final class ProjectController extends AbstractController
                     ['x' => 25, 'y' => 55, 'text' => $customer->getStreet().' '.$customer->getHousenumber()],
                     ['x' => 25, 'y' => 60, 'text' => $customer->getPlz().' '.$customer->getCity()],
                     ['x' => 52, 'y' => 102.5, 'text' => $invoiceName],
-                    ['x' => 172, 'y' => 66, 'text' => $this->germMonth($invoiceDate)],
                     ['x' => 170, 'y' => 75, 'text' => \date('d.m.Y'), 'B' => 'B'],
                 ],
             ];
@@ -148,12 +142,16 @@ final class ProjectController extends AbstractController
                     $textOverlay[1][] = ['x' => 42, 'y' => $overlayTimeEntriesNr, 'text' => $line];
                     $overlayTimeEntriesNr += 5;
                 }
+                if ($invoiceDate > $timeEntry->getDate()) {
+                    $invoiceDate = $timeEntry->getDate();
+                }
                 ++$position;
                 $overlayTimeEntriesNr += 5;
                 $timeEntry->setStatus(TimeEntry::STATUS_IN_WORK);
                 $entityManager->persist($timeEntry);
                 $timeEntry->addInvoice($invoice);
             }
+            $textOverlay[1][] = ['x' => 172, 'y' => 66, 'text' => $this->germMonth($invoiceDate->format('M/Y'))];
             $textOverlay[1][] = ['x' => 173, 'y' => 194, 'text' => \number_format((float) $totalAmount, 2, '.', '').' €', 'B' => 'B', 'R' => 'R'];
             $invoice->setTotalAmount((string) $totalAmount);
 

@@ -17,4 +17,15 @@ class InvoiceRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Invoice::class);
     }
+
+    public function getInvoices(int $projectId)
+    {
+        return $this->createQueryBuilder('i')
+            ->leftJoin('i.timeEntry', 'te')
+            ->leftJoin('te.project', 'p')
+            ->where('p.id = :projectId')
+            ->setParameter('projectId', $projectId)
+            ->getQuery()
+            ->getResult();
+    }
 }
