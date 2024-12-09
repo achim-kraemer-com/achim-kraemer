@@ -32,6 +32,10 @@ html {
     z-index: 1;
 }
 
+.text {
+    font-weight: 300;
+}
+
 /*.background-container::after {*/
 /*    content: '';*/
 /*    position: absolute;*/
@@ -57,12 +61,13 @@ html {
     z-index: 1000;
 }
 
-.services, #about, #contact, #portfolio {
+.block-container {
+    padding: 80px 0 80px 0;
     position: relative;
     width: 100%;
     justify-content: center;
-    background-color: #252424FF;
-    color: #FFF;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 #header-inner {
@@ -77,13 +82,21 @@ html {
     margin: 0 200px 0 200px;
 }
 
+.portfolio-container2 {
+    display: flex;
+}
+
+.portfolio-header {
+    margin-left: 20px;
+}
+
 h2, .services-text, #about-text, #contact-text {
     padding: 80px 20px 80px 20px;
 }
 
 .project {
-    padding: 80px 20px 20px 20px;
-    min-width: 25%;
+    padding: 60px 20px 20px 20px;
+    min-width: 34%;
 }
 
 #portfolio-end-text {
@@ -110,23 +123,28 @@ h2 {
     padding: 10px;
 }
 
+.vertical-line {
+    background-color: var(--header-color);
+}
+
 .contact-input-field {
     outline: 0;
-    background: #f0f2f1;
-    color: #000;
+    background: var(--text-color);
+    color: var(--background-color);
     padding: 0.5rem 1rem 0.5rem 1rem;
     border-width: 1px;
     border-style: none;
-    border-color: #000;
+    border-color: var(--background-color);
     border-radius: 0;
     box-shadow: none;
-    width: 100%;
+    width: 120%;
 }
 
 .contact-input-button {
+    border: 2px solid var(--header-color);
     line-height: 1.6;
     height: auto;
-    width: 110%;
+    width: 120%;
     -webkit-appearance: none;
     transition: all .3s ease-in-out;
     padding: 0.5rem 1rem 0.5rem 1rem;
@@ -156,8 +174,8 @@ div > #header-inner {
 }
 
 #about {
-    background-color: #252424FF;
-    color: #fff;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 /*.about-container::after {*/

@@ -20,3 +20,28 @@ function stickyNavbar() {
         scrollNavbar.style.display = "none"; // Entferne die Klasse 'sticky'
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const elements = document.querySelectorAll(
+        ".animate-fade-in-left, .animate-fade-in-right, .animate-vertical-line"
+    );
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("opacity-100");
+                }
+            });
+        },
+        {
+            threshold: 0.1,
+        }
+    );
+
+    elements.forEach((element) => {
+        element.classList.add("opacity-0"); // Startzustand: unsichtbar
+        observer.observe(element);
+    });
+});
+
