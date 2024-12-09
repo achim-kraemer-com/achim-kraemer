@@ -1,17 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "_color.css";
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Lexend', sans-serif;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background-color: #1a1a1a;
+    background-color: var(--background-color);
 }
 
 .button {
-    background-color: #04AA6D; /* Green */
+    background-color: var(--third-background-color);
     border: none;
     color: white;
     padding: 15px 32px;
@@ -24,9 +25,9 @@ body {
 }
 
 .button-danger {
-    background-color: red; /* Green */
+    background-color: var(--error-color);
     border: none;
-    color: white;
+    color: var(--text-color);
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -49,8 +50,8 @@ body {
 
 header {
     padding: 0;
-    background-color: #1a1a1a;
-    color: #fff;
+    background-color: var(--background-color);
+    color: var(--text-color);
     text-align: center;
 }
 
@@ -59,7 +60,7 @@ header h1 {
     font-size: 2.5em;
     line-height: 1.2;
     letter-spacing: 4px;
-    font-weight: 700;
+    font-weight: 500;
     text-transform: uppercase;
     font-style: normal;
     text-decoration: none;
@@ -74,12 +75,12 @@ header p {
 .container {
     width: 80%;
     margin: 0 auto;
-    color: #fff;
-    background-color: #1a1a1a;
+    color: var(--text-color);
+    background-color: var(--background-color);
 }
 
 #header-scroll-container {
-    background-color: #000;
+    background-color: var(--background-color);
     width: 100%;
     text-align: center;
 }
@@ -95,9 +96,8 @@ div > #header-scroll-inner {
     display: inline-flex;
 }
 
-
 a {
-    color: #FFFFFF;
+    color: var(--header-color);
     text-decoration: none;
 }
 
@@ -109,12 +109,11 @@ nav {
 }
 
 nav a {
-    color: #fff;
+    color: var(--header-color);
     text-decoration: none;
     margin: 0 15px;
     font-size: 1.1em;
 }
-
 
 /* Grundlegende Stile für das <a> Element */
 .double-hover-effect {
@@ -133,7 +132,7 @@ nav a {
     position: absolute;
     width: 100%;
     height: 2px;
-    background-color: red;
+    background-color: var(--third-background-color);
     transition: transform 0.3s ease;
 }
 
@@ -182,20 +181,20 @@ nav a {
 }
 
 footer {
-    background-color: #1a1a1a;
-    color: #fff;
+    background-color: var(--background-color);
+    color: var(--text-color);
     text-align: center;
     padding: 20px;
 }
 
 footer a {
-    color: #fff;
+    color: var(--text-color);
     text-decoration: none;
     margin: 0 10px;
 }
 
 .form-text {
-    color: #000;
+    color: var(--background-color);
 }
 
 .table-container {
@@ -205,55 +204,55 @@ footer a {
 .table {
     width: 100%;
     min-width: 100%;
-    background-color: white;
-    border: 1px solid #E5E7EB; /* entspricht Tailwinds border-gray-200 */
+    background-color: var(--text-color);
+    border: 1px solid var(--text-color);
 }
 
 .table thead th {
     padding: 12px 16px;
     text-align: left;
     font-size: 0.75rem;
-    font-weight: 600;
-    color: #6B7280; /* entspricht Tailwinds text-gray-500 */
+    font-weight: 500;
+    color: var(--second-background-color); /* entspricht Tailwinds text-gray-500 */
     text-transform: uppercase;
-    border-bottom: 1px solid #E5E7EB;
+    border-bottom: 1px solid var(--text-color);
 }
 
 .table tbody tr {
-    border-bottom: 1px solid #E5E7EB;
+    border-bottom: 1px solid var(--text-color);
 }
 
 .table tbody td {
     padding: 12px 16px;
     font-size: 0.875rem;
-    color: #374151; /* entspricht Tailwinds text-gray-900 */
+    color: var(--second-background-color); /* entspricht Tailwinds text-gray-900 */
 }
 
 .table tbody td.actions a {
-    color: #3B82F6; /* entspricht Tailwinds text-blue-600 */
+    color: var(--third-background-color); /* entspricht Tailwinds text-blue-600 */
 }
 
 .table tbody td.actions a:hover {
-    color: #1D4ED8; /* entspricht Tailwinds hover:text-blue-900 */
+    color: var(--third-background-color); /* entspricht Tailwinds hover:text-blue-900 */
 }
 
 .table tbody td.actions a.delete {
-    color: #EF4444; /* entspricht Tailwinds text-red-600 */
+    color: var(--error-color); /* entspricht Tailwinds text-red-600 */
 }
 
 .table tbody td.actions a.delete:hover {
-    color: #B91C1C; /* entspricht Tailwinds hover:text-red-900 */
+    color: var(--error-color); /* entspricht Tailwinds hover:text-red-900 */
 }
 
 td a {
-    color: #374151; /* entspricht Tailwinds text-gray-900 */
+    color: var(--background-color); /* entspricht Tailwinds text-gray-900 */
 }
 
 .custom-label {
     display: block;
     font-size: 0.875rem;
     font-weight: 500;
-    color: #E5E7EB;
+    color: var(--text-color);
 }
 
 .form-text {
