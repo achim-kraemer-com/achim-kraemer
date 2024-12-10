@@ -6,25 +6,24 @@
 {% endblock %}
 
 {% block body %}
-    <header>
-    <div class="parallax-container">
-        {% include '_scroll_navigation.html.twig' with {'links':'direct'} %}
-        <div class="background-container">
-            {% include '_header_navigation.html.twig' with {'links':'direct'} %}
-            <div class="header-slogan">
-                <h1 class="slide-in-text1">{{ 'app.header.slogan1'|trans|raw|nl2br }}</h1>
-                <h1 class="slide-in-text2">{{ 'app.header.slogan2'|trans|raw|nl2br }}</h1>
+    <header  class="shadow-lg relative">
+        <div class="parallax-container">
+            {% include '_scroll_navigation.html.twig' with {'links':'direct'} %}
+            <div class="background-container">
+                <div class="header-slogan">
+                    <h1 class="slide-in-text1">{{ 'app.header.slogan1'|trans|raw|nl2br }}</h1>
+                    <h1 class="slide-in-text2">{{ 'app.header.slogan2'|trans|raw|nl2br }}</h1>
+                </div>
             </div>
         </div>
-    </div>
     </header>
     <div id="services" class="block-container">
-        <div class="services-container flex flex-col md:flex-row items-start md:items-center relative overflow-hidden">
-            <h2 class="w-full md:w-1/4 text-2xl font-bold mb-4 md:mb-0 animate-fade-in-left">
+        <div class="services-container flex flex-col lg:flex-row items-start lg:items-center relative overflow-hidden">
+            <h2 class="w-full lg:w-1/4 text-2xl font-bold mb-4 lg:mb-0 animate-fade-in-left">
                 {{ 'app.navigation.services'|trans }}
             </h2>
-            <div class="hidden md:block vertical-line h-full w-[2px] absolute top-0 left-1/4 animate-vertical-line"></div>
-            <div class="text w-full md:w-3/4 md:pl-8 text-base animate-fade-in-right">
+            <div class="hidden lg:block vertical-line h-full w-[2px] absolute top-0 left-1/4 animate-vertical-line"></div>
+            <div class="text w-full lg:w-3/4 lg:pl-8 text-base animate-fade-in-right">
                 <p>
                     {{ 'app.services.text'|trans|raw|nl2br }}
                 </p>
@@ -35,12 +34,12 @@
     <div class="background-container2"></div>
 
     <div id="about" class="block-container">
-        <div class="services-container flex flex-col md:flex-row items-start md:items-center relative overflow-hidden">
-            <h2 class="w-full md:w-1/4 text-2xl font-bold mb-4 md:mb-0 animate-fade-in-left">
+        <div class="services-container flex flex-col lg:flex-row items-start lg:items-center relative overflow-hidden">
+            <h2 class="w-full lg:w-1/4 text-2xl font-bold mb-4 lg:mb-0 animate-fade-in-left">
                 {{ 'app.navigation.about'|trans }}
             </h2>
-            <div class="hidden md:block vertical-line h-full w-[2px] absolute top-0 left-1/4 animate-vertical-line"></div>
-            <div class="text w-full md:w-3/4 md:pl-8 text-base animate-fade-in-right">
+            <div class="hidden lg:block vertical-line h-full w-[2px] absolute top-0 left-1/4 animate-vertical-line"></div>
+            <div class="text w-full lg:w-3/4 lg:pl-8 text-base animate-fade-in-right">
                 {{ 'app.about.text'|trans|raw|nl2br }}
             </div>
         </div>
@@ -49,12 +48,12 @@
     <div class="background-container2"></div>
 
     <div id="portfolio" class="block-container">
-        <div class="portfolio-container flex flex-col md:flex-row items-start md:items-center relative overflow-hidden">
-            <h2 class="w-full md:w-1/4 text-2xl font-bold mb-4 md:mb-0 animate-fade-in-left">
+        <div class="portfolio-container flex flex-col lg:flex-row items-start lg:items-center relative overflow-hidden">
+            <h2 class="w-full lg:w-1/4 text-2xl font-bold mb-4 lg:mb-0 animate-fade-in-left">
                 {{ 'app.navigation.portfolio'|trans }}
             </h2>
-            <div class="hidden md:block vertical-line h-full w-[2px] absolute top-0 left-1/4 animate-vertical-line"></div>
-            <div class="text w-full md:w-3/4 md:pl-8 text-base animate-fade-in-right">
+            <div class="hidden lg:block vertical-line h-full w-[2px] absolute top-0 left-1/4 animate-vertical-line"></div>
+            <div class="text w-full lg:w-3/4 lg:pl-8 text-base animate-fade-in-right">
                 <div class="portfolio-container2">
                     <div class="project">
                         <h3 class="project-headers">{{ 'app.portfolio.title1'|trans }}</h3>
@@ -93,12 +92,12 @@
     </div>
     <div class="background-container2"></div>
     <div id="contact" class="block-container">
-        <div class="contact-container flex flex-col md:flex-row items-start md:items-center relative overflow-hidden">
-            <h2 class="w-full md:w-1/4 text-2xl font-bold mb-4 md:mb-0 animate-fade-in-left">
+        <div class="contact-container flex flex-col lg:flex-row items-start lg:items-center relative overflow-hidden">
+            <h2 class="w-full lg:w-1/4 text-2xl font-bold mb-4 lg:mb-0 animate-fade-in-left">
                 {{ 'app.navigation.contact'|trans }}
             </h2>
-            <div class="hidden md:block vertical-line h-full w-[2px] bg-gray-400 absolute top-0 left-1/4 animate-vertical-line"></div>
-            <div id="contact-text" class="w-full md:w-3/4 md:pl-8 text-base animate-fade-in-right">
+            <div class="hidden lg:block vertical-line h-full w-[2px] bg-gray-400 absolute top-0 left-1/4 animate-vertical-line"></div>
+            <div id="contact-text" class="w-full lg:w-3/4 lg:pl-8 text-base animate-fade-in-right">
                 {{ form_start(form) }}
                     {{ form_row(form.name) }}
                     {{ form_row(form.phone) }}
