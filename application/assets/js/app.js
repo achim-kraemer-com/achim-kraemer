@@ -7,12 +7,3 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import '../styles/app.css';
-
-document.addEventListener('DOMContentLoaded', function () {
-    const burgerMenu = document.getElementById('burgerMenu');
-    const navigationMenu = document.getElementById('navigationMenu');
-
-    burgerMenu.addEventListener('click', function () {
-        navigationMenu.classList.toggle('show');
-    });
-});
