@@ -19,34 +19,32 @@ function stickyNavbar() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    console.log('Hier bin ich');
     const burgerBtn = document.getElementById('burger-btn');
     const navMenu = document.getElementById('nav-menu');
 
     burgerBtn.addEventListener('click', function () {
-        console.log('Burger Button geklickt!');
         navMenu.classList.toggle('hidden');
     });
 
-    const elements = document.querySelectorAll(
-        ".animate-fade-in-left, .animate-fade-in-right, .animate-vertical-line"
-    );
+    const blocks = document.querySelectorAll('.block-entry');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const block = entry.target;
+            if (entry.isIntersecting) {
+                // Entferne die translate Klassen, um die Animation auszuführen
+                block.classList.remove('opacity-0', 'translate-y-10');
+                block.querySelector('.headline').classList.remove('translate-x-[-100%]');
+                block.querySelector('.block-line').classList.remove('translate-y-10');
+                block.querySelector('.text').classList.remove('translate-x-20');
+            } else {
+                block.classList.add('opacity-0', 'translate-y-10');
+                block.querySelector('.headline').classList.add('translate-x-[-100%]');
+                block.querySelector('.block-line').classList.add('translate-y-10');
+                block.querySelector('.text').classList.add('translate-x-20');
+            }
+        });
+    }, { threshold: 0.3 }); // Sobald 30% des Blocks sichtbar sind
 
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("opacity-100");
-                }
-            });
-        },
-        {
-            threshold: 0.1,
-        }
-    );
-
-    elements.forEach((element) => {
-        element.classList.add("opacity-0"); // Startzustand: unsichtbar
-        observer.observe(element);
-    });
+    blocks.forEach(block => observer.observe(block));
 });
+
