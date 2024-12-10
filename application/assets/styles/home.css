@@ -32,6 +32,12 @@ html {
     z-index: 1;
 }
 
+@media (max-width: 1024px) {
+    .background-container2 {
+        height: 20vh;
+    }
+}
+
 .text {
     font-weight: 300;
 }
@@ -56,7 +62,6 @@ html {
 
 #header-scroll-container {
     position: fixed;
-    display: none;
     justify-content: center;
     z-index: 1000;
 }
@@ -90,8 +95,10 @@ html {
     margin-left: 20px;
 }
 
-h2, .services-text, #about-text, #contact-text {
-    padding: 80px 20px 80px 20px;
+@media (min-width: 1024px) {
+    h2, .services-text, #about-text, #contact-text {
+        padding: 80px 20px 80px 20px;
+    }
 }
 
 .project {
@@ -108,8 +115,10 @@ h2 {
     min-width: 15%;
 }
 
-#contact-text {
-    width: 30%;
+@media (min-width: 1024px) {
+    #contact-text {
+        width: 30%;
+    }
 }
 
 .header-slogan {
@@ -140,14 +149,26 @@ h2 {
     width: 120%;
 }
 
+@media (max-width: 1024px) {
+    .contact-input-field {
+        width: 100%;
+    }
+}
+
 .contact-input-button {
     border: 2px solid var(--header-color);
     line-height: 1.6;
     height: auto;
-    width: 120%;
     -webkit-appearance: none;
     transition: all .3s ease-in-out;
     padding: 0.5rem 1rem 0.5rem 1rem;
+    width: 120%;
+}
+
+@media (max-width: 1024px) {
+    .contact-input-button {
+        width: 100%;
+    }
 }
 
 .slide-in-text1 {

@@ -1,7 +1,19 @@
-<a href="{{ path('app_home') }}" class="double-hover-effect"><h1>{{ 'app.header.name'|trans }}</h1></a>
-<nav>
-    <a href="{% if links is defined and links == 'direct' %}#services{% else %}{{ path('app_home') }}#service{% endif %}" class="double-hover-effect">{{ 'app.navigation.services'|trans }}</a>
-    <a href="{% if links is defined and links == 'direct' %}#about{% else %}{{ path('app_home') }}#about{% endif %}" class="double-hover-effect">{{ 'app.navigation.about'|trans }}</a>
-    <a href="{% if links is defined and links == 'direct' %}#portfolio{% else %}{{ path('app_home') }}#portfolio{% endif %}" class="double-hover-effect">{{ 'app.navigation.portfolio'|trans }}</a>
-    <a href="{% if links is defined and links == 'direct' %}#contact{% else %}{{ path('app_home') }}#contact{% endif %}" class="double-hover-effect">{{ 'app.navigation.contact'|trans }}</a>
+<a href="{{ path('app_home') }}" class="double-hover-effect">
+    <h1>{{ 'app.header.name'|trans }}</h1>
+</a>
+
+<!-- Burger Button -->
+<button id="burger-btn" class="block lg:hidden p-2 focus:outline-none">
+    <!-- Icon für Burger-Menu -->
+    <div class="w-6 h-0.5 vertical-line mb-1"></div>
+    <div class="w-6 h-0.5 vertical-line mb-1"></div>
+    <div class="w-6 h-0.5 vertical-line"></div>
+</button>
+
+<!-- Navigation -->
+<nav id="nav-menu" class="hidden lg:flex flex-col lg:flex-row lg:space-x-4 absolute lg:relative top-full left-0 w-full lg:w-auto shadow-lg lg:shadow-none transition-all duration-300 ease-in-out">
+    <a href="{% if links is defined and links == 'direct' %}#services{% else %}{{ path('app_home') }}#service{% endif %}" class="double-hover-effect block px-4 py-2">{{ 'app.navigation.services'|trans }}</a>
+    <a href="{% if links is defined and links == 'direct' %}#about{% else %}{{ path('app_home') }}#about{% endif %}" class="double-hover-effect block px-4 py-2">{{ 'app.navigation.about'|trans }}</a>
+    <a href="{% if links is defined and links == 'direct' %}#portfolio{% else %}{{ path('app_home') }}#portfolio{% endif %}" class="double-hover-effect block px-4 py-2">{{ 'app.navigation.portfolio'|trans }}</a>
+    <a href="{% if links is defined and links == 'direct' %}#contact{% else %}{{ path('app_home') }}#contact{% endif %}" class="double-hover-effect block px-4 py-2">{{ 'app.navigation.contact'|trans }}</a>
 </nav>

@@ -55,16 +55,32 @@ header {
     text-align: center;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2.5em;
-    line-height: 1.2;
-    letter-spacing: 4px;
-    font-weight: 500;
-    text-transform: uppercase;
-    font-style: normal;
-    text-decoration: none;
-    text-align: inherit;
+@media (min-width: 1024px) {
+    header h1 {
+        margin: 0;
+        font-size: 2.5em;
+        line-height: 1.2;
+        letter-spacing: 4px;
+        font-weight: 500;
+        text-transform: uppercase;
+        font-style: normal;
+        text-decoration: none;
+        text-align: inherit;
+    }
+}
+
+@media (max-width: 1024px) {
+    header h1 {
+        margin: 0;
+        font-size: 2.2em;
+        line-height: 1.0;
+        letter-spacing: 4px;
+        font-weight: 500;
+        text-transform: uppercase;
+        font-style: normal;
+        text-decoration: none;
+        text-align: inherit;
+    }
 }
 
 header p {
@@ -80,7 +96,6 @@ header p {
 }
 
 #header-scroll-container {
-    background-color: var(--background-color);
     width: 100%;
     text-align: center;
 }
@@ -114,53 +129,63 @@ nav a {
     margin: 0 15px;
     font-size: 1.1em;
 }
+/* Grundlegende Stile für das <a> Element */
+@media (min-width: 1024px) {
+    .double-hover-effect {
+        position: relative;
+        display: inline-block;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 16px;
+        overflow: hidden; /* Versteckt den Balken außerhalb des Elements */
+    }
+
+    /* Stile für die Balken */
+    .double-hover-effect::before,
+    .double-hover-effect::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: var(--third-background-color);
+        transition: transform 0.3s ease;
+    }
+
+    /* Oberer Balken */
+    .double-hover-effect::before {
+        top: 0;
+        left: 0;
+        transform: scaleX(0); /* Startet mit einer Breite von 0 */
+        transform-origin: left;
+    }
+
+    /* Unterer Balken */
+    .double-hover-effect::after {
+        bottom: 0;
+        left: 0;
+        transform: scaleX(0); /* Startet mit einer Breite von 0 */
+        transform-origin: right;
+    }
+
+    /* Animation beim Hovern */
+    .double-hover-effect:hover::before {
+        transform: scaleX(1); /* Balken wird von links nach rechts aufgefüllt */
+        transform-origin: left;
+    }
+
+    .double-hover-effect:hover::after {
+        transform: scaleX(1); /* Balken wird von rechts nach links aufgefüllt */
+        transform-origin: right;
+    }
+}
 
 /* Grundlegende Stile für das <a> Element */
-.double-hover-effect {
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    text-decoration: none;
-    font-size: 16px;
-    overflow: hidden; /* Versteckt den Balken außerhalb des Elements */
-}
-
-/* Stile für die Balken */
-.double-hover-effect::before,
-.double-hover-effect::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background-color: var(--third-background-color);
-    transition: transform 0.3s ease;
-}
-
-/* Oberer Balken */
-.double-hover-effect::before {
-    top: 0;
-    left: 0;
-    transform: scaleX(0); /* Startet mit einer Breite von 0 */
-    transform-origin: left;
-}
-
-/* Unterer Balken */
-.double-hover-effect::after {
-    bottom: 0;
-    left: 0;
-    transform: scaleX(0); /* Startet mit einer Breite von 0 */
-    transform-origin: right;
-}
-
-/* Animation beim Hovern */
-.double-hover-effect:hover::before {
-    transform: scaleX(1); /* Balken wird von links nach rechts aufgefüllt */
-    transform-origin: left;
-}
-
-.double-hover-effect:hover::after {
-    transform: scaleX(1); /* Balken wird von rechts nach links aufgefüllt */
-    transform-origin: right;
+@media (max-width: 1024px) {
+    .double-hover-effect {
+        padding: 10px 20px;
+        font-size: 16px;
+        overflow: hidden; /* Versteckt den Balken außerhalb des Elements */
+    }
 }
 
 .section-block {
