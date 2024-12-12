@@ -106,8 +106,9 @@ html {
     min-width: 34%;
 }
 
-#portfolio-end-text {
-
+.project-headers {
+    font-size: 1.5rem;
+    min-width: 15%;
 }
 
 h2 {
