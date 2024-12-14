@@ -107,7 +107,7 @@ html {
 }
 
 @media (min-width: 1024px) {
-    h2, .services-text, #about-text, #contact-text {
+    .services-text, #about-text, #contact-text {
         padding: 80px 20px 80px 20px;
     }
 }
