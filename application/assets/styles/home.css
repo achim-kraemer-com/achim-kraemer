@@ -32,14 +32,19 @@ html {
     z-index: 1;
 }
 
+.text {
+    font-weight: 300;
+    font-size: 1.2em;
+}
+
 @media (max-width: 1024px) {
     .background-container2 {
         height: 20vh;
     }
-}
 
-.text {
-    font-weight: 300;
+    .text {
+        font-size: 1.8em;
+    }
 }
 
 /*.background-container::after {*/
@@ -85,6 +90,12 @@ html {
 .services-container, .about-container, .contact-container, .portfolio-container {
     display: flex;
     margin: 0 200px 0 200px;
+}
+
+@media (max-width: 1024px) {
+    .services-container, .about-container, .contact-container, .portfolio-container {
+        margin: 0 100px 0 100px;
+    }
 }
 
 .portfolio-container2 {
