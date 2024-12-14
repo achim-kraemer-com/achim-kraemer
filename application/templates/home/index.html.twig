@@ -11,15 +11,15 @@
             {% include '_scroll_navigation.html.twig' with {'links':'direct'} %}
             <div class="background-container">
                 <div class="header-slogan">
-                    <h1 class="slide-in-text1">{{ 'app.header.slogan1'|trans|raw|nl2br }}</h1>
-                    <h1 class="slide-in-text2">{{ 'app.header.slogan2'|trans|raw|nl2br }}</h1>
+                    <h2 class="slide-in-text1">{{ 'app.header.slogan1'|trans|raw|nl2br }}</h2>
+                    <h2 class="slide-in-text2">{{ 'app.header.slogan2'|trans|raw|nl2br }}</h2>
                 </div>
             </div>
         </div>
     </header>
     <div id="services" class="block-container">
         <div class="block-entry services-container flex flex-col lg:flex-row items-start lg:items-center relative overflow-hidden">
-            <h2 class="headline w-full lg:w-1/4 text-2xl font-bold translate-x-[-100%] transition-transform duration-700 ease-out lg:mb-0">
+            <h2 class="headline w-full lg:w-1/4 text-4xl lg:text-2xl font-bold translate-x-[-100%] transition-transform duration-700 ease-out mb-8 lg:mb-0">
                 {{ 'app.navigation.services'|trans }}
             </h2>
             <div class="hidden lg:block block-line vertical-line h-full w-[2px] mx-4 translate-y-10 transition-transform duration-700 ease-out"></div>
@@ -35,7 +35,7 @@
 
     <div id="about" class="block-container">
         <div class="block-entry services-container flex flex-col lg:flex-row items-start lg:items-center relative overflow-hidden">
-            <h2 class="headline w-full lg:w-1/4 text-2xl font-bold translate-x-[-100%] transition-transform duration-700 ease-out lg:mb-0">
+            <h2 class="headline w-full lg:w-1/4 text-4xl lg:text-2xl font-bold translate-x-[-100%] transition-transform duration-700 ease-out mb-8 lg:mb-0">
                 {{ 'app.navigation.about'|trans }}
             </h2>
             <div class="hidden lg:block block-line vertical-line h-full w-[2px] mx-4 translate-y-10 transition-transform duration-700 ease-out"></div>
@@ -49,7 +49,7 @@
 
     <div id="portfolio" class="block-container">
         <div class="block-entry portfolio-container flex flex-col lg:flex-row items-start lg:items-center relative overflow-hidden">
-            <h2 class="headline w-full lg:w-1/4  text-2xl font-bold translate-x-[-100%] transition-transform duration-700 ease-out lg:mb-0">
+            <h2 class="headline w-full lg:w-1/4 text-4xl lg:text-2xl font-bold translate-x-[-100%] transition-transform duration-700 ease-out mb-8 lg:mb-0">
                 {{ 'app.navigation.portfolio'|trans }}
             </h2>
             <div class="hidden lg:block block-line vertical-line h-full w-[2px] mx-4 translate-y-10 transition-transform duration-700 ease-out"></div>
@@ -92,12 +92,12 @@
     </div>
     <div class="background-container2"></div>
     <div id="contact" class="block-container overflow-hidden">
-        <div class="contact-container block-entry flex items-center opacity-0 translate-y-10 transition-all duration-700 ease-out">
-            <h2 class="headline w-full lg:w-1/4 text-2xl font-bold translate-x-[-100%] transition-transform duration-700 ease-out lg:mb-0">
+        <div class="contact-container block-entry flex flex-col lg:flex-row items-start lg:items-center relative overflow-hidden">
+            <h2 class="headline w-full lg:w-1/4 text-4xl lg:text-2xl font-bold translate-x-[-100%] transition-transform duration-700 ease-out mb-8 lg:mb-0">
                 {{ 'app.navigation.contact'|trans }}
             </h2>
             <div class="block-line hidden lg:block vertical-line h-80 w-[2px] mx-4 translate-y-10 transition-transform duration-700 ease-out"></div>
-            <div id="contact-text" class="text translate-x-20 transition-transform duration-700 ease-out">
+            <div id="contact-text" class="text w-full lg:w-3/4 lg:pl-8 translate-x-20 transition-transform duration-700 ease-out">
                 {{ form_start(form) }}
                     {{ form_row(form.name) }}
                     {{ form_row(form.phone) }}

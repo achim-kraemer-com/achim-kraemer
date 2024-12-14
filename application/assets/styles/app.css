@@ -72,7 +72,7 @@ header {
 @media (max-width: 1024px) {
     header h1 {
         margin: 0;
-        font-size: 2.2em;
+        font-size: 4.2em;
         line-height: 1.0;
         letter-spacing: 4px;
         font-weight: 500;
@@ -185,6 +185,10 @@ nav a {
         padding: 10px 20px;
         font-size: 16px;
         overflow: hidden; /* Versteckt den Balken außerhalb des Elements */
+    }
+
+    .navigation-link {
+        font-size: 34px;
     }
 }
 
