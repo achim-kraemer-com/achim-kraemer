@@ -177,6 +177,12 @@ h2 {
     width: 120%;
 }
 
+.contact-input-button:hover {
+    background-color: var(--header-color);
+    color: var(--background-color);
+    font-weight: 500;
+}
+
 @media (max-width: 1024px) {
     .contact-input-button {
         width: 100%;
