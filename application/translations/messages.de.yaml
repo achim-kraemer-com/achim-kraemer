@@ -42,6 +42,7 @@ app.customer.housenumber: Hausnummer
 app.customer.plz: PLZ
 app.customer.city: Ort
 app.customer.active: Aktiv
+app.contact.email_send: Vielen Dank für Ihre Kontaktanfrage!
 app.invoice.title: Rechnungen
 app.invoice.new_invoice: Neue Rechnung erstellen
 app.invoice.edit_invoice: Rechnungen bearbeiten

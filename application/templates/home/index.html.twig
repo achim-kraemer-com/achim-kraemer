@@ -107,6 +107,7 @@
             </h2>
             <div class="block-line hidden lg:block vertical-line h-80 w-[2px] mx-4 translate-y-10 transition-transform duration-700 ease-out"></div>
             <div id="contact-text" class="text w-full lg:w-3/4 lg:pl-8 translate-x-20 transition-transform duration-700 ease-out">
+                {{ include('messages.html.twig') }}
                 {{ form_start(form) }}
                     {{ form_row(form.name) }}
                     {{ form_row(form.phone) }}
