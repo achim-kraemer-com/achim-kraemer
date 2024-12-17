@@ -5,8 +5,8 @@ app.default.save: Speichern
 app.default.update: Aktualisieren
 app.default.delete: Löschen
 app.header.name: Achim Krämer
-app.header.slogan1: für Ihre individuelle
-app.header.slogan2: Weblösung
+app.header.slogan1: Symfony Freelancer
+app.header.slogan2: mit über 15 Jahren Erfahrung für Ihre individuellen Projekte
 app.navigation.about: Über mich
 app.navigation.services: Dienstleistungen
 app.navigation.portfolio: Portfolio
