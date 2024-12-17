@@ -48,6 +48,16 @@ body {
     right: 15%;
 }
 
+.navigation-header {
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 2rem;
+    min-width: 15%;
+}
+
 header {
     padding: 0;
     background-color: var(--background-color);

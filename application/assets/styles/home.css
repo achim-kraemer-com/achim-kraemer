@@ -122,11 +122,6 @@ html {
     min-width: 15%;
 }
 
-h2 {
-    font-size: 3rem;
-    min-width: 15%;
-}
-
 @media (min-width: 1024px) {
     #contact-text {
         width: 30%;
