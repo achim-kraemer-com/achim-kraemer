@@ -135,6 +135,15 @@ html {
     top: 50%;
 }
 
+@media (max-width: 1024px) {
+    .header-slogan {
+        position: absolute;
+        overflow: hidden;
+        width: 147%;
+        top: 50%;
+    }
+}
+
 .contact-input {
     padding: 10px;
 }

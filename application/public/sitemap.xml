@@ -1,0 +1,18 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <script src="chrome-extension://hoklmmgfnpapgjgcpechhaamimifchmp/frame_ant/frame_ant.js"/>
+    <url>
+        <loc>https://achim-kraemer.com</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>https://achim-kraemer.com/impress</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://achim-kraemer.com/data-protection</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.80</priority>
+    </url>
+</urlset>
