@@ -2,13 +2,22 @@
     <div class="navigation-header">{{ 'app.header.name'|trans }}</div>
 </a>
 
-<!-- Burger Button -->
-<button id="burger-btn" class="block lg:hidden p-2 focus:outline-none">
-    <!-- Icon für Burger-Menu -->
-    <div class="w-10 h-1.5 vertical-line mb-2"></div>
-    <div class="w-10 h-1.5 vertical-line mb-2"></div>
-    <div class="w-10 h-1.5 vertical-line"></div>
+<!-- Hamburger Button -->
+<button id="burger-btn" class="block lg:hidden pl-4 pt-8 rounded fixed top-4 left-4 z-50">
+    <div class="horizontal-line"></div>
+    <div class="horizontal-line"></div>
+    <div class="horizontal-line"></div>
 </button>
+
+<!-- Mobile Navigation -->
+<div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm hidden z-40 transition-opacity duration-500 ease-in-out">
+    <nav class="flex flex-col items-center justify-between h-full pt-80 pb-80">
+        <a href="{% if links is defined and links == 'direct' %}#services{% else %}{{ path('app_home') }}#services{% endif %}" class="navigation-link text-3xl font-semibold w-full text-center py-8">{{ 'app.navigation.services'|trans }}</a>
+        <a href="{% if links is defined and links == 'direct' %}#about{% else %}{{ path('app_home') }}#about{% endif %}" class="navigation-link text-3xl font-semibold w-full text-center py-8">{{ 'app.navigation.about'|trans }}</a>
+        <a href="{% if links is defined and links == 'direct' %}#portfolio{% else %}{{ path('app_home') }}#portfolio{% endif %}" class="navigation-link text-3xl font-semibold w-full text-center py-8">{{ 'app.navigation.portfolio'|trans }}</a>
+        <a href="{% if links is defined and links == 'direct' %}#contact{% else %}{{ path('app_home') }}#contact{% endif %}" class="navigation-link text-3xl font-semibold w-full text-center py-8">{{ 'app.navigation.contact'|trans }}</a>
+    </nav>
+</div>
 
 <!-- Navigation -->
 <nav id="nav-menu" class="hidden lg:flex flex-col lg:flex-row lg:space-x-4 absolute lg:relative top-full left-0 w-full lg:w-auto shadow-lg lg:shadow-none transition-all duration-300 ease-in-out">

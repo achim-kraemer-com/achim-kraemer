@@ -19,14 +19,7 @@ function stickyNavbar() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    const burgerBtn = document.getElementById('burger-btn');
-    const navMenu = document.getElementById('nav-menu');
-
-    burgerBtn.addEventListener('click', function () {
-        navMenu.classList.toggle('hidden');
-    });
-
-    const blocks = document.querySelectorAll('.block-entry');
+    const blocks = document.querySelectorAll('.block-container');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             const block = entry.target;
@@ -48,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 block.querySelector('.text').classList.add('translate-x-20');
             }
         });
-    }, { threshold: 0.3 }); // Sobald 30% des Blocks sichtbar sind
+    }, { threshold: 0.2 }); // Sobald 20% des Blocks sichtbar sind
 
     blocks.forEach(block => observer.observe(block));
 });

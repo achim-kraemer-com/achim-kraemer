@@ -7,3 +7,23 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import '../styles/app.css';
+
+const hamburgerBtn = document.getElementById('burger-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const navigationLinks = document.querySelectorAll('.navigation-link');
+
+// Öffne/Schließe das Menü
+hamburgerBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('opacity-0');
+    mobileMenu.classList.toggle('opacity-100');
+});
+
+// Menü schließen bei Klick auf Links
+navigationLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('opacity-100');
+        mobileMenu.classList.add('opacity-0');
+    });
+});

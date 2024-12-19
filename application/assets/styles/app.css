@@ -53,6 +53,12 @@ body {
     text-transform: uppercase;
 }
 
+@media (max-width: 1024px) {
+    .navigation-header {
+        font-size: 5rem;
+    }
+}
+
 h2 {
     font-size: 2rem;
     min-width: 15%;
@@ -63,6 +69,13 @@ header {
     background-color: var(--background-color);
     color: var(--text-color);
     text-align: center;
+}
+
+.horizontal-line {
+    background-color: var(--header-color);
+    height: 0.475rem;
+    margin-bottom: 0.8rem;
+    width: 4.2rem;
 }
 
 @media (min-width: 1024px) {
@@ -114,7 +127,12 @@ header p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 80%;
+}
+
+@media (min-width: 1024px) {
+    #header-scroll-inner {
+        width: 80%;
+    }
 }
 
 div > #header-scroll-inner {
@@ -198,7 +216,7 @@ nav a {
     }
 
     .navigation-link {
-        font-size: 34px;
+        font-size: 80px;
     }
 }
 
