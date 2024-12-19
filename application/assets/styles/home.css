@@ -43,7 +43,7 @@ html {
     }
 
     .text {
-        font-size: 1.8em;
+        font-size: 2.8em;
     }
 }
 
@@ -98,8 +98,10 @@ html {
     }
 }
 
-.portfolio-container2 {
-    display: flex;
+@media (min-width: 1024px) {
+    .portfolio-container2 {
+        display: flex;
+    }
 }
 
 .portfolio-header {
@@ -122,9 +124,10 @@ html {
     min-width: 15%;
 }
 
-@media (min-width: 1024px) {
-    #contact-text {
-        width: 30%;
+@media (max-width: 1024px) {
+    .project-headers {
+        font-size: 3.5rem;
+        min-width: 15%;
     }
 }
 
