@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 block.querySelector('.text').classList.add('translate-x-20');
             }
         });
-    }, { threshold: 0.2 }); // Sobald 20% des Blocks sichtbar sind
+    }, { threshold: 0.1 }); // Sobald 20% des Blocks sichtbar sind
 
     blocks.forEach(block => observer.observe(block));
 });
