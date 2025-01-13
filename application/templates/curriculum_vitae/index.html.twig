@@ -1,0 +1,230 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block body %}
+    <header  class="shadow-lg relative">
+        <div class="parallax-container">
+            {% include '_scroll_navigation.html.twig' with {'links':''} %}
+            <div class="background-container">
+                <div class="header-slogan">
+                    <h1 class="slide-in-text1">{{ 'app.header.slogan1'|trans|raw|nl2br }}</h1>
+                    <h2 class="lg:block hidden slide-in-text2">{{ 'app.header.slogan2'|trans|raw|nl2br }}</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="services" class="block-container">
+        <div class="block-entry services-container flex flex-col lg:flex-row items-start lg:items-center relative overflow-hidden">
+            <h3 class="headline w-full lg:w-1/4 text-6xl lg:text-2xl font-bold translate-x-[-100%] transition-transform duration-700 ease-out mb-8 lg:mb-0">
+                mso digital GmbH & Co. KG
+            </h3>
+            <div class="hidden lg:block block-line vertical-line h-full w-[2px] mx-4 transition-transform duration-700 ease-out"></div>
+            <div class="text w-full lg:w-3/4 lg:pl-8 translate-x-20 transition-transform duration-700 ease-out">
+                <p>
+                    04/2021 - heute
+                </p>
+                <ul class="custom-list">
+                    <li>Teamlead Developmente</li>
+                </ul>
+                <br>
+                <p>
+                    10/2020 - 03/2021
+                </p>
+                <ul class="custom-list">
+                    <li>Senior Softwareentwickler</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="background-container3"></div>
+
+    <div id="services" class="block-container">
+        <div class="block-entry services-container flex flex-col lg:flex-row items-start lg:items-center relative overflow-hidden">
+            <h3 class="headline w-full lg:w-1/4 text-6xl lg:text-2xl font-bold translate-x-[-100%] transition-transform duration-700 ease-out mb-8 lg:mb-0">
+                basecom GmbH
+            </h3>
+            <div class="hidden lg:block block-line vertical-line h-full w-[2px] mx-4 transition-transform duration-700 ease-out"></div>
+            <div class="text w-full lg:w-3/4 lg:pl-8 translate-x-20 transition-transform duration-700 ease-out">
+                <p>
+                    06/2018 - 09/2020
+                </p>
+                <ul class="custom-list">
+                    <li>Softwareentwickler</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="background-container3"></div>
+
+    <div id="services" class="block-container">
+        <div class="block-entry services-container flex flex-col lg:flex-row items-start lg:items-center relative overflow-hidden">
+            <h3 class="headline w-full lg:w-1/4 text-6xl lg:text-2xl font-bold translate-x-[-100%] transition-transform duration-700 ease-out mb-8 lg:mb-0">
+                Aschendorff Verlag GmbH & Co KG
+            </h3>
+            <div class="hidden lg:block block-line vertical-line h-full w-[2px] mx-4 transition-transform duration-700 ease-out"></div>
+            <div class="text w-full lg:w-3/4 lg:pl-8 translate-x-20 transition-transform duration-700 ease-out">
+                <p>
+                    01/2017 - 05/2018
+                </p>
+                <ul class="custom-list">
+                    <li>IT-Applikations-, Qualitäts- und Prozessmanager</li>
+                </ul>
+                <br>
+                <p>
+                    01/2015 – 12/2016
+                </p>
+                <ul class="custom-list">
+                    <li>IT-Applikations- und Qualitätsmanager</li>
+                </ul>
+                <br>
+                <p>
+                    01/2010 – 12/2014
+                </p>
+                <ul class="custom-list">
+                    <li>IT-Applikations-Manager</li>
+                </ul>
+                <br>
+                <p>
+                    03/2006 – 12/2009
+                </p>
+                <ul class="custom-list">
+                    <li>Softwareentwickler</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="background-container3"></div>
+
+    <div id="services" class="block-container">
+        <div class="block-entry services-container flex flex-col lg:flex-row items-start lg:items-center relative overflow-hidden">
+            <h3 class="headline w-full lg:w-1/4 text-6xl lg:text-2xl font-bold translate-x-[-100%] transition-transform duration-700 ease-out mb-8 lg:mb-0">
+                Fachhochschule Osnabrück
+            </h3>
+            <div class="hidden lg:block block-line vertical-line h-full w-[2px] mx-4  transition-transform duration-700 ease-out"></div>
+            <div class="text w-full lg:w-3/4 lg:pl-8 translate-x-20 transition-transform duration-700 ease-out">
+                <p>
+                    09/2001 – 02/2006
+                </p>
+                <ul class="custom-list">
+                    <li>Studium der „Technischen Informatik“</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="background-container3"></div>
+
+    <div id="services" class="block-container">
+        <div class="block-entry services-container flex flex-col lg:flex-row items-start lg:items-center relative overflow-hidden">
+            <h3 class="headline w-full lg:w-1/4 text-6xl lg:text-2xl font-bold translate-x-[-100%] transition-transform duration-700 ease-out mb-8 lg:mb-0">
+                Fachoberschule in Ibbenbüren
+            </h3>
+            <div class="hidden lg:block block-line vertical-line h-full w-[2px] mx-4  transition-transform duration-700 ease-out"></div>
+            <div class="text w-full lg:w-3/4 lg:pl-8 translate-x-20 transition-transform duration-700 ease-out">
+                <p>
+                    09/2000 – 08/2001
+                </p>
+                <ul class="custom-list">
+                    <li>Abschluss: Fachhochschulreife</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="background-container3"></div>
+
+    <div id="services" class="block-container">
+        <div class="block-entry services-container flex flex-col lg:flex-row items-start lg:items-center relative overflow-hidden">
+            <h3 class="headline w-full lg:w-1/4 text-6xl lg:text-2xl font-bold translate-x-[-100%] transition-transform duration-700 ease-out mb-8 lg:mb-0">
+                Tarifgemeinschaft Recke
+            </h3>
+            <div class="hidden lg:block block-line vertical-line h-full w-[2px] mx-4  transition-transform duration-700 ease-out"></div>
+            <div class="text w-full lg:w-3/4 lg:pl-8 translate-x-20 transition-transform duration-700 ease-out">
+                <p>
+                    02/2000 – 08/2000
+                </p>
+                <ul class="custom-list">
+                    <li>Messgehilfe</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="background-container3"></div>
+
+    <div id="services" class="block-container">
+        <div class="block-entry services-container flex flex-col lg:flex-row items-start lg:items-center relative overflow-hidden">
+            <h3 class="headline w-full lg:w-1/4 text-6xl lg:text-2xl font-bold translate-x-[-100%] transition-transform duration-700 ease-out mb-8 lg:mb-0">
+                Preussag (DSK) Anthrazit GmbH in Ibbenbüren
+            </h3>
+            <div class="hidden lg:block block-line vertical-line h-full w-[2px] mx-4  transition-transform duration-700 ease-out"></div>
+            <div class="text w-full lg:w-3/4 lg:pl-8 translate-x-20 transition-transform duration-700 ease-out">
+                <p>
+                    11/1999 – 01/2000
+                </p>
+                <ul class="custom-list">
+                    <li>Energieelektroniker-Betriebstechnik</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="background-container3"></div>
+
+    <div id="services" class="block-container">
+        <div class="block-entry services-container flex flex-col lg:flex-row items-start lg:items-center relative overflow-hidden">
+            <h3 class="headline w-full lg:w-1/4 text-6xl lg:text-2xl font-bold translate-x-[-100%] transition-transform duration-700 ease-out mb-8 lg:mb-0">
+                Wehrdienst
+            </h3>
+            <div class="hidden lg:block block-line vertical-line h-full w-[2px] mx-4  transition-transform duration-700 ease-out"></div>
+            <div class="text w-full lg:w-3/4 lg:pl-8 translate-x-20 transition-transform duration-700 ease-out">
+                <p>
+                    01/1999 – 10/1999
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="background-container3"></div>
+
+    <div id="services" class="block-container">
+        <div class="block-entry services-container flex flex-col lg:flex-row items-start lg:items-center relative overflow-hidden">
+            <h3 class="headline w-full lg:w-1/4 text-6xl lg:text-2xl font-bold translate-x-[-100%] transition-transform duration-700 ease-out mb-8 lg:mb-0">
+                Preussag (DSK) Anthrazit GmbH in Ibbenbüren
+            </h3>
+            <div class="hidden lg:block block-line vertical-line h-full w-[2px] mx-4  transition-transform duration-700 ease-out"></div>
+            <div class="text w-full lg:w-3/4 lg:pl-8 translate-x-20 transition-transform duration-700 ease-out">
+                <p>
+                    02/1998 – 12/1999
+                </p>
+                <ul class="custom-list">
+                    <li>Energieelektroniker-Betriebstechnik</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="background-container3"></div>
+
+    <footer>
+        <p>&copy; 2024 Achim Krämer</p>
+        <a target="_blank" href="{{ path('app_data-protection_index') }}">{{ 'app.data_protection.title'|trans }}</a>
+        <a target="_blank" href="{{ path('app_impress_index') }}">{{ 'app.impress.title'|trans }}</a>
+        {#        <div>#}
+        {#            <a href="https://linkedin.com"><img src="{{ asset('images/linkedin.png') }}" alt="LinkedIn"></a>#}
+        {#            <a href="https://github.com"><img src="{{ asset('images/github.png') }}" alt="GitHub"></a>#}
+        {#        </div>#}
+    </footer>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('home') }}
+{% endblock %}
