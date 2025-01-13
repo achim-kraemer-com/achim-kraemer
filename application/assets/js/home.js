@@ -20,24 +20,22 @@ function stickyNavbar() {
 
 document.addEventListener("DOMContentLoaded", function () {
     const blocks = document.querySelectorAll('.block-container');
+    blocks.forEach(block => {
+        const line = block.querySelector('.block-line');
+        const blockHeight = block.offsetHeight;
+        line.style.height = `${blockHeight}px`;
+    });
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             const block = entry.target;
-            const line = block.querySelector('.block-line');
-            const blockHeight = block.offsetHeight;
             if (entry.isIntersecting) {
-                line.style.height = `${blockHeight}px`;
-
                 // Entferne die translate Klassen, um die Animation auszuführen
                 block.classList.remove('opacity-0', 'translate-y-10');
                 block.querySelector('.headline').classList.remove('translate-x-[-100%]');
-                line.classList.remove('translate-y-10');
                 block.querySelector('.text').classList.remove('translate-x-20');
             } else {
-                line.style.height = 0;
                 block.classList.add('opacity-0', 'translate-y-10');
                 block.querySelector('.headline').classList.add('translate-x-[-100%]');
-                line.classList.add('translate-y-10');
                 block.querySelector('.text').classList.add('translate-x-20');
             }
         });

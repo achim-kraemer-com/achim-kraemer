@@ -24,8 +24,20 @@ html {
     position: relative;
     justify-content: center;
     width: 100%;
-    height: 50vh; /* Höhe des Containers, z.B. 100% der Viewport-Höhe */
+    height: 20vh; /* Höhe des Containers, z.B. 100% der Viewport-Höhe */
     background-image: url('../images/firmbee-com-GANqCr.jpg'); /* Pfad zum Hintergrundbild */
+    background-size: cover; /* Bild skaliert, um den Container zu füllen */
+    background-attachment: fixed;
+    background-position: center; /* Bild zentriert */
+    z-index: 1;
+}
+
+.background-container3 {
+    position: relative;
+    justify-content: center;
+    width: 100%;
+    height: 15vh; /* Höhe des Containers, z.B. 100% der Viewport-Höhe */
+    background-image: url('../images/curriculum-vitae-1756264_1280.png'); /* Pfad zum Hintergrundbild */
     background-size: cover; /* Bild skaliert, um den Container zu füllen */
     background-attachment: fixed;
     background-position: center; /* Bild zentriert */
@@ -225,6 +237,30 @@ div > #header-inner {
 #about {
     background-color: var(--background-color);
     color: var(--text-color);
+}
+
+.custom-list {
+    list-style: none;
+    padding: 0;
+}
+
+.custom-list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+}
+
+.custom-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    background-color: var(--header-color);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(145, 105, 245, 0.7);
 }
 
 /*.about-container::after {*/
