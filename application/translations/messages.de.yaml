@@ -42,7 +42,7 @@ app.customer.housenumber: Hausnummer
 app.customer.plz: PLZ
 app.customer.city: Ort
 app.customer.active: Aktiv
-app.contact.email_send: Vielen Dank für Ihre Kontaktanfrage!
+app.contact.email_send: Vielen Dank für Deine Kontaktanfrage!
 app.invoice.title: Rechnungen
 app.invoice.new_invoice: Neue Rechnung erstellen
 app.invoice.edit_invoice: Rechnungen bearbeiten
@@ -82,3 +82,4 @@ app.email_signature.link: Link
 app.email_signature.please_upload_image_file: Bitte eine Bilddatei hochladen!
 app.email_signature.error_upload_image_file: Fehler beim Hochladen der Bilddatei!
 app.email_signature.error_upload_path: Fehler beim Erstellen des Ordners!
+app.email.contact.html: '<p>Hi Achim,<br><br>hier eine neue Konataktanfrage von:<br> %name% <br>Telefonnummer: %phone% <br>EMail: %mail% <br><br>Nachricht:<br> %message% <br></p>'
