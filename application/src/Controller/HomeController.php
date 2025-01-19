@@ -75,9 +75,8 @@ class HomeController extends AbstractController
             'jQuery Plugins', 'Webpack Encore', 'Bootstrap', 'Google Cloud Platform (GCP)', 'Cloud Storage',
             'Cloud Firestore', 'Cloud Functions', 'Docker & Docker Compose', 'GIT', 'GitHub/GitLab', 'PHP 8.x+',
             'Composer & Autoloading', 'REST & GraphQL APIs', 'WebSockets', 'Microservices Architektur',
-            'SOLID', 'Clean Code & Design Patterns'
+            'SOLID', 'Clean Code & Design Patterns',
         ];
-
 
         // Zufällige Begriffe ausgeben
         $keywords = $this->getRandomKeywords($keywordList, 9);
@@ -85,8 +84,10 @@ class HomeController extends AbstractController
         return $this->json($keywords);
     }
 
-    private function getRandomKeywords(array $keywordList, int $count = 7): array {
-        shuffle($keywordList); // Durchmischen des Arrays
-        return array_slice($keywordList, 0, $count); // Die ersten 7 Elemente zurückgeben
+    private function getRandomKeywords(array $keywordList, int $count = 7): array
+    {
+        \shuffle($keywordList); // Durchmischen des Arrays
+
+        return \array_slice($keywordList, 0, $count); // Die ersten 7 Elemente zurückgeben
     }
 }
