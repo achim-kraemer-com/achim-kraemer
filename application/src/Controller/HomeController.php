@@ -7,7 +7,9 @@ namespace App\Controller;
 use App\Form\ContactType;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
@@ -60,5 +62,31 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'form' => $form,
         ]);
+    }
+
+    #[Route('/api/keywords', name: 'api_keywords')]
+    public function keywords(RequestStack $requestStack): JsonResponse
+    {
+        // Begriffe definieren
+        $keywordList = [
+            'JavaScript', 'PHP', 'HTML', 'CSS', 'Symfony', 'Twig', 'Doctrine', 'Symfony 7+', 'Doctrine ORM',
+            'API Platform', 'Event Listener & Subscriber', 'Symfony Messenger', 'Symfony Security', 'Symfony Forms',
+            'Symfony Console Commands', 'Symfony Flex', 'jQuery', 'AJAX & Fetch API', 'jQuery UI', 'DataTables',
+            'jQuery Plugins', 'Webpack Encore', 'Bootstrap', 'Google Cloud Platform (GCP)', 'Cloud Storage',
+            'Cloud Firestore', 'Cloud Functions', 'Docker & Docker Compose', 'GIT', 'GitHub/GitLab', 'PHP 8.x+',
+            'Composer & Autoloading', 'REST & GraphQL APIs', 'WebSockets', 'Microservices Architektur',
+            'SOLID', 'Clean Code & Design Patterns'
+        ];
+
+
+        // Zufällige Begriffe ausgeben
+        $keywords = $this->getRandomKeywords($keywordList, 9);
+
+        return $this->json($keywords);
+    }
+
+    private function getRandomKeywords(array $keywordList, int $count = 7): array {
+        shuffle($keywordList); // Durchmischen des Arrays
+        return array_slice($keywordList, 0, $count); // Die ersten 7 Elemente zurückgeben
     }
 }
