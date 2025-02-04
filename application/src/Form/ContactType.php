@@ -22,7 +22,7 @@ class ContactType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => false,
                 'attr'  => [
-                    'placeholder' => 'Name',
+                    'placeholder' => 'app.contact.name',
                     'class'       => 'contact-input-field',
                 ],
                 'row_attr' => [
@@ -37,7 +37,7 @@ class ContactType extends AbstractType
             ->add('phone', TextType::class, [
                 'label' => false,
                 'attr'  => [
-                    'placeholder' => 'Telefonnummer',
+                    'placeholder' => 'app.contact.phone',
                     'class'       => 'contact-input-field',
                 ],
                 'row_attr' => [
@@ -52,7 +52,7 @@ class ContactType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => false,
                 'attr'  => [
-                    'placeholder' => 'Email',
+                    'placeholder' => 'app.contact.email',
                     'class'       => 'contact-input-field',
                 ],
                 'row_attr' => [
@@ -67,7 +67,7 @@ class ContactType extends AbstractType
             ->add('message', TextareaType::class, [
                 'label' => false,
                 'attr'  => [
-                    'placeholder' => 'Nachricht',
+                    'placeholder' => 'app.contact.message',
                     'class'       => 'contact-input-field',
                 ],
                 'row_attr' => [

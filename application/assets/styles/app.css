@@ -329,3 +329,19 @@ td a {
     margin-bottom: 1rem;
     box-sizing: border-box;
 }
+
+/* Standard-Styling (Desktop) */
+.locale-container {
+    display: flex;         /* Flexbox aktivieren */
+    gap: 20px;             /* Abstand zwischen Links */
+    justify-content: flex-start; /* Linksbündig (Standard) */
+}
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+    .locale-container {
+        flex-direction: column;  /* Links übereinander */
+        align-items: flex-end;   /* Rechtsbündig auf Mobile */
+        gap: 10px;               /* Kleinerer Abstand */
+    }
+}

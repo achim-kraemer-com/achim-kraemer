@@ -1,0 +1,89 @@
+app.default.back_to_list: Zurück zur Liste
+app.default.yes: Ja
+app.default.no: Nein
+app.default.save: Speichern
+app.default.update: Aktualisieren
+app.default.delete: Löschen
+app.header.name: Achim Krämer
+app.header.slogan1: Symfony Freelancer
+app.header.slogan2: with over 15 years of experience for your custom projects
+app.navigation.about: About Me
+app.navigation.services: Services
+app.navigation.portfolio: Portfolio
+app.navigation.contact: Contact
+app.services.text: 'I am an experienced web developer with over 15 years of expertise in PHP and Symfony. My focus is on developing robust and scalable web applications that seamlessly integrate into existing systems and meet the highest standards of performance and security.<br><br>Throughout my career, I have worked on a wide range of projects, from small startups to large enterprise solutions. This has given me deep insights into various industries and allowed me to develop customized solutions tailored to clients needs. My services include:<br><br>Back-end development: Planning and implementing complex backend systems, API development, and database design. Symfony expertise: Creating custom applications based on Symfony, including extensions and optimization of existing applications. Performance optimization: Identifying and eliminating bottlenecks in existing systems to improve load times and resource utilization. Security: Implementing best practices in web security to protect your applications from potential threats. Maintenance and support: Long-term project support, including continuous updates and enhancements. My work is characterized by close collaboration with my clients. Together, we develop solutions that are precisely tailored to your needs and provide the flexibility to adapt to future requirements. Whether you want to optimize an existing application or start a new project, I am here to support you as a competent partner.'
+app.portfolio.text: About Me
+app.impress.title: Imprint
+app.impress.text: Imprint
+app.data_protection.title: Data Protection
+app.data_protection.text: Data Protection
+app.about.text: 'Welcome! As an experienced PHP and Symfony developer with over 15 years of expertise, I support your project from idea to successful implementation. You benefit from tailor-made, scalable solutions, fast development cycles, and a focus on performance and security. Whether it´s new development, optimizing existing applications, or long-term support – I am your reliable partner to help you achieve your goals efficiently and successfully.'
+app.portfolio.title1: 'Symfony Expertise:'
+app.portfolio.text1: 'Efficient use of all Symfony components and best practices for clean, maintainable applications.'
+app.portfolio.title2: 'Architecture and Design Patterns:'
+app.portfolio.text2: 'Experienced in MVC, DDD, and hexagonal architecture, ideal for complex, long-lasting solutions.'
+app.portfolio.title3: 'API and Performance Optimization:'
+app.portfolio.text3: 'Customized caching strategies and optimized database queries for high-performance applications.'
+app.portfolio.title4: 'Testing and CI/CD:'
+app.portfolio.text4: 'Quality assurance through testing, automated deployments, and containerization (Docker).'
+app.portfolio.title5: 'Communication and Teamwork:'
+app.portfolio.text5: 'Clear project communication and close collaboration with stakeholders.'
+app.portfolio.title6: 'Technologies and Tools:'
+app.portfolio.text6: 'Programming Languages: PHP8.x+, JavaScript, HTML5, CSS3<br>Frameworks: Symfony 2 - 7+, jQuery<br>Databases: MySQL, PostgreSQL, MongoDB, Firestore, BigQuery<br>APIs: REST, GraphQL, SOAP<br>DevOps: Docker, Jenkins<br>Version Control: Git, GitHub, GitLab'
+app.portfolio.end_text: 'I look forward to driving your project forward together with you!'
+app.customer.title: Kunden
+app.customer.new_customer: Neuen Kunden anlegen
+app.customer.edit_customer: Kunden bearbeiten
+app.customer.firstname: Vorname
+app.customer.lastname: Nachname
+app.customer.company_name: Firmenname
+app.customer.street: Straße
+app.customer.housenumber: Hausnummer
+app.customer.plz: PLZ
+app.customer.city: Ort
+app.customer.active: Aktiv
+app.contact.name: Name
+app.contact.phone: Phone
+app.contact.email: Email
+app.contact.message: Message
+app.contact.email_send: Vielen Dank für Deine Kontaktanfrage!
+app.invoice.title: Rechnungen
+app.invoice.new_invoice: Neue Rechnung erstellen
+app.invoice.edit_invoice: Rechnungen bearbeiten
+app.invoice.invoice_date: Rechnungsdatum
+app.invoice.invoice_number: Rechnungsnummer
+app.invoice.invoice_amount: Rechnungsbetrag
+app.invoice.invoice_payed: Rechnung bezahlt
+app.invoice.status: Status
+app.invoice.download: Download
+app.project.title: Projekte
+app.project.new_project: Neues Projekt anlegen
+app.project.edit_project: Projekte bearbeiten
+app.project.project_title: Projektetitle
+app.project.description: Projektebeschreibung
+app.project.start_date: Projektestart
+app.project.end_date: Projekteende
+app.project.customer: Kunde
+app.project.create_invoice: Rechnung erstellen
+app.time_entry.title: Zeiterfassung
+app.time_entry.new_time_entry: Neue Zeiterfassung anlegen
+app.time_entry.edit_time_entry: Zeiterfassung bearbeiten
+app.time_entry.date: Datum
+app.time_entry.price: Preis
+app.time_entry.project: Projekt
+app.time_entry.hours: Stunden
+app.time_entry.description: Beschreibung
+app.time_entry.status: Status
+app.time_entry.invoiced: Bezahlt
+app.email_signature.title: E-Mail Signatur
+app.email_signature.show: anzeigen
+app.email_signature.edit: E-Mail Signatur bearbeiten
+app.email_signature.new: Neue E-Mail Signatur erstellen
+app.email_signature.empty: Keine E-Mail Signatur vorhanden
+app.email_signature.title_text: Titel
+app.email_signature.image: Bild
+app.email_signature.link: Link
+app.email_signature.please_upload_image_file: Bitte eine Bilddatei hochladen!
+app.email_signature.error_upload_image_file: Fehler beim Hochladen der Bilddatei!
+app.email_signature.error_upload_path: Fehler beim Erstellen des Ordners!
+app.email.contact.html: '<p>Hi Achim,<br><br>hier eine neue Konataktanfrage von:<br> %name% <br>Telefonnummer: %phone% <br>EMail: %mail% <br><br>Nachricht:<br> %message% <br></p>'

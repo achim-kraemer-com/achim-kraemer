@@ -75,7 +75,7 @@ class HomeController extends AbstractController
             'jQuery Plugins', 'Webpack Encore', 'Bootstrap', 'Google Cloud Platform (GCP)', 'Cloud Storage',
             'Cloud Firestore', 'Cloud Functions', 'Docker & Docker Compose', 'GIT', 'GitHub/GitLab', 'PHP 8.x+',
             'Composer & Autoloading', 'REST & GraphQL APIs', 'WebSockets', 'Microservices Architektur',
-            'SOLID', 'Clean Code & Design Patterns',
+            'SOLID', 'Clean Code & Design Patterns', 'AI', 'KI',
         ];
 
         // Zufällige Begriffe ausgeben
