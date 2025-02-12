@@ -11,7 +11,33 @@ app.navigation.about: About Me
 app.navigation.services: Services
 app.navigation.portfolio: Portfolio
 app.navigation.contact: Contact
-app.services.text: 'I am an experienced web developer with over 15 years of expertise in PHP and Symfony. My focus is on developing robust and scalable web applications that seamlessly integrate into existing systems and meet the highest standards of performance and security.<br><br>Throughout my career, I have worked on a wide range of projects, from small startups to large enterprise solutions. This has given me deep insights into various industries and allowed me to develop customized solutions tailored to clients needs. My services include:<br><br>Back-end development: Planning and implementing complex backend systems, API development, and database design. Symfony expertise: Creating custom applications based on Symfony, including extensions and optimization of existing applications. Performance optimization: Identifying and eliminating bottlenecks in existing systems to improve load times and resource utilization. Security: Implementing best practices in web security to protect your applications from potential threats. Maintenance and support: Long-term project support, including continuous updates and enhancements. My work is characterized by close collaboration with my clients. Together, we develop solutions that are precisely tailored to your needs and provide the flexibility to adapt to future requirements. Whether you want to optimize an existing application or start a new project, I am here to support you as a competent partner.'
+app.services.text: 'I am an experienced web developer with over 15 years of expertise in PHP and Symfony. My focus is on developing robust and scalable web applications that seamlessly integrate into existing systems and meet the highest standards of performance and security.<br><br>Throughout my career, I have worked on a wide range of projects, from small startups to large enterprise solutions. This has given me deep insights into various industries and allowed me to develop customized solutions tailored to clients needs. My services include:'
+app.services.title1: 'Custom Web Applications'
+app.services.text1_1: '<b>Dashboards & Statistics</b> – Custom dashboards with real-time data and charts for a quick overview.'
+app.services.text1_2: '<b>User Management</b> – Role and permission system for different user groups.'
+app.services.text1_3: '<b>Automated Processes</b> – Workflows to reduce manual tasks and errors.'
+app.services.title2: 'Interfaces & APIs'
+app.services.text2_1: '<b>Fetching & Providing Data</b> – APIs for integrating external services (e.g., payment providers, CRM, ERP).'
+app.services.text2_2: '<b>API Development</b> – Custom APIs for your application to provide data for third parties.'
+app.services.text2_3: '<b>Data Import & Export</b> – Automated exchange of data with other systems.'
+app.services.title3: 'Automation & Document Management'
+app.services.text3_1: '<b>PDF Generation</b> – Automatic creation of invoices, reports & other documents.'
+app.services.text3_2: '<b>Email Processing</b> – Automatic forwarding, storage, or response to emails.'
+app.services.text3_3: '<b>Background Processes</b> – Scheduled tasks for recurring operations (e.g., nightly data processing).'
+app.services.title4: 'Login & Authentication'
+app.services.text4_1: '<b>Classic Login</b> – Secure login with email & password.'
+app.services.text4_2: '<b>Google Login</b> – Seamless login with a Google account.'
+app.services.text4_3: '<b>Additional Logins</b> – Integration of Facebook, Apple ID, or other providers.'
+app.services.text4_4: '<b>Two-Factor Authentication (2FA)</b> – Increased security with additional protection mechanisms.'
+app.services.title5: 'Artificial Intelligence & Automation'
+app.services.text5_1: '<b>ChatGPT Integration</b> – Utilizing the OpenAI API for chatbots, support & automated responses.'
+app.services.text5_2: '<b>Text Recognition (OCR)</b> – Automatically extracting text from images and PDFs.'
+app.services.text5_3: '<b>Image Recognition & Analysis</b> – AI-powered image recognition to identify objects or people.'
+app.services.text5_4: '<b>Automated Text Generation</b> – AI-assisted creation of product descriptions, reports & other content.'
+app.services.title6: 'Performance & Security'
+app.services.text6_1: '<b>Optimization</b> – Faster load times through caching & performance tuning.'
+app.services.text6_2: '<b>Security</b> – Protection against attacks with the latest security standards.'
+app.services.text6_3: '<b>Scalability</b> – Solutions that grow with your business.'
 app.portfolio.text: About Me
 app.impress.title: Imprint
 app.impress.text: Imprint
@@ -87,3 +113,25 @@ app.email_signature.please_upload_image_file: Bitte eine Bilddatei hochladen!
 app.email_signature.error_upload_image_file: Fehler beim Hochladen der Bilddatei!
 app.email_signature.error_upload_path: Fehler beim Erstellen des Ordners!
 app.email.contact.html: '<p>Hi Achim,<br><br>hier eine neue Konataktanfrage von:<br> %name% <br>Telefonnummer: %phone% <br>EMail: %mail% <br><br>Nachricht:<br> %message% <br></p>'
+app.curriculum_vitae.mso: mso digital GmbH & Co. KG
+app.curriculum_vitae.04_2021: 04/2021 - heute
+app.curriculum_vitae.team_lead_development: Teamlead Developmente
+app.curriculum_vitae.10_202: 10/2020 - 03/2021
+app.curriculum_vitae.senior_software_developer: Senior Software-Developer
+app.curriculum_vitae.software_developer: Software-Developer
+app.curriculum_vitae.basecom: basecom GmbH
+app.curriculum_vitae.06_2018: 06/2018 - 09/2020
+app.curriculum_vitae.aschendorff: Aschendorff Verlag GmbH & Co KG
+app.curriculum_vitae.01_2017: 01/2017 - 05/2018
+app.curriculum_vitae.it_process_manager: IT application, quality and process manager
+app.curriculum_vitae.01_2015: 01/2015 – 12/2016
+app.curriculum_vitae.it_quality_manager: IT application and quality manager
+app.curriculum_vitae.01_2010: 01/2010 – 12/2014
+app.curriculum_vitae.it_application_manager: IT application manager
+app.curriculum_vitae.03_2006: 03/2006 – 12/2009
+app.curriculum_vitae.high_school: Fachhochschule Osnabrück
+app.curriculum_vitae.09_2001: 09/2001 – 02/2006
+app.curriculum_vitae.study: Degree in “Computer Engineering”
+app.curriculum_vitae.over_school: Fachoberschule in Ibbenbüren
+app.curriculum_vitae.09_2000: 09/2000 – 08/2001
+app.curriculum_vitae.degree_technical_school: "Degree: Advanced technical college certificate"

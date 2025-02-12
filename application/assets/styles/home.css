@@ -178,15 +178,19 @@ html {
 
 .contact-input-field {
     outline: 0;
+    border-radius: 12px;
     background: var(--text-color);
     color: var(--background-color);
     padding: 0.5rem 1rem 0.5rem 1rem;
     border-width: 1px;
     border-style: none;
     border-color: var(--background-color);
-    border-radius: 0;
     box-shadow: none;
     width: 100%;
+}
+
+.contact-input-area-field {
+    height: 240px;
 }
 
 @media (max-width: 1024px) {
@@ -200,6 +204,7 @@ html {
 
 .contact-input-button {
     border: 2px solid var(--header-color);
+    border-radius: 12px;
     line-height: 1.6;
     height: auto;
     -webkit-appearance: none;
@@ -270,6 +275,34 @@ div > #header-inner {
     background-color: var(--header-color);
     border-radius: 50%;
     box-shadow: 0 0 8px rgba(145, 105, 245, 0.7);
+}
+
+.header-color {
+    color: var(--header-color);
+}
+
+.background-text-color {
+    background-color: var(--text-color);
+}
+
+.border-text-color {
+    border-color: var(--text-color);
+}
+
+.social-media-links {
+    z-index: 9999;
+}
+
+@media (max-width: 1024px) {
+    .social-media-links {
+        right: auto;
+        left: 10%;
+        bottom: 10px;
+        top: auto;
+        transform: translateX(-50%);
+        flex-direction: row;
+        gap: 12px;
+    }
 }
 
 /*.about-container::after {*/

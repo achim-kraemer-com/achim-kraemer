@@ -68,7 +68,7 @@ class ContactType extends AbstractType
                 'label' => false,
                 'attr'  => [
                     'placeholder' => 'app.contact.message',
-                    'class'       => 'contact-input-field',
+                    'class'       => 'contact-input-field contact-input-area-field',
                 ],
                 'row_attr' => [
                     'class' => 'contact-input',
