@@ -11,7 +11,33 @@ app.navigation.about: Über mich
 app.navigation.services: Dienstleistungen
 app.navigation.portfolio: Portfolio
 app.navigation.contact: Kontakt
-app.services.text: 'Ich bin ein erfahrener Webentwickler mit über 15 Jahren Expertise in PHP und Symfony. Mein Fokus liegt auf der Entwicklung robuster und skalierbarer Webanwendungen, die sich nahtlos in bestehende Systeme integrieren lassen und den höchsten Anforderungen an Performance und Sicherheit gerecht werden.<br><br>Während meiner Karriere habe ich an einer Vielzahl von Projekten gearbeitet, von kleinen Start-ups bis hin zu großen Unternehmenslösungen. Dabei konnte ich tiefe Einblicke in unterschiedliche Branchen gewinnen und individuelle, auf den Kunden zugeschnittene Lösungen entwickeln. Meine Dienstleistungen umfassen:<br><br>Back-End-Entwicklung: Planung und Implementierung komplexer Backend-Systeme, Schnittstellenentwicklung (APIs) und Datenbankdesign. Symfony-Expertise: Erstellung von maßgeschneiderten Anwendungen auf Basis von Symfony, inklusive Erweiterungen und Optimierung bestehender Anwendungen. Performance-Optimierung: Identifikation und Behebung von Flaschenhälsen in bestehenden Systemen zur Verbesserung der Ladezeiten und Ressourcennutzung. Sicherheit: Implementierung von Best Practices in der Web-Sicherheit, um Deine Anwendungen vor potenziellen Bedrohungen zu schützen. Wartung und Support: Langfristige Betreuung von Projekten, inklusive kontinuierlicher Updates und Erweiterungen. Meine Arbeit zeichnet sich durch eine enge Zusammenarbeit mit meinen Kunden aus. Gemeinsam entwickeln wir Lösungen, die genau auf Deine Bedürfnisse abgestimmt sind und die Flexibilität bieten, auf zukünftige Anforderungen zu reagieren. Egal, ob Du eine bestehende Anwendung optimieren oder ein neues Projekt starten möchten, ich stehe Dir als kompetenter Partner zur Seite.'
+app.services.text: 'Ich bin ein erfahrener Webentwickler mit über 15 Jahren Expertise in PHP und Symfony. Mein Fokus liegt auf der Entwicklung robuster und skalierbarer Webanwendungen, die sich nahtlos in bestehende Systeme integrieren lassen und den höchsten Anforderungen an Performance und Sicherheit gerecht werden.<br><br>Während meiner Karriere habe ich an einer Vielzahl von Projekten gearbeitet, von kleinen Start-ups bis hin zu großen Unternehmenslösungen. Dabei konnte ich tiefe Einblicke in unterschiedliche Branchen gewinnen und individuelle, auf den Kunden zugeschnittene Lösungen entwickeln. Meine Dienstleistungen umfassen:'
+app.services.title1: 'Maßgeschneiderte Webanwendungen'
+app.services.text1_1: '<b>Dashboards & Statistiken</b> – Individuelle Dashboards mit Echtzeit-Daten und Grafiken für einen schnellen Überblick.'
+app.services.text1_2: '<b>Benutzerverwaltung</b> – Rollen- und Rechte-System für unterschiedliche Nutzergruppen.'
+app.services.text1_3: '<b>Automatisierte Prozesse</b> – Workflows zur Reduzierung manueller Aufgaben und Fehler.'
+app.services.title2: 'Schnittstellen & APIs'
+app.services.text2_1: '<b>Daten abrufen & bereitstellen</b> – APIs zur Integration externer Dienste (z. B. Zahlungsanbieter, CRM, ERP).'
+app.services.text2_2: '<b>API-Entwicklung</b> – Eigene API für deine Anwendung, um Daten für Dritte bereitzustellen.'
+app.services.text2_3: '<b>Datenimport & -export</b> – Automatisierter Austausch von Daten mit anderen Systemen.'
+app.services.title3: 'Automatisierung & Dokumentenmanagement'
+app.services.text3_1: '<b>PDF-Generierung</b> – Automatische Erstellung von Rechnungen, Berichten & anderen Dokumenten.'
+app.services.text3_2: '<b>E-Mail-Verarbeitung</b> – Automatische Weiterleitung, Speicherung oder Beantwortung von E-Mails.'
+app.services.text3_3: '<b>Hintergrundprozesse</b> – Geplante Tasks für wiederkehrende Aufgaben (z. B. nächtliche Datenverarbeitung).'
+app.services.title4: 'Login & Authentifizierung'
+app.services.text4_1: '<b>Klassisches Login</b> – Sicheres Login mit E-Mail & Passwort.'
+app.services.text4_2: '<b>Google Login</b> – Anmeldung per Google-Konto für eine nahtlose Nutzererfahrung.'
+app.services.text4_3: '<b>Weitere Logins</b> – Integration von Facebook, Apple ID oder anderen Anbietern.'
+app.services.text4_4: '<b>2-Faktor-Authentifizierung (2FA)</b> – Mehr Sicherheit durch zusätzliche Schutzmechanismen.'
+app.services.title5: 'Künstliche Intelligenz & Automatisierung'
+app.services.text5_1: '<b>ChatGPT-Integration</b> – Nutzung der OpenAI-API für Chatbots, Support & automatisierte Antworten.'
+app.services.text5_2: '<b>Texterkennung (OCR)</b> – Automatisches Extrahieren von Text aus Bildern und PDFs.'
+app.services.text5_3: '<b>Bilderkennung & Analyse</b> – KI-gestützte Bilderkennung zur Identifikation von Objekten oder Personen.'
+app.services.text5_4: '<b>Automatische Textgenerierung</b> – KI-gestützte Erstellung von Produktbeschreibungen, Berichten & anderen Inhalten.'
+app.services.title6: 'Performance & Sicherheit'
+app.services.text6_1: '<b>Optimierung</b> – Bessere Ladezeiten durch Caching & Performance-Tuning.'
+app.services.text6_2: '<b>Sicherheit</b> – Schutz vor Angriffen mit aktuellen Sicherheitsstandards.'
+app.services.text6_3: '<b>Skalierbarkeit</b> – Lösungen, die mit deinem Unternehmen wachsen.'
 app.portfolio.text: Über mich
 app.impress.title: Impressum
 app.impress.text: Impressum
@@ -87,3 +113,25 @@ app.email_signature.please_upload_image_file: Bitte eine Bilddatei hochladen!
 app.email_signature.error_upload_image_file: Fehler beim Hochladen der Bilddatei!
 app.email_signature.error_upload_path: Fehler beim Erstellen des Ordners!
 app.email.contact.html: '<p>Hi Achim,<br><br>hier eine neue Konataktanfrage von:<br> %name% <br>Telefonnummer: %phone% <br>EMail: %mail% <br><br>Nachricht:<br> %message% <br></p>'
+app.curriculum_vitae.mso: mso digital GmbH & Co. KG
+app.curriculum_vitae.04_2021: 04/2021 - heute
+app.curriculum_vitae.team_lead_development: Teamlead Developmente
+app.curriculum_vitae.10_202: 10/2020 - 03/2021
+app.curriculum_vitae.senior_software_developer: Senior Softwareentwickler
+app.curriculum_vitae.software_developer: Softwareentwickler
+app.curriculum_vitae.basecom: basecom GmbH
+app.curriculum_vitae.06_2018: 06/2018 - 09/2020
+app.curriculum_vitae.aschendorff: Aschendorff Verlag GmbH & Co KG
+app.curriculum_vitae.01_2017: 01/2017 - 05/2018
+app.curriculum_vitae.it_process_manager: IT-Applikations-, Qualitäts- und Prozessmanager
+app.curriculum_vitae.01_2015: 01/2015 – 12/2016
+app.curriculum_vitae.it_quality_manager: IT-Applikations- und Qualitätsmanager
+app.curriculum_vitae.01_2010: 01/2010 – 12/2014
+app.curriculum_vitae.it_application_manager: IT-Applikations-Manager
+app.curriculum_vitae.03_2006: 03/2006 – 12/2009
+app.curriculum_vitae.high_school: Fachhochschule Osnabrück
+app.curriculum_vitae.09_2001: 09/2001 – 02/2006
+app.curriculum_vitae.study: Studium der „Technischen Informatik“
+app.curriculum_vitae.over_school: Fachoberschule in Ibbenbüren
+app.curriculum_vitae.09_2000: 09/2000 – 08/2001
+app.curriculum_vitae.degree_technical_school: "Abschluss: Fachhochschulreife"
