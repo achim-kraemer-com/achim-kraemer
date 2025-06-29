@@ -8,7 +8,10 @@ use App\Entity\Customer;
 use App\Form\CustomerType;
 use App\Repository\CustomerRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Imagine\Gd\Imagine;
+use Imagine\Image\Box;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -32,6 +35,23 @@ final class CustomerController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $logoFile = $form->get('logo')->getData();
+
+            if ($logoFile instanceof UploadedFile) {
+                $filename  = \uniqid().'.'.$logoFile->guessExtension();
+                $targetDir = $this->getParameter('kernel.project_dir').'/public/uploads/images';
+                $logoFile->move($targetDir, $filename);
+
+                // Resize
+                $imagine   = new Imagine();
+                $imagePath = $targetDir.'/'.$filename;
+                $imagine->open($imagePath)
+                    ->resize(new Box(100, 100))
+                    ->save($imagePath);
+
+                $customer->setLogo('/uploads/images/'.$filename);
+            }
+
             $entityManager->persist($customer);
             $entityManager->flush();
 
@@ -62,6 +82,22 @@ final class CustomerController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $logoFile = $form->get('logo')->getData();
+
+            if ($logoFile instanceof UploadedFile) {
+                $filename  = \uniqid().'.'.$logoFile->guessExtension();
+                $targetDir = $this->getParameter('kernel.project_dir').'/public/uploads/images';
+                $logoFile->move($targetDir, $filename);
+
+                // Resize
+                $imagine   = new Imagine();
+                $imagePath = $targetDir.'/'.$filename;
+                $imagine->open($imagePath)
+                    ->resize(new Box(100, 100))
+                    ->save($imagePath);
+
+                $customer->setLogo('/uploads/images/'.$filename);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_customer_index', [], Response::HTTP_SEE_OTHER);

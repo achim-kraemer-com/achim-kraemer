@@ -109,6 +109,10 @@ app.email_signature.empty: Keine E-Mail Signatur vorhanden
 app.email_signature.title_text: Titel
 app.email_signature.image: Bild
 app.email_signature.link: Link
+app.email_signature.primary_color: Hauptfarbe
+app.email_signature.secondary_color: Zweitfarbe
+app.email_signature.accent_color: Drittfarbe
+app.email_signature.logo: Logo
 app.email_signature.please_upload_image_file: Bitte eine Bilddatei hochladen!
 app.email_signature.error_upload_image_file: Fehler beim Hochladen der Bilddatei!
 app.email_signature.error_upload_path: Fehler beim Erstellen des Ordners!

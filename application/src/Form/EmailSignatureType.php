@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Form;
 
+use App\Entity\Customer;
 use App\Entity\EmailSignature;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,6 +28,16 @@ class EmailSignatureType extends AbstractType
             ->add('title', TextType::class, [
                 'label'      => 'app.email_signature.title_text',
                 'label_attr' => [
+                    'class' => 'custom-label',
+                ],
+                'attr' => [
+                    'class' => 'form-text',
+                ],
+            ])
+            ->add('customer', EntityType::class, [
+                'label'        => 'app.project.customer',
+                'class'        => Customer::class,
+                'label_attr'   => [
                     'class' => 'custom-label',
                 ],
                 'attr' => [

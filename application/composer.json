@@ -11,6 +11,7 @@
         "doctrine/doctrine-bundle": "^2.13",
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^3.3",
+        "imagine/imagine": "^1.5",
         "karser/karser-recaptcha3-bundle": "^0.1.27",
         "setasign/fpdi": "^2.6",
         "symfony/apache-pack": "^1.0",
