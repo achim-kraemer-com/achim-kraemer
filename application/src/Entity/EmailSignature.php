@@ -24,6 +24,9 @@ class EmailSignature
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $link = null;
 
+    #[ORM\ManyToOne(inversedBy: 'emailSignatures')]
+    private ?Customer $customer = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -61,6 +64,18 @@ class EmailSignature
     public function setLink(string $link): self
     {
         $this->link = $link;
+
+        return $this;
+    }
+
+    public function getCustomer(): ?Customer
+    {
+        return $this->customer;
+    }
+
+    public function setCustomer(?Customer $customer): static
+    {
+        $this->customer = $customer;
 
         return $this;
     }

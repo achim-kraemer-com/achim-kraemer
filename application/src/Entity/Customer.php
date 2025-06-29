@@ -44,8 +44,20 @@ class Customer
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $phone = null;
+
+    #[ORM\Column(type: 'string', length: 7, nullable: true)]
+    private ?string $primaryColor = null;
+
+    #[ORM\Column(type: 'string', length: 7, nullable: true)]
+    private ?string $secondaryColor = null;
+
+    #[ORM\Column(type: 'string', length: 7, nullable: true)]
+    private ?string $accentColor = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $logo = null;
 
     /**
      * @var Collection<int, Project>
@@ -59,10 +71,44 @@ class Customer
     #[ORM\OneToMany(targetEntity: Invoice::class, mappedBy: 'customer')]
     private Collection $invoices;
 
+    /**
+     * @var Collection<int, EmailSignature>
+     */
+    #[ORM\OneToMany(targetEntity: EmailSignature::class, mappedBy: 'customer')]
+    private Collection $emailSignatures;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $website = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $title = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $linkedin = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $xing = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $facebook = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $instagram = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $github = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $mobile = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $fax = null;
+
     public function __construct()
     {
-        $this->projects = new ArrayCollection();
-        $this->invoices = new ArrayCollection();
+        $this->projects        = new ArrayCollection();
+        $this->invoices        = new ArrayCollection();
+        $this->emailSignatures = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -188,7 +234,7 @@ class Customer
         return $this->phone;
     }
 
-    public function setPhone(string $phone): static
+    public function setPhone(?string $phone): static
     {
         $this->phone = $phone;
 
@@ -251,6 +297,192 @@ class Customer
                 $invoice->setCustomer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrimaryColor(): ?string
+    {
+        return $this->primaryColor;
+    }
+
+    public function setPrimaryColor(?string $primaryColor): self
+    {
+        $this->primaryColor = $primaryColor;
+
+        return $this;
+    }
+
+    public function getSecondaryColor(): ?string
+    {
+        return $this->secondaryColor;
+    }
+
+    public function setSecondaryColor(?string $secondaryColor): self
+    {
+        $this->secondaryColor = $secondaryColor;
+
+        return $this;
+    }
+
+    public function getAccentColor(): ?string
+    {
+        return $this->accentColor;
+    }
+
+    public function setAccentColor(?string $accentColor): self
+    {
+        $this->accentColor = $accentColor;
+
+        return $this;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?string $logo): self
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, EmailSignature>
+     */
+    public function getEmailSignatures(): Collection
+    {
+        return $this->emailSignatures;
+    }
+
+    public function addEmailSignature(EmailSignature $emailSignature): static
+    {
+        if (!$this->emailSignatures->contains($emailSignature)) {
+            $this->emailSignatures->add($emailSignature);
+            $emailSignature->setCustomer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEmailSignature(EmailSignature $emailSignature): static
+    {
+        if ($this->emailSignatures->removeElement($emailSignature)) {
+            // set the owning side to null (unless already changed)
+            if ($emailSignature->getCustomer() === $this) {
+                $emailSignature->setCustomer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getWebsite(): ?string
+    {
+        return $this->website;
+    }
+
+    public function setWebsite(?string $website): static
+    {
+        $this->website = $website;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): static
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getLinkedin(): ?string
+    {
+        return $this->linkedin;
+    }
+
+    public function setLinkedin(?string $linkedin): static
+    {
+        $this->linkedin = $linkedin;
+
+        return $this;
+    }
+
+    public function getXing(): ?string
+    {
+        return $this->xing;
+    }
+
+    public function setXing(?string $xing): static
+    {
+        $this->xing = $xing;
+
+        return $this;
+    }
+
+    public function getFacebook(): ?string
+    {
+        return $this->facebook;
+    }
+
+    public function setFacebook(?string $facebook): static
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    public function getInstagram(): ?string
+    {
+        return $this->instagram;
+    }
+
+    public function setInstagram(?string $instagram): static
+    {
+        $this->instagram = $instagram;
+
+        return $this;
+    }
+
+    public function getGithub(): ?string
+    {
+        return $this->github;
+    }
+
+    public function setGithub(?string $github): static
+    {
+        $this->github = $github;
+
+        return $this;
+    }
+
+    public function getMobile(): ?string
+    {
+        return $this->mobile;
+    }
+
+    public function setMobile(?string $mobile): static
+    {
+        $this->mobile = $mobile;
+
+        return $this;
+    }
+
+    public function getFax(): ?string
+    {
+        return $this->fax;
+    }
+
+    public function setFax(?string $fax): static
+    {
+        $this->fax = $fax;
 
         return $this;
     }
