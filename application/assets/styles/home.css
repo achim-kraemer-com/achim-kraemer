@@ -115,7 +115,7 @@ html {
 
 @media (max-width: 1024px) {
     .services-container, .about-container, .contact-container, .portfolio-container {
-        margin: 0 100px 0 100px;
+        margin: 0 10px 0 10px;
     }
 }
 
@@ -163,7 +163,7 @@ html {
     .header-slogan {
         position: absolute;
         overflow: hidden;
-        width: 147%;
+        width: 100%;
         top: 50%;
     }
 }
@@ -195,10 +195,10 @@ html {
 
 @media (max-width: 1024px) {
     .contact-input-field {
-        width: 120%;
+        width: 100%;
     }
     .contact-input-button {
-        width: 120%;
+        width: 100%;
     }
 }
 
@@ -292,26 +292,3 @@ div > #header-inner {
 .social-media-links {
     z-index: 9999;
 }
-
-@media (max-width: 1024px) {
-    .social-media-links {
-        right: auto;
-        left: 10%;
-        bottom: 10px;
-        top: auto;
-        transform: translateX(-50%);
-        flex-direction: row;
-        gap: 12px;
-    }
-}
-
-/*.about-container::after {*/
-/*    content: '';*/
-/*    position: absolute;*/
-/*    bottom: 0;*/
-/*    left: 0;*/
-/*    width: 0;*/
-/*    height: 0;*/
-/*    border-left: 100vw solid #252424FF;  !* Breite des Dreiecks *!*/
-/*    border-top: 180px solid transparent;  !* Höhe des Dreiecks *!*/
-/*}*/

@@ -1,6 +1,7 @@
 services:
     db:
         image: mariadb:10.6.4
+        platform: linux/amd64
         ports:
             - "3306:3306"
         environment:
@@ -15,6 +16,7 @@ services:
         build:
             context: ./build/
             dockerfile: Dockerfile_apache
+        platform: linux/amd64
         container_name: achim-kraemer
         restart: 'always'
         ports:
@@ -32,6 +34,7 @@ services:
         build:
             context: ./build/
             dockerfile: Dockerfile_apache_xdebug
+        platform: linux/amd64
         container_name: achim-kraemer-dev
         restart: 'always'
         ports:
@@ -49,6 +52,7 @@ services:
 
     node:
         image: node:16
+        platform: linux/amd64
         container_name: symfony_node
         working_dir: /var/www/html
         volumes:
@@ -57,11 +61,13 @@ services:
 
     mailcatcher:
         image: tophfr/mailcatcher
+        platform: linux/amd64
         ports:
           - 1080:80
 
     adminer:
         image: adminer
+        platform: linux/amd64
         ports:
           - 8080:8080
         depends_on:
