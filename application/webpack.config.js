@@ -45,16 +45,41 @@ Encore
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
 
-    .copyFiles( [
-        { from: './assets/images', to: 'images/[path][name].[ext]' },
-        // { from: './assets/fonts', to: 'fonts/[path][name].[ext]' }
-        // optional target path, relative to the output dir
-        // to: 'images/[path][name].[ext]'
-        // if versioning is enabled, add the file hash too
-        //to: 'images/[path][name].[hash:8].[ext]',
-        // only copy files matching this pattern
-        //pattern: /\.(png|jpg|jpeg)$/
-    ])
+    .copyFiles( {
+        from: './assets/images',
+        to: 'images/[path][name].[ext]',
+        pattern: /\.(png|jpg|jpeg|gif|svg)$/
+    })
+
+    // .addLoader({
+    //     test: /\.(png|jpg|jpeg|gif|svg)$/,
+    //     use: [
+    //         {
+    //             loader: 'image-webpack-loader',
+    //             options: {
+    //                 mozjpeg: {
+    //                     progressive: true,
+    //                     quality: 65
+    //                 },
+    //                 // optipng.enabled: false will disable optipng
+    //                 optipng: {
+    //                     enabled: false,
+    //                 },
+    //                 pngquant: {
+    //                     quality: [0.65, 0.90],
+    //                     speed: 4
+    //                 },
+    //                 gifsicle: {
+    //                     interlaced: false,
+    //                 },
+    //                 // the webp option will enable WEBP
+    //                 webp: {
+    //                     quality: 75
+    //                 }
+    //             }
+    //         }
+    //     ]
+    // })
 
 
     // configure Babel
