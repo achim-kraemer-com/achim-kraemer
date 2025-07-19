@@ -64,6 +64,16 @@ h2 {
     min-width: 15%;
 }
 
+@media (max-width: 768px) {
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
+
 header {
     padding: 0;
     background-color: var(--background-color);
@@ -107,6 +117,16 @@ header {
 header p {
     margin: 10px 0 0;
     font-size: 1.2em;
+}
+
+.legal-text {
+    font-size: 1.2em;
+}
+
+@media (max-width: 1024px) {
+    .legal-text {
+        font-size: 2.8em;
+    }
 }
 
 .container {
