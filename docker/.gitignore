@@ -1,5 +1,5 @@
 ### Docker Data
-data/db
+data/mariadb
 
 ### Application
 application/
