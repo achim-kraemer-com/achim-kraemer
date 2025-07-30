@@ -1,4 +1,7 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
+    {% if customer.logo %}
+        <img src="{{ asset(customer.logo) }}" alt="{{ customer.companyName }}" class="w-32 h-32 rounded-full mx-auto mb-4">
+    {% endif %}
     <button class="button btn-left">{{ button_label|default('app.default.save'|trans) }}</button>
 {{ form_end(form) }}

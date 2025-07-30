@@ -10,6 +10,7 @@ use App\Repository\CustomerRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
+use Imagine\Image\Point;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,12 +43,19 @@ final class CustomerController extends AbstractController
                 $targetDir = $this->getParameter('kernel.project_dir').'/public/uploads/images';
                 $logoFile->move($targetDir, $filename);
 
-                // Resize
                 $imagine   = new Imagine();
                 $imagePath = $targetDir.'/'.$filename;
-                $imagine->open($imagePath)
-                    ->resize(new Box(100, 100))
-                    ->save($imagePath);
+                $image     = $imagine->open($imagePath);
+                $image->resize(new Box(100, 100));
+
+                $palette = new \Imagine\Image\Palette\RGB();
+                $size    = $image->getSize();
+                $mask    = $imagine->create($size, $palette->color('fff'));
+                $mask->draw()
+                    ->ellipse(new Point($size->getWidth() / 2, $size->getHeight() / 2), $size, $palette->color('000'), true);
+
+                $image->applyMask($mask);
+                $image->save($imagePath);
 
                 $customer->setLogo('/uploads/images/'.$filename);
             }
@@ -89,12 +97,19 @@ final class CustomerController extends AbstractController
                 $targetDir = $this->getParameter('kernel.project_dir').'/public/uploads/images';
                 $logoFile->move($targetDir, $filename);
 
-                // Resize
                 $imagine   = new Imagine();
                 $imagePath = $targetDir.'/'.$filename;
-                $imagine->open($imagePath)
-                    ->resize(new Box(100, 100))
-                    ->save($imagePath);
+                $image     = $imagine->open($imagePath);
+                $image->resize(new Box(100, 100));
+
+                $palette = new \Imagine\Image\Palette\RGB();
+                $size    = $image->getSize();
+                $mask    = $imagine->create($size, $palette->color('fff'));
+                $mask->draw()
+                    ->ellipse(new Point($size->getWidth() / 2, $size->getHeight() / 2), $size, $palette->color('000'), true);
+
+                $image->applyMask($mask);
+                $image->save($imagePath);
 
                 $customer->setLogo('/uploads/images/'.$filename);
             }
