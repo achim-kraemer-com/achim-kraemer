@@ -9,11 +9,10 @@
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('build/images/favicon-16x16.png') }}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('build/images/favicon-32x32.png') }}">
         <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('build/images/favicon-96x96.png') }}">
-        <meta name="keywords" content="Achim Krämer,Dienstleistung,Über mich,Portfolio,Kontakt">
-        <meta name="description" content="Symfony Freelancer gesucht? Ich unterstütze ihre Projekt und bringe über 15 Jahre PHP-Erfahrung mit ein.">
-{#        <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
-        <link rel="canonical" href="https://achim-kraemer.com">
+        <meta name="description" content="{% block description %}Symfony Freelancer gesucht? Ich unterstütze ihre Projekt und bringe über 15 Jahre PHP-Erfahrung mit ein.{% endblock %}">
+        <link rel="canonical" href="{{ app.request.uri }}">
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}

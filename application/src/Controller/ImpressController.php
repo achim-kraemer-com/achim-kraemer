@@ -13,6 +13,9 @@ class ImpressController extends AbstractController
     #[Route('/impress', name: 'app_impress_index')]
     public function index(): Response
     {
-        return $this->render('impress/index.html.twig');
+        return $this->render('impress/index.html.twig', [
+            'title' => 'Impressum | Achim Krämer',
+            'description' => 'Impressum der Webseite von Achim Krämer. Hier finden Sie alle rechtlichen Informationen.'
+        ]);
     }
 }

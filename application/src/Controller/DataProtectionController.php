@@ -13,6 +13,9 @@ class DataProtectionController extends AbstractController
     #[Route('/data-protection', name: 'app_data-protection_index')]
     public function index(): Response
     {
-        return $this->render('data_protection/index.html.twig');
+        return $this->render('data_protection/index.html.twig', [
+            'title' => 'Datenschutz | Achim Krämer',
+            'description' => 'Datenschutzerklärung der Webseite von Achim Krämer. Hier finden Sie alle Informationen zum Datenschutz.'
+        ]);
     }
 }

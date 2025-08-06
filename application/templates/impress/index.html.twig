@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'app.impress.title'|trans }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block description %}{{ description }}{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
