@@ -13,6 +13,9 @@ class CurriculumVitaeController extends AbstractController
     #[Route('/cv', name: 'app_cv')]
     public function index(): Response
     {
-        return $this->render('curriculum_vitae/index.html.twig');
+        return $this->render('curriculum_vitae/index.html.twig', [
+            'title' => 'Lebenslauf | Achim Krämer',
+            'description' => 'Hier finden Sie den Lebenslauf von Achim Krämer. Symfony Entwickler und Freelancer mit über 15 Jahren Erfahrung.'
+        ]);
     }
 }
