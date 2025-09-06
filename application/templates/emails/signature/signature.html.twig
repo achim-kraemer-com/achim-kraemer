@@ -8,7 +8,7 @@
                 {% if email_signature.customer.logo is not null %}
                     <td style="max-width: 112px;min-width: 112px;">
                         {% set imagePath = email_signature.customer.logo %}
-                        <img style="max-width: 100px;max-height: 100px;border-radius: 50%;" src="{{ asset(imagePath) }}">
+                        <img style="max-width: 100px;max-height: 100px;border-radius: 50%;" src="{{ asset(imagePath) }}" alt="logo">
                     </td>
                 {% endif %}
                 <td style="vertical-align: middle;max-width: 166px;min-width: 160px;">
@@ -31,21 +31,21 @@
                         {% if email_signature.customer.phone is not null %}
                             <div style="padding-bottom: 5px;text-align: left;font: normal normal normal 12px/18px Arial;letter-spacing: 0;color: #000000;opacity: 1;">
                                 <a target="_blank" href="tel:{{ email_signature.customer.phone }}">
-                                    <img src="{{ asset('build/images/phone.png') }}" alt="email" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
+                                    <img src="{{ asset('build/images/phone.png') }}" alt="phone" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
                                     <span style="display: inline-block"> {{ email_signature.customer.phone }}</span></a>
                             </div>
                         {% endif %}
                         {% if email_signature.customer.mobile is not null %}
                             <div style="padding-bottom: 5px;text-align: left;font: normal normal normal 12px/18px Arial;letter-spacing: 0;color: #000000;opacity: 1;">
                                 <a target="_blank" href="tel:{{ email_signature.customer.mobile }}">
-                                    <img src="{{ asset('build/images/card-sim.png') }}" alt="email" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
+                                    <img src="{{ asset('build/images/card-sim.png') }}" alt="mobile" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
                                     <span style="display: inline-block"> {{ email_signature.customer.mobile }}</span></a>
                             </div>
                         {% endif %}
                         {% if email_signature.customer.fax is not null %}
                             <div style="padding-bottom: 5px;text-align: left;font: normal normal normal 12px/18px Arial;letter-spacing: 0;color: #000000;opacity: 1;">
                                 <a target="_blank" href="tel:{{ email_signature.customer.fax }}">
-                                    <img src="{{ asset('build/images/printer.png') }}" alt="email" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
+                                    <img src="{{ asset('build/images/printer.png') }}" alt="fax" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
                                     <span style="display: inline-block"> {{ email_signature.customer.fax }}</span></a>
                             </div>
                         {% endif %}
@@ -56,7 +56,7 @@
                         </div>
                         <div style="padding-bottom: 5px;text-align: left;font: normal normal normal 12px/18px Arial;letter-spacing: 0;color: #000000;opacity: 1;">
                             <a target="_blank" href="https://{{ email_signature.customer.website }}">
-                                <img src="{{ asset('build/images/globe.png') }}" alt="email" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
+                                <img src="{{ asset('build/images/globe.png') }}" alt="website" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
                                 <span style="display: inline-block"> {{ email_signature.customer.website }}</span></a>
                         </div>
 {#                        <div style="padding-bottom: 5px;text-align: left;font: normal normal normal 10px/15px Arial;letter-spacing: 0;color: #000000;opacity: 1;">#}
@@ -68,25 +68,25 @@
     {#                            facebook#}
                                 {% if email_signature.customer.facebook is not null %}
                                     <a target="_blank" href="{{ email_signature.customer.facebook }}">
-                                        <img src="{{ asset('build/images/facebook.png') }}" alt="email" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
+                                        <img src="{{ asset('build/images/facebook.png') }}" alt="facebook" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
                                     </a>
                                 {% endif %}
     {#                            instagram#}
                                 {% if email_signature.customer.instagram is not null %}
                                     <a target="_blank" href="{{ email_signature.customer.instagram }}">
-                                        <img src="{{ asset('build/images/instagram.png') }}" alt="email" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
+                                        <img src="{{ asset('build/images/instagram.png') }}" alt="instagram" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
                                     </a>
                                 {% endif %}
     {#                            linkedin#}
                                 {% if email_signature.customer.linkedin is not null %}
                                 <a target="_blank" href="{{ email_signature.customer.linkedin }}">
-                                    <img src="{{ asset('build/images/linkedin.png') }}" alt="email" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
+                                    <img src="{{ asset('build/images/linkedin.png') }}" alt="linkedin" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
                                 </a>
                             {% endif %}
 {#                                github#}
                                 {% if email_signature.customer.github is not null %}
                                 <a target="_blank" href="{{ email_signature.customer.github }}">
-                                    <img src="{{ asset('build/images/github.png') }}" alt="email" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
+                                    <img src="{{ asset('build/images/github.png') }}" alt="github" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
                                 </a>
                             {% endif %}
     {#                            xing#}
