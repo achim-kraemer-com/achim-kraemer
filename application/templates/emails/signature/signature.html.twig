@@ -1,110 +1,112 @@
-<div style="position: relative;max-width: 600px;margin-left: 0;left: 0">
-    <div style="font: small/1.5 Arial,Helvetica,sans-serif;letter-spacing: normal;color: #000000;">
-        Liebe Grüße,
-    </div>
-    <table style="position: relative;margin-left: 15px;margin-right: auto;min-width: 570px;max-width: 570px;min-height: 120px;">
-        <tbody>
-            <tr>
-                {% if email_signature.customer.logo is not null %}
-                    <td style="max-width: 112px;min-width: 112px;">
-                        {% set imagePath = email_signature.customer.logo %}
-                        <img style="max-width: 100px;max-height: 100px;border-radius: 50%;" src="{{ asset(imagePath) }}" alt="logo">
-                    </td>
-                {% endif %}
-                <td style="vertical-align: middle;max-width: 166px;min-width: 160px;">
-                    <div>
-                        <div style="padding-bottom: 3px;text-align: left;font: normal normal bold 12px/18px Arial;letter-spacing: 0;color: #000000;opacity: 1;">
-                            {{ email_signature.customer.firstname }} {{ email_signature.customer.lastname }}
-                        </div>
-                        <div style="padding-bottom: 3px;text-align: left;font: normal normal normal 12px/18px Arial;letter-spacing: 0;color: #000000;">
+<div style="max-width:600px; font-family: Arial, Helvetica, sans-serif; font-size:12px; line-height:18px; color:#000000;">
+    <div style="margin-bottom:10px;">Liebe Grüße,</div>
 
-                        </div>
-                        {% if email_signature.customer.title is not null %}
-                            <div style="padding-bottom: 3px;text-align: left;font: normal normal normal 10px/15px Arial;letter-spacing: 0;color: #928A8A;">
-                                <span style="font-weight: bold;">{{ email_signature.customer.title }}</span>
-                            </div>
-                        {% endif %}
-                    </div>
+    <table cellpadding="0" cellspacing="0" border="0" width="570" style="width:570px; border-collapse:collapse; margin-left:15px; background-color:#ffffff;">
+        <tr>
+            {% if email_signature.customer.logo is not null %}
+                <td valign="top" width="112" style="width:112px; padding-right:10px;">
+                    {% set imagePath = email_signature.customer.logo %}
+                    <img src="{{ absolute_url(asset(imagePath)) }}" alt="logo" width="100" height="100" style="display:block; border-radius:50%; max-width:100px; max-height:100px;">
                 </td>
-                <td style="vertical-align: middle;min-width: 270px;max-width: 285px;min-height: 120px;padding-left: 14px;background: #F6F5F5 0 0 no-repeat padding-box;opacity: 1;">
-                    <div>
-                        {% if email_signature.customer.phone is not null %}
-                            <div style="padding-bottom: 5px;text-align: left;font: normal normal normal 12px/18px Arial;letter-spacing: 0;color: #000000;opacity: 1;">
-                                <a target="_blank" href="tel:{{ email_signature.customer.phone }}">
-                                    <img src="{{ asset('build/images/phone.png') }}" alt="phone" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
-                                    <span style="display: inline-block"> {{ email_signature.customer.phone }}</span></a>
-                            </div>
-                        {% endif %}
-                        {% if email_signature.customer.mobile is not null %}
-                            <div style="padding-bottom: 5px;text-align: left;font: normal normal normal 12px/18px Arial;letter-spacing: 0;color: #000000;opacity: 1;">
-                                <a target="_blank" href="tel:{{ email_signature.customer.mobile }}">
-                                    <img src="{{ asset('build/images/card-sim.png') }}" alt="mobile" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
-                                    <span style="display: inline-block"> {{ email_signature.customer.mobile }}</span></a>
-                            </div>
-                        {% endif %}
-                        {% if email_signature.customer.fax is not null %}
-                            <div style="padding-bottom: 5px;text-align: left;font: normal normal normal 12px/18px Arial;letter-spacing: 0;color: #000000;opacity: 1;">
-                                <a target="_blank" href="tel:{{ email_signature.customer.fax }}">
-                                    <img src="{{ asset('build/images/printer.png') }}" alt="fax" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
-                                    <span style="display: inline-block"> {{ email_signature.customer.fax }}</span></a>
-                            </div>
-                        {% endif %}
-                        <div style="padding-bottom: 5px;text-align: left;font: normal normal normal 12px/18px Arial;letter-spacing: 0;color: #000000;opacity: 1;">
-                            <a target="_blank" style="text-decoration: none;" href="mailto:{{ email_signature.customer.email }}">
-                                <img src="{{ asset('build/images/mail.png') }}" alt="email" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
-                                <span style="display: inline-block">  {{ email_signature.customer.email }}</span></a>
+            {% endif %}
+
+            <td style="vertical-align: middle;max-width: 166px;min-width: 160px;">
+                <div>
+                    <div style="padding-bottom: 3px;text-align: left;font: normal normal bold 12px/15px Arial;letter-spacing: 0;color: #000000;opacity: 1;">
+                        {{ email_signature.customer.firstname }} {{ email_signature.customer.lastname }}
+                    </div>
+
+                    {% if email_signature.customer.title is not null %}
+                        <div style="font-family: Arial, Helvetica, sans-serif; font-size:10px; line-height:15px; font-weight:normal; color:#928A8A; margin-bottom:3px;">
+                            <span style="font-weight:bold;">{{ email_signature.customer.title }}</span>
                         </div>
-                        <div style="padding-bottom: 5px;text-align: left;font: normal normal normal 12px/18px Arial;letter-spacing: 0;color: #000000;opacity: 1;">
-                            <a target="_blank" href="https://{{ email_signature.customer.website }}">
-                                <img src="{{ asset('build/images/globe.png') }}" alt="website" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
-                                <span style="display: inline-block"> {{ email_signature.customer.website }}</span></a>
-                        </div>
-{#                        <div style="padding-bottom: 5px;text-align: left;font: normal normal normal 10px/15px Arial;letter-spacing: 0;color: #000000;opacity: 1;">#}
-{#                            <a target="_blank" href="https://goo.gl/maps/6GFtz3ezMTf821KA7"><img style="padding-right: 10px;" src="{{ asset('build/images/signatur_icon_map-pin.png') }}"><span style="display: inline-block"> Böckemeyerskamp 20, 49479 Ibbenbüren</span></a>#}
-{#                        </div>#}
-                        <div style="padding-left: 5px; text-align: left;font: normal normal 300 12px/18px Arial;letter-spacing: 0;color: #928A8A;opacity: 1;">
-                            {% if email_signature.customer.facebook is not null or email_signature.customer.instagram is not null or email_signature.customer.linkedin is not null or email_signature.customer.xing is not null or email_signature.customer.github is not null %}
+                    {% endif %}
+                </div>
+            </td>
+
+            <td style="vertical-align: middle;min-width: 270px;max-width: 285px;min-height: 120px;padding-left: 14px; background: #F6F5F5 0 0 no-repeat padding-box;opacity: 1;" bgcolor="#F6F5F5"; >
+                <table cellpadding="0" cellspacing="0" border="0" width="100%" style="padding-left: 14px; border-collapse:collapse";>
+                    {% if email_signature.customer.phone is not null %}
+                        <tr>
+                            <td width="20" valign="middle">
+                                <img src="{{ app.request.getSchemeAndHttpHost() }}/uploads/images/phone.png" alt="phone" width="14" height="14" style="display:block;">
+                            </td>
+                            <td valign="middle" style="font-family: Arial, Helvetica, sans-serif; font-size:12px; line-height:18px; color:#000000; padding-bottom:5px;">
+                                <a href="tel:{{ email_signature.customer.phone }}" style="color:#000000; text-decoration:none;">{{ email_signature.customer.phone }}</a>
+                            </td>
+                        </tr>
+                    {% endif %}
+
+                    {% if email_signature.customer.mobile is not null %}
+                        <tr>
+                            <td width="20" valign="middle">
+                                <img src="{{ app.request.getSchemeAndHttpHost() }}/uploads/images/card-sim.png" alt="mobile" width="14" height="14" style="display:block;">
+                            </td>
+                            <td valign="middle" style="font-family: Arial, Helvetica, sans-serif; font-size:12px; line-height:18px; color:#000000; padding-bottom:5px;">
+                                <a href="tel:{{ email_signature.customer.mobile }}" style="color:#000000; text-decoration:none;">{{ email_signature.customer.mobile }}</a>
+                            </td>
+                        </tr>
+                    {% endif %}
+
+                    {% if email_signature.customer.fax is not null %}
+                        <tr>
+                            <td width="20" valign="middle">
+                                <img src="{{ app.request.getSchemeAndHttpHost() }}/uploads/images/printer.png" alt="fax" width="14" height="14" style="display:block;">
+                            </td>
+                            <td valign="middle" style="font-family: Arial, Helvetica, sans-serif; font-size:12px; line-height:18px; color:#000000; padding-bottom:5px;">
+                                <a href="tel:{{ email_signature.customer.fax }}" style="color:#000000; text-decoration:none;">{{ email_signature.customer.fax }}</a>
+                            </td>
+                        </tr>
+                    {% endif %}
+
+                    <tr>
+                        <td width="20" valign="middle">
+                            <img src="{{ app.request.getSchemeAndHttpHost() }}/uploads/images/mail.png" alt="email" width="14" height="14" style="display:block;">
+                        </td>
+                        <td valign="middle" style="font-family: Arial, Helvetica, sans-serif; font-size:12px; line-height:18px; color:#000000; padding-bottom:5px;">
+                            <a href="mailto:{{ email_signature.customer.email }}" style="color:#000000; text-decoration:none;">{{ email_signature.customer.email }}</a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td width="20" valign="middle">
+                            <img src="{{ app.request.getSchemeAndHttpHost() }}/uploads/images/globe.png" alt="website" width="14" height="14" style="display:block;">
+                        </td>
+                        <td valign="middle" style="font-family: Arial, Helvetica, sans-serif; font-size:12px; line-height:18px; color:#000000; padding-bottom:5px;">
+                            <a href="https://{{ email_signature.customer.website }}" target="_blank" style="color:#000000; text-decoration:none;">{{ email_signature.customer.website }}</a>
+                        </td>
+                    </tr>
+
+                    {% if email_signature.customer.facebook is not null or email_signature.customer.instagram is not null or email_signature.customer.linkedin is not null or email_signature.customer.github is not null %}
+                        <tr>
+                            <td valign="top" colspan="2" style="font-family: Arial, Helvetica, sans-serif; font-size:12px; line-height:18px; color:#928A8A; padding-top:5px;">
                                 Besuche mich auf:
-    {#                            facebook#}
                                 {% if email_signature.customer.facebook is not null %}
-                                    <a target="_blank" href="{{ email_signature.customer.facebook }}">
-                                        <img src="{{ asset('build/images/facebook.png') }}" alt="facebook" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
-                                    </a>
+                                    <a href="{{ email_signature.customer.facebook }}" target="_blank"><img src="{{ app.request.getSchemeAndHttpHost() }}/uploads/images/facebook.png" alt="facebook" width="14" height="14" style="display:inline-block; margin-left:5px;"></a>
                                 {% endif %}
-    {#                            instagram#}
                                 {% if email_signature.customer.instagram is not null %}
-                                    <a target="_blank" href="{{ email_signature.customer.instagram }}">
-                                        <img src="{{ asset('build/images/instagram.png') }}" alt="instagram" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
-                                    </a>
+                                    <a href="{{ email_signature.customer.instagram }}" target="_blank"><img src="{{ app.request.getSchemeAndHttpHost() }}/uploads/images/instagram.png" alt="instagram" width="14" height="14" style="display:inline-block; margin-left:5px;"></a>
                                 {% endif %}
-    {#                            linkedin#}
                                 {% if email_signature.customer.linkedin is not null %}
-                                <a target="_blank" href="{{ email_signature.customer.linkedin }}">
-                                    <img src="{{ asset('build/images/linkedin.png') }}" alt="linkedin" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
-                                </a>
-                            {% endif %}
-{#                                github#}
+                                    <a href="{{ email_signature.customer.linkedin }}" target="_blank"><img src="{{ app.request.getSchemeAndHttpHost() }}/uploads/images/linkedin.png" alt="linkedin" width="14" height="14" style="display:inline-block; margin-left:5px;"></a>
+                                {% endif %}
                                 {% if email_signature.customer.github is not null %}
-                                <a target="_blank" href="{{ email_signature.customer.github }}">
-                                    <img src="{{ asset('build/images/github.png') }}" alt="github" width="16" height="16" style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};">
-                                </a>
-                            {% endif %}
-    {#                            xing#}
-{#                                {% if email_signature.customer.xing is not null %}#}
-    {#                            <a target="_blank" href="https://www.linkedin.com/showcase/symplrtogethr/">#}
-    {#                                <svg style="padding-left: 5px; display: inline-block; color: {{ email_signature.customer.primaryColor }};" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path d="M162.7 210c-1.8 3.3-25.2 44.4-70.1 123.5-4.9 8.3-10.8 12.5-17.7 12.5H9.8c-7.7 0-12.1-7.5-8.5-14.4l69-121.3c.2 0 .2-.1 0-.3l-43.9-75.6c-4.3-7.8 .3-14.1 8.5-14.1H100c7.3 0 13.3 4.1 18 12.2l44.7 77.5zM382.6 46.1l-144 253v.3L330.2 466c3.9 7.1 .2 14.1-8.5 14.1h-65.2c-7.6 0-13.6-4-18-12.2l-92.4-168.5c3.3-5.8 51.5-90.8 144.8-255.2 4.6-8.1 10.4-12.2 17.5-12.2h65.7c8 0 12.3 6.7 8.5 14.1z"/></svg>#}
-    {#                            </a>#}
-{#                            {% endif %}#}
-                            {% endif %}
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
+                                    <a href="{{ email_signature.customer.github }}" target="_blank"><img src="{{ app.request.getSchemeAndHttpHost() }}/uploads/images/github.png" alt="github" width="14" height="14" style="display:inline-block; margin-left:5px;"></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                </table>
+            </td>
+        </tr>
     </table>
+
     {% if email_signature.image is not null %}
-        <div style="position: relative;margin-left: 15px;margin-right: auto;margin-top: 14px;min-width: 570px;max-width: 570px;">
-            <a target="_blank" href="{{ email_signature.link }}" ><img style="margin-left: auto;margin-right: auto;max-width: 570px;" src="{{ url('app_landing_page') }}/upload/images/email_signature/{{ email_signature.image }}"></a>
+        <div style="margin-top:14px; margin-left:15px; max-width:570px;">
+            <a href="{{ email_signature.link }}" target="_blank">
+                <img src="{{ app.request.getSchemeAndHttpHost() }}/uploads/images/email_signature/{{ email_signature.image }}" alt="banner" style="display:block; max-width:570px; height:auto;">
+            </a>
         </div>
     {% endif %}
 </div>
+
