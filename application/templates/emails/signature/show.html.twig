@@ -8,12 +8,20 @@
         <h3 class="text-uppercase mb-4">{{ 'app.email_signature.title'|trans }}</h3>
         <div class="bg-white p-4">
         <hr>
-        {{ include('emails/signature/signature.html.twig') }}
+        <div id="signature">
+            {{ include('emails/signature/signature.html.twig') }}
+        </div>
         <hr>
+        <button class="button mt-4" id="copy-signature">Signatur kopieren</button>
         </div>
         <div class="email-signature">
             <a class="button mt-4" href="{{ path('admin_email_signature_index') }}">{{ 'app.default.back_to_list'|trans }}</a>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('signature') }}
 {% endblock %}
