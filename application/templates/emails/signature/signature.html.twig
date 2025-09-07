@@ -32,7 +32,7 @@
                                 <img src="{{ app.request.getSchemeAndHttpHost() }}/uploads/images/phone.png" alt="phone" width="14" height="14" style="display:block;">
                             </td>
                             <td valign="middle" style="font-family: Arial, Helvetica, sans-serif; font-size:12px; line-height:18px; color:#000000; padding-bottom:5px;">
-                                <a href="tel:{{ email_signature.customer.phone }}" style="color:#000000; text-decoration:none;">{{ email_signature.customer.phone }}</a>
+                                <a href="tel:{{ email_signature.customer.phone }}" style="color:#000000; text-decoration:none !important; -webkit-text-decoration:none; -ms-text-decoration:none;">{{ email_signature.customer.phone }}</a>
                             </td>
                         </tr>
                     {% endif %}
@@ -43,7 +43,7 @@
                                 <img src="{{ app.request.getSchemeAndHttpHost() }}/uploads/images/card-sim.png" alt="mobile" width="14" height="14" style="display:block;">
                             </td>
                             <td valign="middle" style="font-family: Arial, Helvetica, sans-serif; font-size:12px; line-height:18px; color:#000000; padding-bottom:5px;">
-                                <a href="tel:{{ email_signature.customer.mobile }}" style="color:#000000; text-decoration:none;">{{ email_signature.customer.mobile }}</a>
+                                <a href="tel:{{ email_signature.customer.mobile }}" style="color:#000000; text-decoration:none !important; -webkit-text-decoration:none; -ms-text-decoration:none;">{{ email_signature.customer.mobile }}</a>
                             </td>
                         </tr>
                     {% endif %}
@@ -54,7 +54,7 @@
                                 <img src="{{ app.request.getSchemeAndHttpHost() }}/uploads/images/printer.png" alt="fax" width="14" height="14" style="display:block;">
                             </td>
                             <td valign="middle" style="font-family: Arial, Helvetica, sans-serif; font-size:12px; line-height:18px; color:#000000; padding-bottom:5px;">
-                                <a href="tel:{{ email_signature.customer.fax }}" style="color:#000000; text-decoration:none;">{{ email_signature.customer.fax }}</a>
+                                <a href="tel:{{ email_signature.customer.fax }}" style="color:#000000; text-decoration:none !important; -webkit-text-decoration:none; -ms-text-decoration:none;">{{ email_signature.customer.fax }}</a>
                             </td>
                         </tr>
                     {% endif %}
@@ -64,7 +64,7 @@
                             <img src="{{ app.request.getSchemeAndHttpHost() }}/uploads/images/mail.png" alt="email" width="14" height="14" style="display:block;">
                         </td>
                         <td valign="middle" style="font-family: Arial, Helvetica, sans-serif; font-size:12px; line-height:18px; color:#000000; padding-bottom:5px;">
-                            <a href="mailto:{{ email_signature.customer.email }}" style="color:#000000; text-decoration:none;">{{ email_signature.customer.email }}</a>
+                            <a href="mailto:{{ email_signature.customer.email }}" style="color:#000000; text-decoration:none !important; -webkit-text-decoration:none; -ms-text-decoration:none;">{{ email_signature.customer.email }}</a>
                         </td>
                     </tr>
 
@@ -73,7 +73,7 @@
                             <img src="{{ app.request.getSchemeAndHttpHost() }}/uploads/images/globe.png" alt="website" width="14" height="14" style="display:block;">
                         </td>
                         <td valign="middle" style="font-family: Arial, Helvetica, sans-serif; font-size:12px; line-height:18px; color:#000000; padding-bottom:5px;">
-                            <a href="https://{{ email_signature.customer.website }}" target="_blank" style="color:#000000; text-decoration:none;">{{ email_signature.customer.website }}</a>
+                            <a href="https://{{ email_signature.customer.website }}" target="_blank" style="color:#000000; text-decoration:none !important; -webkit-text-decoration:none; -ms-text-decoration:none;">{{ email_signature.customer.website }}</a>
                         </td>
                     </tr>
 
