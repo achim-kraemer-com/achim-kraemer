@@ -12,12 +12,12 @@
 
             <td style="vertical-align: middle;max-width: 166px;min-width: 160px;">
                 <div>
-                    <div style="padding-bottom: 3px;text-align: left;font: normal normal bold 12px/15px Arial;letter-spacing: 0;color: #000000;opacity: 1;">
+                    <div style="padding-bottom: 3px;text-align: left;font: normal normal bold 15px/18px Arial;letter-spacing: 0;color: #000000;opacity: 1;">
                         {{ email_signature.customer.firstname }} {{ email_signature.customer.lastname }}
                     </div>
 
                     {% if email_signature.customer.title is not null %}
-                        <div style="font-family: Arial, Helvetica, sans-serif; font-size:10px; line-height:15px; font-weight:normal; color:#928A8A; margin-bottom:3px;">
+                        <div style="font-family: Arial, Helvetica, sans-serif; font-size:12px; line-height:15px; font-weight:normal; color:#928A8A; margin-bottom:3px;">
                             <span style="font-weight:bold;">{{ email_signature.customer.title }}</span>
                         </div>
                     {% endif %}
