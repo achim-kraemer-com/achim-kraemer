@@ -30,28 +30,27 @@ services:
             - "PHP_DATE_TIMEZONE=Europe/Berlin"
             - "WEB_DOCUMENT_ROOT=/app/public"
 
-    apache-xdebug:
-        build:
-            context: ./build/
-            dockerfile: Dockerfile_apache_xdebug
-        platform: linux/amd64
-        container_name: achim-kraemer-dev
-        restart: 'always'
-        ports:
-            - "8081:80"
-        volumes:
-            - ../application:/app:cached
-        working_dir: '/app/'
-        env_file:
-            - .env.xdebug
-        environment:
-            # https://dockerfile.readthedocs.io/en/latest/content/DockerImages/dockerfiles/php-apache.html#php-ini-variables
-            - "php.memory_limit=1G"
-            - "PHP_DATE_TIMEZONE=Europe/Berlin"
-            - "WEB_DOCUMENT_ROOT=/app/public"
-
+#    apache-xdebug:
+#        build:
+#            context: ./build/
+#            dockerfile: Dockerfile_apache_xdebug
+#        platform: linux/amd64
+#        container_name: achim-kraemer-dev
+#        restart: 'always'
+#        ports:
+#            - "8081:80"
+#        volumes:
+#            - ../application:/app:cached
+#        working_dir: '/app/'
+#        env_file:
+#            - .env.xdebug
+#        environment:
+#            # https://dockerfile.readthedocs.io/en/latest/content/DockerImages/dockerfiles/php-apache.html#php-ini-variables
+#            - "php.memory_limit=1G"
+#            - "PHP_DATE_TIMEZONE=Europe/Berlin"
+#            - "WEB_DOCUMENT_ROOT=/app/public"
     node:
-        image: node:16
+        image: node:22
         platform: linux/amd64
         container_name: symfony_node
         working_dir: /var/www/html
