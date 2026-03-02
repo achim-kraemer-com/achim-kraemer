@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitenkarte Achim Krämer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-purple: #2B2434;
+            --accent-beige: #E7D2A5;
+            --bright-glow: #FFF9ED;
+            --text-grey: #B9B5B5;
+            /* Maße in mm für Präzision */
+            --width-total: 91mm;  /* 85 + 3 + 3 */
+            --height-total: 61mm; /* 55 + 3 + 3 */
+            --width-trim: 85mm;
+            --height-trim: 55mm;
+            --bleed: 3mm;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            gap: 50px;
+        }
+
+        /* Die Karte selbst */
+        .card-container {
+            position: relative;
+            width: var(--width-total);
+            height: var(--height-total);
+            background-color: var(--bg-purple);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            cursor: default;
+        }
+
+        /* Hilfslinien zur Visualisierung */
+        .guides {
+            position: absolute;
+            top: var(--bleed);
+            left: var(--bleed);
+            width: var(--width-trim);
+            height: var(--height-trim);
+            border: 1px dashed rgba(255,255,255,0.05);
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .label {
+            color: #333;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Hintergrund Code-Pattern */
+        .code-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 5.8px;
+            color: rgba(231, 210, 165, 0.18);
+            padding: 5mm;
+            line-height: 1.25;
+            white-space: pre;
+            pointer-events: none;
+            text-align: left;
+        }
+
+        /* Die leuchtende Kugel (Vorderseite) */
+        .glow-sphere {
+            width: 32mm;
+            height: 32mm;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, var(--bright-glow) 0%, var(--accent-beige) 60%, #C9B385 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                    0 0 20px rgba(231, 210, 165, 0.3),
+                    inset -5px -5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 6mm;
+            position: relative;
+            z-index: 10;
+        }
+
+        .glow-sphere::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            width: 25%;
+            height: 20%;
+            background: white;
+            border-radius: 50%;
+            filter: blur(4px);
+            opacity: 0.6;
+        }
+
+        .ak-text {
+            color: var(--bg-purple);
+            font-size: 12mm;
+            font-weight: 800;
+            letter-spacing: -0.5mm;
+            z-index: 11;
+        }
+
+        /* Texte */
+        .name-front {
+            color: var(--accent-beige);
+            font-size: 5.5mm;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 0.3mm;
+            z-index: 10;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .role-front {
+            color: var(--text-grey);
+            font-size: 3.2mm;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 1.5mm;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* Rückseiten Layout */
+        .back-content {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            padding: calc(var(--bleed) + 12mm) calc(var(--bleed) + 7mm) var(--bleed);
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .left-col {
+            flex: 0 0 30%;
+            border-right: 1px solid rgba(231, 210, 165, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+            padding-right: 2.5mm;
+        }
+
+        .right-col {
+            flex: 1;
+            padding-left: 2.5mm;
+            display: flex;
+            flex-direction: column;
+            white-space: nowrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 3.5mm;
+            color: #fff;
+            font-size: 3mm;
+            margin-top: 4mm;
+        }
+
+        .contact-icon {
+            width: 4mm;
+            height: 4mm;
+            color: var(--accent-beige);
+        }
+
+        /* QR Code Styling - jetzt unter dem Namen */
+        .qr-wrapper {
+            margin-top: 4mm;
+            width: 14mm;
+            height: 14mm;
+            background-color: var(--accent-beige);
+            padding: 0.8mm;
+            border-radius: 0.5mm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .qr-code {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .label, .guides, .print-btn { display: none; }
+            .card-container { box-shadow: none; margin: 0; page-break-after: always; }
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2B2434;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            z-index: 1000;
+        }
+        .print-btn:hover { background: #3f354d; }
+    </style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">Als PDF speichern / Drucken</button>
+
+<!-- VORDERSEITE -->
+<div class="flex flex-col items-center">
+    <div class="label">Vorderseite (Branding)</div>
+    <div class="card-container">
+        <div class="guides"></div>
+        <div class="code-pattern">
+            &lt;?php
+
+            namespace App\Service;
+
+            use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
+            use App\Kernel\ChallengeResolver;
+
+            #[Autoconfigure(lazy: true)]
+            class SolutionEngine extends AbstractEngine
+            {
+            private string $provider = "Achim Krämer";
+
+            public function __construct(
+            private readonly ChallengeResolver $resolver,
+            private readonly LoggerInterface $logger
+            ) {}
+
+            public function solveComplexIssue(Issue $issue): Result
+            {
+            $this->logger->info("Suche gestartet für: " . $issue->getTitle());
+
+            // Die optimale Lösung findet Achim Krämer
+            $solution = $this->resolver->findOptimalPath($issue);
+
+            if ($solution->isComplex()) {
+            return $this->provideExpertConsultation($this->provider);
+            }
+
+            return new Result(
+            success: true,
+            engineer: $this->provider,
+            data: $solution->getCompiledCode()
+            );
+            }
+
+            private function provideExpertConsultation(string $expert): Result
+            {
+            return new Result(
+            status: "Die Lösung findet $expert",
+            quality: Quality::EXCELLENT
+            );
+            }
+            }
+
+            // EOF: Professional Backend Architecture
+        </div>
+
+        <div class="flex flex-col items-center justify-center h-full">
+            <div class="glow-sphere">
+                <span class="ak-text">AK</span>
+            </div>
+            <h1 class="name-front">Achim Krämer</h1>
+            <p class="role-front">Software Developer</p>
+        </div>
+    </div>
+</div>
+
+<!-- RÜCKSEITE -->
+<div class="flex flex-col items-center">
+    <div class="label">Rückseite (Kontakt)</div>
+    <div class="card-container">
+        <div class="guides"></div>
+
+        <div class="back-content">
+            <div class="left-col">
+                <div style="color: var(--accent-beige); font-weight: 700; font-size: 4.8mm; line-height: 1.1;">Achim Krämer</div>
+                <!-- QR Code jetzt hier links unter dem Namen -->
+                <div class="qr-wrapper">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://achim-kraemer.com&color=2B2434&bgcolor=E7D2A5" alt="QR Code Webseite" class="qr-code">
+                </div>
+            </div>
+
+            <div class="right-col">
+                <!-- Rolle jetzt oben rechts -->
+                <div style="color: var(--text-grey); font-size: 3.2mm; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500; margin-bottom: 1mm;">Software Developer</div>
+
+                <div class="contact-item" style="margin-top: 2mm;">
+                    <svg class="contact-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    01756 821391
+                </div>
+                <div class="contact-item" style="margin-top: 2mm;">
+                    <svg class="contact-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    kontakt@achim-kraemer.com
+                </div>
+                <div class="contact-item" style="margin-top: 2mm;">
+                    <svg class="contact-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                    achim-kraemer.com
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

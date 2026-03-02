@@ -39,4 +39,22 @@ class BusinessCardController extends AbstractController
     {
         return $this->render('business_card/index5.html.twig');
     }
+
+    #[Route('/business-card6')]
+    public function businessCard6(): Response
+    {
+        return $this->render('business_card/index6.html.twig');
+    }
+
+    #[Route('/business-card7')]
+    public function businessCard7(): Response
+    {
+        return $this->render('business_card/index7.html.twig');
+    }
+
+    #[Route('/business-card8')]
+    public function businessCard8(): Response
+    {
+        return $this->render('business_card/index8.html.twig');
+    }
 }
