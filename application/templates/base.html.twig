@@ -9,10 +9,63 @@
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('build/images/favicon-16x16.png') }}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('build/images/favicon-32x32.png') }}">
         <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('build/images/favicon-96x96.png') }}">
-{#        <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
-        <meta name="description" content="{% block description %}Symfony Freelancer gesucht? Ich unterstütze ihre Projekt und bringe über 15 Jahre PHP-Erfahrung mit ein.{% endblock %}">
+        <meta name="description" content="{% block description %}Symfony Freelancer gesucht? Ich unterstütze ihr Projekt und bringe über 15 Jahre PHP-Erfahrung mit ein.{% endblock %}">
         <link rel="canonical" href="{{ app.request.uri }}">
+
+        <!-- GEO Geographic Metadata (Local SEO) -->
+        <meta name="geo.region" content="DE-NW">
+        <meta name="geo.placename" content="Ibbenbüren">
+        <meta name="geo.position" content="52.277416;7.716688">
+        <meta name="ICBM" content="52.277416, 7.716688">
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="{% block og_title %}{{ block('title') }}{% endblock %}">
+        <meta property="og:description" content="{% block og_description %}{{ block('description') }}{% endblock %}">
+        <meta property="og:url" content="{{ app.request.uri }}">
+        <meta property="og:site_name" content="Achim Krämer | Symfony Freelancer">
+        <meta property="og:locale" content="{{ app.request.locale == 'en' ? 'en_US' : 'de_DE' }}">
+        <meta property="og:image" content="{{ absolute_url(asset('build/images/DSC4074.jpeg')) }}">
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ block('title') }}">
+        <meta name="twitter:description" content="{{ block('description') }}">
+        <meta name="twitter:image" content="{{ absolute_url(asset('build/images/DSC4074.jpeg')) }}">
+
+        <!-- Structured Data (JSON-LD Schema) -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          "name": "Achim Krämer",
+          "image": "{{ absolute_url(asset('build/images/DSC4074.jpeg')) }}",
+          "@id": "{{ absolute_url(path('app_home')) }}",
+          "url": "{{ absolute_url(path('app_home')) }}",
+          "telephone": "+49 1756 821391",
+          "priceRange": "$$$",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Böckemeyerskamp 20",
+            "addressLocality": "Ibbenbüren",
+            "postalCode": "49479",
+            "addressCountry": "DE"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.277416,
+            "longitude": 7.716688
+          },
+          "sameAs": [
+            "https://www.linkedin.com/in/achim-kr%C3%A4mer-a72994213/",
+            "https://github.com/achim-kraemer-com"
+          ],
+          "jobTitle": "Symfony Freelancer & PHP Webentwickler",
+          "knowsAbout": ["Symfony", "PHP", "Web Development", "API development", "Docker", "Database design", "AI Integration", "Agentic AI"]
+        }
+        </script>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}

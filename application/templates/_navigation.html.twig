@@ -1,32 +1,33 @@
 <div class="locale-container">
-    <a class="locale-link" href="{{ path('switch_locale', {'locale': 'de'}) }}">🇩🇪</a>
-    <a class="locale-link" href="{{ path('switch_locale', {'locale': 'en'}) }}">🇬🇧</a>
+    <a class="locale-link" href="{{ path('switch_locale', {'locale': 'de'}) }}">DE</a>
+    <a class="locale-link" href="{{ path('switch_locale', {'locale': 'en'}) }}">EN</a>
 </div>
-<a href="{{ path('app_home') }}" class="double-hover-effect">
+
+<a href="{{ path('app_home') }}" class="inline-block">
     <div class="navigation-header">{{ 'app.header.name'|trans }}</div>
 </a>
 
 <!-- Hamburger Button -->
-<button id="burger-btn" class="block lg:hidden pl-4 pt-8 rounded fixed top-4 left-4 z-50">
-    <div class="horizontal-line"></div>
-    <div class="horizontal-line"></div>
-    <div class="horizontal-line"></div>
+<button id="burger-btn" class="block lg:hidden p-3 rounded-xl bg-[#0f172a]/60 backdrop-blur-md border border-white/10 fixed top-4 right-4 z-50 flex flex-col justify-center items-center gap-1.5 w-11 h-11 transition-all hover:bg-[#0f172a]/80">
+    <span class="w-5 h-0.5 bg-white rounded-full transition-transform"></span>
+    <span class="w-5 h-0.5 bg-white rounded-full transition-transform"></span>
+    <span class="w-5 h-0.5 bg-white rounded-full transition-transform"></span>
 </button>
 
-<!-- Mobile Navigation -->
-<div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm hidden z-40 transition-opacity duration-500 ease-in-out">
-    <nav class="flex flex-col items-center justify-between h-full pt-80 pb-80">
-        <a href="{% if links is defined and links == 'direct' %}#services{% else %}{{ path('app_home') }}#services{% endif %}" class="navigation-link text-3xl font-semibold w-full text-center py-8">{{ 'app.navigation.services'|trans }}</a>
-        <a href="{% if links is defined and links == 'direct' %}#about{% else %}{{ path('app_home') }}#about{% endif %}" class="navigation-link text-3xl font-semibold w-full text-center py-8">{{ 'app.navigation.about'|trans }}</a>
-        <a href="{% if links is defined and links == 'direct' %}#portfolio{% else %}{{ path('app_home') }}#portfolio{% endif %}" class="navigation-link text-3xl font-semibold w-full text-center py-8">{{ 'app.navigation.portfolio'|trans }}</a>
-        <a href="{% if links is defined and links == 'direct' %}#contact{% else %}{{ path('app_home') }}#contact{% endif %}" class="navigation-link text-3xl font-semibold w-full text-center py-8">{{ 'app.navigation.contact'|trans }}</a>
+<!-- Mobile Navigation Menu -->
+<div id="mobile-menu" class="fixed inset-0 bg-[#080b11]/95 backdrop-blur-xl hidden z-40 flex flex-col justify-center items-center">
+    <nav class="flex flex-col items-center gap-8 text-center">
+        <a href="{% if links is defined and links == 'direct' %}#services{% else %}{{ path('app_home') }}#services{% endif %}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ 'app.navigation.services'|trans }}</a>
+        <a href="{% if links is defined and links == 'direct' %}#about{% else %}{{ path('app_home') }}#about{% endif %}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ 'app.navigation.about'|trans }}</a>
+        <a href="{% if links is defined and links == 'direct' %}#portfolio{% else %}{{ path('app_home') }}#portfolio{% endif %}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ 'app.navigation.portfolio'|trans }}</a>
+        <a href="{% if links is defined and links == 'direct' %}#contact{% else %}{{ path('app_home') }}#contact{% endif %}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ 'app.navigation.contact'|trans }}</a>
     </nav>
 </div>
 
-<!-- Navigation -->
-<nav id="nav-menu" class="hidden lg:flex flex-col lg:flex-row lg:space-x-4 absolute lg:relative top-full left-0 w-full lg:w-auto shadow-lg lg:shadow-none transition-all duration-300 ease-in-out">
-    <a href="{% if links is defined and links == 'direct' %}#services{% else %}{{ path('app_home') }}#services{% endif %}" class="double-hover-effect navigation-link block px-4 py-2">{{ 'app.navigation.services'|trans }}</a>
-    <a href="{% if links is defined and links == 'direct' %}#about{% else %}{{ path('app_home') }}#about{% endif %}" class="double-hover-effect navigation-link block px-4 py-2">{{ 'app.navigation.about'|trans }}</a>
-    <a href="{% if links is defined and links == 'direct' %}#portfolio{% else %}{{ path('app_home') }}#portfolio{% endif %}" class="double-hover-effect navigation-link block px-4 py-2">{{ 'app.navigation.portfolio'|trans }}</a>
-    <a href="{% if links is defined and links == 'direct' %}#contact{% else %}{{ path('app_home') }}#contact{% endif %}" class="double-hover-effect navigation-link block px-4 py-2">{{ 'app.navigation.contact'|trans }}</a>
+<!-- Desktop Navigation -->
+<nav id="nav-menu" class="hidden lg:flex items-center gap-2">
+    <a href="{% if links is defined and links == 'direct' %}#services{% else %}{{ path('app_home') }}#services{% endif %}" class="double-hover-effect navigation-link px-4 py-2">{{ 'app.navigation.services'|trans }}</a>
+    <a href="{% if links is defined and links == 'direct' %}#about{% else %}{{ path('app_home') }}#about{% endif %}" class="double-hover-effect navigation-link px-4 py-2">{{ 'app.navigation.about'|trans }}</a>
+    <a href="{% if links is defined and links == 'direct' %}#portfolio{% else %}{{ path('app_home') }}#portfolio{% endif %}" class="double-hover-effect navigation-link px-4 py-2">{{ 'app.navigation.portfolio'|trans }}</a>
+    <a href="{% if links is defined and links == 'direct' %}#contact{% else %}{{ path('app_home') }}#contact{% endif %}" class="double-hover-effect navigation-link px-4 py-2">{{ 'app.navigation.contact'|trans }}</a>
 </nav>
