@@ -6,3 +6,5 @@ application/
 
 ### Configuration
 .env
+
+.claude/
