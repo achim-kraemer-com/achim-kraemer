@@ -16,7 +16,7 @@
 
 <!-- Mobile Navigation Menu -->
 <div id="mobile-menu" class="fixed inset-0 bg-[#080b11]/95 backdrop-blur-xl hidden z-40 flex flex-col justify-center items-center">
-    <nav class="flex flex-col items-center gap-8 text-center">
+    <nav class="flex flex-col items-center justify-center gap-8 text-center h-full">
         <a href="{% if links is defined and links == 'direct' %}#services{% else %}{{ path('app_home') }}#services{% endif %}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ 'app.navigation.services'|trans }}</a>
         <a href="{% if links is defined and links == 'direct' %}#about{% else %}{{ path('app_home') }}#about{% endif %}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ 'app.navigation.about'|trans }}</a>
         <a href="{% if links is defined and links == 'direct' %}#portfolio{% else %}{{ path('app_home') }}#portfolio{% endif %}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ 'app.navigation.portfolio'|trans }}</a>

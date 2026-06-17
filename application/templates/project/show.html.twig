@@ -8,7 +8,7 @@
         <h1>{{ 'app.project.title'|trans }}</h1>
         <form name="create-invoice" method="post" action="{{ path('admin_project_create_invoice', {'id': project.id}) }}">
 
-        <table class="table min-w-full bg-white border border-gray-200">
+        <table class="table min-w-full">
             <thead>
             <tr>
                 <th>{{ 'app.project.project_title'|trans }}</th>
@@ -26,7 +26,7 @@
                 <td>{{ project.endDate ? project.endDate|date('Y-m-d') : '' }}</td>
                 <td>{{ project.customer }}</td>
             </tr>
-            <table class="table min-w-full bg-white border border-gray-200">
+            <table class="table min-w-full">
                 <thead>
                 <tr>
                     <th></th>
