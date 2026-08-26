@@ -1,2 +1,9 @@
 docker/data
 .claude/settings.json
+
+###> Umgebungsdateien ###
+# Enthalten Zugangsdaten und gehoeren nicht ins Repository.
+# Jede Umgebung (lokal, Server, CI) haelt ihre eigene, ungetrackte Datei vor.
+.env
+.env.*
+###< Umgebungsdateien ###
