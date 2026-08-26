@@ -10,6 +10,7 @@ app.header.slogan2: with over 15 years of experience for your custom projects
 app.navigation.about: About Me
 app.navigation.services: Services
 app.navigation.portfolio: Portfolio
+app.navigation.references: References
 app.navigation.contact: Contact
 app.services.text: 'I am an experienced web developer with over 15 years of expertise in PHP and Symfony. My focus is on developing robust and scalable web applications that seamlessly integrate into existing systems and meet the highest standards of performance and security.<br><br>Throughout my career, I have worked on a wide range of projects, from small startups to large enterprise solutions. This has given me deep insights into various industries and allowed me to develop customized solutions tailored to clients needs. My services include:'
 app.services.title1: 'Custom Web Applications'
@@ -58,6 +59,19 @@ app.portfolio.text5: 'Clear project communication and close collaboration with s
 app.portfolio.title6: 'Technologies and Tools:'
 app.portfolio.text6: 'Programming Languages: PHP8.x+, JavaScript, HTML5, CSS3<br>Frameworks: Symfony 2 - 7+, jQuery<br>Databases: MySQL, PostgreSQL, MongoDB, Firestore, BigQuery<br>APIs: REST, GraphQL, SOAP<br>DevOps: Docker, Jenkins<br>Version Control: Git, GitHub, GitLab'
 app.portfolio.end_text: 'I look forward to driving your project forward together with you!'
+app.references.text: 'Selected projects I have delivered as a freelance Symfony developer – from architecture and development through to live operation.'
+app.references.mirwena_category: 'Digital patient intake for therapy practices'
+app.references.mirwena_title: 'Mirwena – Digital Patient Intake Form'
+app.references.mirwena_link_title: 'Mirwena – digital patient intake form for physiotherapy and osteopathy practices'
+app.references.mirwena_text: 'Mirwena is a web application for physiotherapy, osteopathy and occupational therapy practices: patients complete their intake form at home on their own phone before the appointment, and the practice receives it complete, legible and encrypted – no retyping, no unreadable handwriting. I built the project as a freelance developer: architecture, backend, interface and operations.'
+app.references.mirwena_feature1: '<b>Symfony backend</b> – a dedicated installation, database and encryption key per practice instead of one shared data pool.'
+app.references.mirwena_feature2: '<b>GDPR-compliant encryption</b> – complaints, pre-existing conditions, medication and signature are stored field-by-field encrypted (Art. 9 GDPR).'
+app.references.mirwena_feature3: '<b>Interactive body chart</b> – patients mark pain zones on the front and back view directly with their finger.'
+app.references.mirwena_feature4: '<b>Secure single-use access</b> – links via email and QR code, valid for 24 hours, then automatically invalidated and deleted.'
+app.references.mirwena_feature5: '<b>Multi-tenancy &amp; branding</b> – a dedicated subdomain per practice with individual colours, logo and a formatted PDF print view.'
+app.references.mirwena_link: 'View the project on mirwena.de'
+app.references.mirwena_tech_privacy: 'GDPR'
+app.references.mirwena_schema_description: 'Digital patient intake form for physiotherapy, osteopathy and occupational therapy practices: patients complete the form on their own device before the appointment, and the practice receives it complete, legible and encrypted in line with GDPR. Built by Achim Krämer as a freelance Symfony developer.'
 app.customer.title: Kunden
 app.customer.new_customer: Neuen Kunden anlegen
 app.customer.edit_customer: Kunden bearbeiten

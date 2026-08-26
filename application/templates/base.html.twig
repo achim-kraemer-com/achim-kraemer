@@ -66,6 +66,9 @@
           "knowsAbout": ["Symfony", "PHP", "Web Development", "API development", "Docker", "Database design", "AI Integration", "Agentic AI"]
         }
         </script>
+
+        {% block structured_data %}{% endblock %}
+
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}

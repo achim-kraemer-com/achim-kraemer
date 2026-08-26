@@ -20,6 +20,7 @@
         <a href="{% if links is defined and links == 'direct' %}#services{% else %}{{ path('app_home') }}#services{% endif %}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ 'app.navigation.services'|trans }}</a>
         <a href="{% if links is defined and links == 'direct' %}#about{% else %}{{ path('app_home') }}#about{% endif %}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ 'app.navigation.about'|trans }}</a>
         <a href="{% if links is defined and links == 'direct' %}#portfolio{% else %}{{ path('app_home') }}#portfolio{% endif %}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ 'app.navigation.portfolio'|trans }}</a>
+        <a href="{% if links is defined and links == 'direct' %}#references{% else %}{{ path('app_home') }}#references{% endif %}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ 'app.navigation.references'|trans }}</a>
         <a href="{% if links is defined and links == 'direct' %}#contact{% else %}{{ path('app_home') }}#contact{% endif %}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ 'app.navigation.contact'|trans }}</a>
     </nav>
 </div>
@@ -29,5 +30,6 @@
     <a href="{% if links is defined and links == 'direct' %}#services{% else %}{{ path('app_home') }}#services{% endif %}" class="double-hover-effect navigation-link px-4 py-2">{{ 'app.navigation.services'|trans }}</a>
     <a href="{% if links is defined and links == 'direct' %}#about{% else %}{{ path('app_home') }}#about{% endif %}" class="double-hover-effect navigation-link px-4 py-2">{{ 'app.navigation.about'|trans }}</a>
     <a href="{% if links is defined and links == 'direct' %}#portfolio{% else %}{{ path('app_home') }}#portfolio{% endif %}" class="double-hover-effect navigation-link px-4 py-2">{{ 'app.navigation.portfolio'|trans }}</a>
+    <a href="{% if links is defined and links == 'direct' %}#references{% else %}{{ path('app_home') }}#references{% endif %}" class="double-hover-effect navigation-link px-4 py-2">{{ 'app.navigation.references'|trans }}</a>
     <a href="{% if links is defined and links == 'direct' %}#contact{% else %}{{ path('app_home') }}#contact{% endif %}" class="double-hover-effect navigation-link px-4 py-2">{{ 'app.navigation.contact'|trans }}</a>
 </nav>

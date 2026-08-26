@@ -70,7 +70,7 @@ html {
     background-color: var(--background-color);
 }
 
-.services-container, .about-container, .contact-container, .portfolio-container {
+.services-container, .about-container, .contact-container, .portfolio-container, .references-container {
     display: flex;
     margin: 0 auto;
     max-width: 1200px;
