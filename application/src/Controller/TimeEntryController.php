@@ -56,6 +56,48 @@ final class TimeEntryController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/timer/start', name: 'timer_start', methods: ['POST'])]
+    public function timerStart(Request $request, TimeEntry $timeEntry, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('timer'.$timeEntry->getId(), $request->getPayload()->getString('_token'))) {
+            $timeEntry->startTimer();
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_time_entry_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/timer/stop', name: 'timer_stop', methods: ['POST'])]
+    public function timerStop(Request $request, TimeEntry $timeEntry, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('timer'.$timeEntry->getId(), $request->getPayload()->getString('_token'))) {
+            $timeEntry->stopTimer();
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_time_entry_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/timer/finish', name: 'timer_finish', methods: ['POST'])]
+    public function timerFinish(Request $request, TimeEntry $timeEntry, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('timer'.$timeEntry->getId(), $request->getPayload()->getString('_token'))) {
+            // Fold any running interval into the accumulated seconds, then round up to full minutes.
+            $timeEntry->stopTimer();
+
+            $minutes = (int) \ceil($timeEntry->getAccumulatedSeconds() / 60);
+            $timeEntry->setAccumulatedSeconds($minutes * 60);
+
+            $hours = \round($minutes / 60, 2);
+            $timeEntry->setHours((string) $hours);
+            $timeEntry->setPrice((string) ($hours * Invoice::HOURLY_RATE));
+
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_time_entry_index', [], Response::HTTP_SEE_OTHER);
+    }
+
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, TimeEntry $timeEntry, EntityManagerInterface $entityManager): Response
     {

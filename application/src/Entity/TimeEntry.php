@@ -55,6 +55,18 @@ class TimeEntry
     #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2, nullable: true)]
     private ?string $price = null;
 
+    /**
+     * Timestamp when the currently running timer was started; null when the timer is stopped.
+     */
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
+    private ?\DateTimeImmutable $timerStartedAt = null;
+
+    /**
+     * Total measured seconds from all completed start/stop intervals.
+     */
+    #[ORM\Column(type: Types::INTEGER, options: ['default' => 0])]
+    private int $accumulatedSeconds = 0;
+
     public function __construct()
     {
         $this->invoices = new ArrayCollection();
@@ -172,6 +184,74 @@ class TimeEntry
     public function setPrice(?string $price): static
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getTimerStartedAt(): ?\DateTimeImmutable
+    {
+        return $this->timerStartedAt;
+    }
+
+    public function setTimerStartedAt(?\DateTimeImmutable $timerStartedAt): static
+    {
+        $this->timerStartedAt = $timerStartedAt;
+
+        return $this;
+    }
+
+    public function getAccumulatedSeconds(): int
+    {
+        return $this->accumulatedSeconds;
+    }
+
+    public function setAccumulatedSeconds(int $accumulatedSeconds): static
+    {
+        $this->accumulatedSeconds = $accumulatedSeconds;
+
+        return $this;
+    }
+
+    public function isTimerRunning(): bool
+    {
+        return $this->timerStartedAt !== null;
+    }
+
+    /**
+     * Total elapsed seconds including the currently running interval, if any.
+     */
+    public function getElapsedSeconds(): int
+    {
+        $elapsed = $this->accumulatedSeconds;
+
+        if ($this->timerStartedAt !== null) {
+            $elapsed += \max(0, (new \DateTimeImmutable())->getTimestamp() - $this->timerStartedAt->getTimestamp());
+        }
+
+        return $elapsed;
+    }
+
+    /**
+     * Starts the timer if it is not already running.
+     */
+    public function startTimer(): static
+    {
+        if ($this->timerStartedAt === null) {
+            $this->timerStartedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    /**
+     * Stops the timer and folds the running interval into the accumulated seconds.
+     */
+    public function stopTimer(): static
+    {
+        if ($this->timerStartedAt !== null) {
+            $this->accumulatedSeconds += \max(0, (new \DateTimeImmutable())->getTimestamp() - $this->timerStartedAt->getTimestamp());
+            $this->timerStartedAt = null;
+        }
 
         return $this;
     }

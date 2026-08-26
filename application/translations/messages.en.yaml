@@ -116,6 +116,12 @@ app.time_entry.hours: Stunden
 app.time_entry.description: Beschreibung
 app.time_entry.status: Status
 app.time_entry.invoiced: Bezahlt
+app.time_entry.timer: Timer
+app.time_entry.timer_actions: Actions
+app.time_entry.timer_start: Start timer
+app.time_entry.timer_stop: Stop timer
+app.time_entry.timer_finish: Finish task
+app.time_entry.timer_finish_confirm: Finish task and round the time up to full minutes?
 app.email_signature.title: E-Mail Signatur
 app.email_signature.show: anzeigen
 app.email_signature.edit: E-Mail Signatur bearbeiten

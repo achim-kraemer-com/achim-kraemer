@@ -16,6 +16,8 @@
                     <th>{{ 'app.time_entry.price'|trans }}</th>
                     <th>{{ 'app.time_entry.description'|trans }}</th>
                     <th>{{ 'app.time_entry.invoiced'|trans }}</th>
+                    <th>{{ 'app.time_entry.timer'|trans }}</th>
+                    <th>{{ 'app.time_entry.timer_actions'|trans }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,10 +29,36 @@
                     <td>{{ time_entry.price|replace({'.': ','}) }} {% if time_entry.price != null %}€{% endif %}</td>
                     <td>{{ time_entry.description }}</td>
                     <td>{{ time_entry.invoiced ? 'app.default.yes'|trans : 'app.default.no'|trans }}</td>
+                    <td>
+                        <span class="timer-display font-mono{{ time_entry.timerRunning ? ' timer-running' : '' }}"
+                              data-timer
+                              data-seconds="{{ time_entry.elapsedSeconds }}"
+                              data-running="{{ time_entry.timerRunning ? '1' : '0' }}"></span>
+                    </td>
+                    <td>
+                        <div class="timer-actions flex gap-2">
+                            {% if time_entry.timerRunning %}
+                                <form method="post" action="{{ path('admin_time_entry_timer_stop', {'id': time_entry.id}) }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('timer' ~ time_entry.id) }}">
+                                    <button class="button btn">{{ 'app.time_entry.timer_stop'|trans }}</button>
+                                </form>
+                            {% else %}
+                                <form method="post" action="{{ path('admin_time_entry_timer_start', {'id': time_entry.id}) }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('timer' ~ time_entry.id) }}">
+                                    <button class="button btn">{{ 'app.time_entry.timer_start'|trans }}</button>
+                                </form>
+                            {% endif %}
+                            <form method="post" action="{{ path('admin_time_entry_timer_finish', {'id': time_entry.id}) }}"
+                                  onsubmit="return confirm('{{ 'app.time_entry.timer_finish_confirm'|trans }}');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('timer' ~ time_entry.id) }}">
+                                <button class="button btn">{{ 'app.time_entry.timer_finish'|trans }}</button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="6">no records found</td>
+                    <td colspan="8">no records found</td>
                 </tr>
             {% endfor %}
             </tbody>

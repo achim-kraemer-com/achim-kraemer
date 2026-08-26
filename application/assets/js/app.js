@@ -31,3 +31,27 @@ if (navigationLinks !== null) {
         });
     });
 }
+
+// Zeiterfassung: laufende Timer sekundengenau anzeigen
+const formatDuration = (totalSeconds) => {
+    const total = Math.max(0, totalSeconds);
+    const hours = Math.floor(total / 3600);
+    const minutes = Math.floor((total % 3600) / 60);
+    const seconds = total % 60;
+
+    return [hours, minutes, seconds]
+        .map((value) => String(value).padStart(2, '0'))
+        .join(':');
+};
+
+document.querySelectorAll('[data-timer]').forEach((element) => {
+    let elapsed = parseInt(element.dataset.seconds, 10) || 0;
+    element.textContent = formatDuration(elapsed);
+
+    if (element.dataset.running === '1') {
+        setInterval(() => {
+            elapsed += 1;
+            element.textContent = formatDuration(elapsed);
+        }, 1000);
+    }
+});

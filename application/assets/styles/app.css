@@ -415,3 +415,21 @@ td a {
         gap: 8px;
     }
 }
+
+/* Timer / Zeiterfassung */
+.timer-display {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.03em;
+}
+.timer-display.timer-running {
+    color: #a78bfa;
+    animation: timer-pulse 1s ease-in-out infinite;
+}
+@keyframes timer-pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.55; }
+}
+.timer-actions form {
+    display: inline;
+    margin: 0;
+}
