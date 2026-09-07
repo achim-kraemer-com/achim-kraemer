@@ -1,0 +1,13 @@
+{#
+    AK-Bildmarke als Inline-SVG.
+    Bewusst inline statt <img src="ak-mark.svg">, damit die im <head> geladene
+    Lexend-Webfont und die Theme-Farben greifen. Die Datei-Varianten der Marke
+    (Lockup, Mono) liegen unter assets/images/brand/.
+    Parameter: size (px, Default 40)
+#}
+<svg class="ak-mark" width="{{ size|default(40) }}" height="{{ size|default(40) }}" viewBox="0 0 64 64"
+     xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <rect x="0" y="0" width="64" height="64" rx="14" fill="#7c3aed"></rect>
+    <text x="32" y="41" font-family="Lexend, 'Trebuchet MS', sans-serif" font-weight="800" font-size="27"
+          letter-spacing="-1.2" text-anchor="middle" fill="#ffffff">AK</text>
+</svg>

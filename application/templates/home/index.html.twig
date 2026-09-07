@@ -572,7 +572,10 @@
     <!-- Footer -->
     <footer>
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>&copy; {{ "now"|date("Y") }} Achim Krämer. Alle Rechte vorbehalten.</p>
+            <div class="footer-brand flex items-center gap-3">
+                {{ include('_logo.html.twig', {'size': 32}) }}
+                <p>&copy; {{ "now"|date("Y") }} Achim Krämer. Alle Rechte vorbehalten.</p>
+            </div>
             <div class="flex gap-6">
                 <a target="_blank" href="{{ path('app_data-protection_index') }}">{{ 'app.data_protection.title'|trans }}</a>
                 <a target="_blank" href="{{ path('app_impress_index') }}">{{ 'app.impress.title'|trans }}</a>

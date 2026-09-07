@@ -218,7 +218,10 @@
     <div class="background-container3"></div>
 
     <footer>
-        <p>&copy; 2024 Achim Krämer</p>
+        <div class="footer-brand flex items-center justify-center gap-3">
+            {{ include('_logo.html.twig', {'size': 32}) }}
+            <p>&copy; {{ "now"|date("Y") }} Achim Krämer</p>
+        </div>
         <a target="_blank" href="{{ path('app_data-protection_index') }}">{{ 'app.data_protection.title'|trans }}</a>
         <a target="_blank" href="{{ path('app_impress_index') }}">{{ 'app.impress.title'|trans }}</a>
         {#        <div>#}

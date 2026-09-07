@@ -3,8 +3,9 @@
     <a class="locale-link" href="{{ path('switch_locale', {'locale': 'en'}) }}">EN</a>
 </div>
 
-<a href="{{ path('app_home') }}" class="inline-block">
-    <div class="navigation-header">{{ 'app.header.name'|trans }}</div>
+<a href="{{ path('app_home') }}" class="brand-lockup" aria-label="{{ 'app.header.name'|trans }}">
+    {{ include('_logo.html.twig') }}
+    <span class="navigation-header">{{ 'app.header.name'|trans }}</span>
 </a>
 
 <!-- Hamburger Button -->
