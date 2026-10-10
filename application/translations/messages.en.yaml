@@ -72,6 +72,14 @@ app.references.mirwena_feature5: '<b>Multi-tenancy &amp; branding</b> – a dedi
 app.references.mirwena_link: 'View the project on mirwena.de'
 app.references.mirwena_tech_privacy: 'GDPR'
 app.references.mirwena_schema_description: 'Digital patient intake form for physiotherapy, osteopathy and occupational therapy practices: patients complete the form on their own device before the appointment, and the practice receives it complete, legible and encrypted in line with GDPR. Built by Achim Krämer as a freelance Symfony developer.'
+app.testimonials.title: 'Client testimonials'
+app.testimonials.text: 'Successful projects are built on trust, transparency and technical quality. Here my clients share their experience of working together. (Quotes in the original German.)'
+app.testimonials.iris_role: 'Legal guardian'
+app.testimonials.iris_quote: 'Achim Krämer hat meine Website als rechtliche Betreuerin professionell und sehr gut erstellt. Vielen Dank für die freundliche und kompetente Beratung. Wünsche meinerseits wurden umgehend und zufriedenstellend umgesetzt. Auch anschließend war er immer kurzfristig erreichbar.'
+app.testimonials.thomas_role: 'Therapy practice'
+app.testimonials.thomas_quote: 'Moin Achim, ich wollte mich ganz herzlich bei dir bedanken. Du hast meine Vorstellungen super umgesetzt und immer auf Augenhöhe mit mir kommuniziert. Du konntest meine Bedenken und Fragen sehr gut beantworten – dabei immer kompetent, aber dennoch unkompliziert. Und es hat richtig viel Spaß gemacht, mit dir zusammenzuarbeiten.'
+app.testimonials.thorsten_role: 'ELB Solution'
+app.testimonials.thorsten_quote: 'Wir sind sehr zufrieden mit der Erstellung unserer ersten Homepage durch Achim Krämer. Für ELB Solution war es der erste Schritt ins Internet – und die Umsetzung hätte besser nicht laufen können. Von Anfang an war die Zusammenarbeit unkompliziert, professionell und angenehm. Unsere Vorstellungen wurden schnell aufgenommen und mit viel Kreativität sowie technischem Know-how umgesetzt. Die Webseite ist modern, übersichtlich und funktioniert auf allen Geräten einwandfrei. Auch Änderungswünsche wurden zügig und zuverlässig umgesetzt. Dank Achim Krämer hat ELB Solution nun einen richtig gelungenen ersten Webauftritt. Klare Weiterempfehlung und vielen Dank für die tolle Arbeit!'
 app.customer.title: Kunden
 app.customer.new_customer: Neuen Kunden anlegen
 app.customer.edit_customer: Kunden bearbeiten
