@@ -113,7 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.testimonial-slider').forEach(slider => {
         const slides = slider.querySelectorAll('.testimonial-slide');
         const dots = slider.querySelectorAll('.testimonial-dot');
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         let current = 0;
         let timer = null;
 
@@ -124,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         const stop = () => { clearInterval(timer); timer = null; };
         const start = () => {
-            if (!reduceMotion && !timer) timer = setInterval(() => show(current + 1), 8000);
+            if (!timer) timer = setInterval(() => show(current + 1), 8000);
         };
 
         dots.forEach((dot, i) => dot.addEventListener('click', () => { show(i); stop(); start(); }));
