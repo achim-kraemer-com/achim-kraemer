@@ -108,3 +108,30 @@ document.addEventListener("DOMContentLoaded", function () {
 //     });
 // });
 
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.testimonial-slider').forEach(slider => {
+        const slides = slider.querySelectorAll('.testimonial-slide');
+        const dots = slider.querySelectorAll('.testimonial-dot');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let current = 0;
+        let timer = null;
+
+        const show = index => {
+            current = (index + slides.length) % slides.length;
+            slides.forEach((slide, i) => slide.classList.toggle('is-active', i === current));
+            dots.forEach((dot, i) => dot.classList.toggle('is-active', i === current));
+        };
+        const stop = () => { clearInterval(timer); timer = null; };
+        const start = () => {
+            if (!reduceMotion && !timer) timer = setInterval(() => show(current + 1), 8000);
+        };
+
+        dots.forEach((dot, i) => dot.addEventListener('click', () => { show(i); stop(); start(); }));
+        slider.addEventListener('mouseenter', stop);
+        slider.addEventListener('mouseleave', start);
+        slider.addEventListener('focusin', stop);
+        slider.addEventListener('focusout', start);
+        start();
+    });
+});
