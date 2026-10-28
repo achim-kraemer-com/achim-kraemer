@@ -1,2 +1,32 @@
 User-agent: *
+Disallow: /admin
+Disallow: /en/admin
+Disallow: /login
+Disallow: /en/login
+
+# KI-Suchsysteme ausdruecklich erlaubt
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
 Sitemap: https://achim-kraemer.com/sitemap.xml

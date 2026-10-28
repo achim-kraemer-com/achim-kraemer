@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale }}">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Symfony Entwickler & Freelancer mit 15 Jahren Erfahrung | Achim Krämer{% endblock %}</title>
@@ -16,6 +16,12 @@
         <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
         <meta name="description" content="{% block description %}Symfony Freelancer gesucht? Ich unterstütze ihr Projekt und bringe über 15 Jahre PHP-Erfahrung mit ein.{% endblock %}">
         <link rel="canonical" href="{{ app.request.uri }}">
+        {% set base_route = app.request.attributes.get('_route')|default('')|split('.')|first %}
+        {% if base_route starts with 'app_' and base_route != 'app_login' and base_route != 'app_logout' %}
+            <link rel="alternate" hreflang="de" href="{{ absolute_url(path(base_route ~ '.de')) }}">
+            <link rel="alternate" hreflang="en" href="{{ absolute_url(path(base_route ~ '.en')) }}">
+            <link rel="alternate" hreflang="x-default" href="{{ absolute_url(path(base_route ~ '.de')) }}">
+        {% endif %}
 
         <!-- GEO Geographic Metadata (Local SEO) -->
         <meta name="geo.region" content="DE-NW">
@@ -67,6 +73,30 @@
             "https://github.com/achim-kraemer-com"
           ],
           "jobTitle": "Symfony Freelancer & PHP Webentwickler",
+          "knowsAbout": ["Symfony", "PHP", "Web Development", "API development", "Docker", "Database design", "AI Integration", "Agentic AI"],
+          "founder": {"@id": "{{ absolute_url(path('app_home')) }}#person"}
+        }
+        </script>
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "@id": "{{ absolute_url(path('app_home')) }}#person",
+          "name": "Achim Krämer",
+          "url": "{{ absolute_url(path('app_home')) }}",
+          "image": "{{ absolute_url(asset('build/images/DSC4074.jpeg')) }}",
+          "jobTitle": "Symfony Freelancer & PHP Webentwickler",
+          "worksFor": {"@id": "{{ absolute_url(path('app_home')) }}"},
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Ibbenbüren",
+            "postalCode": "49479",
+            "addressCountry": "DE"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/in/achim-kr%C3%A4mer-a72994213/",
+            "https://github.com/achim-kraemer-com"
+          ],
           "knowsAbout": ["Symfony", "PHP", "Web Development", "API development", "Docker", "Database design", "AI Integration", "Agentic AI"]
         }
         </script>
