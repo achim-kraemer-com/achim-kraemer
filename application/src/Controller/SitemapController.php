@@ -11,41 +11,40 @@ use Symfony\Component\Routing\RouterInterface;
 
 class SitemapController extends AbstractController
 {
+    private const PRIORITIES = [
+        'app_home'                     => '1.0',
+        'app_impress_index'            => '0.3',
+        'app_data-protection_index'    => '0.3',
+        'app_cv'                       => '0.5',
+    ];
+
     #[Route('/sitemap.xml', name: 'sitemap', defaults: ['_format' => 'xml'])]
     public function index(RouterInterface $router): Response
     {
-        $routes = $router->getRouteCollection();
-        $urls   = [];
+        $urls = [];
 
-        foreach ($routes as $routeName => $route) {
-            // Symfony-interne Routen ignorieren (z. B. _profiler, _wdt)
-            if (\str_starts_with($routeName, '_')
-                || \str_starts_with($routeName, 'admin')
-                || \str_starts_with($routeName, 'app_login')
-                || \str_starts_with($routeName, 'app_logout')
-                || \str_starts_with($routeName, 'api')
-                || \str_starts_with($routeName, 'sitemap')
-                || \str_starts_with($routeName, 'upload')
-                || \str_starts_with($routeName, 'swagger')
-                || \str_starts_with($routeName, 'fos_user')) {
+        foreach ($router->getRouteCollection() as $routeName => $route) {
+            // Nur lokalisierte öffentliche Seiten (app_*.de / app_*.en), keine Visitenkarten-Entwürfe, Logins usw.
+            if (!\preg_match('/^(app_.+)\.(de|en)$/', $routeName, $matches)
+                || \str_starts_with($matches[1], 'app_businesscard')
+                || \str_starts_with($matches[1], 'app_login')
+                || \str_starts_with($matches[1], 'app_logout')) {
                 continue;
             }
 
-            // Versuche, eine absolute URL für die Route zu generieren
+            [, $baseRoute, $locale] = $matches;
+
             try {
-                $loc        = $this->generateUrl($routeName, [], RouterInterface::ABSOLUTE_URL);
-                $urls[$loc] = [
-                    'loc'      => $loc,
-                    'priority' => '0.8',
-                ];
+                $urls[$baseRoute]['priority']        = self::PRIORITIES[$baseRoute] ?? '0.8';
+                $urls[$baseRoute]['alternates'][$locale] = $this->generateUrl($routeName, [], RouterInterface::ABSOLUTE_URL);
             } catch (\Exception $e) {
                 // Falls die Route Parameter benötigt, überspringen wir sie
-                continue;
+                unset($urls[$baseRoute]['alternates'][$locale]);
             }
         }
 
         return $this->render('sitemap/sitemap.xml.twig', [
-            'urls' => $urls,
+            'urls' => \array_filter($urls, static fn (array $url): bool => !empty($url['alternates'])),
         ], new Response('', Response::HTTP_OK, ['Content-Type' => 'application/xml']));
     }
 }
