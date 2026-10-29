@@ -33,8 +33,9 @@ class SitemapController extends AbstractController
 
             // Versuche, eine absolute URL für die Route zu generieren
             try {
-                $urls[] = [
-                    'loc'      => $this->generateUrl($routeName, [], RouterInterface::ABSOLUTE_URL),
+                $loc        = $this->generateUrl($routeName, [], RouterInterface::ABSOLUTE_URL);
+                $urls[$loc] = [
+                    'loc'      => $loc,
                     'priority' => '0.8',
                 ];
             } catch (\Exception $e) {

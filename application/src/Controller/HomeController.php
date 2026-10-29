@@ -61,8 +61,8 @@ class HomeController extends AbstractController
 
         return $this->render('home/index.html.twig', [
             'form'        => $form,
-            'title'       => 'Symfony Entwickler & Freelancer | Achim Krämer',
-            'description' => 'Symfony Freelancer gesucht? Ich unterstütze ihre Projekt und bringe über 15 Jahre PHP-Erfahrung mit ein.',
+            'title'       => $translator->trans('app.home.title'),
+            'description' => $translator->trans('app.home.description'),
         ]);
     }
 

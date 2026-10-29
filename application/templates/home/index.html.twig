@@ -10,6 +10,15 @@
 {% endblock %}
 
 {% block structured_data %}
+    {% set faq_entities = [] %}
+    {% for n in 1..6 %}
+        {% set faq_entities = faq_entities|merge([{
+            '@type': 'Question',
+            'name': ('app.faq.q' ~ n)|trans,
+            'acceptedAnswer': {'@type': 'Answer', 'text': ('app.faq.a' ~ n)|trans},
+        }]) %}
+    {% endfor %}
+    <script type="application/ld+json">{{ {'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': faq_entities}|json_encode(constant('JSON_UNESCAPED_UNICODE') b-or constant('JSON_UNESCAPED_SLASHES'))|raw }}</script>
     <!-- Structured Data: Referenzprojekt Mirwena (Freelance-Entwicklung durch Achim Krämer) -->
     <script type="application/ld+json">
     {
@@ -274,6 +283,20 @@
                         </ul>
                     </div>
                 </div>
+
+                <ul class="flex flex-wrap gap-x-8 gap-y-3 mt-10">
+                    {% for route, label in {
+                        'app_service_symfony': 'app.services.title1',
+                        'app_service_api': 'app.services.title2',
+                        'app_service_ai': 'app.services.title5',
+                    } %}
+                        <li>
+                            <a href="{{ path(route) }}" class="inline-flex items-center gap-2 text-purple-400 font-semibold hover:text-purple-300 transition-colors">
+                                {{ label|trans }} &rarr;
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
@@ -520,12 +543,51 @@
                         <span class="tech-pill">{{ 'app.references.mirwena_tech_privacy'|trans }}</span>
                     </div>
 
+                    <a href="{{ path('app_reference_mirwena') }}" class="inline-flex items-center gap-2 text-purple-400 font-semibold hover:text-purple-300 transition-colors mr-6">{{ 'app.references.more'|trans }} &rarr;</a>
                     <a href="https://mirwena.de" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-purple-400 font-semibold hover:text-purple-300 transition-colors">
                         {{ 'app.references.mirwena_link'|trans }}
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 transition-transform group-hover:translate-x-1">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                         </svg>
                     </a>
+                </article>
+
+                <!-- Reference Card: freelancer -->
+                <article class="reference-card group bg-[#0f172a]/30 border border-white/5 p-8 md:p-10 rounded-2xl backdrop-blur-md hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300 mt-8">
+                    <span class="text-xs uppercase tracking-wider text-purple-400 font-bold block mb-3">{{ 'app.references.freelancer_category'|trans }}</span>
+                    <h4 class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-5">
+                        <a href="{{ path('app_reference_freelancer') }}" class="hover:text-purple-400 transition-colors">{{ 'app.references.freelancer_title'|trans }}</a>
+                    </h4>
+                    <p class="text-slate-300 leading-relaxed mb-8">{{ 'app.references.freelancer_text'|trans }}</p>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="tech-pill active">Symfony 8</span>
+                        <span class="tech-pill">PHP 8.5</span>
+                        <span class="tech-pill">Doctrine ORM</span>
+                        <span class="tech-pill">MariaDB</span>
+                        <span class="tech-pill">Docker</span>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-6">
+                        <a href="{{ path('app_reference_freelancer') }}" class="inline-flex items-center gap-2 text-purple-400 font-semibold hover:text-purple-300 transition-colors">{{ 'app.references.more'|trans }} &rarr;</a>
+                        <a href="https://freelancer.achim-kraemer.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-slate-400 hover:text-purple-300 transition-colors">freelancer.achim-kraemer.com</a>
+                    </div>
+                </article>
+                <!-- Reference Card: signature -->
+                <article class="reference-card group bg-[#0f172a]/30 border border-white/5 p-8 md:p-10 rounded-2xl backdrop-blur-md hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300 mt-8">
+                    <span class="text-xs uppercase tracking-wider text-purple-400 font-bold block mb-3">{{ 'app.references.signature_category'|trans }}</span>
+                    <h4 class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-5">
+                        <a href="{{ path('app_reference_email_signature') }}" class="hover:text-purple-400 transition-colors">{{ 'app.references.signature_title'|trans }}</a>
+                    </h4>
+                    <p class="text-slate-300 leading-relaxed mb-8">{{ 'app.references.signature_text'|trans }}</p>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="tech-pill active">Symfony</span>
+                        <span class="tech-pill">PHP 8.x</span>
+                        <span class="tech-pill">Twig</span>
+                        <span class="tech-pill">JavaScript</span>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-6">
+                        <a href="{{ path('app_reference_email_signature') }}" class="inline-flex items-center gap-2 text-purple-400 font-semibold hover:text-purple-300 transition-colors">{{ 'app.references.more'|trans }} &rarr;</a>
+                        <a href="https://email-signatur.achim-kraemer.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-slate-400 hover:text-purple-300 transition-colors">email-signatur.achim-kraemer.com</a>
+                    </div>
                 </article>
 
                 <!-- Testimonials ("Kundenstimmen") -->
@@ -559,6 +621,36 @@
     </div>
 
     <!-- Parallax Divider 4 -->
+    <div class="background-container2 relative h-40 border-y border-white/5">
+        <div class="absolute inset-0 bg-[#080b11]/40 backdrop-blur-[1px]"></div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div id="faq" class="block-container relative border-b border-white/5 py-24">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-12 items-start relative">
+            <div class="headline-container lg:w-1/3 xl:w-1/4 shrink-0">
+                <h3 class="headline text-3xl md:text-4xl lg:text-3xl xl:text-4xl font-extrabold tracking-tight text-white mb-2 translate-x-[-100%] transition-transform duration-700 ease-out">
+                    {{ 'app.faq.title'|trans }}
+                </h3>
+                <div class="w-16 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mt-4"></div>
+            </div>
+
+            <div class="hidden lg:block block-line vertical-line h-full w-[1px] bg-white/10 self-stretch transition-transform duration-700 ease-out"></div>
+
+            <div class="text w-full lg:w-2/3 xl:w-3/4 translate-x-20 transition-transform duration-700 ease-out">
+                <dl class="space-y-8">
+                    {% for n in 1..6 %}
+                        <div>
+                            <dt class="text-xl font-bold text-white tracking-tight mb-2">{{ ('app.faq.q' ~ n)|trans }}</dt>
+                            <dd class="text-slate-300 leading-relaxed">{{ ('app.faq.a' ~ n)|trans }}</dd>
+                        </div>
+                    {% endfor %}
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <!-- Parallax Divider 5 -->
     <div class="background-container2 relative h-40 border-y border-white/5">
         <div class="absolute inset-0 bg-[#080b11]/40 backdrop-blur-[1px]"></div>
     </div>

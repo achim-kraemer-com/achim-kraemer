@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% set prefix = 'app.page.' ~ id ~ '.' %}
+
+{% block title %}{{ (prefix ~ 'title')|trans }}{% endblock %}
+
+{% block description %}{{ (prefix ~ 'description')|trans }}{% endblock %}
+
+{% block structured_data %}
+    {% set home_url = absolute_url(path('app_home')) %}
+    {% set page_url = absolute_url(app.request.pathInfo) %}
+    {% set main_entity = type == 'service'
+        ? {
+            '@type': 'Service',
+            'name': (prefix ~ 'h1')|trans,
+            'description': (prefix ~ 'description')|trans,
+            'url': page_url,
+            'serviceType': (prefix ~ 'h1')|trans,
+            'areaServed': 'DE',
+            'provider': {'@id': home_url},
+        }
+        : {
+            '@type': 'WebApplication',
+            'name': (prefix ~ 'h1')|trans,
+            'description': (prefix ~ 'description')|trans,
+            'url': external_url,
+            'applicationCategory': 'BusinessApplication',
+            'operatingSystem': 'Web',
+            'creator': {'@id': home_url ~ '#person'},
+            'mainEntityOfPage': page_url,
+        }
+    %}
+    {% set graph = {
+        '@context': 'https://schema.org',
+        '@graph': [
+            main_entity,
+            {
+                '@type': 'BreadcrumbList',
+                'itemListElement': [
+                    {'@type': 'ListItem', 'position': 1, 'name': 'app.header.name'|trans, 'item': home_url},
+                    {'@type': 'ListItem', 'position': 2, 'name': (prefix ~ 'h1')|trans, 'item': page_url},
+                ],
+            },
+        ],
+    } %}
+    <script type="application/ld+json">{{ graph|json_encode(constant('JSON_UNESCAPED_UNICODE') b-or constant('JSON_UNESCAPED_SLASHES'))|raw }}</script>
+{% endblock %}
+
+{% block body %}
+    <header class="relative">
+        {% include '_scroll_navigation.html.twig' with {'links': ''} %}
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 pt-36 pb-24">
+        <nav aria-label="Breadcrumb" class="text-sm text-slate-500 mb-8">
+            <a href="{{ path('app_home') }}" class="hover:text-purple-400 transition-colors">{{ 'app.header.name'|trans }}</a>
+            <span class="mx-2">/</span>
+            <a href="{{ path('app_home') }}#{{ type == 'service' ? 'services' : 'references' }}" class="hover:text-purple-400 transition-colors">{{ (type == 'service' ? 'app.navigation.services' : 'app.navigation.references')|trans }}</a>
+        </nav>
+
+        <article>
+            <span class="text-xs uppercase tracking-wider text-purple-400 font-bold block mb-3">{{ (type == 'service' ? 'app.page.eyebrow_service' : 'app.page.eyebrow_reference')|trans }}</span>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">{{ (prefix ~ 'h1')|trans }}</h1>
+            <p class="text-lg md:text-xl text-slate-300 leading-relaxed mb-10">{{ (prefix ~ 'lead')|trans }}</p>
+
+            <ul class="space-y-4 text-slate-300 mb-12 bg-[#0f172a]/30 border border-white/5 p-8 rounded-2xl backdrop-blur-md">
+                {% for n in 1..4 %}
+                    <li class="flex items-start gap-2.5">
+                        <span class="w-1.5 h-1.5 rounded-full {{ n is odd ? 'bg-purple-500' : 'bg-indigo-500' }} mt-2.5 shrink-0"></span>
+                        <p class="leading-relaxed">{{ (prefix ~ 'b' ~ n)|trans|raw }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            {% for n in 1..3 %}
+                <section class="mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-3">{{ (prefix ~ 'q' ~ n)|trans }}</h2>
+                    <p class="text-slate-300 leading-relaxed">{{ (prefix ~ 'a' ~ n)|trans }}</p>
+                </section>
+            {% endfor %}
+
+            <div class="flex flex-wrap gap-2 mb-10">
+                {% for t in tech %}
+                    <span class="tech-pill{{ loop.first ? ' active' : '' }}">{{ t }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="flex flex-wrap items-center gap-6">
+                {% if external_url %}
+                    <a href="{{ external_url }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-purple-400 font-semibold hover:text-purple-300 transition-colors">
+                        {{ (prefix ~ 'link')|trans }}
+                    </a>
+                {% endif %}
+                <a href="{{ path('app_home') }}#contact" class="inline-flex items-center gap-2 text-purple-400 font-semibold hover:text-purple-300 transition-colors">
+                    {{ 'app.page.cta'|trans }}
+                </a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="footer-brand flex items-center gap-3">
+                {{ include('_logo.html.twig', {'size': 32}) }}
+                <p>&copy; {{ "now"|date("Y") }} Achim Krämer. Alle Rechte vorbehalten.</p>
+            </div>
+            <div class="flex gap-6">
+                <a href="{{ path('app_data-protection_index') }}">{{ 'app.data_protection.title'|trans }}</a>
+                <a href="{{ path('app_impress_index') }}">{{ 'app.impress.title'|trans }}</a>
+            </div>
+        </div>
+    </footer>
+{% endblock %}

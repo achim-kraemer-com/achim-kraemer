@@ -20,6 +20,12 @@ class LocaleListener
     public function onKernelRequest(RequestEvent $event): void
     {
         $request = $event->getRequest();
+
+        // Die URL (/en/...) bestimmt die Sprache, damit Crawler pro URL genau eine Sprache sehen
+        if ($request->attributes->has('_locale')) {
+            return;
+        }
+
         $session = $request->getSession();
 
         if ($locale = $session->get('_locale')) {
