@@ -15,7 +15,7 @@ class CurriculumVitaeController extends AbstractController
     {
         return $this->render('curriculum_vitae/index.html.twig', [
             'title'       => 'Lebenslauf | Achim Krämer',
-            'description' => 'Hier finden Sie den Lebenslauf von Achim Krämer. Symfony Entwickler und Freelancer mit über 15 Jahren Erfahrung.',
+            'description' => 'Hier finden Sie den Lebenslauf von Achim Krämer. Symfony Entwickler und Freelancer mit über 20 Jahren Erfahrung.',
         ]);
     }
 }

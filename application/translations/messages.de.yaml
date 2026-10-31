@@ -6,13 +6,13 @@ app.default.update: Aktualisieren
 app.default.delete: Löschen
 app.header.name: Achim Krämer
 app.header.slogan1: Symfony Freelancer
-app.header.slogan2: mit über 15 Jahren Erfahrung für Deine individuellen Projekte
+app.header.slogan2: mit über 20 Jahren Erfahrung für Deine individuellen Projekte
 app.navigation.about: Über mich
 app.navigation.services: Dienstleistungen
 app.navigation.portfolio: Portfolio
 app.navigation.references: Referenzen
 app.navigation.contact: Kontakt
-app.services.text: 'Ich bin ein erfahrener Webentwickler mit über 15 Jahren Expertise in PHP und Symfony. Mein Fokus liegt auf der Entwicklung robuster und skalierbarer Webanwendungen, die sich nahtlos in bestehende Systeme integrieren lassen und den höchsten Anforderungen an Performance und Sicherheit gerecht werden.<br><br>Während meiner Karriere habe ich an einer Vielzahl von Projekten gearbeitet, von kleinen Start-ups bis hin zu großen Unternehmenslösungen. Dabei konnte ich tiefe Einblicke in unterschiedliche Branchen gewinnen und individuelle, auf den Kunden zugeschnittene Lösungen entwickeln. Meine Dienstleistungen umfassen:'
+app.services.text: 'Ich bin ein erfahrener Webentwickler mit über 20 Jahren Expertise in PHP, davon mehr als 15 Jahre mit Symfony. Mein Fokus liegt auf der Entwicklung robuster und skalierbarer Webanwendungen, die sich nahtlos in bestehende Systeme integrieren lassen und den höchsten Anforderungen an Performance und Sicherheit gerecht werden.<br><br>Während meiner Karriere habe ich an einer Vielzahl von Projekten gearbeitet, von kleinen Start-ups bis hin zu großen Unternehmenslösungen. Dabei konnte ich tiefe Einblicke in unterschiedliche Branchen gewinnen und individuelle, auf den Kunden zugeschnittene Lösungen entwickeln. Meine Dienstleistungen umfassen:'
 app.services.title1: 'Maßgeschneiderte Webanwendungen'
 app.services.text1_1: '<b>Dashboards & Statistiken</b> – Individuelle Dashboards mit Echtzeit-Daten und Grafiken für einen schnellen Überblick.'
 app.services.text1_2: '<b>Benutzerverwaltung</b> – Rollen- und Rechte-System für unterschiedliche Nutzergruppen.'
@@ -45,7 +45,7 @@ app.impress.title: Impressum
 app.impress.text: Impressum
 app.data_protection.title: Datenschutz
 app.data_protection.text: Datenschutz
-app.about.text: 'Willkommen! Als erfahrener PHP- und Symfony-Entwickler mit über 15 Jahren Expertise unterstütze ich Dein Projekt von der Idee bis zur erfolgreichen Umsetzung. Du profitierst von maßgeschneiderten, skalierbaren Lösungen, schnellen Entwicklungszyklen und einem Fokus auf Performance und Sicherheit. Ob Neuentwicklung, Optimierung bestehender Anwendungen oder langfristige Betreuung – ich stehe Dir als zuverlässiger Partner zur Seite, um Deine Ziele effizient und erfolgreich zu erreichen.'
+app.about.text: 'Willkommen! Als erfahrener PHP- und Symfony-Entwickler mit über 20 Jahren Expertise unterstütze ich Dein Projekt von der Idee bis zur erfolgreichen Umsetzung. Du profitierst von maßgeschneiderten, skalierbaren Lösungen, schnellen Entwicklungszyklen und einem Fokus auf Performance und Sicherheit. Ob Neuentwicklung, Optimierung bestehender Anwendungen oder langfristige Betreuung – ich stehe Dir als zuverlässiger Partner zur Seite, um Deine Ziele effizient und erfolgreich zu erreichen.'
 app.portfolio.title1: 'Symfony-Expertise:'
 app.portfolio.text1: 'Effizienter Einsatz aller Symfony-Komponenten und Best Practices für saubere, wartbare Anwendungen.'
 app.portfolio.title2: 'Architektur und Design Patterns:'
@@ -172,9 +172,9 @@ app.page.eyebrow_service: 'Leistung'
 app.page.eyebrow_reference: 'Referenz'
 app.page.cta: 'Projekt besprechen'
 app.page.symfony.title: 'Symfony-Entwicklung: maßgeschneiderte Webanwendungen | Achim Krämer'
-app.page.symfony.description: 'Individuelle Webanwendungen mit Symfony und PHP: Dashboards, Benutzerverwaltung, Login und automatisierte Prozesse von einem freiberuflichen Symfony-Entwickler mit über 15 Jahren Erfahrung.'
+app.page.symfony.description: 'Individuelle Webanwendungen mit Symfony und PHP: Dashboards, Benutzerverwaltung, Login und automatisierte Prozesse von einem freiberuflichen Symfony-Entwickler mit über 20 Jahren Erfahrung.'
 app.page.symfony.h1: 'Symfony-Entwicklung für maßgeschneiderte Webanwendungen'
-app.page.symfony.lead: 'Als freiberuflicher Symfony-Entwickler mit über 15 Jahren PHP-Erfahrung baue ich Webanwendungen, die zu Deinen Abläufen passen – robust, skalierbar und sicher.'
+app.page.symfony.lead: 'Als freiberuflicher Symfony-Entwickler mit über 20 Jahren PHP-Erfahrung baue ich Webanwendungen, die zu Deinen Abläufen passen – robust, skalierbar und sicher.'
 app.page.symfony.b1: '<b>Dashboards & Statistiken</b> mit Echtzeit-Daten und Grafiken'
 app.page.symfony.b2: '<b>Benutzerverwaltung</b> mit Rollen- und Rechtesystem'
 app.page.symfony.b3: '<b>Login & Authentifizierung</b> per E-Mail, Google oder weiteren Anbietern, auf Wunsch mit 2FA'
@@ -263,7 +263,7 @@ app.page.signature.a3: 'Als Symfony-Anwendung mit Twig-Templates und etwas JavaS
 app.page.signature.link: 'Zum E-Mail-Signatur-Tool'
 app.faq.title: 'Häufige Fragen'
 app.faq.q1: 'Was macht ein Symfony-Freelancer?'
-app.faq.a1: 'Ein Symfony-Freelancer entwickelt als Selbstständiger Webanwendungen mit dem PHP-Framework Symfony, von Dashboards und Benutzerverwaltung über Schnittstellen bis zur Automatisierung. Ich tue das seit über 15 Jahren, von der Idee über die Umsetzung bis in den laufenden Betrieb.'
+app.faq.a1: 'Ein Symfony-Freelancer entwickelt als Selbstständiger Webanwendungen mit dem PHP-Framework Symfony, von Dashboards und Benutzerverwaltung über Schnittstellen bis zur Automatisierung. Ich entwickle seit über 20 Jahren Software, davon mehr als 15 Jahre mit Symfony, von der Idee über die Umsetzung bis in den laufenden Betrieb.'
 app.faq.q2: 'Für welche Projekte bin ich der Richtige?'
 app.faq.a2: 'Für Neuentwicklungen, die Optimierung bestehender Anwendungen und die langfristige Betreuung. Typische Aufgaben sind maßgeschneiderte Webanwendungen, API-Anbindungen, Dokumentenautomatisierung und KI-Integration.'
 app.faq.q3: 'Wie setze ich KI in Projekten ein?'
@@ -283,4 +283,4 @@ app.references.signature_title: 'E-Mail-Signatur-Generator'
 app.references.signature_text: 'Ein Web-Tool, das aus Kontaktdaten und Logo professionelle E-Mail-Signaturen erzeugt, die sich mit einem Klick in Outlook, Apple Mail oder Gmail einfügen lassen.'
 app.services.more: 'Mehr zur Leistung'
 app.home.title: 'Symfony Entwickler & Freelancer | Achim Krämer'
-app.home.description: 'Symfony Freelancer gesucht? Ich unterstütze Dein Projekt und bringe über 15 Jahre PHP-Erfahrung mit ein.'
+app.home.description: 'Symfony Freelancer gesucht? Ich unterstütze Dein Projekt und bringe über 20 Jahre PHP-Erfahrung mit ein.'

@@ -6,13 +6,13 @@ app.default.update: Aktualisieren
 app.default.delete: Löschen
 app.header.name: Achim Krämer
 app.header.slogan1: Symfony Freelancer
-app.header.slogan2: with over 15 years of experience for your custom projects
+app.header.slogan2: with over 20 years of experience for your custom projects
 app.navigation.about: About Me
 app.navigation.services: Services
 app.navigation.portfolio: Portfolio
 app.navigation.references: References
 app.navigation.contact: Contact
-app.services.text: 'I am an experienced web developer with over 15 years of expertise in PHP and Symfony. My focus is on developing robust and scalable web applications that seamlessly integrate into existing systems and meet the highest standards of performance and security.<br><br>Throughout my career, I have worked on a wide range of projects, from small startups to large enterprise solutions. This has given me deep insights into various industries and allowed me to develop customized solutions tailored to clients needs. My services include:'
+app.services.text: 'I am an experienced web developer with over 20 years of expertise in PHP, including more than 15 years with Symfony. My focus is on developing robust and scalable web applications that seamlessly integrate into existing systems and meet the highest standards of performance and security.<br><br>Throughout my career, I have worked on a wide range of projects, from small startups to large enterprise solutions. This has given me deep insights into various industries and allowed me to develop customized solutions tailored to clients needs. My services include:'
 app.services.title1: 'Custom Web Applications'
 app.services.text1_1: '<b>Dashboards & Statistics</b> – Custom dashboards with real-time data and charts for a quick overview.'
 app.services.text1_2: '<b>User Management</b> – Role and permission system for different user groups.'
@@ -45,7 +45,7 @@ app.impress.title: Imprint
 app.impress.text: Imprint
 app.data_protection.title: Data Protection
 app.data_protection.text: Data Protection
-app.about.text: 'Welcome! As an experienced PHP and Symfony developer with over 15 years of expertise, I support your project from idea to successful implementation. You benefit from tailor-made, scalable solutions, fast development cycles, and a focus on performance and security. Whether it´s new development, optimizing existing applications, or long-term support – I am your reliable partner to help you achieve your goals efficiently and successfully.'
+app.about.text: 'Welcome! As an experienced PHP and Symfony developer with over 20 years of expertise, I support your project from idea to successful implementation. You benefit from tailor-made, scalable solutions, fast development cycles, and a focus on performance and security. Whether it´s new development, optimizing existing applications, or long-term support – I am your reliable partner to help you achieve your goals efficiently and successfully.'
 app.portfolio.title1: 'Symfony Expertise:'
 app.portfolio.text1: 'Efficient use of all Symfony components and best practices for clean, maintainable applications.'
 app.portfolio.title2: 'Architecture and Design Patterns:'
@@ -172,9 +172,9 @@ app.page.eyebrow_service: 'Service'
 app.page.eyebrow_reference: 'Reference'
 app.page.cta: 'Discuss your project'
 app.page.symfony.title: 'Symfony Development: Custom Web Applications | Achim Krämer'
-app.page.symfony.description: 'Custom web applications with Symfony and PHP: dashboards, user management, login and automated processes from a freelance Symfony developer with over 15 years of experience.'
+app.page.symfony.description: 'Custom web applications with Symfony and PHP: dashboards, user management, login and automated processes from a freelance Symfony developer with over 20 years of experience.'
 app.page.symfony.h1: 'Symfony Development for Custom Web Applications'
-app.page.symfony.lead: 'As a freelance Symfony developer with over 15 years of PHP experience, I build web applications that fit your workflows: robust, scalable and secure.'
+app.page.symfony.lead: 'As a freelance Symfony developer with over 20 years of PHP experience, I build web applications that fit your workflows: robust, scalable and secure.'
 app.page.symfony.b1: '<b>Dashboards & statistics</b> with real-time data and charts'
 app.page.symfony.b2: '<b>User management</b> with a role and permission system'
 app.page.symfony.b3: '<b>Login & authentication</b> via email, Google or other providers, with 2FA on request'
@@ -263,7 +263,7 @@ app.page.signature.a3: 'As a Symfony application with Twig templates and some Ja
 app.page.signature.link: 'Visit the email signature tool'
 app.faq.title: 'Frequently Asked Questions'
 app.faq.q1: 'What does a Symfony freelancer do?'
-app.faq.a1: 'A Symfony freelancer develops web applications as a self-employed professional using the PHP framework Symfony, from dashboards and user management to interfaces and automation. I have been doing this for over 15 years, from the idea through implementation to ongoing operation.'
+app.faq.a1: 'A Symfony freelancer develops web applications as a self-employed professional using the PHP framework Symfony, from dashboards and user management to interfaces and automation. I have been developing software for over 20 years, more than 15 of them with Symfony, from the idea through implementation to ongoing operation.'
 app.faq.q2: 'Which projects am I the right fit for?'
 app.faq.a2: 'New developments, optimization of existing applications and long-term maintenance. Typical tasks are custom web applications, API integrations, document automation and AI integration.'
 app.faq.q3: 'How do I use AI in projects?'
@@ -283,4 +283,4 @@ app.references.signature_title: 'Email Signature Generator'
 app.references.signature_text: 'A web tool that turns contact details and a logo into professional email signatures that can be pasted into Outlook, Apple Mail or Gmail with one click.'
 app.services.more: 'More about this service'
 app.home.title: 'Symfony Developer & Freelancer | Achim Krämer'
-app.home.description: 'Looking for a Symfony freelancer? I support your project and bring over 15 years of PHP experience.'
+app.home.description: 'Looking for a Symfony freelancer? I support your project and bring over 20 years of PHP experience.'
