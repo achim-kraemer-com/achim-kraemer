@@ -28,6 +28,12 @@ class PageController extends AbstractController
         return $this->detail('service', 'ai', ['Agentic AI', 'RAG', 'OpenAI API', 'PHP 8.x', 'Symfony']);
     }
 
+    #[Route('/services/hosting-domains', name: 'app_service_hosting')]
+    public function serviceHosting(): Response
+    {
+        return $this->detail('service', 'hosting', ['Webhosting', 'Domains', 'E-Mail', 'SSL/TLS']);
+    }
+
     #[Route('/references/mirwena', name: 'app_reference_mirwena')]
     public function referenceMirwena(): Response
     {
