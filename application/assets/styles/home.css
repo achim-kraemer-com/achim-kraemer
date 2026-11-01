@@ -59,7 +59,7 @@ html {
     color: var(--text-secondary);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023.98px) {
     .background-container2 {
         height: 25vh;
     }

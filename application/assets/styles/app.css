@@ -112,7 +112,7 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023.98px) {
     .navigation-header {
         font-size: 2rem;
     }
@@ -251,7 +251,7 @@ header p {
 
 /* Der Burger-Button liegt fix oben rechts (44px + 1rem Abstand).
    Solange er sichtbar ist, muss der Header-Inhalt davor enden. */
-@media (max-width: 1024px) {
+@media (max-width: 1023.98px) {
     #header-scroll-inner {
         padding-right: 4.75rem;
     }
@@ -320,7 +320,7 @@ nav a {
     }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023.98px) {
     .double-hover-effect {
         padding: 10px 20px;
         font-size: 16px;
@@ -377,7 +377,7 @@ footer a:hover {
     color: #fff;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023.98px) {
     footer {
         font-size: 1rem;
     }
