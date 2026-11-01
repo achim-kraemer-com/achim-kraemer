@@ -1,5 +1,7 @@
 html {
     scroll-behavior: smooth;
+    /* Anker-Sprünge enden direkt unter dem fixen Header statt dahinter */
+    scroll-padding-top: var(--header-height, 80px);
 }
 
 .parallax-container {
@@ -68,6 +70,9 @@ html {
     position: relative;
     width: 100%;
     background-color: var(--background-color);
+    /* Einflug-Animation (translate-x) darf die Seite nicht verbreitern,
+       sonst rutscht auf dem Handy der Burger-Button aus dem Bild */
+    overflow-x: clip;
 }
 
 .services-container, .about-container, .contact-container, .portfolio-container, .references-container {

@@ -1,3 +1,6 @@
+{% set sections = ['services', 'about', 'portfolio', 'references', 'faq', 'contact'] %}
+{% set anchorBase = links is defined and links == 'direct' ? '' : path('app_home') %}
+
 <div class="locale-container">
     <a class="locale-link" href="{{ path('switch_locale', {'locale': 'de'}) }}">DE</a>
     <a class="locale-link" href="{{ path('switch_locale', {'locale': 'en'}) }}">EN</a>
@@ -18,19 +21,15 @@
 <!-- Mobile Navigation Menu -->
 <div id="mobile-menu" class="fixed inset-0 bg-[#080b11]/95 backdrop-blur-xl hidden z-40 flex flex-col justify-center items-center">
     <nav class="flex flex-col items-center justify-center gap-8 text-center h-full">
-        <a href="{% if links is defined and links == 'direct' %}#services{% else %}{{ path('app_home') }}#services{% endif %}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ 'app.navigation.services'|trans }}</a>
-        <a href="{% if links is defined and links == 'direct' %}#about{% else %}{{ path('app_home') }}#about{% endif %}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ 'app.navigation.about'|trans }}</a>
-        <a href="{% if links is defined and links == 'direct' %}#portfolio{% else %}{{ path('app_home') }}#portfolio{% endif %}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ 'app.navigation.portfolio'|trans }}</a>
-        <a href="{% if links is defined and links == 'direct' %}#references{% else %}{{ path('app_home') }}#references{% endif %}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ 'app.navigation.references'|trans }}</a>
-        <a href="{% if links is defined and links == 'direct' %}#contact{% else %}{{ path('app_home') }}#contact{% endif %}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ 'app.navigation.contact'|trans }}</a>
+        {% for section in sections %}
+            <a href="{{ anchorBase }}#{{ section }}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ ('app.navigation.' ~ section)|trans }}</a>
+        {% endfor %}
     </nav>
 </div>
 
 <!-- Desktop Navigation -->
 <nav id="nav-menu" class="hidden lg:flex items-center gap-2">
-    <a href="{% if links is defined and links == 'direct' %}#services{% else %}{{ path('app_home') }}#services{% endif %}" class="double-hover-effect navigation-link px-4 py-2">{{ 'app.navigation.services'|trans }}</a>
-    <a href="{% if links is defined and links == 'direct' %}#about{% else %}{{ path('app_home') }}#about{% endif %}" class="double-hover-effect navigation-link px-4 py-2">{{ 'app.navigation.about'|trans }}</a>
-    <a href="{% if links is defined and links == 'direct' %}#portfolio{% else %}{{ path('app_home') }}#portfolio{% endif %}" class="double-hover-effect navigation-link px-4 py-2">{{ 'app.navigation.portfolio'|trans }}</a>
-    <a href="{% if links is defined and links == 'direct' %}#references{% else %}{{ path('app_home') }}#references{% endif %}" class="double-hover-effect navigation-link px-4 py-2">{{ 'app.navigation.references'|trans }}</a>
-    <a href="{% if links is defined and links == 'direct' %}#contact{% else %}{{ path('app_home') }}#contact{% endif %}" class="double-hover-effect navigation-link px-4 py-2">{{ 'app.navigation.contact'|trans }}</a>
+    {% for section in sections %}
+        <a href="{{ anchorBase }}#{{ section }}" class="double-hover-effect navigation-link px-4 py-2">{{ ('app.navigation.' ~ section)|trans }}</a>
+    {% endfor %}
 </nav>

@@ -3,6 +3,21 @@ import '../styles/home.css';
 const scrollNavbar = document.querySelector("#header-scroll-container");
 const sticky = scrollNavbar.offsetTop;
 
+// Anker-Sprünge sollen exakt unter dem fixen Header enden (Höhe variiert je nach Breite)
+const setHeaderHeight = () => {
+    document.documentElement.style.setProperty('--header-height', scrollNavbar.offsetHeight + 'px');
+};
+setHeaderHeight();
+window.addEventListener('resize', setHeaderHeight);
+
+// Kommt man mit #anker von einer Unterseite, springt der Browser vor dem fertigen Layout
+// (Bilder, Schriften, Linienhöhen) und landet daneben. Nach dem Laden neu ausrichten.
+window.addEventListener('load', () => {
+    const target = location.hash && document.getElementById(location.hash.slice(1));
+    if (target) target.scrollIntoView({ behavior: 'instant' });
+    stickyNavbar();
+});
+
 window.addEventListener('scroll', function () {
     const scrolled = window.scrollY;
     const bgContainer = document.querySelector('.background-container');
@@ -13,17 +28,7 @@ window.addEventListener('scroll', function () {
 });
 
 function stickyNavbar() {
-    if (window.scrollY > 50) {
-        scrollNavbar.style.backgroundColor = "rgba(8, 11, 17, 0.85)";
-        scrollNavbar.style.backdropFilter = "blur(12px)";
-        scrollNavbar.style.borderBottom = "1px solid rgba(255, 255, 255, 0.08)";
-        scrollNavbar.style.boxShadow = "0 10px 30px rgba(0, 0, 0, 0.3)";
-    } else {
-        scrollNavbar.style.backgroundColor = "";
-        scrollNavbar.style.backdropFilter = "";
-        scrollNavbar.style.borderBottom = "";
-        scrollNavbar.style.boxShadow = "";
-    }
+    scrollNavbar.classList.toggle('is-scrolled', window.scrollY > 50);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -43,11 +48,11 @@ document.addEventListener("DOMContentLoaded", function () {
             const text = block.querySelector('.text');
             
             if (entry.isIntersecting) {
-                block.classList.remove('opacity-0', 'translate-y-10');
+                block.classList.remove('opacity-0');
                 if (headline) headline.classList.remove('translate-x-[-100%]');
                 if (text) text.classList.remove('translate-x-20');
             } else {
-                block.classList.add('opacity-0', 'translate-y-10');
+                block.classList.add('opacity-0');
                 if (headline) headline.classList.add('translate-x-[-100%]');
                 if (text) text.classList.add('translate-x-20');
             }

@@ -11,6 +11,7 @@ app.navigation.about: Über mich
 app.navigation.services: Dienstleistungen
 app.navigation.portfolio: Portfolio
 app.navigation.references: Referenzen
+app.navigation.faq: FAQ
 app.navigation.contact: Kontakt
 app.services.text: 'Ich bin ein erfahrener Webentwickler mit über 20 Jahren Expertise in PHP, davon mehr als 15 Jahre mit Symfony. Mein Fokus liegt auf der Entwicklung robuster und skalierbarer Webanwendungen, die sich nahtlos in bestehende Systeme integrieren lassen und den höchsten Anforderungen an Performance und Sicherheit gerecht werden.<br><br>Während meiner Karriere habe ich an einer Vielzahl von Projekten gearbeitet, von kleinen Start-ups bis hin zu großen Unternehmenslösungen. Dabei konnte ich tiefe Einblicke in unterschiedliche Branchen gewinnen und individuelle, auf den Kunden zugeschnittene Lösungen entwickeln. Meine Dienstleistungen umfassen:'
 app.services.title1: 'Maßgeschneiderte Webanwendungen'

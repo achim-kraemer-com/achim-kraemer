@@ -213,7 +213,30 @@ header p {
     left: 0;
     width: 100%;
     z-index: 1000;
+    /* Rahmen immer reservieren, damit die Header-Höhe beim Scrollen gleich bleibt */
+    border-bottom: 1px solid transparent;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hintergrund und Unschärfe liegen auf ::before: backdrop-filter direkt am Header
+   würde ihn zum Bezugsrahmen für das fixe Mobile-Menü machen, das dann nur noch
+   so hoch wie der Header wäre */
+#header-scroll-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#header-scroll-container.is-scrolled {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+#header-scroll-container.is-scrolled::before {
+    background-color: rgba(8, 11, 17, 0.85);
+    backdrop-filter: blur(12px);
 }
 
 #header-scroll-inner {
