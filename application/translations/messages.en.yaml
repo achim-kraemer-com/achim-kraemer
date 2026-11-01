@@ -96,6 +96,12 @@ app.contact.phone: Phone
 app.contact.email: Email
 app.contact.message: Message
 app.contact.email_send: Vielen Dank für Deine Kontaktanfrage!
+app.contact.thanks_title: 'Thank you, %name%!'
+app.contact.thanks_text: 'Your message has arrived. I will get back to you as soon as possible.'
+app.contact.thanks_close: 'Close'
+app.contact.invalid: 'Please check your input.'
+app.contact.sending: 'Sending …'
+app.contact.failed: 'Your message could not be sent. Please try again or email me at kontakt@achim-kraemer.com.'
 app.invoice.title: Rechnungen
 app.invoice.new_invoice: Neue Rechnung erstellen
 app.invoice.edit_invoice: Rechnungen bearbeiten

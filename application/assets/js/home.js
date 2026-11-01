@@ -134,3 +134,88 @@ document.addEventListener('DOMContentLoaded', function () {
         start();
     });
 });
+
+// Kontaktformular per AJAX senden und mit Danke-Modal bestätigen
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('contact-form');
+    const dialog = document.getElementById('contact-thanks');
+    if (!form || !dialog) return;
+
+    const status = document.getElementById('contact-form-status');
+    const button = form.querySelector('button[type="submit"]');
+    const buttonLabel = button.textContent;
+    const captchaInput = form.querySelector('input[name$="[captcha]"]');
+
+    const showStatus = text => {
+        status.textContent = text;
+        status.hidden = !text;
+    };
+
+    const clearErrors = () => {
+        showStatus('');
+        form.querySelectorAll('.contact-field-error').forEach(el => el.remove());
+        form.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
+    };
+
+    const showErrors = (message, errors) => {
+        let general = message;
+        Object.entries(errors || {}).forEach(([field, messages]) => {
+            const input = form.querySelector(`[name$="[${field}]"]`);
+            if (!input || input.type === 'hidden') {
+                general = messages.join(' ');
+                return;
+            }
+            input.setAttribute('aria-invalid', 'true');
+            const error = document.createElement('p');
+            error.className = 'contact-field-error';
+            error.textContent = messages.join(' ');
+            input.insertAdjacentElement('afterend', error);
+        });
+        showStatus(general);
+    };
+
+    // reCAPTCHA-Token ist nur einmal gültig, daher vor jedem Versand neu holen
+    const refreshCaptcha = async () => {
+        if (!captchaInput || typeof grecaptcha === 'undefined') return;
+        await new Promise(resolve => grecaptcha.ready(resolve));
+        captchaInput.value = await grecaptcha.execute(form.dataset.recaptchaKey, { action: form.dataset.recaptchaAction });
+    };
+
+    const setSending = sending => {
+        button.disabled = sending;
+        button.textContent = sending ? form.dataset.sendingLabel : buttonLabel;
+    };
+
+    form.addEventListener('submit', async event => {
+        event.preventDefault();
+        clearErrors();
+        setSending(true);
+
+        try {
+            await refreshCaptcha();
+            const response = await fetch(form.action || window.location.href, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/json' },
+            });
+            const result = await response.json();
+
+            if (result.success) {
+                form.reset();
+                dialog.querySelector('.contact-thanks-title').textContent = result.title;
+                dialog.showModal();
+            } else {
+                showErrors(result.message, result.errors);
+            }
+        } catch (error) {
+            showStatus(form.dataset.failedLabel);
+        } finally {
+            setSending(false);
+        }
+    });
+
+    // Klick auf den abgedunkelten Hintergrund schließt das Modal
+    dialog.addEventListener('click', event => {
+        if (event.target === dialog) dialog.close();
+    });
+});

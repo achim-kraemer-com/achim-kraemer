@@ -691,7 +691,14 @@
             <div id="contact-text" class="text w-full lg:w-2/3 xl:w-3/4 translate-x-20 transition-transform duration-700 ease-out">
                 <div class="bg-[#0f172a]/20 border border-white/5 p-8 md:p-12 rounded-3xl backdrop-blur-md max-w-2xl">
                     {{ include('messages.html.twig') }}
-                    {{ form_start(form) }}
+                    {{ form_start(form, {'attr': {
+                        'id': 'contact-form',
+                        'data-recaptcha-key': form.captcha.vars.site_key,
+                        'data-recaptcha-action': form.captcha.vars.action_name,
+                        'data-sending-label': 'app.contact.sending'|trans,
+                        'data-failed-label': 'app.contact.failed'|trans,
+                    }}) }}
+                        <div id="contact-form-status" class="contact-form-status" role="alert" hidden></div>
                         <div class="contact-form-grid">
                             {{ form_row(form.name) }}
                             {{ form_row(form.phone) }}
@@ -708,6 +715,19 @@
             </div>
         </div>
     </div>
+
+    <dialog id="contact-thanks" class="contact-thanks" aria-labelledby="contact-thanks-title">
+        <div class="contact-thanks-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+            </svg>
+        </div>
+        <h4 id="contact-thanks-title" class="contact-thanks-title"></h4>
+        <p class="contact-thanks-text">{{ 'app.contact.thanks_text'|trans }}</p>
+        <form method="dialog">
+            <button type="submit" class="contact-input-button w-full" autofocus>{{ 'app.contact.thanks_close'|trans }}</button>
+        </form>
+    </dialog>
 
     <!-- Footer -->
     <footer>

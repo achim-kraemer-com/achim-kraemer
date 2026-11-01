@@ -24,6 +24,21 @@ class HomeController extends AbstractController
     {
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
+        $isAjax = $request->isXmlHttpRequest();
+
+        if ($isAjax && $form->isSubmitted() && !$form->isValid()) {
+            $errors = [];
+            foreach ($form->getErrors(true) as $error) {
+                $field = $error->getOrigin()?->getName() ?? 'form';
+                $errors[$field][] = $error->getMessage();
+            }
+
+            return $this->json([
+                'success' => false,
+                'message' => $translator->trans('app.contact.invalid'),
+                'errors'  => $errors,
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Verarbeitung des Formulars, z.B. Senden einer E-Mail
@@ -52,6 +67,13 @@ class HomeController extends AbstractController
                     ->text('Es gab anscheinend einen Fehler beim Versenden einer KontaktMail: '.$e->getMessage());
 
                 $mailer->send($email);
+            }
+
+            if ($isAjax) {
+                return $this->json([
+                    'success' => true,
+                    'title'   => $translator->trans('app.contact.thanks_title', ['%name%' => $data['name']]),
+                ]);
             }
 
             $this->addFlash('success', $translator->trans('app.contact.email_send'));
