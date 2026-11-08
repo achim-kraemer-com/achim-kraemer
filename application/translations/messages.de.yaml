@@ -289,7 +289,7 @@ app.references.signature_category: 'Eigene Entwicklung: Werkzeug für Unternehme
 app.references.signature_title: 'E-Mail-Signatur-Generator'
 app.references.signature_text: 'Ein Web-Tool, das aus Kontaktdaten und Logo professionelle E-Mail-Signaturen erzeugt, die sich mit einem Klick in Outlook, Apple Mail oder Gmail einfügen lassen.'
 app.services.more: 'Mehr zur Leistung'
-app.home.title: 'Symfony Entwickler & Freelancer | Achim Krämer'
+app.home.title: 'Achim Krämer – Symfony Entwickler & Freelancer'
 app.home.description: 'Symfony Freelancer gesucht? Ich unterstütze Dein Projekt und bringe über 20 Jahre PHP-Erfahrung mit ein.'
 app.services.title7: 'Hosting, Domains, E-Mail & SSL'
 app.services.text7_1: '<b>Webhosting</b> – Betrieb Deiner Website oder Anwendung auf zuverlässiger Infrastruktur, auf Wunsch gemeinsam mit der Entwicklung.'
