@@ -1,0 +1,72 @@
+<div class="page-content">
+    <h2>Typische Situationen, in denen ich übernehme</h2>
+    <ul>
+        <li>Der Entwickler, der die Anwendung gebaut hat, ist nicht mehr erreichbar oder hat das Unternehmen verlassen.</li>
+        <li>Die Agentur hat das Projekt abgeschlossen und kümmert sich nur noch mit langen Reaktionszeiten darum.</li>
+        <li>Die Anwendung läuft auf einer alten Symfony- oder PHP-Version und niemand weiß, was ein Update auslöst.</li>
+        <li>Neue Funktionen dauern immer länger, weil jede Änderung an anderer Stelle etwas kaputt macht.</li>
+        <li>Es gibt keine Dokumentation, keine Tests und nur eine Person, die weiß, wie das Deployment funktioniert.</li>
+    </ul>
+
+    <h2>So läuft eine Projektübernahme ab</h2>
+    <ol>
+        <li><strong>Zugänge und Übergabe</strong>: Repository, Server, Datenbank, Domains und alle externen Dienste. Gibt es noch einen Vorgänger, kläre ich offene Punkte direkt mit ihm.</li>
+        <li><strong>Lokale Umgebung</strong>: Ich bringe die Anwendung lokal in Docker zum Laufen. Das klingt banal, zeigt aber schnell, wie gut ein Projekt dokumentiert ist und welche Abhängigkeiten im Verborgenen liegen.</li>
+        <li><strong>Bestandsaufnahme</strong>: Versionen von Symfony, PHP und allen Paketen, bekannte Sicherheitslücken, Testabdeckung, Datenbankstruktur, Deployment und Backups.</li>
+        <li><strong>Bericht</strong>: Du bekommst eine verständliche Zusammenfassung mit den Risiken nach Dringlichkeit sortiert, ohne Fachjargon, und einen Vorschlag, was zuerst passieren sollte.</li>
+        <li><strong>Stabilisieren</strong>: Kritische Sicherheitsupdates, funktionierende Backups und ein automatisiertes Deployment kommen vor neuen Funktionen.</li>
+    </ol>
+
+    <h2>Was laufende Wartung umfasst</h2>
+    <p>
+        Eine Webanwendung ist nach dem Go-live nicht fertig. PHP, Symfony und die verwendeten Pakete bekommen
+        laufend Updates, und Sicherheitslücken werden oft erst Jahre später bekannt. Wartung bedeutet bei mir:
+    </p>
+    <ul>
+        <li><strong>Regelmäßige Updates</strong> von Symfony, PHP und allen Composer- und JavaScript-Paketen</li>
+        <li><strong>Sicherheitsprüfung</strong> der Abhängigkeiten und schnelle Reaktion bei bekannten Lücken</li>
+        <li><strong>Monitoring und Fehlerprotokolle</strong>, damit Probleme auffallen, bevor Deine Kunden anrufen</li>
+        <li><strong>Backups</strong>, die nicht nur angelegt, sondern auch auf Wiederherstellbarkeit geprüft werden</li>
+        <li><strong>Kleine Änderungen und Fehlerbehebungen</strong> ohne eigenes Angebot für jede Kleinigkeit</li>
+        <li><strong>Planung</strong> größerer Schritte wie eines <a href="{{ path('app_service_upgrade') }}">Upgrades auf Symfony 7.4 LTS</a>, rechtzeitig bevor die alte Version ausläuft</li>
+    </ul>
+
+    <h2>Alter Code: neu schreiben oder verbessern?</h2>
+    <p>
+        Der Wunsch, alles neu zu schreiben, ist verständlich, aber selten die beste Lösung. Eine Neuentwicklung
+        dauert lange, während die alte Anwendung trotzdem weiter gepflegt werden muss, und das Wissen, das in
+        Jahren an Sonderfällen im alten Code steckt, geht leicht verloren.
+    </p>
+    <p>
+        Ich gehe deshalb meist schrittweise vor: Zuerst sichern Tests die Abläufe ab, die das Geschäft tragen. Dann
+        wird der Code dort verbessert, wo ohnehin gerade gearbeitet wird. Nach einigen Monaten ist die Anwendung
+        deutlich besser wartbar, ohne dass es je einen großen, riskanten Umstieg gab. Ist ein Teil wirklich nicht
+        mehr zu retten, ersetzen wir genau diesen Teil.
+    </p>
+
+    <h2>Wartung zum festen Monatsrahmen</h2>
+    <p>
+        Für Wartung vereinbaren wir einen festen monatlichen Rahmen, der zu Größe und Bedeutung Deiner Anwendung
+        passt. Darin sind Updates, Sicherheitsprüfung und kleine Änderungen enthalten. Größere Weiterentwicklungen
+        rechne ich nach Aufwand oder als Festpreis-Paket ab. Die konkreten Konditionen besprechen wir nach der
+        Bestandsaufnahme, wenn klar ist, was Deine Anwendung braucht.
+    </p>
+
+    <h2>Wie ich selbst mit Software umgehe</h2>
+    <p>
+        Meine eigenen Anwendungen pflege ich so, wie ich es auch für Kunden tue. Bei
+        <a href="{{ path('app_reference_mirwena') }}">Mirwena</a> laufen bei jedem Push rund 870 automatisierte Tests
+        und eine statische Analyse; das <a href="{{ path('app_reference_freelancer') }}">Freelancer-CRM</a> prüft
+        zusätzlich alle Abhängigkeiten auf bekannte Sicherheitslücken. Diese Werkzeuge richte ich auch in
+        übernommenen Projekten ein, damit Wartung nicht vom Gedächtnis einzelner Personen abhängt.
+    </p>
+
+    <div class="related">
+        <p class="!mb-2"><strong>Passend dazu</strong></p>
+        <ul class="!mb-0">
+            <li><a href="{{ path('app_service_upgrade') }}">Symfony-Upgrade von Version 5 oder 6 auf 7.4 LTS</a></li>
+            <li><a href="{{ path('app_service_symfony') }}">Symfony-Entwicklung: neue Funktionen und Anwendungen</a></li>
+            <li><a href="{{ path('app_service_hosting') }}">Hosting, Domains und E-Mail aus einer Hand</a></li>
+        </ul>
+    </div>
+</div>

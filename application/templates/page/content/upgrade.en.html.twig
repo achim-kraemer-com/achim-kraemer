@@ -1,0 +1,76 @@
+<div class="page-content">
+    <h2>Which Symfony version is still safe?</h2>
+    <p>
+        Symfony releases a long-term support (LTS) version every two years, which is maintained for several years.
+        For business applications this is the version you should be on. The current situation at a glance:
+    </p>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Version</th><th>Status</th><th>Recommendation</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Symfony 4.4 and older</td><td>no longer maintained</td><td>upgrade urgently</td></tr>
+                <tr><td>Symfony 5.4 LTS</td><td>no regular bug fixes any more</td><td>plan an upgrade</td></tr>
+                <tr><td>Symfony 6.4 LTS</td><td>bug fixes until late November 2026, security fixes only after that</td><td>upgrade in the coming months</td></tr>
+                <tr><td>Symfony 7.4 LTS</td><td>current long-term support version</td><td>target for most upgrades</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <p>
+        PHP itself matters just as much. PHP 8.1 has not received security updates since the start of 2026, and
+        security support for PHP 8.2 ends in late 2026. Symfony 7 requires at least PHP 8.2. In practice we
+        therefore upgrade PHP as part of the same project.
+    </p>
+
+    <h2>What changes between Symfony 5, 6 and 7</h2>
+    <p>
+        Most changes are well documented and can partly be automated. Typical work items in an upgrade are:
+    </p>
+    <ul>
+        <li><strong>Security system</strong>: the old Guard system is gone, login and permissions run through the new authenticators.</li>
+        <li><strong>Annotations become attributes</strong>: routes, Doctrine mappings and validation rules move to PHP attributes.</li>
+        <li><strong>Types and return values</strong>: Symfony requires stricter signatures, your own classes have to be adapted.</li>
+        <li><strong>Dependencies</strong>: packages like SwiftMailer have been replaced, Doctrine ORM 3 and DBAL 4 bring their own changes.</li>
+        <li><strong>Third-party bundles</strong>: some bundles are no longer maintained and need to be replaced or rebuilt.</li>
+    </ul>
+
+    <h2>How a Symfony upgrade works</h2>
+    <ol>
+        <li><strong>Analysis</strong>: I check versions, dependencies, custom bundles, test coverage and the deprecation log. The result is a list of all work items with an effort estimate.</li>
+        <li><strong>Safety net</strong>: if tests are missing, I first write tests for the most important workflows, such as login, ordering or invoicing. That way any unintended change shows up immediately.</li>
+        <li><strong>Remove deprecations</strong>: all warnings are fixed while still on the old version. Tools like Rector take over a lot of routine work, PHPStan finds type errors.</li>
+        <li><strong>Version jump</strong>: only once the old version runs cleanly is the next major version installed. From 5.4 we go via 6.4 to 7.4, each time with a full test run.</li>
+        <li><strong>Testing and go-live</strong>: the upgraded application first runs on a staging environment where you check the key workflows yourself. Then comes the deployment, with a way back.</li>
+    </ol>
+
+    <h2>What does a Symfony upgrade cost?</h2>
+    <p>
+        I offer the analysis at a fixed price. Afterwards you know which work items exist and what the upgrade will
+        cost. The upgrade itself can also be done at a fixed price if the scope is clear, or on a time-and-materials
+        basis if questions come up along the way that nobody could see beforehand.
+    </p>
+    <p>
+        The biggest cost drivers are missing tests, many unmaintained packages and custom solutions that touch
+        Symfony internals. Conversely, an upgrade is much faster if the application already has tests and was built
+        close to Symfony standards. Taking every LTS version along costs less overall than skipping three major
+        versions at once.
+    </p>
+
+    <h2>How I work</h2>
+    <p>
+        I keep my own projects on current versions: Mirwena runs on Symfony 7.4 LTS with around 870 automated tests,
+        the <a href="{{ path('app_reference_freelancer') }}">Freelancer CRM</a> on Symfony 8.1 with PHP 8.5. Tests and
+        static analysis run automatically on every push. I bring exactly this way of working to upgrade projects, so
+        that your application is not only up to date after the upgrade but can stay that way.
+    </p>
+
+    <div class="related">
+        <p class="!mb-2"><strong>Related</strong></p>
+        <ul class="!mb-0">
+            <li>After the upgrade: <a href="{{ path('app_service_maintenance') }}">maintaining and extending your Symfony application</a></li>
+            <li>Building new features: <a href="{{ path('app_service_symfony') }}">Symfony development for custom web applications</a></li>
+            <li>Before you decide: <a href="{{ path('app_guide_agency') }}">Symfony freelancer or agency?</a></li>
+        </ul>
+    </div>
+</div>

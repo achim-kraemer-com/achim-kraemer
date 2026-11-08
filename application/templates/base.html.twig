@@ -13,7 +13,7 @@
         <link rel="manifest" href="{{ asset('site.webmanifest') }}">
         <meta name="theme-color" content="#7c3aed">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
+        <meta name="robots" content="{% block robots %}follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large{% endblock %}">
         <meta name="description" content="{% block description %}Symfony Freelancer gesucht? Ich unterstütze ihr Projekt und bringe über 20 Jahre PHP-Erfahrung mit ein.{% endblock %}">
         <link rel="canonical" href="{{ app.request.uri }}">
         {% set base_route = app.request.attributes.get('_route')|default('')|split('.')|first %}

@@ -1,0 +1,136 @@
+<div class="page-content">
+    <h2>Was ich mit Symfony für Dich baue</h2>
+    <p>
+        Symfony ist das PHP-Framework für Anwendungen, die lange laufen sollen: klare Struktur, feste Release-Zyklen
+        mit Langzeitversionen und ein Ökosystem, das seit vielen Jahren stabil ist. Ich arbeite seit über 15 Jahren
+        damit und setze typischerweise diese Projekte um:
+    </p>
+    <ul>
+        <li><strong>Interne Werkzeuge und Portale</strong>, die Tabellen, Papier und Copy-and-paste ersetzen, etwa für Kunden-, Auftrags- oder Terminverwaltung.</li>
+        <li><strong>Kundenportale und SaaS-Anwendungen</strong> mit Login, Rollen, mehreren Mandanten und sauber getrennten Daten.</li>
+        <li><strong>Schnittstellen</strong> zu Zahlungsanbietern, ERP, CRM oder Buchhaltung, damit Daten nicht mehr von Hand übertragen werden. Mehr dazu unter <a href="{{ path('app_service_api') }}">API-Entwicklung und Automatisierung</a>.</li>
+        <li><strong>Dokumente und Abläufe</strong>: Rechnungen, Berichte und Formulare als PDF, E-Mail-Verarbeitung und geplante Hintergrundaufgaben.</li>
+        <li><strong>KI-Funktionen</strong> in bestehenden Anwendungen, von der Datenextraktion bis zum Assistenten mit Firmenwissen, siehe <a href="{{ path('app_service_ai') }}">KI-Integration</a>.</li>
+    </ul>
+
+    <h2>Bestehende Anwendungen: Upgrade und Übernahme</h2>
+    <p>
+        Viele Anfragen betreffen keine Neuentwicklung, sondern eine Anwendung, die seit Jahren läuft. Zwei Fälle kommen besonders oft vor.
+    </p>
+    <h3>Upgrade von Symfony 5 oder 6 auf 7.4 LTS</h3>
+    <p>
+        Symfony 5.4 bekommt keine regulären Fehlerbehebungen mehr, und bei 6.4 endet die Pflege mit Fehlerbehebungen
+        Ende November 2026. Wer jetzt auf Symfony 7.4 LTS geht, hat wieder mehrere Jahre Ruhe. Ich gehe dabei immer
+        gleich vor: zuerst die Deprecation-Warnungen der aktuellen Version abbauen, dann den Versionssprung machen,
+        abgesichert durch Tests und statische Analyse. PHP wird im selben Zug auf eine Version gebracht, die noch
+        Sicherheitsupdates erhält. Wie das im Detail abläuft, steht auf der Seite
+        <a href="{{ path('app_service_upgrade') }}">Symfony-Upgrade auf 7.4 LTS</a>.
+    </p>
+    <h3>Übernahme eines bestehenden Projekts</h3>
+    <p>
+        Der ursprüngliche Entwickler ist nicht mehr da, die Agentur hat keine Kapazität, oder niemand traut sich
+        mehr an den Code? Ich übernehme bestehende Symfony-Projekte, auch ohne Dokumentation und Tests. Am Anfang
+        steht eine ehrliche Bestandsaufnahme: Welche Versionen laufen, wo liegen Sicherheitsrisiken, welche Teile
+        sind stabil und welche nicht. Danach entscheiden wir gemeinsam, was zuerst passiert. Mehr unter
+        <a href="{{ path('app_service_maintenance') }}">Symfony-Projekt übernehmen und warten</a>.
+    </p>
+
+    <h2>So läuft ein Projekt ab</h2>
+    <ol>
+        <li><strong>Erstgespräch (kostenlos)</strong>: Du erzählst, worum es geht, ich stelle Fragen und sage Dir offen, ob ich der Richtige dafür bin.</li>
+        <li><strong>Analyse und Angebot</strong>: Bei Neuentwicklungen klären wir Umfang und Prioritäten, bei bestehenden Anwendungen schaue ich mir den Code an. Du bekommst eine nachvollziehbare Schätzung.</li>
+        <li><strong>Umsetzung in kurzen Schritten</strong>: Ich liefere in kleinen, testbaren Etappen auf einer Testumgebung. Du siehst früh echte Ergebnisse statt Folien.</li>
+        <li><strong>Go-live</strong>: automatisiertes Deployment, Backups und ein klarer Weg zurück, falls etwas nicht passt.</li>
+        <li><strong>Betrieb und Weiterentwicklung</strong>: Updates, kleine Änderungen und neue Funktionen, solange Du das möchtest. Hosting und Domains übernehme ich auf Wunsch mit, siehe <a href="{{ path('app_service_hosting') }}">Hosting aus einer Hand</a>.</li>
+    </ol>
+
+    <h2>Technik und Qualität</h2>
+    <p>
+        Ich setze auf bewährte Werkzeuge statt auf Experimente, damit Deine Anwendung auch in fünf Jahren noch
+        jemand versteht und weiterentwickeln kann:
+    </p>
+    <ul>
+        <li><strong>Aktuelle Versionen</strong>: Symfony 7.4 LTS oder neuer, PHP 8.4 oder 8.5, Doctrine ORM mit MySQL, MariaDB oder PostgreSQL.</li>
+        <li><strong>Automatisierte Tests</strong> mit PHPUnit für die Abläufe, auf die es ankommt, und statische Analyse mit PHPStan.</li>
+        <li><strong>Docker</strong> für eine Entwicklungsumgebung, die auf jedem Rechner gleich läuft.</li>
+        <li><strong>CI/CD</strong>: Tests und Sicherheitsprüfungen laufen bei jedem Push, Deployments automatisiert und wiederholbar.</li>
+        <li><strong>Dein Repository</strong>: Der Code gehört Dir und liegt von Anfang an bei Dir.</li>
+    </ul>
+
+    <h2>Preismodell</h2>
+    <p>
+        Ich biete drei Modelle an. Welches passt, hängt davon ab, wie klar der Umfang am Anfang ist.
+    </p>
+    <ul>
+        <li><strong>Nach Aufwand</strong> mit Stundensatz: für Weiterentwicklung, Fehlersuche und Projekte, deren Umfang sich unterwegs ändert. Du bekommst eine Aufstellung der geleisteten Stunden.</li>
+        <li><strong>Festpreis</strong>: für klar abgegrenzte Pakete, etwa eine Upgrade-Analyse oder ein Upgrade mit bekanntem Umfang. Der Preis steht vorher fest.</li>
+        <li><strong>Wartung</strong> mit festem monatlichem Rahmen: für Anwendungen, die regelmäßig Updates und kleine Anpassungen brauchen.</li>
+    </ul>
+    <p>
+        Konkrete Sätze nenne ich Dir im Erstgespräch, sobald ich weiß, worum es geht. So bekommst Du eine Zahl, die
+        zu Deinem Projekt passt, statt einer Spanne, die nichts aussagt.
+    </p>
+
+    <h2>Fallbeispiele</h2>
+    <div class="case">
+        <h3 class="!mt-0">Mirwena – Software für Therapiepraxen</h3>
+        <p>
+            Digitaler Anamnesebogen und Praxissoftware für Physiotherapie-, Osteopathie- und Ergotherapie-Praxen, mit sensiblen Gesundheitsdaten.
+        </p>
+        <ul>
+            <li>Symfony 7.4 LTS, PHP 8, MySQL, Docker</li>
+            <li>rund 870 automatisierte Tests, statische Analyse mit PHPStan, Prüfung bei jedem Push</li>
+            <li>eine eigene Installation, Datenbank und eigener Schlüssel je Praxis; Gesundheitsdaten feldweise verschlüsselt</li>
+            <li>Zugangslinks für Patienten verfallen nach 24 Stunden</li>
+        </ul>
+        <p><a href="{{ path('app_reference_mirwena') }}">Zur Fallstudie Mirwena</a></p>
+    </div>
+    <div class="case">
+        <h3 class="!mt-0">Freelancer-CRM – Kunden, Projekte, Rechnungen</h3>
+        <ul>
+            <li>Symfony 8.1 mit PHP 8.5, Doctrine ORM, MariaDB, Docker</li>
+            <li>89 automatisierte Tests, Sicherheitsprüfung der Abhängigkeiten in der CI</li>
+            <li>durchgängiger Ablauf von Kunde über Projekt und Aufgabe bis zur Rechnung als PDF</li>
+        </ul>
+        <p><a href="{{ path('app_reference_freelancer') }}">Zur Fallstudie Freelancer-CRM</a></p>
+    </div>
+    <div class="case">
+        <h3 class="!mt-0">E-Mail-Signatur-Generator</h3>
+        <ul>
+            <li>Symfony 7.3, Twig und JavaScript</li>
+            <li>53 automatisierte Tests</li>
+            <li>Signaturen für Outlook, Apple Mail und Gmail mit einem Klick kopieren</li>
+        </ul>
+        <p><a href="{{ path('app_reference_email_signature') }}">Zur Fallstudie E-Mail-Signatur</a></p>
+    </div>
+
+    <h2>Weitere häufige Fragen</h2>
+    <h3>Wie schnell kannst Du anfangen?</h3>
+    <p>
+        Das hängt von meiner aktuellen Auslastung ab. Kleinere Aufgaben wie eine Upgrade-Analyse oder eine
+        Fehlersuche lassen sich meist kurzfristig einplanen, größere Projekte stimmen wir gemeinsam ab. Im
+        Erstgespräch sage ich Dir einen konkreten Starttermin.
+    </p>
+    <h3>Arbeitest Du auch mit bestehenden Teams zusammen?</h3>
+    <p>
+        Ja. Ich arbeite allein für kleinere Unternehmen genauso wie als Verstärkung in bestehenden
+        Entwicklungsteams oder für Agenturen, die für ein Projekt zusätzliche Symfony-Erfahrung brauchen. Dabei
+        richte ich mich nach Euren Prozessen, Code-Reviews und Werkzeugen.
+    </p>
+
+    <h2>Freelancer oder Agentur?</h2>
+    <p>
+        Bei mir sprichst Du mit dem, der den Code schreibt. Das spart Abstimmung und Projektleitungs-Aufschläge.
+        Für sehr große Projekte mit vielen parallelen Rollen kann eine Agentur trotzdem besser passen. Einen
+        ehrlichen Vergleich findest Du im Ratgeber
+        <a href="{{ path('app_guide_agency') }}">Symfony-Freelancer oder Agentur</a>.
+    </p>
+
+    <div class="related">
+        <p class="!mb-2"><strong>Aus der Region?</strong></p>
+        <p class="!mb-0">
+            Ich sitze in Ibbenbüren und arbeite für Unternehmen in ganz Deutschland, besonders gern aber für Kunden aus der Nähe:
+            <a href="{{ path('app_region_muensterland') }}">Softwareentwickler in Ibbenbüren, Osnabrück und dem Münsterland</a>.
+        </p>
+    </div>
+</div>

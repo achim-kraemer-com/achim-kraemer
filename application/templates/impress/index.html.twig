@@ -4,6 +4,8 @@
 
 {% block description %}{{ description }}{% endblock %}
 
+{% block robots %}noindex, follow{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('impress') }}

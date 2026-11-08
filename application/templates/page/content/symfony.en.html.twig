@@ -1,0 +1,133 @@
+<div class="page-content">
+    <h2>What I build for you with Symfony</h2>
+    <p>
+        Symfony is the PHP framework for applications that are meant to last: a clear structure, fixed release cycles
+        with long-term support versions and an ecosystem that has been stable for many years. I have worked with it
+        for more than 15 years and typically build these kinds of projects:
+    </p>
+    <ul>
+        <li><strong>Internal tools and portals</strong> that replace spreadsheets, paper and copy-and-paste, for example for customer, order or appointment management.</li>
+        <li><strong>Customer portals and SaaS applications</strong> with login, roles, multiple tenants and cleanly separated data.</li>
+        <li><strong>Interfaces</strong> to payment providers, ERP, CRM or accounting so that data no longer has to be transferred by hand. More under <a href="{{ path('app_service_api') }}">API development and automation</a>.</li>
+        <li><strong>Documents and workflows</strong>: invoices, reports and forms as PDF, email processing and scheduled background tasks.</li>
+        <li><strong>AI features</strong> in existing applications, from data extraction to an assistant that knows your company, see <a href="{{ path('app_service_ai') }}">AI integration</a>.</li>
+    </ul>
+
+    <h2>Existing applications: upgrade and takeover</h2>
+    <p>
+        Many enquiries are not about a new build but about an application that has been running for years. Two cases come up particularly often.
+    </p>
+    <h3>Upgrading from Symfony 5 or 6 to 7.4 LTS</h3>
+    <p>
+        Symfony 5.4 no longer receives regular bug fixes, and bug-fix support for 6.4 ends in late November 2026.
+        Moving to Symfony 7.4 LTS now gives you several quiet years again. My approach is always the same: first
+        remove the deprecation warnings of the current version, then make the version jump, backed by tests and
+        static analysis. PHP is moved to a version that still receives security updates at the same time. The
+        details are on the page <a href="{{ path('app_service_upgrade') }}">Symfony upgrade to 7.4 LTS</a>.
+    </p>
+    <h3>Taking over an existing project</h3>
+    <p>
+        The original developer has left, the agency has no capacity, or nobody dares to touch the code any more? I
+        take over existing Symfony projects, even without documentation or tests. It starts with an honest
+        assessment: which versions are running, where the security risks are, which parts are stable and which are
+        not. Then we decide together what comes first. More under
+        <a href="{{ path('app_service_maintenance') }}">taking over and maintaining Symfony projects</a>.
+    </p>
+
+    <h2>How a project works</h2>
+    <ol>
+        <li><strong>Initial call (free of charge)</strong>: you tell me what it is about, I ask questions and tell you honestly whether I am the right person for it.</li>
+        <li><strong>Analysis and quote</strong>: for new builds we clarify scope and priorities, for existing applications I look at the code. You receive a transparent estimate.</li>
+        <li><strong>Delivery in short steps</strong>: I deliver in small, testable increments on a staging environment. You see real results early instead of slides.</li>
+        <li><strong>Go-live</strong>: automated deployment, backups and a clear way back in case something does not fit.</li>
+        <li><strong>Operations and further development</strong>: updates, small changes and new features for as long as you want. On request I also take care of hosting and domains, see <a href="{{ path('app_service_hosting') }}">hosting from one source</a>.</li>
+    </ol>
+
+    <h2>Technology and quality</h2>
+    <p>
+        I rely on proven tools rather than experiments, so that someone can still understand and extend your
+        application five years from now:
+    </p>
+    <ul>
+        <li><strong>Current versions</strong>: Symfony 7.4 LTS or newer, PHP 8.4 or 8.5, Doctrine ORM with MySQL, MariaDB or PostgreSQL.</li>
+        <li><strong>Automated tests</strong> with PHPUnit for the workflows that matter, and static analysis with PHPStan.</li>
+        <li><strong>Docker</strong> for a development environment that runs the same on every machine.</li>
+        <li><strong>CI/CD</strong>: tests and security checks run on every push, deployments are automated and repeatable.</li>
+        <li><strong>Your repository</strong>: the code belongs to you and is in your hands from day one.</li>
+    </ul>
+
+    <h2>Pricing model</h2>
+    <p>
+        I offer three models. Which one fits depends on how clear the scope is at the start.
+    </p>
+    <ul>
+        <li><strong>Time and materials</strong> at an hourly rate: for further development, debugging and projects whose scope changes along the way. You receive a breakdown of the hours worked.</li>
+        <li><strong>Fixed price</strong>: for clearly defined packages, such as an upgrade analysis or an upgrade with a known scope. The price is agreed upfront.</li>
+        <li><strong>Maintenance</strong> with a fixed monthly budget: for applications that regularly need updates and small adjustments.</li>
+    </ul>
+    <p>
+        I will give you concrete rates in the initial call, once I know what it is about. That way you get a number
+        that fits your project instead of a range that means nothing.
+    </p>
+
+    <h2>Case studies</h2>
+    <div class="case">
+        <h3 class="!mt-0">Mirwena – software for therapy practices</h3>
+        <p>
+            Digital intake form and practice software for physiotherapy, osteopathy and occupational therapy practices, handling sensitive health data.
+        </p>
+        <ul>
+            <li>Symfony 7.4 LTS, PHP 8, MySQL, Docker</li>
+            <li>around 870 automated tests, static analysis with PHPStan, checks on every push</li>
+            <li>a separate installation, database and key per practice; health data encrypted field by field</li>
+            <li>access links for patients expire after 24 hours</li>
+        </ul>
+        <p><a href="{{ path('app_reference_mirwena') }}">Read the Mirwena case study</a></p>
+    </div>
+    <div class="case">
+        <h3 class="!mt-0">Freelancer CRM – customers, projects, invoices</h3>
+        <ul>
+            <li>Symfony 8.1 with PHP 8.5, Doctrine ORM, MariaDB, Docker</li>
+            <li>89 automated tests, security audit of dependencies in CI</li>
+            <li>a continuous flow from customer to project and task to a PDF invoice</li>
+        </ul>
+        <p><a href="{{ path('app_reference_freelancer') }}">Read the Freelancer CRM case study</a></p>
+    </div>
+    <div class="case">
+        <h3 class="!mt-0">Email signature generator</h3>
+        <ul>
+            <li>Symfony 7.3, Twig and JavaScript</li>
+            <li>53 automated tests</li>
+            <li>copy signatures for Outlook, Apple Mail and Gmail with one click</li>
+        </ul>
+        <p><a href="{{ path('app_reference_email_signature') }}">Read the email signature case study</a></p>
+    </div>
+
+    <h2>More frequently asked questions</h2>
+    <h3>How soon can you start?</h3>
+    <p>
+        That depends on my current workload. Smaller tasks such as an upgrade analysis or debugging can usually be
+        scheduled at short notice, larger projects we plan together. In the initial call I will give you a concrete
+        start date.
+    </p>
+    <h3>Do you also work with existing teams?</h3>
+    <p>
+        Yes. I work on my own for smaller companies as well as reinforcing existing development teams or agencies
+        that need additional Symfony experience for a project. I follow your processes, code reviews and tools.
+    </p>
+
+    <h2>Freelancer or agency?</h2>
+    <p>
+        With me, you talk to the person who writes the code. That saves coordination and project management
+        overhead. For very large projects with many parallel roles an agency can still be the better fit. You will
+        find an honest comparison in the guide <a href="{{ path('app_guide_agency') }}">Symfony freelancer or agency</a>.
+    </p>
+
+    <div class="related">
+        <p class="!mb-2"><strong>Based nearby?</strong></p>
+        <p class="!mb-0">
+            I am based in Ibbenbüren, Germany, and work for companies all over Germany, especially for clients close by:
+            <a href="{{ path('app_region_muensterland') }}">software developer in Ibbenbüren, Osnabrück and the Münsterland</a>.
+        </p>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<div class="page-content">
+    <h2>The comparison at a glance</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th></th><th>Symfony freelancer</th><th>Agency</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Point of contact</strong></td><td>one person who also writes the code</td><td>project manager, with changing developers behind them</td></tr>
+                <tr><td><strong>Cost</strong></td><td>little overhead for administration and sales</td><td>project management, account management and office are priced in</td></tr>
+                <tr><td><strong>Capacity</strong></td><td>limited to one person</td><td>several developers in parallel</td></tr>
+                <tr><td><strong>Breadth</strong></td><td>deep in one area, e.g. Symfony and backend</td><td>design, frontend, apps and marketing under one roof</td></tr>
+                <tr><td><strong>Coordination</strong></td><td>short paths, decisions often on the same day</td><td>more meetings and coordination between roles</td></tr>
+                <tr><td><strong>Availability risk</strong></td><td>has to be covered deliberately</td><td>cover within the team, but often with ramp-up time</td></tr>
+                <tr><td><strong>Continuity</strong></td><td>the same person for years</td><td>staff changes within the team are common</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>When a freelancer is the better choice</h2>
+    <ul>
+        <li>You need a <strong>web application or interface</strong>, not a complete brand and marketing package.</li>
+        <li>There is an <strong>existing Symfony application</strong> that needs to be taken over, upgraded or extended.</li>
+        <li>You value a <strong>fixed point of contact</strong> who knows your application and your business for years.</li>
+        <li>You want the budget to go into <strong>development</strong> rather than project management and meetings.</li>
+        <li>You want <strong>quick decisions</strong> without every change passing through several hands.</li>
+    </ul>
+
+    <h2>When an agency is the better fit</h2>
+    <p>
+        An honest comparison has to say this too: there are projects for which I am not the best choice.
+    </p>
+    <ul>
+        <li>You need brand design, website, native apps, backend and online marketing <strong>all at once</strong> from one source.</li>
+        <li>A large product has to be built quickly with <strong>many developers in parallel</strong>.</li>
+        <li>A tender requires a <strong>team with fixed roles</strong>, certifications or a certain company size.</li>
+        <li>You want to take care of <strong>nothing at all</strong> yourself and are willing to pay for project management.</li>
+    </ul>
+    <p>
+        Mixed setups exist too: many agencies bring in freelancers for specialised Symfony work, and I work with
+        designers for design tasks.
+    </p>
+
+    <h2>What to ask a freelancer before you start</h2>
+    <ol>
+        <li><strong>Is the code in my repository?</strong> The source code should belong to you and be in your hands from day one, not only on the developer's laptop.</li>
+        <li><strong>Are there automated tests?</strong> Tests are the best insurance that someone else can safely continue later.</li>
+        <li><strong>How is deployment done?</strong> An automated, documented deployment makes you independent of any single person.</li>
+        <li><strong>How is cover arranged?</strong> Holidays and illness happen. Good freelancers have an answer for that.</li>
+        <li><strong>Which references are there?</strong> Ask to see projects that match yours in size and type.</li>
+    </ol>
+
+    <h2>How I keep the availability risk low</h2>
+    <p>
+        In my projects the code lives in a Git repository you have access to. The applications run in Docker and
+        can therefore be reproduced on any machine. Deployments are automated, and tests secure the important
+        workflows: around 870 in <a href="{{ path('app_reference_mirwena') }}">Mirwena</a>, 89 in the
+        <a href="{{ path('app_reference_freelancer') }}">Freelancer CRM</a>. That way any experienced Symfony developer
+        can take over in an emergency, which is exactly how it should be.
+    </p>
+
+    <h2>Conclusion</h2>
+    <p>
+        For a web application, an interface or an existing Symfony application, an experienced freelancer usually
+        gives you more development per euro and a point of contact who really knows your project. For large
+        undertakings with many disciplines at once, an agency is often the better choice. If you are unsure, get in
+        touch. I will tell you honestly whether your project is a good fit for me.
+    </p>
+
+    <div class="related">
+        <p class="!mb-2"><strong>My services as a Symfony freelancer</strong></p>
+        <ul class="!mb-0">
+            <li><a href="{{ path('app_service_symfony') }}">Symfony development for custom web applications</a></li>
+            <li><a href="{{ path('app_service_upgrade') }}">Symfony upgrade to 7.4 LTS</a></li>
+            <li><a href="{{ path('app_service_maintenance') }}">Taking over and maintaining Symfony projects</a></li>
+        </ul>
+    </div>
+</div>

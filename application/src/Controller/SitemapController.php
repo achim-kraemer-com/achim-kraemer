@@ -13,10 +13,11 @@ class SitemapController extends AbstractController
 {
     private const PRIORITIES = [
         'app_home'                     => '1.0',
-        'app_impress_index'            => '0.3',
-        'app_data-protection_index'    => '0.3',
         'app_cv'                       => '0.5',
     ];
+
+    // Rechtstexte sind noindex und gehören deshalb nicht in die Sitemap.
+    private const NOINDEX = ['app_impress_index', 'app_data-protection_index'];
 
     #[Route('/sitemap.xml', name: 'sitemap', defaults: ['_format' => 'xml'])]
     public function index(RouterInterface $router): Response
@@ -28,7 +29,8 @@ class SitemapController extends AbstractController
             if (!\preg_match('/^(app_.+)\.(de|en)$/', $routeName, $matches)
                 || \str_starts_with($matches[1], 'app_businesscard')
                 || \str_starts_with($matches[1], 'app_login')
-                || \str_starts_with($matches[1], 'app_logout')) {
+                || \str_starts_with($matches[1], 'app_logout')
+                || \in_array($matches[1], self::NOINDEX, true)) {
                 continue;
             }
 

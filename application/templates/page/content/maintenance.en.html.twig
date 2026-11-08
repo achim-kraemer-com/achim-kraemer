@@ -1,0 +1,72 @@
+<div class="page-content">
+    <h2>Typical situations in which I take over</h2>
+    <ul>
+        <li>The developer who built the application is no longer available or has left the company.</li>
+        <li>The agency has finished the project and only responds with long delays.</li>
+        <li>The application runs on an old Symfony or PHP version and nobody knows what an update will break.</li>
+        <li>New features take longer and longer because every change breaks something elsewhere.</li>
+        <li>There is no documentation, no tests and only one person who knows how deployment works.</li>
+    </ul>
+
+    <h2>How a project takeover works</h2>
+    <ol>
+        <li><strong>Access and handover</strong>: repository, servers, database, domains and all external services. If a predecessor is still around, I clarify open points with them directly.</li>
+        <li><strong>Local environment</strong>: I get the application running locally in Docker. That sounds trivial, but it quickly shows how well a project is documented and which dependencies are hidden.</li>
+        <li><strong>Assessment</strong>: versions of Symfony, PHP and all packages, known vulnerabilities, test coverage, database structure, deployment and backups.</li>
+        <li><strong>Report</strong>: you receive an understandable summary with the risks sorted by urgency, without jargon, and a proposal for what should happen first.</li>
+        <li><strong>Stabilise</strong>: critical security updates, working backups and automated deployment come before new features.</li>
+    </ol>
+
+    <h2>What ongoing maintenance includes</h2>
+    <p>
+        A web application is not finished after go-live. PHP, Symfony and the packages in use receive updates all
+        the time, and vulnerabilities are often discovered years later. For me, maintenance means:
+    </p>
+    <ul>
+        <li><strong>Regular updates</strong> of Symfony, PHP and all Composer and JavaScript packages</li>
+        <li><strong>Security checks</strong> of dependencies and a fast response to known vulnerabilities</li>
+        <li><strong>Monitoring and error logs</strong>, so problems are noticed before your customers call</li>
+        <li><strong>Backups</strong> that are not only created but also tested for restorability</li>
+        <li><strong>Small changes and bug fixes</strong> without a separate quote for every detail</li>
+        <li><strong>Planning</strong> larger steps such as an <a href="{{ path('app_service_upgrade') }}">upgrade to Symfony 7.4 LTS</a> in good time before the old version runs out</li>
+    </ul>
+
+    <h2>Legacy code: rewrite or improve?</h2>
+    <p>
+        The wish to rewrite everything is understandable but rarely the best solution. A rewrite takes a long time
+        while the old application still has to be maintained, and the knowledge of years of edge cases in the old
+        code is easily lost.
+    </p>
+    <p>
+        So I usually proceed step by step: first, tests secure the workflows the business depends on. Then the
+        code is improved where work is happening anyway. After a few months the application is much easier to
+        maintain without ever having had a big, risky switch. If one part really cannot be saved, we replace
+        exactly that part.
+    </p>
+
+    <h2>Maintenance with a fixed monthly budget</h2>
+    <p>
+        For maintenance we agree on a fixed monthly budget that fits the size and importance of your application.
+        It covers updates, security checks and small changes. Larger developments are billed on a
+        time-and-materials basis or as a fixed-price package. We discuss the concrete terms after the assessment,
+        once it is clear what your application needs.
+    </p>
+
+    <h2>How I look after my own software</h2>
+    <p>
+        I maintain my own applications the same way I do for clients. In
+        <a href="{{ path('app_reference_mirwena') }}">Mirwena</a>, around 870 automated tests and a static analysis
+        run on every push; the <a href="{{ path('app_reference_freelancer') }}">Freelancer CRM</a> also checks all
+        dependencies for known vulnerabilities. I set up these tools in projects I take over as well, so that
+        maintenance does not depend on any one person's memory.
+    </p>
+
+    <div class="related">
+        <p class="!mb-2"><strong>Related</strong></p>
+        <ul class="!mb-0">
+            <li><a href="{{ path('app_service_upgrade') }}">Symfony upgrade from version 5 or 6 to 7.4 LTS</a></li>
+            <li><a href="{{ path('app_service_symfony') }}">Symfony development: new features and applications</a></li>
+            <li><a href="{{ path('app_service_hosting') }}">Hosting, domains and email from one source</a></li>
+        </ul>
+    </div>
+</div>

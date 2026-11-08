@@ -34,6 +34,30 @@ class PageController extends AbstractController
         return $this->detail('service', 'hosting', ['Webhosting', 'Domains', 'E-Mail', 'SSL/TLS']);
     }
 
+    #[Route('/services/symfony-upgrade', name: 'app_service_upgrade')]
+    public function serviceUpgrade(): Response
+    {
+        return $this->detail('service', 'upgrade', ['Symfony 7.4 LTS', 'PHP 8.x', 'Rector', 'PHPStan', 'PHPUnit']);
+    }
+
+    #[Route('/services/symfony-maintenance', name: 'app_service_maintenance')]
+    public function serviceMaintenance(): Response
+    {
+        return $this->detail('service', 'maintenance', ['Symfony', 'PHP 8.x', 'PHPUnit', 'CI/CD', 'Docker']);
+    }
+
+    #[Route('/guide/symfony-freelancer-vs-agency', name: 'app_guide_agency')]
+    public function guideAgency(): Response
+    {
+        return $this->detail('guide', 'agency', ['Symfony', 'PHP', 'Freelancer']);
+    }
+
+    #[Route('/region/ibbenbueren-osnabrueck-muensterland', name: 'app_region_muensterland')]
+    public function regionMuensterland(): Response
+    {
+        return $this->detail('service', 'region', ['Symfony', 'PHP 8.x', 'Ibbenbüren', 'Osnabrück', 'Münsterland']);
+    }
+
     #[Route('/references/mirwena', name: 'app_reference_mirwena')]
     public function referenceMirwena(): Response
     {
