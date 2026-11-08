@@ -8,6 +8,10 @@ parameters:
     app.locales: 'de|en'
     pdf_storage_path: '%kernel.project_dir%/config/pdfs/'
     invoices_path: '%kernel.project_dir%/public/invoices/'
+    # Öffentliche Adresse der Seite (URL-Erzeugung in CLI-Befehlen, IndexNow)
+    app.site_url: 'https://achim-kraemer.com'
+    # IndexNow-Schlüssel; muss als public/<key>.txt mit dem Schlüssel als Inhalt erreichbar sein
+    app.indexnow_key: '4d438acc1379cc331afe25127d877442'
 
 services:
     # default configuration for services in *this* file
