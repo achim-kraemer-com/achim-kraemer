@@ -17,43 +17,39 @@ window.addEventListener('load', () => {
     if (target) target.scrollIntoView({ behavior: 'instant' });
 });
 
-window.addEventListener('scroll', function () {
-    const scrolled = window.scrollY;
-    const bgContainer = document.querySelector('.background-container');
-    if (bgContainer) {
-        bgContainer.style.transform = 'translateY(' + (scrolled * 0.3) + 'px)';
-    }
-});
+const bgContainer = document.querySelector('.background-container');
+const parallaxEnabled = bgContainer && window.matchMedia('(min-width: 1024px) and (prefers-reduced-motion: no-preference)').matches;
+if (parallaxEnabled) {
+    window.addEventListener('scroll', function () {
+        const scrolled = window.scrollY;
+        if (scrolled <= window.innerHeight) {
+            bgContainer.style.transform = 'translateY(' + (scrolled * 0.3) + 'px)';
+        }
+    }, { passive: true });
+}
+
+// Abschnitte einmalig einblenden; ohne IntersectionObserver bleibt alles sichtbar
+const blocks = document.querySelectorAll('.block-container');
+if ('IntersectionObserver' in window) {
+    document.documentElement.classList.add('reveal-ready');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    blocks.forEach(block => observer.observe(block));
+}
 
 document.addEventListener("DOMContentLoaded", function () {
-    const blocks = document.querySelectorAll('.block-container');
     blocks.forEach(block => {
         const line = block.querySelector('.block-line');
         if (line) {
-            const blockHeight = block.offsetHeight;
-            line.style.height = `${blockHeight}px`;
+            line.style.height = `${block.offsetHeight}px`;
         }
     });
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const block = entry.target;
-            const headline = block.querySelector('.headline');
-            const text = block.querySelector('.text');
-            
-            if (entry.isIntersecting) {
-                block.classList.remove('opacity-0');
-                if (headline) headline.classList.remove('translate-x-[-100%]');
-                if (text) text.classList.remove('translate-x-20');
-            } else {
-                block.classList.add('opacity-0');
-                if (headline) headline.classList.add('translate-x-[-100%]');
-                if (text) text.classList.add('translate-x-20');
-            }
-        });
-    }, { threshold: 0.05 });
-
-    blocks.forEach(block => observer.observe(block));
 });
 
 // document.addEventListener("DOMContentLoaded", async function () {

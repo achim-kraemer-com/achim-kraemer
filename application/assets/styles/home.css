@@ -4,16 +4,19 @@ html {
     scroll-padding-top: var(--header-height, 80px);
 }
 
+/* Hero wächst mit dem Inhalt, füllt aber mindestens den Bildschirm */
 .parallax-container {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
+    min-height: 100svh;
     overflow: hidden;
 }
 
 .background-container {
     position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    min-height: 100svh;
     background-image: url('../images/office-865091_1920.jpg');
     background-size: cover;
     background-attachment: fixed;
@@ -66,7 +69,7 @@ html {
 }
 
 .block-container {
-    padding: 100px 0;
+    padding: 4rem 0;
     position: relative;
     width: 100%;
     background-color: var(--background-color);
@@ -75,11 +78,61 @@ html {
     overflow-x: clip;
 }
 
+@media (min-width: 768px) {
+    .block-container {
+        padding: 6.25rem 0;
+    }
+}
+
+/* iOS ignoriert background-attachment: fixed bzw. rendert es verpixelt */
+@media (max-width: 1023.98px), (hover: none) {
+    .background-container,
+    .background-container2,
+    .background-container3 {
+        background-attachment: scroll;
+    }
+}
+
 .services-container, .about-container, .contact-container, .portfolio-container, .references-container {
     display: flex;
     margin: 0 auto;
     max-width: 1200px;
-    padding: 0 24px;
+    padding: 0 20px;
+}
+
+@media (min-width: 640px) {
+    .services-container, .about-container, .contact-container, .portfolio-container, .references-container {
+        padding: 0 24px;
+    }
+}
+
+/* Abschnitte blenden beim ersten Erscheinen einmalig ein (home.js setzt .is-visible).
+   Mobil nur vertikal, damit nichts seitlich aus dem Bild ragt. */
+.reveal-ready .block-container .headline,
+.reveal-ready .block-container .text {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 1024px) {
+    .reveal-ready .block-container .headline { transform: translateX(-40px); }
+    .reveal-ready .block-container .text { transform: translateX(40px); transition-delay: 0.1s; }
+}
+
+.reveal-ready .block-container.is-visible .headline,
+.reveal-ready .block-container.is-visible .text {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-ready .block-container .headline,
+    .reveal-ready .block-container .text {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 .project {
@@ -94,17 +147,156 @@ html {
 }
 
 .header-slogan {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
+    position: relative;
+    width: 100%;
     max-width: 800px;
+    padding-bottom: 3rem;
     z-index: 10;
     display: flex;
-    flex-col: column;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-top: calc(var(--header-height, 72px) + 2rem);
+}
+
+@media (min-width: 1024px) {
+    .header-slogan {
+        padding-bottom: 6rem;
+    }
+}
+
+/* Hero */
+.hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    background: rgba(124, 58, 237, 0.12);
+    color: #ddd6fe;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.hero-status-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 9999px;
+    background: var(--header-color);
+    box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.2);
+}
+
+.hero-facts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 0.6rem;
+    margin-top: 1.75rem;
+}
+
+.hero-facts li {
+    padding: 0.4rem 0.85rem;
+    border-radius: 9999px;
+    border: 1px solid var(--border-color);
+    background: rgba(15, 23, 42, 0.55);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.hero-facts strong {
+    color: #fff;
+    font-weight: 700;
+}
+
+.hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 22rem;
+    margin-top: 2rem;
+}
+
+@media (min-width: 640px) {
+    .hero-actions {
+        flex-direction: row;
+        justify-content: center;
+        max-width: none;
+    }
+}
+
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.25rem;
+    padding: 0.85rem 1.75rem;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.hero-cta-primary {
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end));
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.35);
+}
+
+.hero-cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(124, 58, 237, 0.5);
+}
+
+.hero-cta-secondary {
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(8px);
+}
+
+.hero-cta-secondary:hover {
+    border-color: rgba(167, 139, 250, 0.5);
+    background: rgba(124, 58, 237, 0.12);
+}
+
+.hero-cta:focus-visible {
+    outline: 2px solid var(--header-color);
+    outline-offset: 3px;
+}
+
+/* Direkter Kontakt über dem Formular */
+.contact-direct {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.contact-direct-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 2.75rem;
+    padding: 0.6rem 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: rgba(15, 23, 42, 0.45);
+    color: #e2e8f0;
+    font-weight: 500;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.contact-direct-link svg {
+    color: var(--header-color);
+}
+
+.contact-direct-link:hover {
+    border-color: rgba(167, 139, 250, 0.5);
+    color: #fff;
 }
 
 .vertical-line {
@@ -146,7 +338,19 @@ html {
 
 .slide-in-text2 {
     opacity: 0;
-    animation: slide-up-fade 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+    animation: slide-up-fade 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+}
+
+.slide-in-text3 {
+    opacity: 0;
+    animation: slide-up-fade 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .slide-in-text1, .slide-in-text2, .slide-in-text3 {
+        opacity: 1;
+        animation: none;
+    }
 }
 
 @keyframes slide-up-fade {
@@ -295,4 +499,95 @@ html {
 
 @media (prefers-reduced-motion: reduce) {
     .contact-thanks[open] { animation: none; }
+}
+
+/* FAQ als Akkordeon: mobil kurz, Antworten bleiben im HTML (und im JSON-LD) */
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.faq-item {
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.3);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.faq-item[open] {
+    border-color: rgba(167, 139, 250, 0.3);
+    background: rgba(15, 23, 42, 0.55);
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    cursor: pointer;
+    list-style: none;
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.faq-question::-webkit-details-marker {
+    display: none;
+}
+
+.faq-question:focus-visible {
+    outline: 2px solid var(--header-color);
+    outline-offset: 2px;
+    border-radius: 16px;
+}
+
+.faq-chevron {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    color: var(--header-color);
+    transition: transform 0.25s ease;
+}
+
+.faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 1.25rem 1.25rem;
+    color: #cbd5e1;
+    line-height: 1.7;
+}
+
+@media (min-width: 768px) {
+    .faq-question {
+        padding: 1.25rem 1.5rem;
+        font-size: 1.15rem;
+    }
+
+    .faq-answer {
+        padding: 0 1.5rem 1.5rem;
+    }
+}
+
+/* reCAPTCHA-Badge verdeckt mobil Inhalte; der Hinweis steht stattdessen unter dem Formular
+   (von Google so erlaubt, solange der Hinweis sichtbar ist) */
+.grecaptcha-badge {
+    visibility: hidden;
+}
+
+.recaptcha-notice {
+    margin-top: 1rem;
+    color: #64748b;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.recaptcha-notice a {
+    color: #94a3b8;
+    text-decoration: underline;
 }

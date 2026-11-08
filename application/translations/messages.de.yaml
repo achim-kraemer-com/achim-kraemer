@@ -7,13 +7,23 @@ app.default.delete: Löschen
 app.header.name: Achim Krämer
 app.header.slogan1: Symfony Freelancer
 app.header.slogan2: mit über 20 Jahren Erfahrung für Deine individuellen Projekte
+app.header.eyebrow: 'Aus Ibbenbüren · bundesweit remote'
+app.header.facts_label: 'Kurz zusammengefasst'
+app.header.fact1_value: '20+'
+app.header.fact1_label: 'Jahre PHP'
+app.header.fact2_value: '15+'
+app.header.fact2_label: 'Jahre Symfony'
+app.header.fact3_value: 'Symfony 2–8'
+app.header.fact3_label: 'Neubau & Upgrades'
+app.header.cta_primary: 'Projekt anfragen'
+app.header.cta_secondary: 'Referenzen ansehen'
 app.navigation.about: Über mich
 app.navigation.services: Dienstleistungen
 app.navigation.portfolio: Portfolio
 app.navigation.references: Referenzen
 app.navigation.faq: FAQ
 app.navigation.contact: Kontakt
-app.services.text: 'Ich bin ein erfahrener Webentwickler mit über 20 Jahren Expertise in PHP, davon mehr als 15 Jahre mit Symfony. Mein Fokus liegt auf der Entwicklung robuster und skalierbarer Webanwendungen, die sich nahtlos in bestehende Systeme integrieren lassen und den höchsten Anforderungen an Performance und Sicherheit gerecht werden.<br><br>Während meiner Karriere habe ich an einer Vielzahl von Projekten gearbeitet, von kleinen Start-ups bis hin zu großen Unternehmenslösungen. Dabei konnte ich tiefe Einblicke in unterschiedliche Branchen gewinnen und individuelle, auf den Kunden zugeschnittene Lösungen entwickeln. Meine Dienstleistungen umfassen:'
+app.services.text: 'Ich entwickle robuste, skalierbare Webanwendungen mit PHP und Symfony – vom Prototyp für ein Start-up bis zur gewachsenen Unternehmenslösung. Neue Funktionen fügen sich sauber in bestehende Systeme ein und erfüllen hohe Anforderungen an Performance und Sicherheit.<br><br>Damit kann ich Dich unterstützen:'
 app.services.title1: 'Maßgeschneiderte Webanwendungen'
 app.services.text1_1: '<b>Dashboards & Statistiken</b> – Individuelle Dashboards mit Echtzeit-Daten und Grafiken für einen schnellen Überblick.'
 app.services.text1_2: '<b>Benutzerverwaltung</b> – Rollen- und Rechte-System für unterschiedliche Nutzergruppen.'
@@ -33,10 +43,10 @@ app.services.text4_3: '<b>Weitere Logins</b> – Integration von Facebook, Apple
 app.services.text4_4: '<b>2-Faktor-Authentifizierung (2FA)</b> – Mehr Sicherheit durch zusätzliche Schutzmechanismen.'
 app.services.title5: 'KI-Lösungen & Intelligente Automatisierung'
 app.services.text5_1: '<b>Autonome KI-Agenten (Agentic AI)</b> - Ich baue nicht nur Chatbots, sondern intelligente Agenten, die eigenständig Prozesse analysieren, APIs ansteuern und Support- oder Rechercheaufgaben vollautomatisch lösen.'
-app.services.text5_2: '<b>Sichere Unternehmens-KI (RAG)</b> – Entwicklung von KI-Assistenten, die mit Ihren internen Firmenwissen "gefüttert" werden und präzise, datenschutzkonforme Antworten für Mitarbeiter oder Kunden generieren.'
+app.services.text5_2: '<b>Sichere Unternehmens-KI (RAG)</b> – Entwicklung von KI-Assistenten, die mit Eurem internen Firmenwissen "gefüttert" werden und präzise, datenschutzkonforme Antworten für Mitarbeiter oder Kunden generieren.'
 app.services.text5_3: '<b>Automatisierte Datenextraktion</b> – Verwandlung von unstrukturierten PDFs, Rechnungen und Bildern in nutzbare, strukturierte Datenstrukturen durch moderne KI-Modelle.'
 app.services.text5_4: '<b>Visuelle KI-Analysen</b> – Implementierung von Bilderkennungssystemen, die Objekte, Zustände oder Dokumente in Echtzeit verifizieren und bewerten.'
-app.services.text5_5: '<b>Skalierbare Content-Automatisierung</b> – Automatisierte Erstellung von hochwertigen, kontextsensitiven Texten (z. B. Produktbeschreibungen, Reports), die sich perfekt in Ihre bestehenden Systeme integrieren lassen.'
+app.services.text5_5: '<b>Skalierbare Content-Automatisierung</b> – Automatisierte Erstellung von hochwertigen, kontextsensitiven Texten (z. B. Produktbeschreibungen, Reports), die sich nahtlos in Deine bestehenden Systeme integrieren lassen.'
 app.services.title6: 'Performance & Sicherheit'
 app.services.text6_1: '<b>Optimierung</b> – Bessere Ladezeiten durch Caching & Performance-Tuning.'
 app.services.text6_2: '<b>Sicherheit</b> – Schutz vor Angriffen mit aktuellen Sicherheitsstandards.'
@@ -100,6 +110,9 @@ app.contact.email_send: Vielen Dank für Deine Kontaktanfrage!
 app.contact.thanks_title: 'Danke, %name%!'
 app.contact.thanks_text: 'Deine Nachricht ist angekommen. Ich melde mich so schnell wie möglich bei Dir.'
 app.contact.thanks_close: 'Schließen'
+app.contact.intro: 'Erzähl mir kurz von Deinem Projekt – ich melde mich so schnell wie möglich. Lieber direkt? Schreib mir oder ruf an.'
+app.contact.submit: 'Nachricht senden'
+app.contact.recaptcha_notice: 'Diese Seite ist durch reCAPTCHA geschützt. Es gelten die <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung</a> und die <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Nutzungsbedingungen</a> von Google.'
 app.contact.invalid: 'Bitte prüfe Deine Eingaben.'
 app.contact.sending: 'Wird gesendet …'
 app.contact.failed: 'Die Nachricht konnte nicht gesendet werden. Bitte versuche es erneut oder schreib mir an kontakt@achim-kraemer.com.'

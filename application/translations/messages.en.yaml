@@ -7,13 +7,23 @@ app.default.delete: Löschen
 app.header.name: Achim Krämer
 app.header.slogan1: Symfony Freelancer
 app.header.slogan2: with over 20 years of experience for your custom projects
+app.header.eyebrow: 'Based in Germany · working remotely'
+app.header.facts_label: 'At a glance'
+app.header.fact1_value: '20+'
+app.header.fact1_label: 'years of PHP'
+app.header.fact2_value: '15+'
+app.header.fact2_label: 'years of Symfony'
+app.header.fact3_value: 'Symfony 2–8'
+app.header.fact3_label: 'new builds & upgrades'
+app.header.cta_primary: 'Start a project'
+app.header.cta_secondary: 'See references'
 app.navigation.about: About Me
 app.navigation.services: Services
 app.navigation.portfolio: Portfolio
 app.navigation.references: References
 app.navigation.faq: FAQ
 app.navigation.contact: Contact
-app.services.text: 'I am an experienced web developer with over 20 years of expertise in PHP, including more than 15 years with Symfony. My focus is on developing robust and scalable web applications that seamlessly integrate into existing systems and meet the highest standards of performance and security.<br><br>Throughout my career, I have worked on a wide range of projects, from small startups to large enterprise solutions. This has given me deep insights into various industries and allowed me to develop customized solutions tailored to clients needs. My services include:'
+app.services.text: 'I build robust, scalable web applications with PHP and Symfony – from a start-up prototype to a mature enterprise solution. New features integrate cleanly into existing systems and meet high standards of performance and security.<br><br>Here is how I can help:'
 app.services.title1: 'Custom Web Applications'
 app.services.text1_1: '<b>Dashboards & Statistics</b> – Custom dashboards with real-time data and charts for a quick overview.'
 app.services.text1_2: '<b>User Management</b> – Role and permission system for different user groups.'
@@ -100,6 +110,9 @@ app.contact.email_send: Vielen Dank für Deine Kontaktanfrage!
 app.contact.thanks_title: 'Thank you, %name%!'
 app.contact.thanks_text: 'Your message has arrived. I will get back to you as soon as possible.'
 app.contact.thanks_close: 'Close'
+app.contact.intro: 'Tell me briefly about your project – I will get back to you as soon as possible. Prefer direct contact? Email or call me.'
+app.contact.submit: 'Send message'
+app.contact.recaptcha_notice: 'This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms of Service</a> apply.'
 app.contact.invalid: 'Please check your input.'
 app.contact.sending: 'Sending …'
 app.contact.failed: 'Your message could not be sent. Please try again or email me at kontakt@achim-kraemer.com.'
