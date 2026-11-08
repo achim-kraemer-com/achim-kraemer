@@ -21,6 +21,15 @@ if (hamburgerBtn !== null) {
     });
 }
 
+// Fixe Navigation bekommt beim Scrollen einen Hintergrund, damit der Inhalt nicht durchscheint (alle Seiten)
+const scrollNavbar = document.getElementById('header-scroll-container');
+if (scrollNavbar !== null) {
+    const updateNavbar = () => scrollNavbar.classList.toggle('is-scrolled', window.scrollY > 50);
+    window.addEventListener('scroll', updateNavbar, { passive: true });
+    window.addEventListener('load', updateNavbar);
+    updateNavbar();
+}
+
 if (navigationLinks !== null) {
 // Menü schließen bei Klick auf Links
     navigationLinks.forEach(link => {

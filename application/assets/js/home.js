@@ -15,7 +15,6 @@ window.addEventListener('resize', setHeaderHeight);
 window.addEventListener('load', () => {
     const target = location.hash && document.getElementById(location.hash.slice(1));
     if (target) target.scrollIntoView({ behavior: 'instant' });
-    stickyNavbar();
 });
 
 window.addEventListener('scroll', function () {
@@ -24,12 +23,7 @@ window.addEventListener('scroll', function () {
     if (bgContainer) {
         bgContainer.style.transform = 'translateY(' + (scrolled * 0.3) + 'px)';
     }
-    stickyNavbar();
 });
-
-function stickyNavbar() {
-    scrollNavbar.classList.toggle('is-scrolled', window.scrollY > 50);
-}
 
 document.addEventListener("DOMContentLoaded", function () {
     const blocks = document.querySelectorAll('.block-container');
