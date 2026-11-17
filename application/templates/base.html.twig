@@ -17,7 +17,7 @@
         <meta name="description" content="{% block description %}Symfony Freelancer gesucht? Ich unterstütze ihr Projekt und bringe über 20 Jahre PHP-Erfahrung mit ein.{% endblock %}">
         <link rel="canonical" href="{{ app.request.uri }}">
         {% set base_route = app.request.attributes.get('_route')|default('')|split('.')|first %}
-        {% if base_route starts with 'app_' and base_route != 'app_login' and base_route != 'app_logout' %}
+        {% if base_route starts with 'app_' %}
             <link rel="alternate" hreflang="de" href="{{ absolute_url(path(base_route ~ '.de')) }}">
             <link rel="alternate" hreflang="en" href="{{ absolute_url(path(base_route ~ '.en')) }}">
             <link rel="alternate" hreflang="x-default" href="{{ absolute_url(path(base_route ~ '.de')) }}">

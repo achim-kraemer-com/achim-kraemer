@@ -23,8 +23,6 @@ Encore
     .addEntry('app', './assets/js/app.js')
     .addEntry('home', './assets/js/home.js')
     .addEntry('impress', './assets/styles/impress.css')
-    .addEntry('emailSignature', './assets/styles/emailSignature.css')
-    .addEntry('signature', './assets/js/signature.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

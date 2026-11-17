@@ -16,14 +16,8 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-            form_login:
-                login_path: app_login
-                check_path: app_login
-                enable_csrf: true
-            logout:
-                path: app_logout
-                # where to redirect after logout
-                # target: app_any_route
+            # Kein Login mehr auf dieser Seite: Das CRM ist nach
+            # freelancer.achim-kraemer.com umgezogen (siehe LegacyCrmRedirectController).
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -37,7 +31,6 @@ security:
         - { path: ^/$, roles: PUBLIC_ACCESS }
         - { path: ^/data-protection, roles: PUBLIC_ACCESS }
         - { path: ^/impress, roles: PUBLIC_ACCESS }
-        - { path: ^/admin, roles: ROLE_ADMIN }
 
 when@test:
     security:
