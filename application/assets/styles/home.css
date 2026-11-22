@@ -49,6 +49,27 @@ html {
     color: var(--text-secondary);
 }
 
+/* Bildstreifen zwischen den Abschnitten mit "Fenster"-Effekt.
+   Das Bild liegt in einer position: fixed-Ebene, die clip-path auf den Streifen begrenzt.
+   Der Browser kann das auf der Grafikkarte zusammensetzen; background-attachment: fixed
+   erzwingt dagegen bei jedem Scrollschritt ein Neuzeichnen. */
+.image-divider {
+    position: relative;
+    height: 10rem;
+    clip-path: inset(0);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.image-divider__img {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(rgba(8, 11, 17, 0.4), rgba(8, 11, 17, 0.4)),
+                url('../images/firmbee-com-GANqCr.jpg') center / cover no-repeat;
+    will-change: transform;
+    pointer-events: none;
+}
+
 .block-container {
     padding: 4rem 0;
     position: relative;
