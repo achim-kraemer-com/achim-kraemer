@@ -45,6 +45,12 @@
 {% endblock %}
 
 {% block body %}
+    <!-- Schwebende Social-Leiste rechts (nur Desktop; mobil stehen die Icons im Footer).
+         Ohne backdrop-blur, damit das Scrollen flüssig bleibt. -->
+    <div class="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-50 flex-col gap-4 bg-[#0f172a]/90 p-3 rounded-2xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+        {{ include('_social_links.html.twig', {link_class: 'transition-colors duration-200 text-slate-400 hover:text-purple-400', icon_class: 'w-8 h-8'}) }}
+    </div>
+
     <!-- Header mit Hintergrundbild und Verlauf -->
     <header class="shadow-2xl relative overflow-hidden">
         <div class="parallax-container">
@@ -746,7 +752,7 @@
                 {{ include('_logo.html.twig', {'size': 32}) }}
                 <p>&copy; {{ "now"|date("Y") }} Achim Krämer. Alle Rechte vorbehalten.</p>
             </div>
-            <div class="footer-social flex flex-wrap justify-center gap-4">
+            <div class="footer-social flex lg:hidden flex-wrap justify-center gap-4">
                 {{ include('_social_links.html.twig', {link_class: 'text-slate-400 hover:text-purple-400 transition-colors', icon_class: 'w-5 h-5'}) }}
             </div>
             <div class="flex gap-6">
