@@ -6,7 +6,7 @@ app.default.update: Aktualisieren
 app.default.delete: Löschen
 app.header.name: Achim Krämer
 app.header.slogan1: Symfony Freelancer
-app.header.slogan2: mit über 20 Jahren Erfahrung für Deine individuellen Projekte
+app.header.slogan2: 'Ich entwickle Webanwendungen mit Symfony und KI, begleite Projekte als Product Owner und kümmere mich um Website, Domain und E-Mail. Über 20 Jahre Erfahrung, ein Ansprechpartner.'
 app.header.eyebrow: 'Aus Ibbenbüren · bundesweit remote'
 app.header.facts_label: 'Kurz zusammengefasst'
 app.header.fact1_value: '20+'
@@ -303,8 +303,8 @@ app.references.signature_category: 'Eigene Entwicklung: Werkzeug für Unternehme
 app.references.signature_title: 'E-Mail-Signatur-Generator'
 app.references.signature_text: 'Ein Web-Tool, das aus Kontaktdaten und Logo professionelle E-Mail-Signaturen erzeugt, die sich mit einem Klick in Outlook, Apple Mail oder Gmail einfügen lassen.'
 app.services.more: 'Mehr zur Leistung'
-app.home.title: 'Achim Krämer – Symfony Entwickler & Freelancer'
-app.home.description: 'Symfony Freelancer gesucht? Ich unterstütze Dein Projekt und bringe über 20 Jahre PHP-Erfahrung mit ein.'
+app.home.title: 'Achim Krämer – Symfony-Entwickler, KI & Websites'
+app.home.description: 'Freelancer aus Ibbenbüren: Webanwendungen mit Symfony und KI, Product Owner sowie Website, Domain, E-Mail und Signatur für kleine Firmen. Über 20 Jahre Erfahrung.'
 app.services.title7: 'Hosting, Domains, E-Mail & SSL'
 app.services.link_upgrade: 'Symfony-Upgrade auf 7.4 LTS'
 app.services.link_maintenance: 'Symfony-Projekt übernehmen & warten'
@@ -389,3 +389,15 @@ app.page.region.a2: 'Nein. Die meiste Zusammenarbeit läuft remote über Videoca
 app.page.region.q3: 'Bist Du Webdesigner oder Programmierer?'
 app.page.region.a3: 'Mein Schwerpunkt ist die Programmierung: Webanwendungen, Datenbanken, Schnittstellen und Automatisierung. Oberflächen setze ich mit TailwindCSS um; für ein aufwendiges Markendesign arbeite ich mit Designern zusammen.'
 app.page.region.link: ''
+app.header.audience_label: 'Wähle Deinen Einstieg'
+app.header.audience1_title: 'Für Unternehmen & Agenturen'
+app.header.audience1_text: 'Symfony-Entwicklung, KI-Integration und Product Ownership: für neue Projekte, Upgrades oder die Übernahme bestehender Systeme.'
+app.header.audience1_link: 'Softwareentwicklung ansehen'
+app.header.audience2_title: 'Für Selbstständige & kleine Firmen'
+app.header.audience2_text: 'Website, eigene Domain, E-Mail-Adressen und passende Signatur. Eingerichtet und betreut, ohne dass Du Dich um Technik kümmern musst.'
+app.header.audience2_link: 'Website & E-Mail ansehen'
+app.services.title8: 'Product Owner mit KI-Erfahrung'
+app.services.text8_1: '<b>Anforderungen klären</b> – Ich übersetze Geschäftsziele in klare User Stories und priorisiere das Backlog.'
+app.services.text8_2: '<b>Brücke zwischen Fachbereich und Entwicklung</b> – Ich entwickle selbst und spreche deshalb die Sprache beider Seiten.'
+app.services.text8_3: '<b>KI mit Augenmaß</b> – Ich prüfe, wo KI im Produkt echten Nutzen bringt, und plane die Umsetzung realistisch.'
+app.header.headline: 'Software, Website und <span class="nowrap">E-Mail</span> – aus einer Hand'

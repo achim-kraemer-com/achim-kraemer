@@ -66,10 +66,10 @@
                         <span class="hero-status-dot" aria-hidden="true"></span>
                         {{ 'app.header.eyebrow'|trans }}
                     </p>
-                    <h1 class="slide-in-text1 text-[2.6rem] leading-[1.05] sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-5">
-                        {{ 'app.header.slogan1'|trans }}
+                    <h1 class="slide-in-text1 text-[2.3rem] leading-[1.08] sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-5">
+                        {{ 'app.header.headline'|trans|raw }}
                     </h1>
-                    <h2 class="slide-in-text2 text-lg sm:text-xl md:text-2xl font-normal text-slate-300 leading-relaxed max-w-2xl mx-auto">
+                    <h2 class="slide-in-text2 text-lg sm:text-xl font-normal text-slate-300 leading-relaxed max-w-2xl mx-auto">
                         {{ 'app.header.slogan2'|trans }}
                     </h2>
 
@@ -78,6 +78,17 @@
                             <li><strong>{{ ('app.header.fact' ~ n ~ '_value')|trans }}</strong> {{ ('app.header.fact' ~ n ~ '_label')|trans }}</li>
                         {% endfor %}
                     </ul>
+
+                    <!-- Zwei Einstiege je Zielgruppe -->
+                    <nav class="slide-in-text3 hero-audiences" aria-label="{{ 'app.header.audience_label'|trans }}">
+                        {% for n, target in {1: '#services', 2: path('app_service_hosting')} %}
+                            <a href="{{ target }}" class="hero-audience">
+                                <span class="hero-audience-title">{{ ('app.header.audience' ~ n ~ '_title')|trans }}</span>
+                                <span class="hero-audience-text">{{ ('app.header.audience' ~ n ~ '_text')|trans }}</span>
+                                <span class="hero-audience-link">{{ ('app.header.audience' ~ n ~ '_link')|trans }} &rarr;</span>
+                            </a>
+                        {% endfor %}
+                    </nav>
 
                     <div class="slide-in-text3 hero-actions">
                         <a href="#contact" class="hero-cta hero-cta-primary">{{ 'app.header.cta_primary'|trans }}</a>
@@ -286,6 +297,26 @@
                                 <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2.5 shrink-0"></span>
                                 <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text6_3'|trans|raw|nl2br }}</p>
                             </li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 8: Product Owner -->
+                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl backdrop-blur-md md:col-span-2 hover:border-indigo-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 group-hover:scale-110 transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-7 h-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-white tracking-tight">{{ 'app.services.title8'|trans }}</h4>
+                        </div>
+                        <ul class="space-y-3 md:space-y-4 text-slate-300 md:columns-2 md:gap-8">
+                            {% for n in 1..3 %}
+                                <li class="flex items-start gap-2.5 break-inside-avoid">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2.5 shrink-0"></span>
+                                    <p class="text-[0.95rem] leading-relaxed">{{ ('app.services.text8_' ~ n)|trans|raw|nl2br }}</p>
+                                </li>
+                            {% endfor %}
                         </ul>
                     </div>
 
