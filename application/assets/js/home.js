@@ -17,17 +17,6 @@ window.addEventListener('load', () => {
     if (target) target.scrollIntoView({ behavior: 'instant' });
 });
 
-const bgContainer = document.querySelector('.background-container');
-const parallaxEnabled = bgContainer && window.matchMedia('(min-width: 1024px) and (prefers-reduced-motion: no-preference)').matches;
-if (parallaxEnabled) {
-    window.addEventListener('scroll', function () {
-        const scrolled = window.scrollY;
-        if (scrolled <= window.innerHeight) {
-            bgContainer.style.transform = 'translateY(' + (scrolled * 0.3) + 'px)';
-        }
-    }, { passive: true });
-}
-
 // Abschnitte einmalig einblenden; ohne IntersectionObserver bleibt alles sichtbar
 const blocks = document.querySelectorAll('.block-container');
 if ('IntersectionObserver' in window) {
@@ -108,25 +97,13 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.testimonial-slider').forEach(slider => {
         const slides = slider.querySelectorAll('.testimonial-slide');
         const dots = slider.querySelectorAll('.testimonial-dot');
-        let current = 0;
-        let timer = null;
 
+        // Kein automatischer Wechsel: Bewegung lenkt beim Lesen ab
         const show = index => {
-            current = (index + slides.length) % slides.length;
-            slides.forEach((slide, i) => slide.classList.toggle('is-active', i === current));
-            dots.forEach((dot, i) => dot.classList.toggle('is-active', i === current));
+            slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
+            dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
         };
-        const stop = () => { clearInterval(timer); timer = null; };
-        const start = () => {
-            if (!timer) timer = setInterval(() => show(current + 1), 8000);
-        };
-
-        dots.forEach((dot, i) => dot.addEventListener('click', () => { show(i); stop(); start(); }));
-        slider.addEventListener('mouseenter', stop);
-        slider.addEventListener('mouseleave', start);
-        slider.addEventListener('focusin', stop);
-        slider.addEventListener('focusout', start);
-        start();
+        dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
     });
 });
 

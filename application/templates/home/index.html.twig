@@ -45,21 +45,14 @@
 {% endblock %}
 
 {% block body %}
-    <!-- Floating Social Media Dock (nur Desktop; mobil verdeckt es den Text) -->
-    <div class="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-50 flex-col gap-4 bg-[#0f172a]/65 backdrop-blur-lg p-3 rounded-2xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-        {{ include('_social_links.html.twig', {link_class: 'transition-all duration-300 hover:scale-110 hover:-translate-x-0.5 text-slate-400 hover:text-purple-400', icon_class: 'w-8 h-8'}) }}
-    </div>
-
-    <!-- Header Section with Parallax and Gradient Mask -->
+    <!-- Header mit Hintergrundbild und Verlauf -->
     <header class="shadow-2xl relative overflow-hidden">
         <div class="parallax-container">
             {% include '_scroll_navigation.html.twig' with {'links':'direct'} %}
             <div class="background-container flex items-center justify-center">
                 <!-- Radial Dark Gradient Overlay to mask background image -->
                 <div class="absolute inset-0 bg-gradient-to-b from-[#080b11]/30 via-[#080b11]/60 to-[#080b11]"></div>
-                
-                <div id="keywords-container" class="absolute inset-0 pointer-events-none opacity-40"></div>
-                
+
                 <!-- Slogan: Positionierung, Kernfakten und direkte Handlungsaufforderung -->
                 <div class="header-slogan z-10 max-w-4xl mx-auto px-6 text-center">
                     <p class="slide-in-text1 hero-eyebrow">
@@ -72,12 +65,6 @@
                     <h2 class="slide-in-text2 text-lg sm:text-xl font-normal text-slate-300 leading-relaxed max-w-2xl mx-auto">
                         {{ 'app.header.slogan2'|trans }}
                     </h2>
-
-                    <ul class="slide-in-text2 hero-facts" aria-label="{{ 'app.header.facts_label'|trans }}">
-                        {% for n in 1..3 %}
-                            <li><strong>{{ ('app.header.fact' ~ n ~ '_value')|trans }}</strong> {{ ('app.header.fact' ~ n ~ '_label')|trans }}</li>
-                        {% endfor %}
-                    </ul>
 
                     <!-- Zwei Einstiege je Zielgruppe -->
                     <nav class="slide-in-text3 hero-audiences" aria-label="{{ 'app.header.audience_label'|trans }}">
@@ -94,19 +81,6 @@
                         <a href="#contact" class="hero-cta hero-cta-primary">{{ 'app.header.cta_primary'|trans }}</a>
                         <a href="#references" class="hero-cta hero-cta-secondary">{{ 'app.header.cta_secondary'|trans }}</a>
                     </div>
-
-                    <!-- Profile mobil im Hero statt als Dock über dem Text -->
-                    <div class="slide-in-text3 flex lg:hidden justify-center gap-5 mt-8">
-                        {{ include('_social_links.html.twig', {link_class: 'p-1 text-slate-400 hover:text-purple-400 transition-colors', icon_class: 'w-6 h-6'}) }}
-                    </div>
-                </div>
-
-                <!-- Mouse Scroll Indicator (nur bei genug Höhe, sonst kollidiert er mit den Buttons) -->
-                <div class="scroll-indicator hidden lg:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-2 pointer-events-none opacity-60 animate-bounce z-10" aria-hidden="true">
-                    <div class="w-6 h-10 rounded-full border-2 border-white flex justify-center p-1">
-                        <span class="w-1.5 h-3 bg-white rounded-full animate-scroll-wheel"></span>
-                    </div>
-                    <span class="text-xs uppercase tracking-widest text-slate-400 font-semibold">Scroll</span>
                 </div>
             </div>
         </div>
@@ -132,117 +106,117 @@
                 <!-- Services Cards Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
                     <!-- Card 1: Custom Webapps -->
-                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl backdrop-blur-md hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 group-hover:scale-110 transition-transform">
+                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-7 h-7">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
                                 </svg>
                             </div>
                             <h4 class="text-xl font-bold text-white tracking-tight">{{ 'app.services.title1'|trans }}</h4>
                         </div>
-                        <ul class="space-y-3 md:space-y-4 text-slate-300">
+                        <ul class="space-y-2 text-slate-300">
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text1_1'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text1_1'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text1_2'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text1_2'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text1_3'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text1_3'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                         </ul>
                     </div>
 
                     <!-- Card 2: Interfaces & APIs -->
-                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl backdrop-blur-md hover:border-indigo-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 group-hover:scale-110 transition-transform">
+                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-indigo-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-7 h-7">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
                                 </svg>
                             </div>
                             <h4 class="text-xl font-bold text-white tracking-tight">{{ 'app.services.title2'|trans }}</h4>
                         </div>
-                        <ul class="space-y-3 md:space-y-4 text-slate-300">
+                        <ul class="space-y-2 text-slate-300">
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text2_1'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text2_1'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text2_2'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text2_2'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text2_3'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text2_3'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                         </ul>
                     </div>
 
                     <!-- Card 3: Automation & Docs -->
-                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl backdrop-blur-md hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 group-hover:scale-110 transition-transform">
+                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-7 h-7">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                                 </svg>
                             </div>
                             <h4 class="text-xl font-bold text-white tracking-tight">{{ 'app.services.title3'|trans }}</h4>
                         </div>
-                        <ul class="space-y-3 md:space-y-4 text-slate-300">
+                        <ul class="space-y-2 text-slate-300">
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text3_1'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text3_1'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text3_2'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text3_2'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text3_3'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text3_3'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                         </ul>
                     </div>
 
                     <!-- Card 4: Login & Authentication -->
-                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl backdrop-blur-md hover:border-indigo-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 group-hover:scale-110 transition-transform">
+                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-indigo-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-7 h-7">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z" />
                                 </svg>
                             </div>
                             <h4 class="text-xl font-bold text-white tracking-tight">{{ 'app.services.title4'|trans }}</h4>
                         </div>
-                        <ul class="space-y-3 md:space-y-4 text-slate-300">
+                        <ul class="space-y-2 text-slate-300">
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text4_1'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text4_1'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text4_2'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text4_2'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text4_3'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text4_3'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text4_4'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text4_4'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                         </ul>
                     </div>
 
                     <!-- Card 5: AI Integration -->
-                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl backdrop-blur-md hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 group-hover:scale-110 transition-transform">
+                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-7 h-7">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 21l-.813-5.096L3 15.094l5.096-.813L9 9l.813 5.281 5.096.813-5.096.81" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.071 4.929a10 10 0 0 0-14.142 0M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364-.707.707M6.343 17.657l-.707.707m12.728 0 .707-.707M6.343 6.343l.707.707" />
@@ -250,91 +224,91 @@
                             </div>
                             <h4 class="text-xl font-bold text-white tracking-tight">{{ 'app.services.title5'|trans }}</h4>
                         </div>
-                        <ul class="space-y-3 md:space-y-4 text-slate-300">
+                        <ul class="space-y-2 text-slate-300">
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text5_1'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text5_1'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text5_2'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text5_2'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text5_3'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text5_3'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text5_4'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text5_4'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text5_5'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text5_5'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                         </ul>
                     </div>
 
                     <!-- Card 6: Performance & Security -->
-                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl backdrop-blur-md hover:border-indigo-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 group-hover:scale-110 transition-transform">
+                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-indigo-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-7 h-7">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
                                 </svg>
                             </div>
                             <h4 class="text-xl font-bold text-white tracking-tight">{{ 'app.services.title6'|trans }}</h4>
                         </div>
-                        <ul class="space-y-3 md:space-y-4 text-slate-300">
+                        <ul class="space-y-2 text-slate-300">
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text6_1'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text6_1'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text6_2'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text6_2'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2.5 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-relaxed">{{ 'app.services.text6_3'|trans|raw|nl2br }}</p>
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
+                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text6_3'|trans|split('</b>')|first|striptags }}</p>
                             </li>
                         </ul>
                     </div>
 
                     <!-- Card 8: Product Owner -->
-                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl backdrop-blur-md md:col-span-2 hover:border-indigo-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 group-hover:scale-110 transition-transform">
+                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl md:col-span-2 hover:border-indigo-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-7 h-7">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
                                 </svg>
                             </div>
                             <h4 class="text-xl font-bold text-white tracking-tight">{{ 'app.services.title8'|trans }}</h4>
                         </div>
-                        <ul class="space-y-3 md:space-y-4 text-slate-300 md:columns-2 md:gap-8">
+                        <ul class="space-y-2 text-slate-300 md:columns-2 md:gap-8">
                             {% for n in 1..3 %}
                                 <li class="flex items-start gap-2.5 break-inside-avoid">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2.5 shrink-0"></span>
-                                    <p class="text-[0.95rem] leading-relaxed">{{ ('app.services.text8_' ~ n)|trans|raw|nl2br }}</p>
+                                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
+                                    <p class="text-[0.95rem] leading-snug">{{ ('app.services.text8_' ~ n)|trans|raw }}</p>
                                 </li>
                             {% endfor %}
                         </ul>
                     </div>
 
                     <!-- Card 7: Hosting, Domains, E-Mail & SSL -->
-                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl backdrop-blur-md md:col-span-2 hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 group-hover:scale-110 transition-transform">
+                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl md:col-span-2 hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-7 h-7">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3m-19.5 0a4.5 4.5 0 0 1 .9-2.7L5.737 5.1a3.375 3.375 0 0 1 2.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 0 1 .9 2.7m0 0a3 3 0 0 1-3 3m0 3h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Zm-3 6h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Z" />
                                 </svg>
                             </div>
                             <h4 class="text-xl font-bold text-white tracking-tight">{{ 'app.services.title7'|trans }}</h4>
                         </div>
-                        <ul class="space-y-3 md:space-y-4 text-slate-300 md:columns-2 md:gap-8">
+                        <ul class="space-y-2 text-slate-300 md:columns-2 md:gap-8">
                             {% for n in 1..4 %}
                                 <li class="flex items-start gap-2.5 break-inside-avoid">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 shrink-0"></span>
-                                    <p class="text-[0.95rem] leading-relaxed">{{ ('app.services.text7_' ~ n)|trans|raw|nl2br }}</p>
+                                    <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
+                                    <p class="text-[0.95rem] leading-snug">{{ ('app.services.text7_' ~ n)|trans|split('</b>')|first|striptags }}</p>
                                 </li>
                             {% endfor %}
                         </ul>
@@ -363,10 +337,6 @@
         </div>
     </div>
 
-    <!-- Parallax Divider 1 -->
-    <div class="background-container2 relative h-40 border-y border-white/5 hidden md:block" aria-hidden="true">
-        <div class="absolute inset-0 bg-[#080b11]/40 backdrop-blur-[1px]"></div>
-    </div>
 
     <!-- About ("Über mich") Section -->
     <div id="about" class="block-container relative border-b border-white/5 bg-[#080b11]">
@@ -381,7 +351,7 @@
             <div class="hidden lg:block block-line vertical-line h-full w-[1px] bg-white/10 self-stretch transition-transform duration-700 ease-out"></div>
             
             <div class="text w-full lg:w-2/3 xl:w-3/4">
-                <div class="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12 bg-[#0f172a]/20 border border-white/5 p-6 md:p-12 rounded-3xl backdrop-blur-md">
+                <div class="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12 bg-[#0f172a]/20 border border-white/5 p-6 md:p-12 rounded-3xl">
                     <div class="w-full md:w-2/3">
                         <p class="text-[1.0625rem] md:text-lg text-slate-300 leading-relaxed">
                             {{ 'app.about.text'|trans|raw|nl2br }}
@@ -398,10 +368,6 @@
         </div>
     </div>
 
-    <!-- Parallax Divider 2 -->
-    <div class="background-container2 relative h-40 border-y border-white/5 hidden md:block" aria-hidden="true">
-        <div class="absolute inset-0 bg-[#080b11]/40 backdrop-blur-[1px]"></div>
-    </div>
 
     <!-- Portfolio Section -->
     <div id="portfolio" class="block-container relative border-b border-white/5">
@@ -419,7 +385,7 @@
                 <!-- Portfolio Cards Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mb-12">
                     <!-- Expertise 1 -->
-                    <div class="bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl backdrop-blur-md hover:border-purple-500/25 transition-all">
+                    <div class="bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-purple-500/25 transition-all">
                         <h4 class="text-xl font-bold text-white mb-3 tracking-tight flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-purple-500"></span>
                             {{ 'app.portfolio.title1'|trans }}
@@ -428,7 +394,7 @@
                     </div>
 
                     <!-- Expertise 2 -->
-                    <div class="bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl backdrop-blur-md hover:border-indigo-500/25 transition-all">
+                    <div class="bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-indigo-500/25 transition-all">
                         <h4 class="text-xl font-bold text-white mb-3 tracking-tight flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
                             {{ 'app.portfolio.title2'|trans }}
@@ -437,7 +403,7 @@
                     </div>
 
                     <!-- Expertise 3 -->
-                    <div class="bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl backdrop-blur-md hover:border-purple-500/25 transition-all">
+                    <div class="bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-purple-500/25 transition-all">
                         <h4 class="text-xl font-bold text-white mb-3 tracking-tight flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-purple-500"></span>
                             {{ 'app.portfolio.title3'|trans }}
@@ -446,7 +412,7 @@
                     </div>
 
                     <!-- Expertise 4 -->
-                    <div class="bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl backdrop-blur-md hover:border-indigo-500/25 transition-all">
+                    <div class="bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-indigo-500/25 transition-all">
                         <h4 class="text-xl font-bold text-white mb-3 tracking-tight flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
                             {{ 'app.portfolio.title4'|trans }}
@@ -455,7 +421,7 @@
                     </div>
 
                     <!-- Expertise 5 -->
-                    <div class="bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl backdrop-blur-md hover:border-purple-500/25 transition-all">
+                    <div class="bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-purple-500/25 transition-all">
                         <h4 class="text-xl font-bold text-white mb-3 tracking-tight flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-purple-500"></span>
                             {{ 'app.portfolio.title5'|trans }}
@@ -464,7 +430,7 @@
                     </div>
 
                     <!-- Technologies & Tools Grid -->
-                    <div class="bg-[#0f172a]/35 border border-white/10 p-6 md:p-8 rounded-2xl backdrop-blur-md md:col-span-2 hover:border-purple-500/30 transition-all">
+                    <div class="bg-[#0f172a]/35 border border-white/10 p-6 md:p-8 rounded-2xl md:col-span-2 hover:border-purple-500/30 transition-all">
                         <h4 class="text-xl font-bold text-white mb-4 tracking-tight flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-6 h-6 text-purple-400">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.43l-1.003.828c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.43l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
@@ -534,10 +500,6 @@
         </div>
     </div>
     
-    <!-- Parallax Divider 3 -->
-    <div class="background-container2 relative h-40 border-y border-white/5 hidden md:block" aria-hidden="true">
-        <div class="absolute inset-0 bg-[#080b11]/40 backdrop-blur-[1px]"></div>
-    </div>
 
     <!-- References ("Referenzen") Section -->
     <div id="references" class="block-container relative border-b border-white/5 bg-[#080b11]">
@@ -557,7 +519,7 @@
                 </p>
 
                 <!-- Reference Card: Mirwena -->
-                <article class="reference-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-10 rounded-2xl backdrop-blur-md hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
+                <article class="reference-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-10 rounded-2xl hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
                     <span class="text-xs uppercase tracking-wider text-purple-400 font-bold block mb-3">{{ 'app.references.mirwena_category'|trans }}</span>
 
                     <h4 class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-5">
@@ -615,7 +577,7 @@
                 </article>
 
                 <!-- Reference Card: freelancer -->
-                <article class="reference-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-10 rounded-2xl backdrop-blur-md hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300 mt-8">
+                <article class="reference-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-10 rounded-2xl hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300 mt-8">
                     <span class="text-xs uppercase tracking-wider text-purple-400 font-bold block mb-3">{{ 'app.references.freelancer_category'|trans }}</span>
                     <h4 class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-5">
                         <a href="{{ path('app_reference_freelancer') }}" class="hover:text-purple-400 transition-colors">{{ 'app.references.freelancer_title'|trans }}</a>
@@ -634,7 +596,7 @@
                     </div>
                 </article>
                 <!-- Reference Card: signature -->
-                <article class="reference-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-10 rounded-2xl backdrop-blur-md hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300 mt-8">
+                <article class="reference-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-10 rounded-2xl hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300 mt-8">
                     <span class="text-xs uppercase tracking-wider text-purple-400 font-bold block mb-3">{{ 'app.references.signature_category'|trans }}</span>
                     <h4 class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-5">
                         <a href="{{ path('app_reference_email_signature') }}" class="hover:text-purple-400 transition-colors">{{ 'app.references.signature_title'|trans }}</a>
@@ -662,7 +624,7 @@
                             {key: 'thomas', name: 'Thomas Stermann', site: 'therapie-stermann.de', photo: 'thomas.jpg'},
                             {key: 'thorsten', name: 'Thorsten Meier', site: 'elb-solution.de', photo: 'thorsten.jpg'},
                         ] %}
-                            <figure class="testimonial-slide{{ loop.first ? ' is-active' : '' }} bg-[#0f172a]/30 border border-white/5 p-6 md:p-10 rounded-2xl backdrop-blur-md text-center flex flex-col items-center" aria-roledescription="slide" aria-label="{{ loop.index }} / {{ loop.length }}">
+                            <figure class="testimonial-slide{{ loop.first ? ' is-active' : '' }} bg-[#0f172a]/30 border border-white/5 p-6 md:p-10 rounded-2xl text-center flex flex-col items-center" aria-roledescription="slide" aria-label="{{ loop.index }} / {{ loop.length }}">
                                 <img src="{{ asset('build/images/testimonials/' ~ t.photo) }}" alt="{{ t.name }}" loading="lazy" width="120" height="102" class="w-[120px] h-auto rounded-2xl object-cover border border-white/10 mb-5">
                                 <div class="text-xl md:text-2xl font-bold text-white">{{ t.name }}</div>
                                 <div class="text-sm text-slate-400 mb-1">{{ ('app.testimonials.' ~ t.key ~ '_role')|trans }}</div>
@@ -682,10 +644,6 @@
         </div>
     </div>
 
-    <!-- Parallax Divider 4 -->
-    <div class="background-container2 relative h-40 border-y border-white/5 hidden md:block" aria-hidden="true">
-        <div class="absolute inset-0 bg-[#080b11]/40 backdrop-blur-[1px]"></div>
-    </div>
 
     <!-- FAQ Section -->
     <div id="faq" class="block-container relative border-b border-white/5">
@@ -715,10 +673,6 @@
         </div>
     </div>
 
-    <!-- Parallax Divider 5 -->
-    <div class="background-container2 relative h-40 border-y border-white/5 hidden md:block" aria-hidden="true">
-        <div class="absolute inset-0 bg-[#080b11]/40 backdrop-blur-[1px]"></div>
-    </div>
 
     <!-- Contact Section -->
     <div id="contact" class="block-container overflow-hidden bg-[#080b11]">
@@ -744,7 +698,7 @@
                         +49 1756 821391
                     </a>
                 </div>
-                <div class="bg-[#0f172a]/20 border border-white/5 p-6 md:p-12 rounded-3xl backdrop-blur-md max-w-2xl">
+                <div class="bg-[#0f172a]/20 border border-white/5 p-6 md:p-12 rounded-3xl max-w-2xl">
                     {{ include('messages.html.twig') }}
                     {{ form_start(form, {'attr': {
                         'id': 'contact-form',
@@ -791,6 +745,9 @@
             <div class="footer-brand flex items-center gap-3">
                 {{ include('_logo.html.twig', {'size': 32}) }}
                 <p>&copy; {{ "now"|date("Y") }} Achim Krämer. Alle Rechte vorbehalten.</p>
+            </div>
+            <div class="footer-social flex flex-wrap justify-center gap-4">
+                {{ include('_social_links.html.twig', {link_class: 'text-slate-400 hover:text-purple-400 transition-colors', icon_class: 'w-5 h-5'}) }}
             </div>
             <div class="flex gap-6">
                 <a target="_blank" href="{{ path('app_data-protection_index') }}">{{ 'app.data_protection.title'|trans }}</a>

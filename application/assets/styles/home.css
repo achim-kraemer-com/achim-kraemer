@@ -19,19 +19,6 @@ html {
     min-height: 100svh;
     background-image: url('../images/office-865091_1920.jpg');
     background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    z-index: 1;
-    transition: transform 0.1s ease-out;
-}
-
-.background-container2 {
-    position: relative;
-    width: 100%;
-    height: 30vh;
-    background-image: url('../images/firmbee-com-GANqCr.jpg');
-    background-size: cover;
-    background-attachment: fixed;
     background-position: center;
     z-index: 1;
 }
@@ -62,12 +49,6 @@ html {
     color: var(--text-secondary);
 }
 
-@media (max-width: 1023.98px) {
-    .background-container2 {
-        height: 25vh;
-    }
-}
-
 .block-container {
     padding: 4rem 0;
     position: relative;
@@ -86,8 +67,6 @@ html {
 
 /* iOS ignoriert background-attachment: fixed bzw. rendert es verpixelt */
 @media (max-width: 1023.98px), (hover: none) {
-    .background-container,
-    .background-container2,
     .background-container3 {
         background-attachment: scroll;
     }
@@ -111,13 +90,8 @@ html {
 .reveal-ready .block-container .headline,
 .reveal-ready .block-container .text {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@media (min-width: 1024px) {
-    .reveal-ready .block-container .headline { transform: translateX(-40px); }
-    .reveal-ready .block-container .text { transform: translateX(40px); transition-delay: 0.1s; }
+    transform: translateY(12px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 .reveal-ready .block-container.is-visible .headline,
@@ -189,29 +163,6 @@ html {
     box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.2);
 }
 
-.hero-facts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem 0.6rem;
-    margin-top: 1.75rem;
-}
-
-.hero-facts li {
-    padding: 0.4rem 0.85rem;
-    border-radius: 9999px;
-    border: 1px solid var(--border-color);
-    background: rgba(15, 23, 42, 0.55);
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    white-space: nowrap;
-}
-
-.hero-facts strong {
-    color: #fff;
-    font-weight: 700;
-}
-
 .hero-audiences {
     display: grid;
     grid-template-columns: 1fr;
@@ -235,8 +186,7 @@ html {
     padding: 1.1rem 1.25rem;
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(15, 23, 42, 0.6);
-    backdrop-filter: blur(8px);
+    background: rgba(15, 23, 42, 0.75);
     transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
 }
 
@@ -314,8 +264,7 @@ html {
 .hero-cta-secondary {
     color: #e2e8f0;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    background: rgba(15, 23, 42, 0.5);
-    backdrop-filter: blur(8px);
+    background: rgba(15, 23, 42, 0.7);
 }
 
 .hero-cta-secondary:hover {
@@ -653,4 +602,9 @@ html {
 
 .nowrap {
     white-space: nowrap;
+}
+
+/* Social-Icons im Footer ohne den Textlink-Abstand */
+.footer-social a {
+    margin: 0;
 }
