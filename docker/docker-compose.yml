@@ -1,3 +1,9 @@
+# Ohne diesen Namen nimmt Compose den des Verzeichnisses – also "docker". Den
+# tragen auf dieser Maschine mehrere Projekte (das ELB-Portal liegt genauso in
+# einem Ordner docker/), und "up -d" dort räumte die Container dieses Projekts
+# ab und ersetzte sie durch die eigenen.
+name: achim-kraemer
+
 services:
     db:
         image: mariadb:10.6.4
