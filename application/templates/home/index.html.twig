@@ -11,7 +11,7 @@
 
 {% block structured_data %}
     {% set faq_entities = [] %}
-    {% for n in 1..6 %}
+    {% for n in 1..10 %}
         {% set faq_entities = faq_entities|merge([{
             '@type': 'Question',
             'name': ('app.faq.q' ~ n)|trans,
@@ -45,681 +45,275 @@
 {% endblock %}
 
 {% block body %}
-    <!-- Schwebende Social-Leiste rechts (nur Desktop; mobil stehen die Icons im Footer).
-         Ohne backdrop-blur, damit das Scrollen flüssig bleibt. -->
-    <div class="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-50 flex-col gap-4 bg-[#0f172a]/90 p-3 rounded-2xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-        {{ include('_social_links.html.twig', {link_class: 'transition-colors duration-200 text-slate-400 hover:text-purple-400', icon_class: 'w-8 h-8'}) }}
-    </div>
+    {% include '_scroll_navigation.html.twig' with {'links': 'direct'} %}
 
-    <!-- Header mit Hintergrundbild und Verlauf -->
-    <header class="shadow-2xl relative overflow-hidden">
-        <div class="parallax-container">
-            {% include '_scroll_navigation.html.twig' with {'links':'direct'} %}
-            <div class="background-container flex items-center justify-center">
-                <!-- Radial Dark Gradient Overlay to mask background image -->
-                <div class="absolute inset-0 bg-gradient-to-b from-[#080b11]/30 via-[#080b11]/60 to-[#080b11]"></div>
+    {# Profil-Links am rechten Rand, nur auf breiten Bildschirmen; mobil stehen sie im Footer #}
+    <aside class="side-social" aria-label="Profile">
+        {{ include('_social_links.html.twig', {link_class: 'side-social__link', icon_class: 'w-5 h-5'}) }}
+    </aside>
 
-                <!-- Slogan: Positionierung, Kernfakten und direkte Handlungsaufforderung -->
-                <div class="header-slogan z-10 max-w-4xl mx-auto px-6 text-center">
-                    <p class="slide-in-text1 hero-eyebrow">
-                        <span class="hero-status-dot" aria-hidden="true"></span>
-                        {{ 'app.header.eyebrow'|trans }}
-                    </p>
-                    <h1 class="slide-in-text1 text-[2.3rem] leading-[1.08] sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-5">
-                        {{ 'app.header.headline'|trans|raw }}
-                    </h1>
-                    <h2 class="slide-in-text2 text-lg sm:text-xl font-normal text-slate-300 leading-relaxed max-w-2xl mx-auto">
-                        {{ 'app.header.slogan2'|trans }}
-                    </h2>
-
-                    <!-- Zwei Einstiege je Zielgruppe -->
-                    <nav class="slide-in-text3 hero-audiences" aria-label="{{ 'app.header.audience_label'|trans }}">
-                        {% for n, target in {1: '#services', 2: path('app_service_hosting')} %}
-                            <a href="{{ target }}" class="hero-audience">
-                                <span class="hero-audience-title">{{ ('app.header.audience' ~ n ~ '_title')|trans }}</span>
-                                <span class="hero-audience-text">{{ ('app.header.audience' ~ n ~ '_text')|trans }}</span>
-                                <span class="hero-audience-link">{{ ('app.header.audience' ~ n ~ '_link')|trans }} &rarr;</span>
-                            </a>
-                        {% endfor %}
-                    </nav>
-
-                    <div class="slide-in-text3 hero-actions">
-                        <a href="#contact" class="hero-cta hero-cta-primary">{{ 'app.header.cta_primary'|trans }}</a>
-                        <a href="#references" class="hero-cta hero-cta-secondary">{{ 'app.header.cta_secondary'|trans }}</a>
+    <main>
+        {# ---------- Einstieg ---------- #}
+        <section class="hero">
+            <div class="wrap hero__grid">
+                <div class="hero__text">
+                    <h1 class="hero__kicker">{{ 'app.hero.kicker'|trans }}</h1>
+                    <p class="hero__title">{{ 'app.hero.title'|trans }}</p>
+                    <p class="hero__lead">{{ 'app.hero.text'|trans }}</p>
+                    <div class="hero__actions">
+                        <a href="#contact" class="btn btn-ink">{{ 'app.hero.cta'|trans }}</a>
+                        <a href="tel:+491756821391" class="hero__call">
+                            <span>{{ 'app.hero.call'|trans }}</span>
+                            <strong>01756&nbsp;821391</strong>
+                        </a>
                     </div>
                 </div>
+                <figure class="hero__photo">
+                    <img src="{{ asset('build/images/DSC4074-640.jpeg') }}"
+                         srcset="{{ asset('build/images/DSC4074-640.jpeg') }} 628w, {{ asset('build/images/DSC4074.jpeg') }} 884w"
+                         sizes="(min-width: 900px) 416px, 216px"
+                         alt="{{ 'app.hero.photo_alt'|trans }}" width="628" height="640" fetchpriority="high">
+                    <figcaption>
+                        <span>{{ 'app.me.fact1'|trans }}</span>
+                        <span>{{ 'app.me.fact2'|trans }}</span>
+                    </figcaption>
+                </figure>
             </div>
-        </div>
-    </header>
+        </section>
 
-    <!-- Services ("Dienstleistungen") Section -->
-    <div id="services" class="block-container relative border-b border-white/5">
-        <div class="services-container max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-8 lg:gap-12 items-start relative">
-            <div class="headline-container lg:w-1/3 xl:w-1/4 shrink-0">
-                <h3 class="headline text-3xl md:text-4xl lg:text-3xl xl:text-4xl font-extrabold tracking-tight text-white mb-2">
-                    {{ 'app.navigation.services'|trans }}
-                </h3>
-                <div class="w-16 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mt-4"></div>
-            </div>
-            
-            <div class="hidden lg:block block-line vertical-line h-full w-[1px] bg-white/10 self-stretch transition-transform duration-700 ease-out"></div>
-            
-            <div class="text w-full lg:w-2/3 xl:w-3/4">
-                <p class="lead-text text-[1.0625rem] md:text-xl text-slate-300 leading-relaxed mb-10 md:mb-12">
-                    {{ 'app.services.text'|trans|raw|nl2br }}
-                </p>
-                
-                <!-- Services Cards Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
-                    <!-- Card 1: Custom Webapps -->
-                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-7 h-7">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
-                                </svg>
-                            </div>
-                            <h4 class="text-xl font-bold text-white tracking-tight">{{ 'app.services.title1'|trans }}</h4>
-                        </div>
-                        <ul class="space-y-2 text-slate-300">
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text1_1'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text1_2'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text1_3'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Card 2: Interfaces & APIs -->
-                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-indigo-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-7 h-7">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
-                                </svg>
-                            </div>
-                            <h4 class="text-xl font-bold text-white tracking-tight">{{ 'app.services.title2'|trans }}</h4>
-                        </div>
-                        <ul class="space-y-2 text-slate-300">
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text2_1'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text2_2'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text2_3'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Card 3: Automation & Docs -->
-                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-7 h-7">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                                </svg>
-                            </div>
-                            <h4 class="text-xl font-bold text-white tracking-tight">{{ 'app.services.title3'|trans }}</h4>
-                        </div>
-                        <ul class="space-y-2 text-slate-300">
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text3_1'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text3_2'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text3_3'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Card 4: Login & Authentication -->
-                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-indigo-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-7 h-7">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z" />
-                                </svg>
-                            </div>
-                            <h4 class="text-xl font-bold text-white tracking-tight">{{ 'app.services.title4'|trans }}</h4>
-                        </div>
-                        <ul class="space-y-2 text-slate-300">
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text4_1'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text4_2'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text4_3'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text4_4'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Card 5: AI Integration -->
-                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-7 h-7">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 21l-.813-5.096L3 15.094l5.096-.813L9 9l.813 5.281 5.096.813-5.096.81" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.071 4.929a10 10 0 0 0-14.142 0M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364-.707.707M6.343 17.657l-.707.707m12.728 0 .707-.707M6.343 6.343l.707.707" />
-                                </svg>
-                            </div>
-                            <h4 class="text-xl font-bold text-white tracking-tight">{{ 'app.services.title5'|trans }}</h4>
-                        </div>
-                        <ul class="space-y-2 text-slate-300">
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text5_1'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text5_2'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text5_3'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text5_4'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text5_5'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Card 6: Performance & Security -->
-                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-indigo-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-7 h-7">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
-                                </svg>
-                            </div>
-                            <h4 class="text-xl font-bold text-white tracking-tight">{{ 'app.services.title6'|trans }}</h4>
-                        </div>
-                        <ul class="space-y-2 text-slate-300">
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text6_1'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text6_2'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                            <li class="flex items-start gap-2.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
-                                <p class="text-[0.95rem] leading-snug">{{ 'app.services.text6_3'|trans|split('</b>')|first|striptags }}</p>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Card 8: Product Owner -->
-                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl md:col-span-2 hover:border-indigo-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-7 h-7">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
-                                </svg>
-                            </div>
-                            <h4 class="text-xl font-bold text-white tracking-tight">{{ 'app.services.title8'|trans }}</h4>
-                        </div>
-                        <ul class="space-y-2 text-slate-300 md:columns-2 md:gap-8">
-                            {% for n in 1..3 %}
-                                <li class="flex items-start gap-2.5 break-inside-avoid">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></span>
-                                    <p class="text-[0.95rem] leading-snug">{{ ('app.services.text8_' ~ n)|trans|raw }}</p>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-
-                    <!-- Card 7: Hosting, Domains, E-Mail & SSL -->
-                    <div class="service-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl md:col-span-2 hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-7 h-7">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3m-19.5 0a4.5 4.5 0 0 1 .9-2.7L5.737 5.1a3.375 3.375 0 0 1 2.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 0 1 .9 2.7m0 0a3 3 0 0 1-3 3m0 3h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Zm-3 6h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Z" />
-                                </svg>
-                            </div>
-                            <h4 class="text-xl font-bold text-white tracking-tight">{{ 'app.services.title7'|trans }}</h4>
-                        </div>
-                        <ul class="space-y-2 text-slate-300 md:columns-2 md:gap-8">
-                            {% for n in 1..4 %}
-                                <li class="flex items-start gap-2.5 break-inside-avoid">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
-                                    <p class="text-[0.95rem] leading-snug">{{ ('app.services.text7_' ~ n)|trans|split('</b>')|first|striptags }}</p>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-
-                <ul class="flex flex-wrap gap-x-8 gap-y-3 mt-10">
-                    {% for route, label in {
-                        'app_service_symfony': 'app.services.title1',
-                        'app_service_api': 'app.services.title2',
-                        'app_service_ai': 'app.services.title5',
-                        'app_service_hosting': 'app.services.title7',
-                        'app_service_upgrade': 'app.services.link_upgrade',
-                        'app_service_maintenance': 'app.services.link_maintenance',
-                        'app_guide_agency': 'app.services.link_agency',
-                        'app_region_muensterland': 'app.services.link_region',
+        {# ---------- Die zwei Bereiche ---------- #}
+        <section class="areas" aria-labelledby="areas-title">
+            <div class="wrap">
+                <h2 id="areas-title" class="areas__title">{{ 'app.areas.title'|trans }}</h2>
+                <div class="areas__grid">
+                    {% for key, area in {
+                        'dev': {anchor: '#entwicklung', num: '1'},
+                        'web': {anchor: '#websites', num: '2'},
                     } %}
-                        <li>
-                            <a href="{{ path(route) }}" class="inline-flex items-center gap-2 text-purple-400 font-semibold hover:text-purple-300 transition-colors">
-                                {{ label|trans }} &rarr;
-                            </a>
-                        </li>
+                        <article class="area area--{{ key }}">
+                            <p class="area__for"><span class="area__num">{{ area.num }}</span>{{ ('app.areas.' ~ key ~ '_for')|trans }}</p>
+                            <h3 class="area__title"><a href="{{ area.anchor }}">{{ ('app.areas.' ~ key ~ '_title')|trans }}</a></h3>
+                            <p class="area__text">{{ ('app.areas.' ~ key ~ '_text')|trans }}</p>
+                            <ul class="area__list">
+                                {% for item in ('app.areas.' ~ key ~ '_items')|trans|split('|') %}
+                                    <li>{{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                            <div class="area__foot">
+                                <a href="{{ area.anchor }}" class="btn btn-{{ key }}">{{ ('app.areas.' ~ key ~ '_link')|trans }}</a>
+                                {% if key == 'web' %}<span class="area__price">{{ 'app.areas.web_price'|trans }}</span>{% endif %}
+                            </div>
+                        </article>
                     {% endfor %}
-                </ul>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
 
+        {# ---------- Bereich 1: Individualentwicklung ---------- #}
+        <span id="services" class="anchor-alias" aria-hidden="true"></span>
+        <section id="entwicklung" class="section section--dev">
+            <div class="wrap">
+                <header class="section__head reveal">
+                    <p class="kicker kicker--dev">{{ 'app.dev.kicker'|trans }}</p>
+                    <h2 class="section__title">{{ 'app.dev.title'|trans }}</h2>
+                    <p class="section__lead">{{ 'app.dev.lead'|trans }}</p>
+                </header>
 
-    <!-- Bildstreifen: clip-path + fixierte Ebene statt background-attachment: fixed, damit es nicht ruckelt -->
-    <div class="image-divider hidden md:block" aria-hidden="true"><div class="image-divider__img"></div></div>
+                <div class="offer-grid">
+                    {% set dev_links = {
+                        1: [['app_service_symfony', 'app.dev.more']],
+                        2: [['app_service_symfony', 'app.dev.more']],
+                        3: [['app_service_api', 'app.dev.more']],
+                        4: [['app_service_ai', 'app.dev.more']],
+                        5: [['app_service_upgrade', 'app.dev.upgrade'], ['app_service_maintenance', 'app.dev.maintenance']],
+                        6: [],
+                    } %}
+                    {% for n, links in dev_links %}
+                        <div class="offer">
+                            <h3 class="offer__title">{{ ('app.dev.i' ~ n ~ '_title')|trans }}</h3>
+                            <p class="offer__text">{{ ('app.dev.i' ~ n ~ '_text')|trans }}</p>
+                            {% if links %}
+                                <p class="offer__links">
+                                    {% for l in links %}<a href="{{ path(l[0]) }}" class="arrow-link">{{ l[1]|trans }}</a>{% endfor %}
+                                </p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
 
-    <!-- About ("Über mich") Section -->
-    <div id="about" class="block-container relative border-b border-white/5 bg-[#080b11]">
-        <div class="services-container max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-8 lg:gap-12 items-start relative">
-            <div class="headline-container lg:w-1/3 xl:w-1/4 shrink-0">
-                <h3 class="headline text-3xl md:text-4xl lg:text-3xl xl:text-4xl font-extrabold tracking-tight text-white mb-2">
-                    {{ 'app.navigation.about'|trans }}
-                </h3>
-                <div class="w-16 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mt-4"></div>
-            </div>
-            
-            <div class="hidden lg:block block-line vertical-line h-full w-[1px] bg-white/10 self-stretch transition-transform duration-700 ease-out"></div>
-            
-            <div class="text w-full lg:w-2/3 xl:w-3/4">
-                <div class="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12 bg-[#0f172a]/20 border border-white/5 p-6 md:p-12 rounded-3xl">
-                    <div class="w-full md:w-2/3">
-                        <p class="text-[1.0625rem] md:text-lg text-slate-300 leading-relaxed">
-                            {{ 'app.about.text'|trans|raw|nl2br }}
+                <div class="section__aside">
+                    <div>
+                        <p class="aside__label">{{ 'app.dev.tools_label'|trans }}</p>
+                        <p class="aside__text">PHP 8 · Symfony 2–8 · Doctrine · MySQL / MariaDB · PostgreSQL · REST · GraphQL · Docker · CI/CD · OpenAI API</p>
+                    </div>
+                    <div>
+                        <p class="aside__label">{{ 'app.dev.read_label'|trans }}</p>
+                        <p class="aside__links">
+                            <a href="{{ path('app_guide_agency') }}" class="arrow-link">{{ 'app.services.link_agency'|trans }}</a>
+                            <a href="{{ path('app_region_muensterland') }}" class="arrow-link">{{ 'app.services.link_region'|trans }}</a>
                         </p>
                     </div>
-                    <div class="w-full md:w-1/3 flex justify-center">
-                        <div class="relative group">
-                            <div class="absolute -inset-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
-                            <img src="{{ asset('build/images/DSC4074.jpeg') }}" alt="Symfony Entwickler Freelancer | Achim Krämer" loading="lazy" class="relative w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 object-cover rounded-2xl border border-white/10 shadow-2xl transition duration-500 group-hover:scale-[1.01]">
-                        </div>
-                    </div>
                 </div>
+
+                <p class="section__cta"><a href="#contact" class="btn btn-dev">{{ 'app.dev.cta'|trans }}</a></p>
             </div>
-        </div>
-    </div>
+        </section>
 
+        {# ---------- Referenzen ---------- #}
+        <section id="references" class="section section--refs">
+            <div class="wrap">
+                <header class="section__head reveal">
+                    <h2 class="section__title">{{ 'app.refs.title'|trans }}</h2>
+                    <p class="section__lead">{{ 'app.refs.lead'|trans }}</p>
+                </header>
 
-    <!-- Bildstreifen: clip-path + fixierte Ebene statt background-attachment: fixed, damit es nicht ruckelt -->
-    <div class="image-divider hidden md:block" aria-hidden="true"><div class="image-divider__img"></div></div>
-
-    <!-- Portfolio Section -->
-    <div id="portfolio" class="block-container relative border-b border-white/5">
-        <div class="portfolio-container max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-8 lg:gap-12 items-start relative">
-            <div class="headline-container lg:w-1/3 xl:w-1/4 shrink-0">
-                <h3 class="headline text-3xl md:text-4xl lg:text-3xl xl:text-4xl font-extrabold tracking-tight text-white mb-2">
-                    {{ 'app.navigation.portfolio'|trans }}
-                </h3>
-                <div class="w-16 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mt-4"></div>
-            </div>
-            
-            <div class="hidden lg:block block-line vertical-line h-full w-[1px] bg-white/10 self-stretch transition-transform duration-700 ease-out"></div>
-            
-            <div class="text w-full lg:w-2/3 xl:w-3/4">
-                <!-- Portfolio Cards Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mb-12">
-                    <!-- Expertise 1 -->
-                    <div class="bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-purple-500/25 transition-all">
-                        <h4 class="text-xl font-bold text-white mb-3 tracking-tight flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-purple-500"></span>
-                            {{ 'app.portfolio.title1'|trans }}
-                        </h4>
-                        <p class="text-slate-300 text-[0.95rem] leading-relaxed">{{ 'app.portfolio.text1'|trans|raw|nl2br }}</p>
+                <article class="case-feature">
+                    <div class="case-feature__main">
+                        <p class="case__cat">{{ 'app.references.mirwena_category'|trans }}</p>
+                        <h3 class="case__title"><a href="{{ path('app_reference_mirwena') }}">{{ 'app.references.mirwena_title'|trans }}</a></h3>
+                        <p class="case__text">{{ 'app.references.mirwena_text'|trans|raw }}</p>
+                        <p class="case__tech">Symfony · PHP 8 · Doctrine · MariaDB · Docker · {{ 'app.references.mirwena_tech_privacy'|trans }}</p>
+                        <p class="case__links">
+                            <a href="{{ path('app_reference_mirwena') }}" class="arrow-link">{{ 'app.references.more'|trans }}</a>
+                            <a href="https://mirwena.de" target="_blank" rel="noopener" class="case__ext">mirwena.de ↗</a>
+                        </p>
                     </div>
-
-                    <!-- Expertise 2 -->
-                    <div class="bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-indigo-500/25 transition-all">
-                        <h4 class="text-xl font-bold text-white mb-3 tracking-tight flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
-                            {{ 'app.portfolio.title2'|trans }}
-                        </h4>
-                        <p class="text-slate-300 text-[0.95rem] leading-relaxed">{{ 'app.portfolio.text2'|trans|raw|nl2br }}</p>
-                    </div>
-
-                    <!-- Expertise 3 -->
-                    <div class="bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-purple-500/25 transition-all">
-                        <h4 class="text-xl font-bold text-white mb-3 tracking-tight flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-purple-500"></span>
-                            {{ 'app.portfolio.title3'|trans }}
-                        </h4>
-                        <p class="text-slate-300 text-[0.95rem] leading-relaxed">{{ 'app.portfolio.text3'|trans|raw|nl2br }}</p>
-                    </div>
-
-                    <!-- Expertise 4 -->
-                    <div class="bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-indigo-500/25 transition-all">
-                        <h4 class="text-xl font-bold text-white mb-3 tracking-tight flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
-                            {{ 'app.portfolio.title4'|trans }}
-                        </h4>
-                        <p class="text-slate-300 text-[0.95rem] leading-relaxed">{{ 'app.portfolio.text4'|trans|raw|nl2br }}</p>
-                    </div>
-
-                    <!-- Expertise 5 -->
-                    <div class="bg-[#0f172a]/30 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-purple-500/25 transition-all">
-                        <h4 class="text-xl font-bold text-white mb-3 tracking-tight flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-purple-500"></span>
-                            {{ 'app.portfolio.title5'|trans }}
-                        </h4>
-                        <p class="text-slate-300 text-[0.95rem] leading-relaxed">{{ 'app.portfolio.text5'|trans|raw|nl2br }}</p>
-                    </div>
-
-                    <!-- Technologies & Tools Grid -->
-                    <div class="bg-[#0f172a]/35 border border-white/10 p-6 md:p-8 rounded-2xl md:col-span-2 hover:border-purple-500/30 transition-all">
-                        <h4 class="text-xl font-bold text-white mb-4 tracking-tight flex items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-6 h-6 text-purple-400">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.43l-1.003.828c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.43l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                            </svg>
-                            {{ 'app.portfolio.title6'|trans }}
-                        </h4>
-                        
-                        <!-- Tech Tags Display -->
-                        <div class="flex flex-col gap-6">
-                            <div>
-                                <span class="text-xs uppercase tracking-wider text-slate-500 font-bold block mb-2">Programmiersprachen & Core</span>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="tech-pill">PHP 8.x+</span>
-                                    <span class="tech-pill">JavaScript</span>
-                                    <span class="tech-pill">HTML5</span>
-                                    <span class="tech-pill">CSS3</span>
-                                </div>
-                            </div>
-                            <div>
-                                <span class="text-xs uppercase tracking-wider text-slate-500 font-bold block mb-2">Frameworks & Libraries</span>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="tech-pill active">Symfony 2 - 7+</span>
-                                    <span class="tech-pill">jQuery</span>
-                                    <span class="tech-pill">TailwindCSS</span>
-                                    <span class="tech-pill">Webpack Encore</span>
-                                </div>
-                            </div>
-                            <div>
-                                <span class="text-xs uppercase tracking-wider text-slate-500 font-bold block mb-2">Datenbanken</span>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="tech-pill">MySQL / MariaDB</span>
-                                    <span class="tech-pill">PostgreSQL</span>
-                                    <span class="tech-pill">MongoDB</span>
-                                    <span class="tech-pill">Firestore</span>
-                                    <span class="tech-pill">BigQuery</span>
-                                </div>
-                            </div>
-                            <div>
-                                <span class="text-xs uppercase tracking-wider text-slate-500 font-bold block mb-2">APIs & Integrationen</span>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="tech-pill">REST</span>
-                                    <span class="tech-pill">GraphQL</span>
-                                    <span class="tech-pill">SOAP</span>
-                                    <span class="tech-pill">OpenAI API</span>
-                                </div>
-                            </div>
-                            <div>
-                                <span class="text-xs uppercase tracking-wider text-slate-500 font-bold block mb-2">DevOps & Cloud</span>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="tech-pill">Docker</span>
-                                    <span class="tech-pill">Jenkins</span>
-                                    <span class="tech-pill">Git / GitHub / GitLab</span>
-                                    <span class="tech-pill">CI/CD Pipelines</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="text-center mt-12 bg-purple-500/5 border border-purple-500/10 p-6 rounded-2xl max-w-xl mx-auto">
-                    <div id="portfolio-end-text" class="text-base md:text-lg font-medium text-slate-200">
-                        {{ 'app.portfolio.end_text'|trans }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-
-    <!-- Bildstreifen: clip-path + fixierte Ebene statt background-attachment: fixed, damit es nicht ruckelt -->
-    <div class="image-divider hidden md:block" aria-hidden="true"><div class="image-divider__img"></div></div>
-
-    <!-- References ("Referenzen") Section -->
-    <div id="references" class="block-container relative border-b border-white/5 bg-[#080b11]">
-        <div class="references-container max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-8 lg:gap-12 items-start relative">
-            <div class="headline-container lg:w-1/3 xl:w-1/4 shrink-0">
-                <h3 class="headline text-3xl md:text-4xl lg:text-3xl xl:text-4xl font-extrabold tracking-tight text-white mb-2">
-                    {{ 'app.navigation.references'|trans }}
-                </h3>
-                <div class="w-16 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mt-4"></div>
-            </div>
-
-            <div class="hidden lg:block block-line vertical-line h-full w-[1px] bg-white/10 self-stretch transition-transform duration-700 ease-out"></div>
-
-            <div class="text w-full lg:w-2/3 xl:w-3/4">
-                <p class="lead-text text-[1.0625rem] md:text-xl text-slate-300 leading-relaxed mb-10 md:mb-12">
-                    {{ 'app.references.text'|trans|raw|nl2br }}
-                </p>
-
-                <!-- Reference Card: Mirwena -->
-                <article class="reference-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-10 rounded-2xl hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300">
-                    <span class="text-xs uppercase tracking-wider text-purple-400 font-bold block mb-3">{{ 'app.references.mirwena_category'|trans }}</span>
-
-                    <h4 class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-5">
-                        <a href="https://mirwena.de" target="_blank" rel="noopener" title="{{ 'app.references.mirwena_link_title'|trans }}" class="inline-flex items-center gap-2 hover:text-purple-400 transition-colors">
-                            {{ 'app.references.mirwena_title'|trans }}
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5 opacity-60 group-hover:opacity-100 transition-opacity">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                            </svg>
-                        </a>
-                    </h4>
-
-                    <p class="text-slate-300 leading-relaxed mb-8">{{ 'app.references.mirwena_text'|trans|raw|nl2br }}</p>
-
-                    <ul class="space-y-3 md:space-y-4 text-slate-300 mb-8">
-                        <li class="flex items-start gap-2.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 shrink-0"></span>
-                            <p class="text-[0.95rem] leading-relaxed">{{ 'app.references.mirwena_feature1'|trans|raw }}</p>
-                        </li>
-                        <li class="flex items-start gap-2.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2.5 shrink-0"></span>
-                            <p class="text-[0.95rem] leading-relaxed">{{ 'app.references.mirwena_feature2'|trans|raw }}</p>
-                        </li>
-                        <li class="flex items-start gap-2.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 shrink-0"></span>
-                            <p class="text-[0.95rem] leading-relaxed">{{ 'app.references.mirwena_feature3'|trans|raw }}</p>
-                        </li>
-                        <li class="flex items-start gap-2.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2.5 shrink-0"></span>
-                            <p class="text-[0.95rem] leading-relaxed">{{ 'app.references.mirwena_feature4'|trans|raw }}</p>
-                        </li>
-                        <li class="flex items-start gap-2.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 shrink-0"></span>
-                            <p class="text-[0.95rem] leading-relaxed">{{ 'app.references.mirwena_feature5'|trans|raw }}</p>
-                        </li>
+                    <ul class="case-feature__list">
+                        {% for n in 1..5 %}
+                            <li>{{ ('app.references.mirwena_feature' ~ n)|trans|raw }}</li>
+                        {% endfor %}
                     </ul>
-
-                    <div class="flex flex-wrap gap-2 mb-8">
-                        <span class="tech-pill active">Symfony</span>
-                        <span class="tech-pill">PHP 8.x</span>
-                        <span class="tech-pill">Doctrine ORM</span>
-                        <span class="tech-pill">Twig</span>
-                        <span class="tech-pill">TailwindCSS</span>
-                        <span class="tech-pill">MySQL / MariaDB</span>
-                        <span class="tech-pill">Docker</span>
-                        <span class="tech-pill">{{ 'app.references.mirwena_tech_privacy'|trans }}</span>
-                    </div>
-
-                    <a href="{{ path('app_reference_mirwena') }}" class="inline-flex items-center gap-2 text-purple-400 font-semibold hover:text-purple-300 transition-colors mr-6">{{ 'app.references.more'|trans }} &rarr;</a>
-                    <a href="https://mirwena.de" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-purple-400 font-semibold hover:text-purple-300 transition-colors">
-                        {{ 'app.references.mirwena_link'|trans }}
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 transition-transform group-hover:translate-x-1">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                        </svg>
-                    </a>
                 </article>
 
-                <!-- Reference Card: freelancer -->
-                <article class="reference-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-10 rounded-2xl hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300 mt-8">
-                    <span class="text-xs uppercase tracking-wider text-purple-400 font-bold block mb-3">{{ 'app.references.freelancer_category'|trans }}</span>
-                    <h4 class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-5">
-                        <a href="{{ path('app_reference_freelancer') }}" class="hover:text-purple-400 transition-colors">{{ 'app.references.freelancer_title'|trans }}</a>
-                    </h4>
-                    <p class="text-slate-300 leading-relaxed mb-8">{{ 'app.references.freelancer_text'|trans }}</p>
-                    <div class="flex flex-wrap gap-2 mb-8">
-                        <span class="tech-pill active">Symfony 8</span>
-                        <span class="tech-pill">PHP 8.5</span>
-                        <span class="tech-pill">Doctrine ORM</span>
-                        <span class="tech-pill">MariaDB</span>
-                        <span class="tech-pill">Docker</span>
-                    </div>
-                    <div class="flex flex-wrap items-center gap-6">
-                        <a href="{{ path('app_reference_freelancer') }}" class="inline-flex items-center gap-2 text-purple-400 font-semibold hover:text-purple-300 transition-colors">{{ 'app.references.more'|trans }} &rarr;</a>
-                        <a href="https://freelancer.achim-kraemer.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-slate-400 hover:text-purple-300 transition-colors">freelancer.achim-kraemer.com</a>
-                    </div>
-                </article>
-                <!-- Reference Card: signature -->
-                <article class="reference-card group bg-[#0f172a]/30 border border-white/5 p-6 md:p-10 rounded-2xl hover:border-purple-500/30 hover:bg-[#0f172a]/55 transition-all duration-300 mt-8">
-                    <span class="text-xs uppercase tracking-wider text-purple-400 font-bold block mb-3">{{ 'app.references.signature_category'|trans }}</span>
-                    <h4 class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-5">
-                        <a href="{{ path('app_reference_email_signature') }}" class="hover:text-purple-400 transition-colors">{{ 'app.references.signature_title'|trans }}</a>
-                    </h4>
-                    <p class="text-slate-300 leading-relaxed mb-8">{{ 'app.references.signature_text'|trans }}</p>
-                    <div class="flex flex-wrap gap-2 mb-8">
-                        <span class="tech-pill active">Symfony</span>
-                        <span class="tech-pill">PHP 8.x</span>
-                        <span class="tech-pill">Twig</span>
-                        <span class="tech-pill">JavaScript</span>
-                    </div>
-                    <div class="flex flex-wrap items-center gap-6">
-                        <a href="{{ path('app_reference_email_signature') }}" class="inline-flex items-center gap-2 text-purple-400 font-semibold hover:text-purple-300 transition-colors">{{ 'app.references.more'|trans }} &rarr;</a>
-                        <a href="https://email-signatur.achim-kraemer.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-slate-400 hover:text-purple-300 transition-colors">email-signatur.achim-kraemer.com</a>
-                    </div>
-                </article>
+                <div class="case-grid">
+                    {% for c in [
+                        {key: 'freelancer', route: 'app_reference_freelancer', url: 'https://freelancer.achim-kraemer.com', host: 'freelancer.achim-kraemer.com', tech: 'Symfony 8 · PHP 8.5 · Doctrine · MariaDB · Docker'},
+                        {key: 'signature', route: 'app_reference_email_signature', url: 'https://email-signatur.achim-kraemer.com', host: 'email-signatur.achim-kraemer.com', tech: 'Symfony · PHP 8 · Twig · JavaScript'},
+                    ] %}
+                        <article class="case">
+                            <p class="case__cat">{{ ('app.references.' ~ c.key ~ '_category')|trans }}</p>
+                            <h3 class="case__title"><a href="{{ path(c.route) }}">{{ ('app.references.' ~ c.key ~ '_title')|trans }}</a></h3>
+                            <p class="case__text">{{ ('app.references.' ~ c.key ~ '_text')|trans }}</p>
+                            <p class="case__tech">{{ c.tech }}</p>
+                            <p class="case__links">
+                                <a href="{{ path(c.route) }}" class="arrow-link">{{ 'app.references.more'|trans }}</a>
+                                <a href="{{ c.url }}" target="_blank" rel="noopener" class="case__ext">{{ c.host }} ↗</a>
+                            </p>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
 
-                <!-- Testimonials ("Kundenstimmen") -->
-                <h4 class="text-2xl md:text-3xl font-bold text-white tracking-tight mt-16 mb-4">{{ 'app.testimonials.title'|trans }}</h4>
-                <p class="text-slate-300 leading-relaxed mb-8">{{ 'app.testimonials.text'|trans }}</p>
-                <div class="testimonial-slider" role="region" aria-roledescription="carousel" aria-label="{{ 'app.testimonials.title'|trans }}">
-                    <div class="testimonial-slides">
-                        {% for t in [
-                            {key: 'iris', name: 'Iris Köster-Büscher', site: 'ibb-betreuungsbuero.de', photo: 'iris.jpg'},
-                            {key: 'thomas', name: 'Thomas Stermann', site: 'therapie-stermann.de', photo: 'thomas.jpg'},
-                            {key: 'thorsten', name: 'Thorsten Meier', site: 'elb-solution.de', photo: 'thorsten.jpg'},
-                        ] %}
-                            <figure class="testimonial-slide{{ loop.first ? ' is-active' : '' }} bg-[#0f172a]/30 border border-white/5 p-6 md:p-10 rounded-2xl text-center flex flex-col items-center" aria-roledescription="slide" aria-label="{{ loop.index }} / {{ loop.length }}">
-                                <img src="{{ asset('build/images/testimonials/' ~ t.photo) }}" alt="{{ t.name }}" loading="lazy" width="120" height="102" class="w-[120px] h-auto rounded-2xl object-cover border border-white/10 mb-5">
-                                <div class="text-xl md:text-2xl font-bold text-white">{{ t.name }}</div>
-                                <div class="text-sm text-slate-400 mb-1">{{ ('app.testimonials.' ~ t.key ~ '_role')|trans }}</div>
-                                <a href="https://{{ t.site }}" target="_blank" rel="noopener" class="text-sm text-purple-400 hover:text-purple-300 transition-colors">{{ t.site }}</a>
-                                <div class="text-amber-400 text-2xl my-4" role="img" aria-label="5 / 5">★★★★★</div>
-                                <blockquote lang="de" class="text-base md:text-lg text-slate-300 leading-relaxed max-w-3xl">{{ ('app.testimonials.' ~ t.key ~ '_quote')|trans }}</blockquote>
-                            </figure>
-                        {% endfor %}
-                    </div>
-                    <div class="testimonial-dots flex justify-center gap-3 mt-6">
-                        {% for i in 1..3 %}
-                            <button type="button" class="testimonial-dot{{ i == 1 ? ' is-active' : '' }}" aria-label="{{ i }} / 3"></button>
-                        {% endfor %}
+        {# ---------- Bereich 2: Websites & E-Mail ---------- #}
+        <section id="websites" class="section section--web">
+            <div class="wrap">
+                <header class="section__head reveal">
+                    <p class="kicker kicker--web">{{ 'app.web.kicker'|trans }}</p>
+                    <h2 class="section__title">{{ 'app.web.title'|trans }}</h2>
+                    <p class="section__lead">{{ 'app.web.lead'|trans }}</p>
+                </header>
+
+                <dl class="price-list">
+                    {% for n in 1..6 %}
+                        <div class="price-row">
+                            <dt>
+                                <span class="price-row__title">{{ ('app.web.p' ~ n ~ '_title')|trans }}</span>
+                                <span class="price-row__text">{{ ('app.web.p' ~ n ~ '_text')|trans }}</span>
+                            </dt>
+                            <dd class="price-row__price">{{ ('app.web.p' ~ n ~ '_price')|trans }}</dd>
+                        </div>
+                    {% endfor %}
+                </dl>
+                <p class="price-note">{{ 'app.web.vat'|trans }}</p>
+
+                <div class="web-foot">
+                    <p class="web-foot__move">{{ 'app.web.move'|trans }}</p>
+                    <p class="web-foot__links">
+                        <a href="{{ path('app_service_packages') }}" class="arrow-link arrow-link--web">{{ 'app.web.link_packages'|trans }}</a>
+                        <a href="{{ path('app_service_hosting') }}" class="arrow-link arrow-link--web">{{ 'app.web.link_hosting'|trans }}</a>
+                    </p>
+                </div>
+
+                <h3 class="voices__title">{{ 'app.web.voices'|trans }}</h3>
+                <div class="voices">
+                    {% for t in [
+                        {key: 'thomas', name: 'Thomas Stermann', site: 'therapie-stermann.de', photo: 'thomas.jpg'},
+                        {key: 'iris', name: 'Iris Köster-Büscher', site: 'ibb-betreuungsbuero.de', photo: 'iris.jpg'},
+                        {key: 'thorsten', name: 'Thorsten Meier', site: 'elb-solution.de', photo: 'thorsten.jpg'},
+                    ] %}
+                        <figure class="voice">
+                            <blockquote lang="de" class="voice__quote">{{ ('app.testimonials.' ~ t.key ~ '_quote')|trans }}</blockquote>
+                            <figcaption class="voice__who">
+                                <img src="{{ asset('build/images/testimonials/' ~ t.photo) }}" alt="" loading="lazy" width="48" height="48">
+                                <span>
+                                    <strong>{{ t.name }}</strong>
+                                    <span>{{ ('app.testimonials.' ~ t.key ~ '_role')|trans }} · <a href="https://{{ t.site }}" target="_blank" rel="noopener">{{ t.site }}</a></span>
+                                </span>
+                            </figcaption>
+                        </figure>
+                    {% endfor %}
+                </div>
+
+                <p class="section__cta"><a href="#contact" class="btn btn-web">{{ 'app.web.cta'|trans }}</a></p>
+            </div>
+        </section>
+
+        {# ---------- Über mich ---------- #}
+        <span id="portfolio" class="anchor-alias" aria-hidden="true"></span>
+        <section id="about" class="section section--about">
+            <div class="wrap about">
+                <div class="about__text reveal">
+                    <h2 class="section__title">{{ 'app.me.title'|trans }}</h2>
+                    <p>{{ 'app.me.text1'|trans }}</p>
+                    <p>{{ 'app.me.text2'|trans }}</p>
+                </div>
+                <div class="about__facts">
+                    <ul>
+                        <li>{{ 'app.me.fact1'|trans }}</li>
+                        <li>{{ 'app.me.fact2'|trans }}</li>
+                        <li>{{ 'app.me.fact3'|trans }}</li>
+                    </ul>
+                    <p class="about__find">{{ 'app.me.find'|trans }}</p>
+                    <div class="about__social">
+                        {{ include('_social_links.html.twig', {link_class: 'about__social-link', icon_class: 'w-5 h-5'}) }}
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-
-    <!-- Bildstreifen: clip-path + fixierte Ebene statt background-attachment: fixed, damit es nicht ruckelt -->
-    <div class="image-divider hidden md:block" aria-hidden="true"><div class="image-divider__img"></div></div>
-
-    <!-- FAQ Section -->
-    <div id="faq" class="block-container relative border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-8 lg:gap-12 items-start relative">
-            <div class="headline-container lg:w-1/3 xl:w-1/4 shrink-0">
-                <h3 class="headline text-3xl md:text-4xl lg:text-3xl xl:text-4xl font-extrabold tracking-tight text-white mb-2">
-                    {{ 'app.faq.title'|trans }}
-                </h3>
-                <div class="w-16 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mt-4"></div>
-            </div>
-
-            <div class="hidden lg:block block-line vertical-line h-full w-[1px] bg-white/10 self-stretch transition-transform duration-700 ease-out"></div>
-
-            <div class="text w-full lg:w-2/3 xl:w-3/4">
+        {# ---------- FAQ ---------- #}
+        <section id="faq" class="section section--faq">
+            <div class="wrap faq-wrap">
+                <h2 class="section__title reveal">{{ 'app.faq.title'|trans }}</h2>
                 <div class="faq-list">
-                    {% for n in 1..6 %}
-                        <details class="faq-item"{{ loop.first ? ' open' : '' }}>
+                    {% for n in 1..10 %}
+                        <details class="faq-item">
                             <summary class="faq-question">
                                 <span>{{ ('app.faq.q' ~ n)|trans }}</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="faq-chevron" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="faq-chevron" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
                             </summary>
                             <p class="faq-answer">{{ ('app.faq.a' ~ n)|trans }}</p>
                         </details>
                     {% endfor %}
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-
-    <!-- Bildstreifen: clip-path + fixierte Ebene statt background-attachment: fixed, damit es nicht ruckelt -->
-    <div class="image-divider hidden md:block" aria-hidden="true"><div class="image-divider__img"></div></div>
-
-    <!-- Contact Section -->
-    <div id="contact" class="block-container overflow-hidden bg-[#080b11]">
-        <div class="contact-container max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-8 lg:gap-12 items-start relative">
-            <div class="headline-container lg:w-1/3 xl:w-1/4 shrink-0">
-                <h3 class="headline text-3xl md:text-4xl lg:text-3xl xl:text-4xl font-extrabold tracking-tight text-white mb-2">
-                    {{ 'app.navigation.contact'|trans }}
-                </h3>
-                <div class="w-16 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mt-4"></div>
-            </div>
-            
-            <div class="hidden lg:block block-line vertical-line h-full w-[1px] bg-white/10 self-stretch transition-transform duration-700 ease-out"></div>
-            
-            <div id="contact-text" class="text w-full lg:w-2/3 xl:w-3/4">
-                <p class="lead-text text-[1.0625rem] md:text-xl text-slate-300 leading-relaxed mb-6 max-w-2xl">{{ 'app.contact.intro'|trans }}</p>
-                <div class="contact-direct mb-8 max-w-2xl">
-                    <a href="mailto:kontakt@achim-kraemer.com" class="contact-direct-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5 shrink-0" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
-                        kontakt@achim-kraemer.com
-                    </a>
-                    <a href="tel:+491756821391" class="contact-direct-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5 shrink-0" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" /></svg>
-                        +49 1756 821391
-                    </a>
+        {# ---------- Kontakt ---------- #}
+        <section id="contact" class="section section--contact">
+            <div class="wrap contact">
+                <div class="contact__intro reveal">
+                    <h2 class="section__title">{{ 'app.contact.title'|trans }}</h2>
+                    <p class="section__lead">{{ 'app.contact.intro'|trans }}</p>
+                    <ul class="contact__direct">
+                        <li><a href="mailto:kontakt@achim-kraemer.com">kontakt@achim-kraemer.com</a></li>
+                        <li><a href="tel:+491756821391">+49 1756 821391</a></li>
+                        <li>Böckemeyerskamp 20, 49479 Ibbenbüren</li>
+                    </ul>
                 </div>
-                <div class="bg-[#0f172a]/20 border border-white/5 p-6 md:p-12 rounded-3xl max-w-2xl">
+                <div id="contact-text" class="contact__form">
+                    {% form_theme form 'form/recaptcha_lazy.html.twig' %}
                     {{ include('messages.html.twig') }}
                     {{ form_start(form, {'attr': {
                         'id': 'contact-form',
@@ -737,45 +331,23 @@
                             {{ form_row(form.captcha) }}
                         </div>
                         <input type="hidden" name="token" id="token">
-                        <div class="contact-input mt-4">
-                            <button type="submit" class="contact-input-button w-full">{{ 'app.contact.submit'|trans }}</button>
-                        </div>
+                        <button type="submit" class="btn btn-ink contact-input-button">{{ 'app.contact.submit'|trans }}</button>
                         <p class="recaptcha-notice">{{ 'app.contact.recaptcha_notice'|trans|raw }}</p>
                     {{ form_end(form) }}
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 
     <dialog id="contact-thanks" class="contact-thanks" aria-labelledby="contact-thanks-title">
-        <div class="contact-thanks-icon" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-            </svg>
-        </div>
         <h4 id="contact-thanks-title" class="contact-thanks-title"></h4>
         <p class="contact-thanks-text">{{ 'app.contact.thanks_text'|trans }}</p>
         <form method="dialog">
-            <button type="submit" class="contact-input-button w-full" autofocus>{{ 'app.contact.thanks_close'|trans }}</button>
+            <button type="submit" class="btn btn-ink w-full" autofocus>{{ 'app.contact.thanks_close'|trans }}</button>
         </form>
     </dialog>
 
-    <!-- Footer -->
-    <footer>
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="footer-brand flex items-center gap-3">
-                {{ include('_logo.html.twig', {'size': 32}) }}
-                <p>&copy; {{ "now"|date("Y") }} Achim Krämer. Alle Rechte vorbehalten.</p>
-            </div>
-            <div class="footer-social flex lg:hidden flex-wrap justify-center gap-4">
-                {{ include('_social_links.html.twig', {link_class: 'text-slate-400 hover:text-purple-400 transition-colors', icon_class: 'w-5 h-5'}) }}
-            </div>
-            <div class="flex gap-6">
-                <a target="_blank" href="{{ path('app_data-protection_index') }}">{{ 'app.data_protection.title'|trans }}</a>
-                <a target="_blank" href="{{ path('app_impress_index') }}">{{ 'app.impress.title'|trans }}</a>
-            </div>
-        </div>
-    </footer>
+    {{ include('_footer.html.twig') }}
 {% endblock %}
 
 {% block javascripts %}

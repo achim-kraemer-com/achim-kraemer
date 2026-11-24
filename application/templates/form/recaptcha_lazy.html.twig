@@ -1,0 +1,12 @@
+{#
+    reCAPTCHA erst laden, wenn jemand das Kontaktformular benutzt (assets/js/home.js).
+    Spart beim Seitenaufruf rund 400 KB von Google und verbindet Besucher,
+    die das Formular nicht anfassen, gar nicht erst mit Google.
+#}
+{% block karser_recaptcha3_widget %}
+    {%- set type = 'hidden' -%}
+    {%- set attr = attr|merge({
+        'data-recaptcha-src': form.vars.enabled ? 'https://' ~ form.vars.host ~ '/recaptcha/api.js?render=' ~ form.vars.site_key ~ '&hl=' ~ form.vars.locale : '',
+    }) -%}
+    {{ block('form_widget_simple') }}
+{% endblock %}

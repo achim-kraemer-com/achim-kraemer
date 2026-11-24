@@ -14,7 +14,6 @@ class PublicUrlProvider
 {
     private const PRIORITIES = [
         'app_home' => '1.0',
-        'app_cv'   => '0.5',
     ];
 
     // Rechtstexte sind noindex und gehören deshalb weder in die Sitemap noch zu IndexNow.

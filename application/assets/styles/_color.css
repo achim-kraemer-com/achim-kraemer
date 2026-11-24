@@ -1,12 +1,43 @@
+/*
+ * Design-Tokens: warmes Papier, dunkle Tinte, zwei flache Akzente.
+ * Violett (Marke) steht für die Softwareentwicklung, Terrakotta für Websites & E-Mail.
+ * Keine Verläufe, keine farbigen Schatten.
+ */
 :root {
-    --background-color: #080b11;
-    --second-background-color: rgba(15, 23, 42, 0.65);
-    --third-background-color: #7c3aed;
-    --header-color: #a78bfa;
-    --text-color: #f8fafc;
-    --text-secondary: #94a3b8;
-    --error-color: #ef4444;
-    --accent-gradient-start: #8b5cf6;
-    --accent-gradient-end: #3b82f6;
-    --border-color: rgba(255, 255, 255, 0.08);
+    --paper: #f7f4ee;
+    --paper-2: #efeae1;
+    --paper-3: #e6dfd3;
+    --card: #fffdf9;
+    --ink: #1d1b18;
+    --ink-2: #47423b;
+    --ink-3: #6f685f;
+    --line: #ddd5c8;
+
+    --violet: #6d28d9;
+    --violet-ink: #4c1d95;
+    --violet-soft: #ede6fb;
+    --clay: #b4532a;
+    --clay-ink: #8a3a1a;
+    --clay-soft: #f6e4d9;
+
+    --ok: #2f6b4f;
+    --error: #b42318;
+
+    --font-display: 'Newsreader Variable', Georgia, 'Times New Roman', serif;
+    --font-body: 'Lexend Variable', system-ui, sans-serif;
+
+    --radius: 14px;
+    --shadow: 0 1px 2px rgba(29, 27, 24, 0.06), 0 6px 16px rgba(29, 27, 24, 0.05);
+    --header-height: 72px;
+
+    /* Altnamen für Seiten, die noch die alten Variablen nutzen (Impressum, Datenschutz, CV) */
+    --background-color: var(--paper);
+    --text-color: var(--ink);
+    --text-secondary: var(--ink-2);
+    --header-color: var(--violet);
+    --border-color: var(--line);
+    --error-color: var(--error);
+    --third-background-color: var(--violet);
+    --accent-gradient-start: var(--violet);
+    --accent-gradient-end: var(--violet);
 }

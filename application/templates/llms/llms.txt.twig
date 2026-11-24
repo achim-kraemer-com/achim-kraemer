@@ -1,0 +1,47 @@
+{% autoescape false %}
+# Achim Krämer – Symfony-Entwickler & Webdesigner aus Ibbenbüren
+
+> Freiberuflicher Softwareentwickler aus Ibbenbüren (NRW) mit über 20 Jahren PHP- und mehr als 15 Jahren Symfony-Erfahrung. Zwei Bereiche: individuelle Webanwendungen mit Symfony für Unternehmen und Agenturen (bundesweit remote) sowie Website, Domain, E-Mail und SEO für Selbstständige und kleine Firmen in Ibbenbüren, Osnabrück und dem Münsterland.
+
+Kontakt: kontakt@achim-kraemer.com · +49 1756 821391 · Böckemeyerskamp 20, 49479 Ibbenbüren
+Sprache der Website: Deutsch, englische Fassung unter {{ absolute_url(path('app_home.en')) }}
+
+## Individualentwicklung mit Symfony
+
+- [Symfony-Entwicklung]({{ absolute_url(path('app_service_symfony')) }}): Kundenportale, interne Werkzeuge, Dashboards, Rollen und Rechte, Mandantenfähigkeit
+- [API-Entwicklung & Automatisierung]({{ absolute_url(path('app_service_api')) }}): Schnittstellen zu ERP, CRM, Buchhaltung und Zahlungsanbietern, PDF-Erzeugung, Hintergrundprozesse
+- [KI-Integration]({{ absolute_url(path('app_service_ai')) }}): KI-Agenten, RAG-Assistenten mit Firmenwissen, Datenextraktion aus PDFs und Rechnungen
+- [Symfony-Upgrade auf 7.4 LTS]({{ absolute_url(path('app_service_upgrade')) }}): von Symfony 5.4 oder 6.4, mit Tests und statischer Analyse
+- [Projektübernahme & Wartung]({{ absolute_url(path('app_service_maintenance')) }}): bestehende Symfony-Anwendungen übernehmen und betreuen
+- Product Owner: Anforderungen klären, Backlog priorisieren, Brücke zwischen Fachbereich und Entwicklung
+
+## Website, Domain & E-Mail für kleine Firmen
+
+Preise (alle zzgl. MwSt.):
+{% for n in 1..6 %}
+- {{ ('app.web.p' ~ n ~ '_title')|trans }}: {{ ('app.web.p' ~ n ~ '_price')|trans }} – {{ ('app.web.p' ~ n ~ '_text')|trans }}
+{% endfor %}
+
+- [Website-Pakete & Preise]({{ absolute_url(path('app_service_packages')) }})
+- [Hosting, Domains, E-Mail & SSL]({{ absolute_url(path('app_service_hosting')) }})
+- [Regional: Ibbenbüren, Osnabrück & Münsterland]({{ absolute_url(path('app_region_muensterland')) }})
+
+## Referenzen
+
+- [Mirwena – digitaler Anamnesebogen für Therapiepraxen]({{ absolute_url(path('app_reference_mirwena')) }}): Symfony, feldweise Verschlüsselung von Gesundheitsdaten (DSGVO Art. 9), mandantenfähig
+- [Freelancer-CRM]({{ absolute_url(path('app_reference_freelancer')) }}): Kunden, Projekte, Zeiterfassung und PDF-Rechnungen mit Symfony 8
+- [E-Mail-Signatur-Generator]({{ absolute_url(path('app_reference_email_signature')) }}): Signaturen für Outlook, Apple Mail und Gmail
+- Websites für kleine Firmen, u. a. therapie-stermann.de, elb-solution.de, ibb-betreuungsbuero.de
+
+## Häufige Fragen
+{% for n in 1..10 %}
+
+### {{ ('app.faq.q' ~ n)|trans }}
+{{ ('app.faq.a' ~ n)|trans }}
+{% endfor %}
+
+## Weitere Seiten
+
+- [Ratgeber: Symfony-Freelancer oder Agentur?]({{ absolute_url(path('app_guide_agency')) }})
+- [Startseite]({{ absolute_url(path('app_home')) }})
+{% endautoescape %}

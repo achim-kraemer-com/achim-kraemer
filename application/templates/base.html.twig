@@ -3,15 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Symfony Entwickler & Freelancer mit 20 Jahren Erfahrung | Achim Krämer{% endblock %}</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
         <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('brand/favicon-main-32.png') }}">
         <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('brand/favicon-main-192.png') }}">
         <link rel="icon" type="image/png" sizes="512x512" href="{{ asset('brand/favicon-main-512.png') }}">
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('brand/favicon-main-192.png') }}">
         <link rel="manifest" href="{{ asset('site.webmanifest') }}">
-        <meta name="theme-color" content="#7c3aed">
+        <meta name="theme-color" content="#f7f4ee">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="{% block robots %}follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large{% endblock %}">
         <meta name="description" content="{% block description %}Symfony Freelancer gesucht? Ich unterstütze ihr Projekt und bringe über 20 Jahre PHP-Erfahrung mit ein.{% endblock %}">
@@ -55,7 +52,41 @@
           "@id": "{{ absolute_url(path('app_home')) }}",
           "url": "{{ absolute_url(path('app_home')) }}",
           "telephone": "+49 1756 821391",
-          "priceRange": "$$$",
+          "priceRange": "€€",
+          "email": "kontakt@achim-kraemer.com",
+          "description": "{{ 'app.home.description'|trans|e('js') }}",
+          "areaServed": [
+            {"@type": "City", "name": "Ibbenbüren"},
+            {"@type": "City", "name": "Osnabrück"},
+            {"@type": "AdministrativeArea", "name": "Münsterland"},
+            {"@type": "Country", "name": "Deutschland"}
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "{{ 'app.nav.web'|trans|e('js') }}",
+            "itemListElement": [
+              {%- for o in [
+                  {n: 1, price: 690, unit: null, min: true},
+                  {n: 2, price: 15, unit: 'MON', min: false},
+                  {n: 3, price: 49, unit: null, min: false},
+                  {n: 4, price: 120, unit: null, min: false},
+                  {n: 5, price: 0, unit: null, min: false},
+                  {n: 6, price: 75, unit: 'HUR', min: false},
+              ] %}
+              {
+                "@type": "Offer",
+                "itemOffered": {"@type": "Service", "name": "{{ ('app.web.p' ~ o.n ~ '_title')|trans|e('js') }}", "description": "{{ ('app.web.p' ~ o.n ~ '_text')|trans|e('js') }}"},
+                "priceSpecification": {
+                  "@type": "{{ o.unit ? 'UnitPriceSpecification' : 'PriceSpecification' }}",
+                  {% if o.min %}"minPrice": {{ o.price }},{% else %}"price": {{ o.price }},{% endif %}
+                  "priceCurrency": "EUR",
+                  {% if o.unit %}"unitCode": "{{ o.unit }}",{% endif %}
+                  "valueAddedTaxIncluded": false
+                }
+              }{{ loop.last ? '' : ',' }}
+              {%- endfor %}
+            ]
+          },
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "Böckemeyerskamp 20",
@@ -76,8 +107,7 @@
             "https://www.freelancermap.de/profil/php-symfony-entwickler-279630",
             "https://www.gulp.de/gulp2/g/experten/selbststaendige/profile/6af0642e1789a70479fc20fe"
           ],
-          "jobTitle": "Symfony Freelancer & PHP Webentwickler",
-          "knowsAbout": ["Symfony", "PHP", "Web Development", "API development", "Docker", "Database design", "AI Integration", "Agentic AI"],
+          "knowsAbout": ["Symfony", "PHP", "Web Development", "Webdesign", "SEO", "Webhosting", "E-Mail", "API development", "Docker", "AI Integration", "Agentic AI"],
           "founder": {"@id": "{{ absolute_url(path('app_home')) }}#person"}
         }
         </script>

@@ -1,66 +1,48 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
-
-// any CSS you import will output into a single css file (app.css in this case)
+// Schriften lokal ausliefern statt von Google (Datenschutz, Ladezeit)
+import '@fontsource-variable/lexend/wght.css';
+import '@fontsource-variable/newsreader/opsz.css';
 import '../styles/app.css';
 
-const hamburgerBtn = document.getElementById('burger-btn');
+// Mobiles Menü
+const burger = document.getElementById('burger-btn');
 const mobileMenu = document.getElementById('mobile-menu');
-const navigationLinks = document.querySelectorAll('.navigation-link');
 
-if (hamburgerBtn !== null) {
-// Öffne/Schließe das Menü
-    hamburgerBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        mobileMenu.classList.toggle('opacity-0');
-        mobileMenu.classList.toggle('opacity-100');
-    });
-}
-
-// Fixe Navigation bekommt beim Scrollen einen Hintergrund, damit der Inhalt nicht durchscheint (alle Seiten)
-const scrollNavbar = document.getElementById('header-scroll-container');
-if (scrollNavbar !== null) {
-    const updateNavbar = () => scrollNavbar.classList.toggle('is-scrolled', window.scrollY > 50);
-    window.addEventListener('scroll', updateNavbar, { passive: true });
-    window.addEventListener('load', updateNavbar);
-    updateNavbar();
-}
-
-if (navigationLinks !== null) {
-// Menü schließen bei Klick auf Links
-    navigationLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-            mobileMenu.classList.remove('opacity-100');
-            mobileMenu.classList.add('opacity-0');
-        });
-    });
-}
-
-// Zeiterfassung: laufende Timer sekundengenau anzeigen
-const formatDuration = (totalSeconds) => {
-    const total = Math.max(0, totalSeconds);
-    const hours = Math.floor(total / 3600);
-    const minutes = Math.floor((total % 3600) / 60);
-    const seconds = total % 60;
-
-    return [hours, minutes, seconds]
-        .map((value) => String(value).padStart(2, '0'))
-        .join(':');
+const setMenu = open => {
+    if (!burger || !mobileMenu) return;
+    burger.setAttribute('aria-expanded', String(open));
+    mobileMenu.hidden = !open;
+    document.body.style.overflow = open ? 'hidden' : '';
 };
 
-document.querySelectorAll('[data-timer]').forEach((element) => {
-    let elapsed = parseInt(element.dataset.seconds, 10) || 0;
-    element.textContent = formatDuration(elapsed);
+if (burger && mobileMenu) {
+    burger.addEventListener('click', () => setMenu(mobileMenu.hidden));
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') setMenu(false);
+    });
+}
 
-    if (element.dataset.running === '1') {
-        setInterval(() => {
-            elapsed += 1;
-            element.textContent = formatDuration(elapsed);
-        }, 1000);
-    }
+// Kopfzeile bekommt beim Scrollen eine Trennlinie
+const header = document.getElementById('header-scroll-container');
+if (header) {
+    const update = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+}
+
+// Zurück-Knopf auf Unterseiten: kommt man von dieser Website, geht es im Verlauf zurück.
+// Der Browser stellt dabei die alte Scrollposition wieder her. Sonst greift der Link
+// zum passenden Abschnitt der Startseite.
+document.querySelectorAll('[data-back]').forEach(link => {
+    link.addEventListener('click', event => {
+        let sameSite = false;
+        try {
+            sameSite = document.referrer !== '' && new URL(document.referrer).origin === window.location.origin;
+        } catch (e) { /* ungültiger Referrer */ }
+
+        if (sameSite && window.history.length > 1) {
+            event.preventDefault();
+            window.history.back();
+        }
+    });
 });

@@ -1,111 +1,65 @@
 import '../styles/home.css';
 
-const scrollNavbar = document.querySelector("#header-scroll-container");
-const sticky = scrollNavbar.offsetTop;
+// ------------------------------------------------------------------
+// Rückkehr von Unterseiten: genau dort landen, wo man losgegangen ist.
+// Beim Verlassen merken wir uns die Scrollposition; kommt man per Zurück
+// (Browser oder Zurück-Knopf der Unterseite) wieder, wird sie gesetzt.
+// ------------------------------------------------------------------
+const SCROLL_KEY = 'home-scroll:' + window.location.pathname;
+const navEntry = performance.getEntriesByType('navigation')[0];
+const cameBack = navEntry && navEntry.type === 'back_forward';
 
-// Anker-Sprünge sollen exakt unter dem fixen Header enden (Höhe variiert je nach Breite)
-const setHeaderHeight = () => {
-    document.documentElement.style.setProperty('--header-height', scrollNavbar.offsetHeight + 'px');
-};
-setHeaderHeight();
-window.addEventListener('resize', setHeaderHeight);
-
-// Kommt man mit #anker von einer Unterseite, springt der Browser vor dem fertigen Layout
-// (Bilder, Schriften, Linienhöhen) und landet daneben. Nach dem Laden neu ausrichten.
-window.addEventListener('load', () => {
-    const target = location.hash && document.getElementById(location.hash.slice(1));
-    if (target) target.scrollIntoView({ behavior: 'instant' });
+window.addEventListener('pagehide', () => {
+    sessionStorage.setItem(SCROLL_KEY, String(window.scrollY));
 });
 
-// Abschnitte einmalig einblenden; ohne IntersectionObserver bleibt alles sichtbar
-const blocks = document.querySelectorAll('.block-container');
-if ('IntersectionObserver' in window) {
+if (cameBack && sessionStorage.getItem(SCROLL_KEY) !== null) {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    const y = parseInt(sessionStorage.getItem(SCROLL_KEY), 10) || 0;
+    const restore = () => window.scrollTo({ top: y, behavior: 'instant' });
+    restore();
+    window.addEventListener('load', restore);
+} else if (window.location.hash) {
+    // Mit #anker von einer Unterseite: nach dem Laden (Bilder, Schriften) neu ausrichten
+    window.addEventListener('load', () => {
+        const target = document.getElementById(window.location.hash.slice(1));
+        if (target) target.scrollIntoView({ behavior: 'instant' });
+    });
+}
+
+// ------------------------------------------------------------------
+// Abschnittsköpfe einmalig seitlich einblenden. Bei der Rückkehr nicht,
+// damit nichts unsichtbar an der wiederhergestellten Position steht.
+// ------------------------------------------------------------------
+const reveals = document.querySelectorAll('.reveal');
+if (!cameBack && 'IntersectionObserver' in window) {
     document.documentElement.classList.add('reveal-ready');
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
                 observer.unobserve(entry.target);
             }
         });
-    }, { rootMargin: '0px 0px -8% 0px' });
-    blocks.forEach(block => observer.observe(block));
+    }, { rootMargin: '0px 0px -10% 0px' });
+    reveals.forEach(el => observer.observe(el));
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    blocks.forEach(block => {
-        const line = block.querySelector('.block-line');
-        if (line) {
-            line.style.height = `${block.offsetHeight}px`;
-        }
-    });
-});
-
-// document.addEventListener("DOMContentLoaded", async function () {
-//     const response = await fetch("/api/keywords");
-//     const keywords = await response.json();
-//
-//     const container = document.getElementById("keywords-container");
-//     const positions = [];
-//     let addNumber = 0;
-//     const inPixels = window.innerHeight * 0.5;
-//     const topInPixels = inPixels - 100;
-//     const bottomInPixels = inPixels + 100;
-//     const windowInnerWidth = window.innerWidth - 200;
-//     const windowInnerHeight = window.innerHeight - 100;
-//
-//     function getRandomPosition() {
-//         let x, y;
-//         do {
-//             x = Math.random() * windowInnerWidth;
-//             y = Math.random() * windowInnerHeight;
-//             if (y < 70) {
-//                 y += 70;
-//             }
-//             if (y < bottomInPixels && y > topInPixels && x < 1100) {
-//                 addNumber = Math.random() * 100;
-//                 y = bottomInPixels + addNumber;
-//                 if (y < inPixels) {
-//                     y = topInPixels - addNumber;
-//                 }
-//             }
-//         } while (positions.some(pos => Math.abs(pos.x - x) < 250 && Math.abs(pos.y - y) < 80));
-//
-//         positions.push({ x, y });
-//         return { x, y };
-//     }
-//
-//     keywords.forEach((keyword, index) => {
-//         setTimeout(() => {
-//             const { x, y } = getRandomPosition();
-//             const span = document.createElement("span");
-//             span.className = "keyword";
-//             span.innerText = keyword;
-//             span.style.left = `${x}px`;
-//             span.style.top = `${y}px`;
-//             container.appendChild(span);
-//
-//             setTimeout(() => {
-//                 span.style.opacity = 1;
-//             }, 100);
-//         }, index * 1000);
-//     });
-// });
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.testimonial-slider').forEach(slider => {
-        const slides = slider.querySelectorAll('.testimonial-slide');
-        const dots = slider.querySelectorAll('.testimonial-dot');
-
-        // Kein automatischer Wechsel: Bewegung lenkt beim Lesen ab
-        const show = index => {
-            slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
-            dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
-        };
-        dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
-    });
-});
+// ------------------------------------------------------------------
+// Aktuellen Bereich in der Navigation markieren
+// ------------------------------------------------------------------
+const navLinks = document.querySelectorAll('.main-nav [data-section]');
+if (navLinks.length && 'IntersectionObserver' in window) {
+    // Alle Abschnitte beobachten, damit die Markierung bei FAQ und Kontakt wieder verschwindet
+    const sections = document.querySelectorAll('main > section[id]');
+    const sectionObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            navLinks.forEach(link => link.classList.toggle('is-current', link.dataset.section === entry.target.id));
+        });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(section => sectionObserver.observe(section));
+}
 
 // Kontaktformular per AJAX senden und mit Danke-Modal bestätigen
 document.addEventListener('DOMContentLoaded', function () {
@@ -146,8 +100,28 @@ document.addEventListener('DOMContentLoaded', function () {
         showStatus(general);
     };
 
+    // reCAPTCHA erst laden, sobald jemand das Formular benutzt
+    let captchaLoading = null;
+    const loadCaptcha = () => {
+        const src = captchaInput && captchaInput.dataset.recaptchaSrc;
+        if (!src) return Promise.resolve();
+        if (!captchaLoading) {
+            captchaLoading = new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.async = true;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        }
+        return captchaLoading;
+    };
+    form.addEventListener('focusin', () => loadCaptcha().catch(() => {}), { once: true });
+
     // reCAPTCHA-Token ist nur einmal gültig, daher vor jedem Versand neu holen
     const refreshCaptcha = async () => {
+        await loadCaptcha();
         if (!captchaInput || typeof grecaptcha === 'undefined') return;
         await new Promise(resolve => grecaptcha.ready(resolve));
         captchaInput.value = await grecaptcha.execute(form.dataset.recaptchaKey, { action: form.dataset.recaptchaAction });

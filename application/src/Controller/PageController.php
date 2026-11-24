@@ -34,6 +34,12 @@ class PageController extends AbstractController
         return $this->detail('service', 'hosting', ['Webhosting', 'Domains', 'E-Mail', 'SSL/TLS']);
     }
 
+    #[Route('/services/website-pakete', name: 'app_service_packages')]
+    public function servicePackages(): Response
+    {
+        return $this->detail('service', 'packages', ['Webhosting', 'SSL/TLS', 'E-Mail', 'SEO', 'KI-Suche'], contentFirst: true);
+    }
+
     #[Route('/services/symfony-upgrade', name: 'app_service_upgrade')]
     public function serviceUpgrade(): Response
     {
@@ -79,13 +85,14 @@ class PageController extends AbstractController
     /**
      * @param list<string> $tech
      */
-    private function detail(string $type, string $id, array $tech, ?string $externalUrl = null): Response
+    private function detail(string $type, string $id, array $tech, ?string $externalUrl = null, bool $contentFirst = false): Response
     {
         return $this->render('page/detail.html.twig', [
             'type'         => $type,
             'id'           => $id,
             'tech'         => $tech,
-            'external_url' => $externalUrl,
+            'external_url'  => $externalUrl,
+            'content_first' => $contentFirst,
         ]);
     }
 }

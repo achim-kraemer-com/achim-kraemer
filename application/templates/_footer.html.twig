@@ -1,0 +1,15 @@
+<footer class="site-footer">
+    <div class="wrap site-footer__inner">
+        <div class="footer-brand">
+            {{ include('_logo.html.twig', {'size': 28}) }}
+            <span>&copy; {{ "now"|date("Y") }} Achim Krämer · Ibbenbüren</span>
+        </div>
+        <div class="site-footer__social">
+            {{ include('_social_links.html.twig', {link_class: 'footer-social-link', icon_class: 'w-5 h-5'}) }}
+        </div>
+        <div class="site-footer__links">
+            <a href="{{ path('app_data-protection_index') }}">{{ 'app.data_protection.title'|trans }}</a>
+            <a href="{{ path('app_impress_index') }}">{{ 'app.impress.title'|trans }}</a>
+        </div>
+    </div>
+</footer>

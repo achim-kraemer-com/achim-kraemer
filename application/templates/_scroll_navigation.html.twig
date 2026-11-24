@@ -1,5 +1,24 @@
-<div id="header-scroll-container">
-    <div id="header-scroll-inner">
-        {% include '_navigation.html.twig' with {'links':links} %}
+{#
+    Kopfzeile aller Seiten.
+    links: 'direct' auf der Startseite (Anker ohne Pfad), sonst Pfad zur Startseite davor.
+    back:  optional {href, label} auf Unterseiten. Der Knopf geht per JS im Verlauf zurück
+           (exakt an die alte Scrollposition), ohne Verlauf zum passenden Abschnitt.
+#}
+<header id="header-scroll-container" class="site-header{{ back is defined and back ? ' site-header--sub' : '' }}">
+    <div class="wrap site-header__inner">
+        <a href="{{ path('app_home') }}" class="brand-lockup" aria-label="{{ 'app.header.name'|trans }}">
+            {{ include('_logo.html.twig') }}
+            <span>{{ 'app.header.name'|trans }}</span>
+        </a>
+        {% include '_navigation.html.twig' with {'links': links|default('')} %}
+        {% if back is defined and back %}
+            <a href="{{ back.href }}" class="back-link" data-back>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+                <span>{{ 'app.back.label'|trans }}</span>
+            </a>
+        {% endif %}
+        <button type="button" id="burger-btn" class="burger lg:hidden" aria-controls="mobile-menu" aria-expanded="false" aria-label="{{ 'app.nav.menu'|trans }}">
+            <span></span><span></span><span></span>
+        </button>
     </div>
-</div>
+</header>

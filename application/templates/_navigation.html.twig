@@ -1,35 +1,33 @@
-{% set sections = ['services', 'about', 'portfolio', 'references', 'faq', 'contact'] %}
 {% set anchorBase = links is defined and links == 'direct' ? '' : path('app_home') %}
+{% set items = {
+    'entwicklung': 'app.nav.dev',
+    'websites': 'app.nav.web',
+    'references': 'app.nav.references',
+    'about': 'app.nav.about',
+} %}
+{% set locale = app.request.locale %}
 
-<div class="locale-container">
-    <a class="locale-link" href="{{ path('switch_locale', {'locale': 'de'}) }}">DE</a>
-    <a class="locale-link" href="{{ path('switch_locale', {'locale': 'en'}) }}">EN</a>
-</div>
-
-<a href="{{ path('app_home') }}" class="brand-lockup" aria-label="{{ 'app.header.name'|trans }}">
-    {{ include('_logo.html.twig') }}
-    <span class="navigation-header">{{ 'app.header.name'|trans }}</span>
-</a>
-
-<!-- Hamburger Button -->
-<button id="burger-btn" class="block lg:hidden p-3 rounded-xl bg-[#0f172a]/60 backdrop-blur-md border border-white/10 fixed top-4 right-4 z-50 flex flex-col justify-center items-center gap-1.5 w-11 h-11 transition-all hover:bg-[#0f172a]/80">
-    <span class="w-5 h-0.5 bg-white rounded-full transition-transform"></span>
-    <span class="w-5 h-0.5 bg-white rounded-full transition-transform"></span>
-    <span class="w-5 h-0.5 bg-white rounded-full transition-transform"></span>
-</button>
-
-<!-- Mobile Navigation Menu -->
-<div id="mobile-menu" class="fixed inset-0 bg-[#080b11]/95 backdrop-blur-xl hidden z-40 flex flex-col justify-center items-center">
-    <nav class="flex flex-col items-center justify-center gap-8 text-center h-full">
-        {% for section in sections %}
-            <a href="{{ anchorBase }}#{{ section }}" class="navigation-link text-3xl font-bold tracking-tight py-2 transition-all hover:text-purple-400">{{ ('app.navigation.' ~ section)|trans }}</a>
-        {% endfor %}
-    </nav>
-</div>
-
-<!-- Desktop Navigation -->
-<nav id="nav-menu" class="hidden lg:flex items-center gap-2">
-    {% for section in sections %}
-        <a href="{{ anchorBase }}#{{ section }}" class="double-hover-effect navigation-link px-4 py-2">{{ ('app.navigation.' ~ section)|trans }}</a>
+<nav id="nav-menu" class="main-nav" aria-label="{{ 'app.nav.menu'|trans }}">
+    {% for anchor, label in items %}
+        <a href="{{ anchorBase }}#{{ anchor }}" class="navigation-link" data-section="{{ anchor }}">{{ label|trans }}</a>
     {% endfor %}
+    <a href="{{ anchorBase }}#contact" class="navigation-link main-nav__cta">{{ 'app.nav.contact'|trans }}</a>
 </nav>
+
+<div class="locale-switch">
+    <a href="{{ path('switch_locale', {'locale': 'de'}) }}" lang="de" aria-current="{{ locale == 'de' ? 'true' : 'false' }}">DE</a>
+    <a href="{{ path('switch_locale', {'locale': 'en'}) }}" lang="en" aria-current="{{ locale == 'en' ? 'true' : 'false' }}">EN</a>
+</div>
+
+<div id="mobile-menu" class="mobile-menu" hidden>
+    <nav aria-label="{{ 'app.nav.menu'|trans }}">
+        {% for anchor, label in items %}
+            <a href="{{ anchorBase }}#{{ anchor }}" class="navigation-link">{{ label|trans }}</a>
+        {% endfor %}
+        <a href="{{ anchorBase }}#contact" class="navigation-link">{{ 'app.nav.contact'|trans }}</a>
+    </nav>
+    <div class="locale-switch">
+        <a href="{{ path('switch_locale', {'locale': 'de'}) }}" lang="de" aria-current="{{ locale == 'de' ? 'true' : 'false' }}">Deutsch</a>
+        <a href="{{ path('switch_locale', {'locale': 'en'}) }}" lang="en" aria-current="{{ locale == 'en' ? 'true' : 'false' }}">English</a>
+    </div>
+</div>

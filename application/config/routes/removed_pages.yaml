@@ -1,0 +1,11 @@
+# Entfernte Seiten dauerhaft auf die Startseite umleiten, damit alte Links und
+# Suchmaschinen-Einträge nicht ins Leere laufen.
+removed_cv:
+    path: /cv
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+    defaults: { route: app_home, permanent: true }
+
+removed_cv_en:
+    path: /en/cv
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+    defaults: { path: /en/, permanent: true }
