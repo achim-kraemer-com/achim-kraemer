@@ -36,9 +36,9 @@
         <meta property="og:site_name" content="Achim Krämer | Symfony Freelancer">
         <meta property="og:locale" content="{{ app.request.locale == 'en' ? 'en_US' : 'de_DE' }}">
         <meta property="og:locale:alternate" content="{{ app.request.locale == 'en' ? 'de_DE' : 'en_US' }}">
-        <meta property="og:image" content="{{ absolute_url(asset('build/images/DSC4074.jpeg')) }}">
+        <meta property="og:image" content="{{ absolute_url(asset('build/images/achim-kraemer-portrait.jpeg')) }}">
         <meta property="og:image:type" content="image/jpeg">
-        <meta property="og:image:width" content="883">
+        <meta property="og:image:width" content="900">
         <meta property="og:image:height" content="900">
         <meta property="og:image:alt" content="{{ 'app.hero.photo_alt'|trans }}">
 
@@ -46,7 +46,7 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="{{ block('title') }}">
         <meta name="twitter:description" content="{{ block('description') }}">
-        <meta name="twitter:image" content="{{ absolute_url(asset('build/images/DSC4074.jpeg')) }}">
+        <meta name="twitter:image" content="{{ absolute_url(asset('build/images/achim-kraemer-portrait.jpeg')) }}">
         <meta name="twitter:image:alt" content="{{ 'app.hero.photo_alt'|trans }}">
 
         <!-- Structured Data (JSON-LD Schema) -->
@@ -55,7 +55,7 @@
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
           "name": "Achim Krämer",
-          "image": "{{ absolute_url(asset('build/images/DSC4074.jpeg')) }}",
+          "image": "{{ absolute_url(asset('build/images/achim-kraemer-portrait.jpeg')) }}",
           "logo": "{{ absolute_url(asset('brand/favicon-main-512.png')) }}",
           "@id": "{{ absolute_url(path('app_home')) }}",
           "url": "{{ absolute_url(path('app_home')) }}",
@@ -126,7 +126,7 @@
           "@id": "{{ absolute_url(path('app_home')) }}#person",
           "name": "Achim Krämer",
           "url": "{{ absolute_url(path('app_home')) }}",
-          "image": "{{ absolute_url(asset('build/images/DSC4074.jpeg')) }}",
+          "image": "{{ absolute_url(asset('build/images/achim-kraemer-portrait.jpeg')) }}",
           "jobTitle": "Symfony Freelancer & PHP Webentwickler",
           "worksFor": {"@id": "{{ absolute_url(path('app_home')) }}"},
           "address": {
