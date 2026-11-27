@@ -340,7 +340,8 @@
     </main>
 
     <dialog id="contact-thanks" class="contact-thanks" aria-labelledby="contact-thanks-title">
-        <h4 id="contact-thanks-title" class="contact-thanks-title"></h4>
+        {# Kein Überschrift-Element: es ist bis zum Absenden leer und stünde sonst als leere Überschrift in der Gliederung #}
+        <p id="contact-thanks-title" class="contact-thanks-title"></p>
         <p class="contact-thanks-text">{{ 'app.contact.thanks_text'|trans }}</p>
         <form method="dialog">
             <button type="submit" class="btn btn-ink w-full" autofocus>{{ 'app.contact.thanks_close'|trans }}</button>

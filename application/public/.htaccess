@@ -68,3 +68,14 @@ DirectoryIndex index.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
+
+# Browser-Cache: Dateien aus /build mit Hash im Namen ändern sich nie (neuer Inhalt = neuer Name),
+# Bilder und Schriften ohne Hash eine Woche. Verbessert Wiederholungsaufrufe und Core Web Vitals.
+<IfModule mod_headers.c>
+    <FilesMatch "\.[0-9a-f]{8}\.(css|js|woff2?)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    <FilesMatch "\.(jpe?g|png|webp|avif|svg|ico)$">
+        Header set Cache-Control "public, max-age=604800"
+    </FilesMatch>
+</IfModule>
